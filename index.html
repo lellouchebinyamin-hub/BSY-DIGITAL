@@ -65,14 +65,14 @@ button { font: inherit; color: inherit; }
 .mn-t { display: inline-flex; align-items: center; gap: 8px; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; transition: color .3s; }
 .mn-t i { width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .4s var(--ease); }
 .mn-t.on { position: relative; } .mn-t.on::after { content: ""; position: absolute; inset-inline: 0; bottom: -4px; height: 1px; background: var(--brass); }
-.mn-dd:hover .mn-t, .mn-dd.open .mn-t { color: var(--bone); }
-.mn-dd:hover .mn-t i, .mn-dd.open .mn-t i { transform: translateY(1px) rotate(-135deg); }
-.mn-panel { position: absolute; top: 100%; inset-inline-start: 50%; translate: 50% 0; padding-top: 18px; visibility: hidden; opacity: 0; transition: opacity .35s var(--ease), visibility .35s; }
-:lang(en) .mn-panel { translate: -50% 0; }
-.mn-dd:hover .mn-panel, .mn-dd.open .mn-panel, .mn-dd:focus-within .mn-panel { visibility: visible; opacity: 1; }
+.mn-dd.open .mn-t { color: var(--bone); }
+.mn-dd.open .mn-t i { transform: translateY(1px) rotate(-135deg); }
+.mn-panel { position: absolute; z-index: 60; top: 100%; left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%); padding-top: 22px; visibility: hidden; opacity: 0; transition: opacity .35s var(--ease), visibility .35s; }
+.mn-dd.open .mn-panel { visibility: visible; opacity: 1; }
+.mn-dd::after { content: ""; position: absolute; left: -20px; right: -20px; top: 100%; height: 26px; }
 .mn-in { width: 340px; display: grid; gap: 2px; padding: 8px; border-radius: 20px; background: color-mix(in srgb, var(--ink-2) 97%, transparent); border: 1px solid var(--line); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .6); transform: translateY(-8px) scale(.98); transform-origin: top center; transition: transform .45s var(--ease); }
 html[data-theme="light"] .mn-in { box-shadow: 0 30px 60px -24px rgba(60, 44, 20, .3); }
-.mn-dd:hover .mn-in, .mn-dd.open .mn-in, .mn-dd:focus-within .mn-in { transform: none; }
+.mn-dd.open .mn-in { transform: none; }
 .mn-in a { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; padding: 14px 16px; border-radius: 14px; color: var(--bone); transition: background-color .3s; }
 .mn-in a::after { display: none; }
 .mn-in a:hover, .mn-in a.on { background: color-mix(in srgb, var(--bone) 6%, transparent); }
@@ -80,7 +80,7 @@ html[data-theme="light"] .mn-in { box-shadow: 0 30px 60px -24px rgba(60, 44, 20,
 .mn-in b { display: block; font-size: 15px; font-weight: 700; }
 .mn-in small { display: block; margin-top: 2px; font-size: 13px; color: var(--stone); line-height: 1.4; }
 .mn-in a > span { opacity: 0; transform: translateY(6px); transition: opacity .4s, transform .5s var(--ease); }
-.mn-dd:hover .mn-in a > span, .mn-dd.open .mn-in a > span, .mn-dd:focus-within .mn-in a > span { opacity: 1; transform: none; }
+.mn-dd.open .mn-in a > span { opacity: 1; transform: none; }
 .mn-in a:nth-child(2) > span { transition-delay: .05s; } .mn-in a:nth-child(3) > span { transition-delay: .1s; }
 .tools { display: flex; align-items: center; gap: 18px; }
 .lang { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: none; cursor: pointer; direction: ltr; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; transition: border-color .4s; }
@@ -1163,7 +1163,96 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
 .sx-empty { color: var(--stone); font-size: 15px; }
 .sx-fly { position: fixed; z-index: 120; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: var(--brass); box-shadow: 0 0 0 6px color-mix(in srgb, var(--brass) 25%, transparent); pointer-events: none; }
 
+/* Projects page: a sticky frame shows the project, the chapters beside it tell its story */
+#pg { display: block; }
+.pz { display: grid; width: 100%; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(32px, 5cqw, 90px); align-items: start; }
+.pz-stick { position: sticky; top: 110px; }
+.pz-frame { position: relative; aspect-ratio: 1 / .82; }
+.pz-m, .pz-mm { --tint: var(--brass); position: relative; border-radius: var(--r); overflow: hidden; background: radial-gradient(120% 90% at 30% 20%, color-mix(in srgb, var(--tint) 38%, var(--ink-2)), var(--ink-2) 72%); }
+.pz-m { position: absolute; inset: 0 0 44px; clip-path: inset(100% 0 0 0 round var(--r)); transition: clip-path 1s cubic-bezier(.76, 0, .24, 1); }
+.pz-m.on { clip-path: inset(0 0 0 0 round var(--r)); z-index: 2; }
+.pz-desk { position: absolute; left: 8%; right: 15%; top: 12%; border-radius: 12px; overflow: hidden; background: #0d0d0f; outline: 1px solid rgba(255, 255, 255, .12); box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .75); transform: translateY(40px) scale(.96); transition: transform 1.2s cubic-bezier(.2, .8, .2, 1); }
+.pz-bar { display: flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; background: #1a1a1d; direction: ltr; }
+.pz-bar i { width: 7px; height: 7px; border-radius: 50%; background: #3a3a3f; }
+.pz-bar b { margin-inline: auto; font-family: var(--mono); font-weight: 400; font-size: 10px; color: var(--stone); background: #0f0f11; padding: 2px 12px; border-radius: 99px; }
+html[data-theme="light"] .pz-bar { background: #e4ded3; } html[data-theme="light"] .pz-bar i { background: #c9c1b3; } html[data-theme="light"] .pz-bar b { background: #f7f4ee; }
+.pz-desk img { display: block; width: 100%; aspect-ratio: 1400 / 714; object-fit: cover; object-position: top; }
+.pz-ph { position: absolute; right: 5%; bottom: -6%; width: 23%; aspect-ratio: 600 / 1090; padding: 4px; border-radius: 20px; background: #0f0f10; outline: 1px solid rgba(255, 255, 255, .12); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8); transform: translateY(70px) rotate(5deg); transition: transform 1.3s cubic-bezier(.2, .8, .2, 1) .1s; }
+.pz-ph img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 16px; display: block; }
+.pz-m.on .pz-desk { transform: none; } .pz-m.on .pz-ph { transform: rotate(-2deg); }
+.pz-count { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 14px; font-family: var(--mono); font-size: 13px; color: var(--stone); direction: ltr; }
+.pz-count b { color: var(--bone); font-weight: 500; }
+.pz-count i { flex: 1; height: 1px; background: var(--line); position: relative; }
+.pz-count s { position: absolute; inset: 0; background: var(--brass); transform-origin: left; transform: scaleX(.16); transition: transform .8s var(--ease); }
+.pz-list { display: grid; }
+.pz-c { display: grid; gap: 18px; align-content: center; min-height: 82vh; padding-block: 48px; border-top: 1px solid var(--line); opacity: .32; transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.pz-c:first-child { border-top: 0; }
+.pz-c.now { opacity: 1; }
+.pz-c.off { display: none; }
+.pz-c.out { opacity: 0 !important; transform: translateY(24px); }
+.pz-mm { display: none; }
+.pz-h { display: flex; align-items: center; gap: 14px; }
+.pz-h em { font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--brass); }
+.pz-c h3 { margin: 0; font-family: var(--display-en); font-weight: 800; font-stretch: 115%; font-size: clamp(2.2rem, 4cqw, 4rem); line-height: .95; letter-spacing: -.04em; direction: ltr; text-align: start; }
+html[dir="rtl"] .pz-c h3 { text-align: right; }
+.pz-lead { margin: 0; color: var(--stone); font-size: 17px; max-width: 42ch; }
+.pz-cs, .cs-cs { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; padding-block: 20px; border-block: 1px solid var(--line); }
+.pz-cs small, .cs-cs small { display: block; margin-bottom: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--brass); text-transform: uppercase; }
+.pz-cs p, .cs-cs p { margin: 0; font-size: 15px; line-height: 1.6; }
+.pz-ft { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pz-ft li { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 99px; border: 1px solid var(--line); font-size: 13px; font-weight: 600; }
+.pz-ft li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--brass); }
+.pz-c.now .pz-ft li { animation: pzIn .6s var(--ease) both; }
+.pz-c.now .pz-ft li:nth-child(2) { animation-delay: .06s; } .pz-c.now .pz-ft li:nth-child(3) { animation-delay: .12s; } .pz-c.now .pz-ft li:nth-child(4) { animation-delay: .18s; }
+@keyframes pzIn { from { opacity: 0; transform: translateY(10px); } }
+.pz-act { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.pz-act .pill { padding: 15px 26px; }
+.cs-info .pz-ft { margin-top: -6px; }
+
+/* Contact: what to know before writing */
+.ck { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(20px, 3cqw, 40px); margin-top: clamp(48px, 6cqw, 90px); }
+.ck h3 { margin: 0 0 26px; font-family: var(--display-he); font-weight: 900; font-size: clamp(1.7rem, 2.6cqw, 2.5rem); letter-spacing: -.02em; line-height: 1.05; }
+:lang(en) .ck h3 { font-family: var(--display-en); font-stretch: 108%; }
+.ck h3 .serif { font-family: var(--serif); font-weight: 300; color: var(--brass); }
+.ck-steps { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: 0; }
+.ck-steps::before { content: ""; position: absolute; top: 14px; bottom: 14px; inset-inline-start: 13px; width: 1px; background: var(--line); }
+.ck-steps::after { content: ""; position: absolute; top: 14px; bottom: 14px; inset-inline-start: 13px; width: 1px; background: var(--brass); transform-origin: top; transform: scaleY(0); transition: transform 1.6s cubic-bezier(.6, 0, .2, 1) .2s; }
+.ck.in .ck-steps::after { transform: scaleY(1); }
+.ck-steps li { position: relative; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 18px; padding-bottom: 26px; opacity: 0; transform: translateY(16px); transition: opacity .6s, transform .7s var(--ease); }
+.ck-steps li:last-child { padding-bottom: 0; }
+.ck.in .ck-steps li { opacity: 1; transform: none; }
+.ck.in .ck-steps li:nth-child(2) { transition-delay: .35s; } .ck.in .ck-steps li:nth-child(3) { transition-delay: .7s; } .ck.in .ck-steps li:nth-child(4) { transition-delay: 1.05s; }
+.ck-steps li > i { position: relative; z-index: 1; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-family: var(--mono); font-size: 11px; background: var(--ink); border: 1px solid var(--brass); color: var(--brass); }
+.ck-steps li small { display: block; font-family: var(--mono); font-size: 12px; color: var(--brass); margin-bottom: 2px; }
+.ck-steps li b { display: block; font-size: 18px; font-weight: 700; }
+.ck-steps li p { margin: 4px 0 0; color: var(--stone); font-size: 15px; line-height: 1.55; }
+.ck-card { padding: clamp(26px, 3cqw, 40px); border-radius: var(--r); background: var(--ink-2); border: 1px solid var(--line); }
+.ck-prep { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.ck-prep li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 14px; align-items: start; font-size: 15px; }
+.ck-prep li small { display: block; color: var(--stone); font-size: 13px; margin-top: 2px; }
+.ck-prep svg { width: 24px; height: 24px; color: var(--brass); }
+.ck-prep svg path { stroke-dasharray: 20; stroke-dashoffset: 20; transition: stroke-dashoffset .5s var(--ease); }
+.ck.in .ck-prep svg path { stroke-dashoffset: 0; }
+.ck.in .ck-prep li:nth-child(2) svg path { transition-delay: .2s; } .ck.in .ck-prep li:nth-child(3) svg path { transition-delay: .4s; } .ck.in .ck-prep li:nth-child(4) svg path { transition-delay: .6s; } .ck.in .ck-prep li:nth-child(5) svg path { transition-delay: .8s; }
+.ck-facts { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-block: 1px solid var(--line); }
+.ck-facts div { padding: 22px 0; padding-inline-end: 18px; }
+.ck-facts div + div { border-inline-start: 1px solid var(--line); padding-inline-start: 22px; }
+.ck-facts b { display: block; font-size: 17px; font-weight: 800; }
+.ck-facts span { font-size: 13px; color: var(--stone); }
+.ck-facts a { color: var(--brass); }
+
 @container site (max-width: 860px) {
+  .ck { grid-template-columns: minmax(0, 1fr); }
+  .ck-facts { grid-template-columns: 1fr 1fr; }
+  .ck-facts div:nth-child(3) { border-inline-start: 0; padding-inline-start: 0; }
+  .ck-facts div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .pz { grid-template-columns: minmax(0, 1fr); }
+  .pz-stick { display: none; }
+  .pz-c { min-height: 0; opacity: 1; padding-block: 36px; }
+  .pz-mm { display: block; aspect-ratio: 1 / .8; cursor: pointer; margin-bottom: 8px; }
+  .pz-mm .pz-desk { transform: none; } .pz-mm .pz-ph { transform: rotate(-2deg); }
+  .pz-cs, .cs-cs { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .pz-act .pill { flex: 1; }
   .st-vis { aspect-ratio: 1 / 1.05; margin-inline: -6px; }
   .st-web { width: 100%; top: 14%; font-size: 1.85cqw; }
   .st-nav { display: none; }
@@ -1590,6 +1679,7 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
               <div class="row"><a class="pill line" id="f-wa" href="#" target="_blank" rel="noopener" data-k="f_orwa"></a><button type="button" class="chip" id="f-again" data-k="f_again"></button></div>
             </div>
           </div>
+          <div class="ck" id="ck"></div>
         </div>
       </section>
     </main>
@@ -1726,6 +1816,7 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
     if (typeof renderSvcPage === "function") renderSvcPage(l);
     document.getElementById("r_title").innerHTML = d.r_title.map(function (t, i) { return '<span class="ln"><span style="--i:' + i + '">' + t + "</span></span>"; }).join("");
     if (typeof renderContact === "function") renderContact(l);
+    if (typeof CK !== "undefined") renderKnow(l);
     if (typeof admRender === "function") admRender();
     document.getElementById("c_title").innerHTML = d.c_title.map(function (t, i) { return '<span class="ln"><span style="--i:' + i + '">' + t + "</span></span>"; }).join("");
     document.getElementById("f_title").innerHTML = d.f_title.map(function (t, i) { return '<span class="ln"><span style="--i:' + i + '">' + t + "</span></span>"; }).join("");
@@ -2741,8 +2832,16 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
     document.querySelectorAll(".menu [data-p]").forEach(function (a) { var p = a.dataset.p; a.classList.toggle("on", p === k || (p === "svc" && k.indexOf("svc-") === 0)); });
   }
   var mnDd = document.getElementById("mn-dd");
-  mnDd.querySelector(".mn-t").addEventListener("click", function () { var o = !mnDd.classList.contains("open"); mnDd.classList.toggle("open", o); this.setAttribute("aria-expanded", o); });
-  mnDd.querySelectorAll(".mn-in a").forEach(function (a) { a.addEventListener("click", function () { mnDd.classList.remove("open"); a.blur(); }); });
+  var mnT = mnDd.querySelector(".mn-t"), mnClose = 0;
+  function mnSet(o) { clearTimeout(mnClose); mnDd.classList.toggle("open", o); mnT.setAttribute("aria-expanded", o); }
+  mnT.addEventListener("click", function () { mnSet(!mnDd.classList.contains("open")); });
+  if (matchMedia("(hover: hover)").matches) {
+    mnDd.addEventListener("mouseenter", function () { mnSet(true); });
+    mnDd.addEventListener("mouseleave", function () { clearTimeout(mnClose); mnClose = setTimeout(function () { mnSet(false); }, 350); });
+  }
+  mnDd.addEventListener("keydown", function (e) { if (e.key === "Escape") { mnSet(false); mnT.focus(); } });
+  mnDd.addEventListener("focusout", function (e) { if (!mnDd.contains(e.relatedTarget)) mnSet(false); });
+  mnDd.querySelectorAll(".mn-in a").forEach(function (a) { a.addEventListener("click", function () { mnSet(false); a.blur(); }); });
   document.addEventListener("click", function (e) { if (!mnDd.contains(e.target)) mnDd.classList.remove("open"); });
   addEventListener("hashchange", navMark);
   navMark();
@@ -2814,12 +2913,53 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
     }
   }
 
+
+  // Contact: what happens after you send, what to prepare
+  var CK = {
+    he: { t1: 'מה קורה <span class="serif">אחרי ששולחים?</span>', steps: [["תוך 24 שעות", "חוזרים אליכם", "בוואטסאפ או בטלפון, בשעה שנוחה לכם."], ["שיחת היכרות", "מבינים את העסק", "כ־20 דקות על המטרות, הקהל, הסגנון והתקציב."], ["אחרי השיחה", "הצעת מחיר סגורה", "מפורטת, עם לוח זמנים ברור ובלי הפתעות בהמשך."], ["יוצאים לדרך", "אפיון, עיצוב ופיתוח", "אתם מאשרים כל שלב, ורואים את האתר נבנה."]],
+      t2: 'כדאי <span class="serif">להכין מראש.</span>', prep: [["לוגו וצבעי מותג", "אם יש. אם אין, נבנה יחד."], ["2-3 אתרים שאהבתם", "כדי להבין את הטעם שלכם."], ["טקסטים ותמונות", "מה שיש. את השאר נשלים יחד."], ["טווח תקציב ותאריך יעד", "עוזר לתכנן נכון מההתחלה."], ["דומיין קיים", "אם כבר רכשתם כתובת לאתר."]],
+      facts: [["שיחת היכרות", "בלי התחייבות"], ["עברית · Français", "השפות שבהן אני עובד"], ["ישראל וחו״ל", "לקוחות גם בארה״ב"], ["שאלות על מחיר וזמנים?", '<a href="#faq">לשאלות הנפוצות</a>']] },
+    en: { t1: 'What happens <span class="serif">after you send?</span>', steps: [["Within 24 hours", "I get back to you", "On WhatsApp or by phone, at a time that suits you."], ["Intro call", "Understanding your business", "About 20 minutes on goals, audience, style and budget."], ["After the call", "A fixed quote", "Detailed, with a clear timeline and no surprises later."], ["Kick-off", "Planning, design, build", "You approve every stage and watch the site come together."]],
+      t2: 'Good to <span class="serif">prepare.</span>', prep: [["Logo and brand colours", "If you have them. If not, we build them together."], ["2-3 sites you like", "So I understand your taste."], ["Texts and photos", "Whatever you have. We complete the rest together."], ["Budget range and target date", "Helps plan it right from the start."], ["Existing domain", "If you already bought an address."]],
+      facts: [["Intro call", "No commitment"], ["עברית · Français", "Languages I work in"], ["Israel and abroad", "Clients in the US too"], ["Questions on price or timing?", '<a href="#faq">See the FAQ</a>']] }
+  };
+  var ckIO = null;
+  function renderKnow(l) {
+    var d = CK[l], el = document.getElementById("ck"); if (!el) return;
+    var tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10.5" opacity=".35"/><path d="M7.5 12.5l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    el.innerHTML = '<div><h3>' + d.t1 + '</h3><ol class="ck-steps">' + d.steps.map(function (x, n) { return "<li><i>0" + (n + 1) + "</i><div><small>" + x[0] + "</small><b>" + x[1] + "</b><p>" + x[2] + "</p></div></li>"; }).join("") + "</ol></div>" +
+      '<div class="ck-card"><h3>' + d.t2 + '</h3><ul class="ck-prep">' + d.prep.map(function (x) { return "<li>" + tick + "<div>" + x[0] + "<small>" + x[1] + "</small></div></li>"; }).join("") + "</ul></div>" +
+      '<div class="ck-facts">' + d.facts.map(function (x) { return "<div><b>" + x[0] + "</b><span>" + x[1] + "</span></div>"; }).join("") + "</div>";
+    if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) { el.classList.add("in"); return; }
+    if (!ckIO) ckIO = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); ckIO.unobserve(e.target); } }); }, { threshold: .2 });
+    ckIO.observe(el);
+  }
+  renderKnow(lang);
   // Projects page
   var PG_CAT = { luma: "beauty", myriam: "beauty", pnim: "estate", yesod: "estate", garage: "service", sweet: "service" };
   var PG_TINT = { luma: "#b0703f", myriam: "#d7a89c", pnim: "#7f9a86", yesod: "#8a8f96", garage: "#6f6ca8", sweet: "#c9a46e" };
   var PG_T = {
-    he: { f: [["all", "הכל"], ["beauty", "יופי וטיפוח"], ["estate", "נדל״ן ומשפט"], ["service", "שירות ואירוח"]], stats: [["06", "פרויקטים באוויר"], ["IL + US", "ישראל וארה״ב"], ["100%", "עיצוב אישי"]], view: "צפו בפרויקט", open: "פתחו את הפרויקט", live: "צפו באתר החי", m: ["סוג", "תחום", "מיקום"], type: "אתר תדמית" },
-    en: { f: [["all", "All"], ["beauty", "Beauty"], ["estate", "Real estate & law"], ["service", "Service & hospitality"]], stats: [["06", "projects live"], ["IL + US", "Israel and the US"], ["100%", "bespoke design"]], view: "View project", open: "Open project", live: "Visit the live site", m: ["Type", "Field", "Location"], type: "Brand website" }
+    he: { f: [["all", "הכל"], ["beauty", "יופי וטיפוח"], ["estate", "נדל״ן ומשפט"], ["service", "שירות ואירוח"]], stats: [["06", "פרויקטים באוויר"], ["IL + US", "ישראל וארה״ב"], ["100%", "עיצוב אישי"]], view: "צפו בפרויקט", open: "פתחו את הפרויקט", live: "צפו באתר החי", full: "תצוגה מלאה", ch: "האתגר", so: "מה בנינו", ftT: "מה יש באתר", m: ["סוג", "תחום", "מיקום"], type: "אתר תדמית" },
+    en: { f: [["all", "All"], ["beauty", "Beauty"], ["estate", "Real estate & law"], ["service", "Service & hospitality"]], stats: [["06", "projects live"], ["IL + US", "Israel and the US"], ["100%", "bespoke design"]], view: "View project", open: "Open project", live: "Visit the live site", full: "Full view", ch: "The challenge", so: "What we built", ftT: "On the site", m: ["Type", "Field", "Location"], type: "Brand website" }
+  };
+
+  var PJD = {
+    he: {
+      luma: { ch: "ברברשופ בוטיק בירושלים שרצה להיראות פרימיום ולמלא את היומן בלי לענות לטלפון כל היום.", so: "אתר כהה ויוקרתי עם קביעת תור ווואטסאפ בלחיצה, גלריית עבודות ומחירון ברור.", ft: ["קביעת תור אונליין", "וואטסאפ בלחיצה", "גלריית עבודות", "מחירון שירותים"] },
+      myriam: { ch: "מומחית לאיפור קבוע והסרת קעקועים שפונה ללקוחות בעברית ובצרפתית, ורוצה שיסמכו עליה מהמבט הראשון.", so: "אתר דו־לשוני, רך ונשי, שמציג את הטיפולים והתוצאות ומוביל לשיחה או לוואטסאפ.", ft: ["עברית + צרפתית", "הסבר על כל טיפול", "תוצאות ועבודות", "פנייה מהירה"] },
+      pnim: { ch: "משרד נדל״ן אורבני שצריך להציג נכסים ולקבל פניות מקונים, משכירים ובעלי נכסים.", so: "אתר עירוני ונקי עם חיפוש נכסים, אזורים לקנייה ולהשכרה וטופס הערכת שווי.", ft: ["חיפוש נכסים", "קנייה והשכרה", "הערכת שווי", "מותאם למובייל"] },
+      yesod: { ch: "משרד עורכי דין לנדל״ן ומסחרי שהיה צריך לשדר אמינות וניסיון מהשנייה הראשונה.", so: "עיצוב מאופק וסמכותי, תחומי התמחות ברורים ודרך מהירה לתאם פגישה.", ft: ["תחומי התמחות", "עיצוב סמכותי", "תיאום פגישה", "מותאם למובייל"] },
+      garage: { ch: "עסק לתיקון דלתות מוסך בניו ג׳רזי שחי משיחות טלפון ומקריאות דחופות.", so: "אתר באנגלית שבנוי להמרות: כפתורי חיוג בולטים, שירותים ברורים ואזורי שירות.", ft: ["חיוג בלחיצה", "רשימת שירותים", "אזורי שירות", "טופס הצעת מחיר"] },
+      sweet: { ch: "סוויטות בוטיק מול הים בנתניה שרצו שהאתר ימכור את החוויה עוד לפני ההגעה.", so: "אתר עם תמונות גדולות, מחירים ברורים, ג׳קוזי ושקיעה, והזמנה מהירה בוואטסאפ.", ft: ["גלריה גדולה", "מחירים ברורים", "הזמנה בוואטסאפ", "מותאם למובייל"] }
+    },
+    en: {
+      luma: { ch: "A boutique Jerusalem barbershop that wanted to look premium and fill the calendar without answering the phone all day.", so: "A dark, upscale site with one-tap booking and WhatsApp, a work gallery and a clear price list.", ft: ["Online booking", "One-tap WhatsApp", "Work gallery", "Price list"] },
+      myriam: { ch: "A permanent makeup and tattoo removal specialist serving clients in Hebrew and French, who needs trust at first glance.", so: "A soft, bilingual site that presents each treatment and its results and leads to a call or WhatsApp.", ft: ["Hebrew + French", "Every treatment explained", "Results and work", "Fast contact"] },
+      pnim: { ch: "An urban real estate office that needs to showcase properties and get enquiries from buyers, renters and owners.", so: "A clean, urban site with property search, buy and rent sections and a valuation form.", ft: ["Property search", "Buy and rent", "Valuation form", "Mobile ready"] },
+      yesod: { ch: "A real estate and commercial law firm that had to convey trust and experience from the first second.", so: "Restrained, authoritative design, clear practice areas and a quick way to book a meeting.", ft: ["Practice areas", "Authoritative design", "Book a meeting", "Mobile ready"] },
+      garage: { ch: "A New Jersey garage door repair business that lives on phone calls and urgent requests.", so: "An English site built to convert: prominent call buttons, clear services and service areas.", ft: ["Tap to call", "Service list", "Service areas", "Quote form"] },
+      sweet: { ch: "Seafront boutique suites in Netanya that wanted the site to sell the experience before guests arrive.", so: "Big photography, clear prices, the jacuzzi and the sunset, and quick booking over WhatsApp.", ft: ["Large gallery", "Clear prices", "WhatsApp booking", "Mobile ready"] }
+    }
   };
   var pgFilter = "all";
   function renderGallery(l) {
@@ -2829,11 +2969,20 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
       var n = f[0] === "all" ? PJ.length : PJ.filter(function (p) { return PG_CAT[p.id] === f[0]; }).length;
       return '<button type="button" role="tab" data-f="' + f[0] + '" aria-selected="' + (f[0] === pgFilter) + '">' + f[1] + "<sup>" + n + "</sup></button>";
     }).join("");
-    document.getElementById("pg").innerHTML = PJ.map(function (p, i) {
-      return '<article class="pc rv" data-i="' + i + '" data-c="' + PG_CAT[p.id] + '"><button type="button" class="pc-media" style="--tint:' + PG_TINT[p.id] + '" aria-label="' + t.open + " " + esc(p.name) + '">' +
-        '<span class="pc-desk"><img src="work/' + p.id + '-d.jpg" alt="" loading="lazy"></span><span class="pc-phone"><img src="work/' + p.id + '-m.jpg" alt="" loading="lazy"></span><span class="pc-view">' + t.view + "</span></button>" +
-        '<div class="pc-info"><em>' + String(i + 1).padStart(2, "0") + "</em><h3>" + esc(p.name) + "</h3><span>" + esc(p[l][0]) + "</span></div></article>";
-    }).join("");
+    var dd = PJD[l];
+    var media = function (p, cls) { return '<div class="' + cls + '" style="--tint:' + PG_TINT[p.id] + '"><span class="pz-desk"><span class="pz-bar"><i></i><i></i><i></i><b>' + p.url.replace("https://", "") + '</b></span><img src="work/' + p.id + '-d.jpg" alt="" loading="lazy"></span><span class="pz-ph"><img src="work/' + p.id + '-m.jpg" alt="" loading="lazy"></span></div>'; };
+    document.getElementById("pg").innerHTML = '<div class="pz" id="pz"><div class="pz-stick"><div class="pz-frame" id="pz-frame">' +
+        PJ.map(function (p, i) { return media(p, "pz-m" + (i ? "" : " on")).replace('class="pz-m', 'data-i="' + i + '" class="pz-m'); }).join("") +
+        '<div class="pz-count" id="pz-count"><b>01</b><i><s></s></i><span>06</span></div></div></div><div class="pz-list">' +
+      PJ.map(function (p, i) {
+        var x = dd[p.id];
+        return '<article class="pz-c" data-i="' + i + '" data-c="' + PG_CAT[p.id] + '">' + media(p, "pz-mm") +
+          '<div class="pz-h"><em>' + String(i + 1).padStart(2, "0") + '</em><span class="pj-cat">' + esc(p[l][0]) + "</span></div><h3>" + esc(p.name) + '</h3><p class="pz-lead">' + esc(p[l][1]) + "</p>" +
+          '<div class="pz-cs"><div><small>' + t.ch + "</small><p>" + esc(x.ch) + "</p></div><div><small>" + t.so + "</small><p>" + esc(x.so) + "</p></div></div>" +
+          '<ul class="pz-ft">' + x.ft.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>" +
+          '<div class="pz-act"><button type="button" class="pill solid pz-open">' + t.full + '</button><a class="pill line" href="' + p.url + '" target="_blank" rel="noopener">' + t.live + "</a></div></article>";
+      }).join("") + "</div></div>";
+    pzWatch();
     pgApply(false);
   }
   function pgThumb() {
@@ -2841,20 +2990,35 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
     if (on && th && on.offsetWidth) { th.style.left = on.offsetLeft + "px"; th.style.width = on.offsetWidth + "px"; th.style.top = on.offsetTop + "px"; th.style.height = on.offsetHeight + "px"; }
   }
   function pgApply(anim) {
-    var cards = [].slice.call(document.querySelectorAll("#pg .pc"));
+    var cards = [].slice.call(document.querySelectorAll("#pg .pz-c"));
     var show = function () {
-      var k = 0;
-      cards.forEach(function (c) {
-        var vis = pgFilter === "all" || c.dataset.c === pgFilter;
-        c.classList.toggle("off", !vis); c.classList.toggle("shift", vis && k++ % 2 === 1);
-        if (vis && anim) { c.classList.add("out"); c.classList.remove("pre"); }
-      });
-      if (anim) requestAnimationFrame(function () { requestAnimationFrame(function () { cards.forEach(function (c, n) { c.style.transitionDelay = n * 50 + "ms"; c.classList.remove("out"); setTimeout(function () { c.style.transitionDelay = ""; }, 900); }); }); });
+      var first = null;
+      cards.forEach(function (c) { var vis = pgFilter === "all" || c.dataset.c === pgFilter; c.classList.toggle("off", !vis); if (vis && first === null) first = +c.dataset.i; });
+      if (first !== null) pzSet(first);
+      document.getElementById("pz-count").querySelector("span").textContent = String(cards.filter(function (c) { return !c.classList.contains("off"); }).length).padStart(2, "0");
+      if (anim) { cards.forEach(function (c) { c.classList.add("out"); }); requestAnimationFrame(function () { requestAnimationFrame(function () { cards.forEach(function (c) { c.classList.remove("out"); }); }); }); }
     };
     if (!anim) { show(); setTimeout(pgThumb, 0); return; }
     pgThumb();
-    cards.forEach(function (c) { if (!c.classList.contains("off")) c.classList.add("out"); });
-    setTimeout(show, 380);
+    cards.forEach(function (c) { c.classList.add("out"); });
+    setTimeout(function () { show(); var pz = document.getElementById("pz"); if (pz.getBoundingClientRect().top < 0) pz.scrollIntoView({ behavior: "smooth" }); }, 350);
+  }
+  // The sticky frame follows the chapter in view
+  var pzIO = null, pzCur = -1;
+  function pzSet(i) {
+    if (i === pzCur) return; pzCur = i;
+    var list = csList(), n = list.indexOf(i);
+    document.querySelectorAll("#pz-frame .pz-m").forEach(function (m) { m.classList.toggle("on", +m.dataset.i === i); });
+    document.querySelectorAll("#pg .pz-c").forEach(function (c) { c.classList.toggle("now", +c.dataset.i === i); });
+    var cnt = document.getElementById("pz-count"); if (!cnt) return;
+    cnt.querySelector("b").textContent = String(n + 1).padStart(2, "0");
+    cnt.querySelector("s").style.transform = "scaleX(" + (n + 1) / list.length + ")";
+  }
+  function pzWatch() {
+    pzCur = -1; if (pzIO) pzIO.disconnect();
+    if (!("IntersectionObserver" in window)) return;
+    pzIO = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) pzSet(+e.target.dataset.i); }); }, { rootMargin: "-45% 0px -45% 0px" });
+    document.querySelectorAll("#pg .pz-c").forEach(function (c) { pzIO.observe(c); });
   }
   document.getElementById("pg-filters").addEventListener("click", function (e) {
     var b = e.target.closest("button"); if (!b || b.dataset.f === pgFilter) return;
@@ -2864,11 +3028,11 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
   });
   addEventListener("resize", function () { if (onProjects()) pgThumb(); });
   var pgEl = document.getElementById("pg");
-  pgEl.addEventListener("pointermove", function (e) {
-    var m = e.target.closest(".pc-media"); if (!m) return;
-    var r = m.getBoundingClientRect(); m.style.setProperty("--x", e.clientX - r.left + "px"); m.style.setProperty("--y", e.clientY - r.top + "px");
+  pgEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".pz-open, .pz-mm"); if (!b) return;
+    var c = b.closest(".pz-c"), from = c.querySelector(".pz-mm"); if (!from.offsetWidth) from = document.getElementById("pz-frame");
+    csOpen(+c.dataset.i, from);
   });
-  pgEl.addEventListener("click", function (e) { var m = e.target.closest(".pc-media"); if (m) csOpen(+m.closest(".pc").dataset.i, m); });
 
   // Case view: grows out of the card that was clicked
   var cs = document.getElementById("case"), csI = 0, csFrom = null, csBusy = false;
@@ -2880,6 +3044,7 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
     var meta = [[t.m[0], t.type], [t.m[1], c[0]]]; if (c[1]) meta.push([t.m[2], c[1]]);
     document.getElementById("cs-body").innerHTML =
       '<div class="cs-info"><span class="pj-cat">' + esc(p[lang][0]) + '</span><h3 id="cs-name">' + esc(p.name) + "</h3><p>" + esc(p[lang][1]) + '</p><dl class="cs-meta">' + meta.map(function (m) { return "<div><dt>" + m[0] + "</dt><dd>" + esc(m[1]) + "</dd></div>"; }).join("") + "</dl>" +
+      '<div class="cs-cs"><div><small>' + t.ch + "</small><p>" + esc(PJD[lang][p.id].ch) + "</p></div><div><small>" + t.so + "</small><p>" + esc(PJD[lang][p.id].so) + '</p></div></div><ul class="pz-ft">' + PJD[lang][p.id].ft.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>" +
       '<a class="pill solid" href="' + p.url + '" target="_blank" rel="noopener">' + t.live + "</a></div>" +
       '<div class="cs-media" style="--tint:' + PG_TINT[p.id] + '"><div class="cs-desk"><div class="pj-bar"><i></i><i></i><i></i><span>' + p.url.replace("https://", "") + '</span></div><img src="work/' + p.id + '-d.jpg" alt="' + esc(p.name) + '"></div><div class="cs-phone"><img src="work/' + p.id + '-m.jpg" alt=""></div></div>';
   }
