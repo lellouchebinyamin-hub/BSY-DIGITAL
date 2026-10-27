@@ -3485,6 +3485,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
   function setMenu(o) {
     clearTimeout(closeT);
     nav.classList.toggle("open", o); burger.setAttribute("aria-expanded", o);
+    var bar = document.getElementById("m-cta"); if (bar && o) bar.classList.remove("on"); else queueFx();
     document.documentElement.style.overflow = o ? "hidden" : "";
     if (o) nav.classList.remove("closing");
     else { nav.classList.add("closing"); closeT = setTimeout(function () { nav.classList.remove("closing"); }, 1150); }
