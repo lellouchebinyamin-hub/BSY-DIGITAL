@@ -1307,6 +1307,11 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
 .ck-facts a { color: var(--brass); }
 
 @container site (max-width: 860px) {
+  .lgl-grid { grid-template-columns: minmax(0, 1fr); }
+  .lgl-side { position: static; grid-template-columns: repeat(3, auto); justify-content: start; gap: 6px 18px; }
+  .lgl-side small, .lgl-upd { grid-column: 1 / -1; }
+  .lgl-side a { border-bottom-width: 2px; border-color: transparent; padding: 6px 0; }
+  .lgl-s .lgl-c { grid-template-columns: minmax(0, 1fr); }
   .ck { grid-template-columns: minmax(0, 1fr); }
   .ck-facts { grid-template-columns: 1fr 1fr; }
   .ck-facts div:nth-child(3) { border-inline-start: 0; padding-inline-start: 0; }
@@ -1522,8 +1527,84 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
 .stage.mobile .site { width: 390px; max-width: 100%; height: min(800px, calc(100vh - 140px)); margin-inline: auto; border-radius: 36px; overflow-y: auto; overflow-x: hidden; outline: 1px solid rgba(255,255,255,.14); scrollbar-width: none; }
 .stage.mobile .site::-webkit-scrollbar { display: none; }
 .stage.mobile .nav { top: 0; }
+
+/* Legal pages */
+.lgl { padding-block: clamp(48px, 6cqw, 90px) clamp(96px, 12cqw, 150px); }
+.lgl-t { margin: 0; font-family: var(--display-he); font-weight: 900; font-size: clamp(2.4rem, 6cqw, 4.6rem); line-height: 1; letter-spacing: -.02em; color: var(--bone); }
+:lang(en) .lgl-t { font-family: var(--display-en); font-stretch: 115%; font-weight: 800; }
+.lgl-t .serif { color: var(--brass); }
+.lgl-grid { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: clamp(32px, 6cqw, 96px); align-items: start; }
+.lgl-side { position: sticky; top: 110px; display: grid; gap: 4px; }
+.lgl-side small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--stone); margin-bottom: 10px; }
+.lgl-side a { padding: 10px 0; color: var(--stone); border-bottom: 1px solid var(--line); transition: color .3s; }
+.lgl-side a:hover, .lgl-side a[aria-current] { color: var(--bone); }
+.lgl-side a[aria-current] { border-color: var(--brass); }
+.lgl-upd { margin: 18px 0 0; font-size: 13px; color: var(--stone); }
+.lgl-body { max-width: 760px; }
+.lgl-s { padding: 34px 0; border-top: 1px solid var(--line); }
+.lgl-s:first-child { border-top: 0; padding-top: 0; }
+.lgl-s h2 { display: flex; align-items: baseline; gap: 14px; margin: 0 0 16px; font-size: clamp(1.25rem, 2.2cqw, 1.6rem); font-weight: 700; color: var(--bone); }
+.lgl-s h2 em { font-style: normal; font-family: var(--display-en); font-size: 13px; color: var(--brass); }
+.lgl-s p, .lgl-s li { color: var(--stone); font-size: 16.5px; line-height: 1.8; }
+.lgl-s p { margin: 0 0 12px; }
+.lgl-s ul { margin: 0 0 12px; padding-inline-start: 20px; }
+.lgl-s li::marker { color: var(--brass); }
+.lgl-s b { color: var(--bone); font-weight: 600; }
+.lgl-s a { color: var(--bone); border-bottom: 1px solid var(--brass); }
+.lgl-s a:hover { color: var(--brass); }
+.lgl-s .lgl-c { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-s); overflow: hidden; }
+.lgl-s .lgl-c li { background: var(--ink-2); padding: 16px 18px; display: grid; gap: 4px; }
+.lgl-s .lgl-c b { font-size: 12px; font-weight: 500; color: var(--stone); letter-spacing: .06em; }
+.lgl-s .lgl-c a, .lgl-s .lgl-c li { color: var(--bone); border: 0; }
+.foot-legal { display: flex; gap: 6px 22px; flex-wrap: wrap; justify-content: center; }
+.foot-legal a { color: var(--stone); transition: color .3s; }
+.foot-legal a:hover { color: var(--bone); }
+.f-consent { grid-column: 1 / -1; margin: 6px 0 0; font-size: 13px; line-height: 1.6; color: var(--stone); }
+.f-consent a { color: var(--bone); border-bottom: 1px solid var(--line); }
+
+/* Accessibility */
+.skip { position: fixed; z-index: 200; top: 12px; inset-inline-start: 12px; padding: 12px 18px; border-radius: 999px; background: var(--bone); color: var(--ink); font-weight: 600; transform: translateY(-160%); transition: transform .3s var(--ease); }
+.skip:focus { transform: none; }
+.a11y-btn { all: unset; box-sizing: border-box; position: fixed; z-index: 70; left: 0; top: 62%; width: 38px; height: 42px; display: grid; place-items: center; cursor: pointer; color: var(--stone); background: color-mix(in srgb, var(--ink-2) 86%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--line); border-left: 0; border-radius: 0 12px 12px 0; transition: color .3s, width .3s var(--ease), border-color .3s; }
+.a11y-btn:hover, .a11y-btn[aria-expanded="true"] { color: var(--brass); width: 44px; border-color: color-mix(in srgb, var(--brass) 40%, var(--line)); }
+.a11y-btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+.a11y-pnl { position: fixed; z-index: 71; left: 56px; top: 50%; transform: translateY(-50%); width: 320px; max-height: calc(100vh - 32px); overflow-y: auto; padding: 18px; border-radius: 18px; background: var(--ink-2); border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0, 0, 0, .45); color: var(--bone); font-family: var(--body-he, inherit); }
+.a11y-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.a11y-h h2 { margin: 0; font-size: 18px; font-weight: 700; }
+.a11y-x { all: unset; cursor: pointer; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); color: var(--stone); }
+.a11y-x:hover { color: var(--bone); border-color: var(--bone); }
+.a11y-size { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 12px; background: var(--ink); margin-bottom: 10px; font-size: 14px; color: var(--stone); }
+.a11y-size div { display: flex; align-items: center; gap: 6px; }
+.a11y-size button { all: unset; cursor: pointer; width: 38px; height: 34px; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--line); color: var(--bone); font-weight: 700; font-size: 14px; direction: ltr; }
+.a11y-size button:hover { border-color: var(--brass); }
+.a11y-size output { min-width: 46px; text-align: center; color: var(--bone); font-size: 14px; direction: ltr; }
+.a11y-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.a11y-opts button { all: unset; box-sizing: border-box; cursor: pointer; display: grid; justify-items: center; gap: 8px; padding: 14px 8px; border-radius: 12px; background: var(--ink); border: 1px solid transparent; color: var(--stone); font-size: 13px; text-align: center; line-height: 1.3; transition: border-color .3s, color .3s; }
+.a11y-opts button:hover { color: var(--bone); }
+.a11y-opts button[aria-pressed="true"] { border-color: var(--brass); color: var(--bone); }
+.a11y-opts button[aria-pressed="true"] svg { color: var(--brass); }
+.a11y-pnl button:focus-visible, .a11y-pnl a:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+.a11y-f { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 14px; font-size: 13px; }
+.a11y-f button { all: unset; cursor: pointer; color: var(--stone); }
+.a11y-f button:hover { color: var(--bone); }
+.a11y-f a { color: var(--bone); border-bottom: 1px solid var(--brass); }
+@media (max-width: 760px) {
+  .a11y-btn { top: auto; bottom: 30%; width: 34px; height: 40px; }
+  .a11y-pnl { left: 12px; right: 12px; top: auto; bottom: 12px; transform: none; width: auto; max-height: 78vh; }
+}
+html.a11y-zoom .site { zoom: var(--a11y-z); }
+html.a11y-contrast { --stone: #dcd6ca; --line: rgba(244, 240, 232, .38); --brass: #e2b878; }
+html.a11y-contrast[data-theme="light"] { --stone: #2c2925; --line: rgba(22, 20, 15, .45); --brass: #6e5224; }
+html.a11y-links .site a { text-decoration: underline !important; text-decoration-thickness: 2px !important; text-underline-offset: 4px !important; }
+html.a11y-links .site a:not(.pill):not(.chip) { color: var(--brass) !important; }
+html.a11y-font body, html.a11y-font body * { font-family: Arial, Helvetica, sans-serif !important; letter-spacing: 0 !important; font-stretch: 100% !important; }
+html.a11y-space .site p, html.a11y-space .site li, html.a11y-space .site dd, html.a11y-space .site small { line-height: 1.95 !important; letter-spacing: .04em !important; word-spacing: .14em !important; }
+html.a11y-still *, html.a11y-still *::before, html.a11y-still *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: .01ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
+html.a11y-cursor .cur, html.a11y-cursor .cur-ring { display: none !important; }
+html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24'%3E%3Cpath d='M5 2l14 10.5-6.4 1.2L16 21l-3 1.3-3.1-7.6L5 19z' fill='%23111' stroke='%23fff' stroke-width='1.3'/%3E%3C/svg%3E") 6 3, auto !important; }
 </style>
 
+<a class="skip" id="skip" href="#">דלג לתוכן</a>
 <div class="stage" id="stage">
   <div class="site" id="site">
     <div class="intro" id="intro" aria-hidden="true">
@@ -1729,6 +1810,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
                     <div class="fld"><input id="f-phone" type="tel" autocomplete="tel" inputmode="tel" placeholder=" "><label for="f-phone" data-k="f_phone"></label><span class="err" data-k="f_badphone"></span></div>
                   </div>
                   <div class="fld"><input id="f-email" type="email" autocomplete="email" placeholder=" "><label for="f-email" data-k="f_email"></label><span class="err" data-k="f_bademail"></span></div>
+                  <p class="f-consent" data-kh="f_consent"></p>
                 </fieldset>
               </div>
               <div class="wz-nav">
@@ -1768,6 +1850,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
       </section>
     </div>
     <div class="view-svc" id="view-svc" hidden></div>
+    <div class="view-legal" id="view-legal" hidden></div>
     <footer class="foot">
       <div class="wrap">
         <div class="foot-top">
@@ -1780,12 +1863,15 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
           </ul></div>
         </div>
         <div class="foot-mark rv" id="foot-mark" aria-hidden="true"><img src="logo-mark.png" alt=""><span class="f-sheen"></span></div>
-        <div class="foot-bot"><span>© 2026 B.S.Y DIGITAL · <span data-k="ft_rights">כל הזכויות שמורות</span></span><button type="button" class="to-top" id="to-top"><span data-k="ft_top">חזרה למעלה</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></div>
+        <div class="foot-bot"><span>© 2026 B.S.Y DIGITAL · <span data-k="ft_rights">כל הזכויות שמורות</span></span><nav class="foot-legal" aria-label="Legal"><a href="#accessibility" data-k="ft_acc">הצהרת נגישות</a><a href="#privacy" data-k="ft_priv">מדיניות פרטיות</a><a href="#terms" data-k="ft_terms">תנאי שימוש</a></nav><button type="button" class="to-top" id="to-top"><span data-k="ft_top">חזרה למעלה</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></div>
       </div>
     </footer>
-    <div class="m-cta" id="m-cta" aria-hidden="true"><div class="m-cta-in"><a href="#contact" class="pill solid" data-k="cta">קבלו הצעת מחיר</a><a href="#" class="m-wa ct-wa-link" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a></div></div>
+    <div class="m-cta" id="m-cta" inert><div class="m-cta-in"><a href="#contact" class="pill solid" data-k="cta">קבלו הצעת מחיר</a><a href="#" class="m-wa ct-wa-link" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a></div></div>
   </div>
 </div>
+
+<button type="button" class="a11y-btn" id="a11y-btn" aria-expanded="false" aria-controls="a11y-pnl" aria-label="תפריט נגישות"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.6" r="1.7" fill="currentColor" stroke="none"/><path d="M5 8.6c2.3.8 4.6 1.2 7 1.2s4.7-.4 7-1.2M12 9.8v4.4M12 14.2l-3 6.2M12 14.2l3 6.2"/></svg></button>
+<div class="a11y-pnl" id="a11y-pnl" role="dialog" hidden></div>
 
 <div class="case" id="case" role="dialog" aria-modal="true" aria-labelledby="cs-name">
   <div class="cs-in">
@@ -1842,7 +1928,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
       f_biz: "שם העסק", f_site: "אתר קיים (לא חובה)", f_msg: "על העסק ועל הפרויקט", f_name: "שם מלא", f_phone: "טלפון", f_email: "אימייל (לא חובה)", f_req: "שדה חובה", f_badphone: "מספר לא תקין", f_bademail: "אימייל לא תקין",
       w_back: "חזרה", w_next: "המשך", w_send: "שלחו את הבריף", w_pick: "בחרו אפשרות", w_enter: "<kbd>Enter</kbd> להמשך",
       f_ok: "הבריף אצלי.", f_okp: "תודה {n}! אחזור אליכם תוך 24 שעות עם רעיונות והצעת מחיר.", f_orwa: "רוצים מהר יותר? וואטסאפ", f_again: "בריף חדש", f_wahi: "היי, אני", f_waabout: "מעוניין/ת ב",
-      ft_say: "האתר הבא שלכם <span class=\"serif\">מתחיל בהודעה אחת.</span>", ft_nav: "ניווט", ft_faq: "שאלות נפוצות", ft_talk: "דברו איתי", ft_rights: "כל הזכויות שמורות", ft_top: "חזרה למעלה",
+      ft_say: "האתר הבא שלכם <span class=\"serif\">מתחיל בהודעה אחת.</span>", ft_nav: "ניווט", ft_faq: "שאלות נפוצות", ft_talk: "דברו איתי", ft_rights: "כל הזכויות שמורות", ft_acc: "הצהרת נגישות", ft_priv: "מדיניות פרטיות", ft_terms: "תנאי שימוש", f_consent: "בשליחת הבריף אתם מאשרים את <a href=\"#privacy\">מדיניות הפרטיות</a>. הפרטים משמשים רק כדי לחזור אליכם.", ft_top: "חזרה למעלה",
       p_hint: "החליקו לצדדים", p_eye: "תהליך העבודה", p_title: "מהרעיון לאתר באוויר, <span class=\"serif\">בארבעה צעדים.</span>", p_lead: "תהליך ברור עם לוחות זמנים אמיתיים. אתם מאשרים כל שלב לפני שממשיכים.",
       y_eye: "למה B.S.Y", y_title: ["סטודיו קטן.", "<span class=\"serif\">תוצאה של גדולים.</span>"], y_lead: "ההבדל בין סוכנות רגילה לבין עבודה ישירה איתי, בשורה אחת לכל דבר שחשוב.",
       sv_eye: "שירותים", sv_title: ["שלושה דברים.", "<span class=\"serif\">ברמה הכי גבוהה.</span>"], sv_lead: "אני לא עושה הכול. אני עושה שלושה דברים, ועושה אותם מצוין.",
@@ -1870,7 +1956,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
       f_biz: "Business name", f_site: "Current website (optional)", f_msg: "About the business and the project", f_name: "Full name", f_phone: "Phone", f_email: "Email (optional)", f_req: "Required", f_badphone: "Invalid number", f_bademail: "Invalid email",
       w_back: "Back", w_next: "Continue", w_send: "Send the brief", w_pick: "Pick an option", w_enter: "<kbd>Enter</kbd> to continue",
       f_ok: "Brief received.", f_okp: "Thank you {n}! I'll get back to you within 24 hours with ideas and a quote.", f_orwa: "Want it faster? WhatsApp", f_again: "New brief", f_wahi: "Hi, I'm", f_waabout: "Interested in",
-      ft_say: "Your next website <span class=\"serif\">starts with one message.</span>", ft_nav: "Navigate", ft_faq: "FAQ", ft_talk: "Talk to me", ft_rights: "All rights reserved", ft_top: "Back to top",
+      ft_say: "Your next website <span class=\"serif\">starts with one message.</span>", ft_nav: "Navigate", ft_faq: "FAQ", ft_talk: "Talk to me", ft_rights: "All rights reserved", ft_acc: "Accessibility", ft_priv: "Privacy policy", ft_terms: "Terms of use", f_consent: "By sending the brief you accept the <a href=\"#privacy\">privacy policy</a>. Your details are used only to get back to you.", ft_top: "Back to top",
       p_hint: "Swipe sideways", p_eye: "How we work", p_title: "From idea to live site, <span class=\"serif\">in four steps.</span>", p_lead: "A clear process with real timelines. You approve every stage before we move on.",
       y_eye: "Why B.S.Y", y_title: ["A small studio.", "<span class=\"serif\">Big-league results.</span>"], y_lead: "The difference between a typical agency and working directly with me, one line for everything that matters.",
       sv_eye: "Services", sv_title: ["Three things.", "<span class=\"serif\">Done exceptionally.</span>"], sv_lead: "I don't do everything. I do three things, and I do them very well.",
@@ -1894,6 +1980,8 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
     if (typeof renderSvcPage === "function") renderSvcPage(l);
     document.getElementById("r_title").innerHTML = d.r_title.map(function (t, i) { return '<span class="ln"><span style="--i:' + i + '">' + t + "</span></span>"; }).join("");
     if (typeof renderContact === "function") renderContact(l);
+    if (typeof LG !== "undefined") renderLegal(l);
+    if (typeof A11Y !== "undefined") a11yRender(l);
     if (typeof CK !== "undefined") renderKnow(l);
     if (typeof admRender === "function") admRender();
     document.getElementById("c_title").innerHTML = d.c_title.map(function (t, i) { return '<span class="ln"><span style="--i:' + i + '">' + t + "</span></span>"; }).join("");
@@ -2970,7 +3058,8 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
     var y = mob ? site.scrollTop : scrollY, onHome = !document.getElementById("top").hidden;
     var c = document.getElementById("contact").getBoundingClientRect(), f = document.querySelector(".foot").getBoundingClientRect();
     var nearContact = onHome && c.top - top0 < vh && c.bottom - top0 > 0, nearFoot = f.top - top0 < vh;
-    bar.classList.toggle("on", y > vh * .8 && !nearContact && !nearFoot && !nav.classList.contains("open"));
+    var on = y > vh * .8 && !nearContact && !nearFoot && !nav.classList.contains("open");
+    bar.classList.toggle("on", on); bar.inert = !on;
   }
   function queueFx() { if (!fxQueued) { fxQueued = true; requestAnimationFrame(function () { fxQueued = false; drift(); whyFx(); stackFx(); followFx(); procFx(); wheelFx(); ctaFx(); }); } }
   addEventListener("scroll", queueFx, { passive: true });
@@ -2979,12 +3068,14 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
 
   // Two views: the home page and the all-projects page (#projects), switched behind the brass curtain
   function onProjects() { return location.hash === "#projects"; }
-  function viewKey() { return onProjects() ? "projects" : svcFromHash() ? "svc-" + svcFromHash() : "home"; }
+  function legalFromHash() { return { "#accessibility": "access", "#privacy": "privacy", "#terms": "terms" }[location.hash] || null; }
+  function viewKey() { return onProjects() ? "projects" : svcFromHash() ? "svc-" + svcFromHash() : legalFromHash() ? "legal-" + legalFromHash() : "home"; }
   var lastView = null;
   function applyView(anchor) {
-    var k = viewKey(), main = document.getElementById("top"), vp = document.getElementById("view-projects"), vs = document.getElementById("view-svc");
+    var k = viewKey(), main = document.getElementById("top"), vp = document.getElementById("view-projects"), vs = document.getElementById("view-svc"), vl = document.getElementById("view-legal");
     if (k.indexOf("svc-") === 0) renderSvcPage(lang);
-    main.hidden = k !== "home"; vp.hidden = k !== "projects"; vs.hidden = k.indexOf("svc-") !== 0;
+    if (k.indexOf("legal-") === 0 && typeof LG !== "undefined") renderLegal(lang);
+    main.hidden = k !== "home"; vp.hidden = k !== "projects"; vs.hidden = k.indexOf("svc-") !== 0; vl.hidden = k.indexOf("legal-") !== 0;
     var target = k === "home" && anchor ? document.getElementById(anchor) : null;
     if (target && anchor !== "top") target.scrollIntoView(); else if (stage.classList.contains("mobile")) site.scrollTop = 0; else scrollTo(0, 0);
     lastView = k;
@@ -2997,7 +3088,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
     if (lastView === k) { if (k === "home" && anchor) { var t = document.getElementById(anchor); if (t) t.scrollIntoView({ behavior: "smooth" }); } return; }
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) { applyView(anchor); return; }
     var w = wipe.querySelector("span"), he = lang === "he";
-    w.textContent = k === "projects" ? (he ? "כל העבודות" : "All work") : k.indexOf("svc-") === 0 ? SVP[lang][SVC_KEYS.indexOf(k.slice(4))].name : "B.S.Y"; w.lang = lang;
+    w.textContent = k === "projects" ? (he ? "כל העבודות" : "All work") : k.indexOf("svc-") === 0 ? SVP[lang][SVC_KEYS.indexOf(k.slice(4))].name : k.indexOf("legal-") === 0 ? LG[lang][k.slice(6)].nav : "B.S.Y"; w.lang = lang;
     wipe.classList.remove("go"); void wipe.offsetWidth; wipe.classList.add("go");
     setTimeout(function () { applyView(anchor); }, 520);
     setTimeout(function () { wipe.classList.remove("go"); }, 1150);
@@ -3429,6 +3520,102 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
   if ("ResizeObserver" in window) new ResizeObserver(function () { pgThumb(); }).observe(document.getElementById("pg-filters"));
   if (onProjects()) setTimeout(pgThumb, 80);
 
+  // Legal pages (#accessibility, #privacy, #terms): accessibility statement, privacy policy and terms of use
+  var LG_UPD = { he: "27 באוקטובר 2026", en: "27 October 2026" };
+  var LG = {
+    he: {
+      upd: "עודכן לאחרונה", back: "חזרה לדף הבית", eye: "מידע משפטי", toc: "בעמוד הזה",
+      access: { nav: "הצהרת נגישות", t: "הצהרת <span class=\"serif\">נגישות.</span>", lead: "אנחנו רוצים שכל אחד ואחת יוכלו להשתמש באתר בקלות, כולל אנשים עם מוגבלות.", s: [
+        ["מחויבות לנגישות", "<p>B.S.Y DIGITAL רואה חשיבות רבה במתן שירות שוויוני ונגיש. האתר הונגש בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע״ג-2013, ולתקן הישראלי ת״י 5568, המבוסס על הנחיות WCAG 2.0 ברמה AA.</p>"],
+        ["מה עשינו באתר", "<ul><li>מבנה סמנטי עם כותרות, אזורים ותוויות ברורות לקוראי מסך.</li><li>ניווט מלא במקלדת, עם סימון בולט של הרכיב שבפוקוס וקישור ״דלג לתוכן״.</li><li>טקסט חלופי לתמונות ותיאור מלא לצד כל צילום מסך של פרויקט.</li><li>ניגודיות צבעים תקינה במצב כהה ובמצב בהיר.</li><li>התאמה מלאה למובייל ותמיכה בהגדלת תצוגה עד 200%.</li><li>כיבוד הגדרת ״הפחתת תנועה״ של מערכת ההפעלה.</li><li>טפסים עם תוויות, הודעות שגיאה ברורות ואפשרות לפנות גם בטלפון, בוואטסאפ ובאימייל.</li><li>האתר זמין בעברית ובאנגלית.</li></ul>"],
+        ["תפריט הנגישות", "<p>בצד המסך יש כפתור נגישות קטן. בתפריט אפשר:</p><ul><li>להגדיל ולהקטין את הטקסט.</li><li>להפעיל ניגודיות גבוהה.</li><li>להדגיש קישורים.</li><li>לעבור לגופן קריא.</li><li>להגדיל ריווח בין שורות ואותיות.</li><li>לעצור אנימציות ותנועה.</li><li>להחזיר הכול לברירת המחדל.</li></ul><p>ההגדרות נשמרות בדפדפן שלכם לביקור הבא.</p>"],
+        ["מגבלות ידועות", "<p>אנחנו ממשיכים לשפר את האתר. ייתכן שחלק מהאנימציות הדקורטיביות או רכיבים חזותיים מסוימים עדיין אינם מונגשים במלואם. צילומי המסך של אתרי לקוחות הם תמונות, ולכן כל המידע שלהם מופיע גם כטקסט. אתרים חיצוניים שאליהם יש קישור אינם באחריותנו.</p>"],
+        ["דפדפנים וטכנולוגיות", "<p>האתר נבדק בגרסאות עדכניות של Chrome, Safari, Edge ו־Firefox, במחשב ובמובייל, ותומך בקוראי מסך כמו NVDA ו־VoiceOver.</p>"],
+        ["פגישות בסטודיו", "<p>רוב הפגישות מתקיימות מרחוק או בתיאום מראש. אם אתם צריכים התאמה כלשהי לפגישה פרונטלית, ספרו לנו ונדאג לה.</p>"],
+        ["נתקלתם בבעיה?", "<p>אם משהו באתר לא נגיש לכם, נשמח לשמוע ולתקן. פנו לרכז הנגישות שלנו ונחזור אליכם תוך 3 ימי עסקים:</p><ul class=\"lgl-c\"><li><b>רכז נגישות</b>B.S.Y DIGITAL</li><li><b>טלפון</b><a class=\"ltr ct-tel-link ct-phone\" href=\"#\"></a></li><li><b>אימייל</b><a class=\"ltr ct-mail-link ct-email\" href=\"#\"></a></li><li><b>כתובת</b><a class=\"ct-addr\" href=\"#\" target=\"_blank\" rel=\"noopener\"></a></li></ul><p>כדי שנוכל לעזור מהר, ציינו את הדף, את הבעיה ואת הדפדפן או הטכנולוגיה המסייעת שבה השתמשתם.</p>"]
+      ] },
+      privacy: { nav: "מדיניות פרטיות", t: "מדיניות <span class=\"serif\">פרטיות.</span>", lead: "מה אנחנו אוספים, למה, ומה הזכויות שלכם. בשפה פשוטה.", s: [
+        ["מי אנחנו", "<p>האתר מופעל על ידי B.S.Y DIGITAL, סטודיו לעיצוב ופיתוח אתרים (״אנחנו״). המדיניות הזו מסבירה איך אנחנו משתמשים במידע אישי, בהתאם לחוק הגנת הפרטיות, התשמ״א-1981 ותקנותיו. לכל שאלה: <a class=\"ltr ct-mail-link ct-email\" href=\"#\"></a>.</p>"],
+        ["איזה מידע נאסף", "<ul><li><b>מידע שאתם מוסרים בטופס:</b> שם, טלפון, אימייל (לא חובה), שם העסק, אתר קיים, סוג הפרויקט, המועד הרצוי וההודעה שכתבתם.</li><li><b>פנייה ישירה:</b> כשאתם פונים בוואטסאפ, בטלפון או באימייל, נקבל את מה שתשלחו לנו.</li><li><b>מידע טכני:</b> אנחנו לא משתמשים בכלי מעקב, פרסום או אנליטיקה. שרתי האחסון עשויים לרשום נתונים טכניים בסיסיים, כמו כתובת IP וסוג דפדפן, לצורכי אבטחה ותפעול.</li></ul>"],
+        ["האם חובה למסור מידע", "<p>אין חובה חוקית למסור לנו מידע. המסירה נעשית מרצונכם ובהסכמתכם. בלי פרטי קשר לא נוכל לחזור אליכם.</p>"],
+        ["למה אנחנו משתמשים במידע", "<ul><li>לחזור אליכם ולענות על הפנייה.</li><li>להכין הצעת מחיר ולתאם פגישה.</li><li>לנהל את הפרויקט אם נעבוד יחד.</li><li>לעמוד בדרישות החוק.</li></ul><p>לא נשלח לכם דיוור שיווקי בלי הסכמה מפורשת, ולא נמכור את המידע שלכם לאף אחד.</p>"],
+        ["עם מי המידע משותף", "<p>רק עם ספקים שעוזרים לנו להפעיל את האתר, ורק במידה הנדרשת:</p><ul><li><b>אחסון האתר ומסד הנתונים</b> (כולל Supabase), שבהם נשמרות הפניות.</li><li><b>Google Fonts</b>, שמספק את הגופנים. הדפדפן שלכם פונה לשרתי Google, ולכן כתובת ה־IP נחשפת להם.</li><li><b>WhatsApp (Meta)</b>, רק אם בחרתם לפנות אלינו בוואטסאפ.</li></ul><p>נמסור מידע גם אם החוק או רשות מוסמכת ידרשו זאת.</p>"],
+        ["העברת מידע לחו״ל", "<p>חלק מהספקים שלנו מאחסנים מידע בשרתים מחוץ לישראל. ההעברה נעשית בהתאם לתקנות הגנת הפרטיות (העברת מידע אל מאגרי מידע שמחוץ לגבולות המדינה).</p>"],
+        ["עוגיות ואחסון בדפדפן", "<p>האתר לא משתמש בעוגיות מעקב או פרסום. בדפדפן שלכם נשמרות רק העדפות: שפה, מצב כהה או בהיר והגדרות הנגישות. אפשר למחוק אותן בכל עת בהגדרות הדפדפן.</p>"],
+        ["כמה זמן נשמור", "<p>פניות נשמרות כל עוד הן נדרשות לטיפול בפנייה ולקשר העסקי. אם לא נוצר קשר עסקי, נמחק אותן לכל המאוחר 24 חודשים אחרי הפנייה האחרונה, אלא אם החוק מחייב לשמור זמן רב יותר.</p>"],
+        ["אבטחת מידע", "<p>האתר עובד בחיבור מוצפן (HTTPS), והגישה לפניות מוגבלת לבעל הסטודיו בלבד. אנחנו נוקטים אמצעים סבירים להגנה על המידע, אבל אף מערכת אינה חסינה לחלוטין.</p>"],
+        ["הזכויות שלכם", "<ul><li><b>עיון:</b> לבקש לראות את המידע שנשמר עליכם.</li><li><b>תיקון ומחיקה:</b> לבקש לתקן מידע שגוי או למחוק אותו.</li><li><b>חזרה מהסכמה:</b> לבקש שלא נפנה אליכם יותר.</li></ul><p>שלחו בקשה לאימייל <a class=\"ltr ct-mail-link ct-email\" href=\"#\"></a> ונענה תוך 30 יום. אם לא קיבלתם מענה מספק, אפשר לפנות לרשות להגנת הפרטיות.</p>"],
+        ["קטינים", "<p>האתר מיועד לבעלי עסקים ולבגירים. אנחנו לא אוספים ביודעין מידע על קטינים.</p>"],
+        ["שינויים במדיניות", "<p>אנחנו עשויים לעדכן את המדיניות מעת לעת. הגרסה העדכנית תמיד תופיע בעמוד הזה, עם תאריך העדכון.</p>"]
+      ] },
+      terms: { nav: "תנאי שימוש", t: "תנאי <span class=\"serif\">שימוש.</span>", lead: "הכללים לשימוש באתר. קצר וברור.", s: [
+        ["כללי", "<p>האתר מופעל על ידי B.S.Y DIGITAL. השימוש באתר מהווה הסכמה לתנאים האלה ולמדיניות הפרטיות. התנאים כתובים בלשון רבים מטעמי נוחות ומתייחסים לכל המגדרים.</p>"],
+        ["המידע באתר", "<p>האתר מציג מידע כללי על שירותי עיצוב ופיתוח אתרים. המידע אינו הצעה מחייבת. מחיר, היקף עבודה ולוחות זמנים נקבעים רק בהצעת מחיר או בהסכם כתוב בין הצדדים.</p>"],
+        ["קניין רוחני", "<p>העיצוב, הקוד, הטקסטים, הלוגו והאנימציות באתר שייכים ל־B.S.Y DIGITAL ומוגנים בחוק. אין להעתיק, לשכפל או להשתמש בהם בלי אישור בכתב. הפרויקטים בתיק העבודות מוצגים באישור הלקוחות, והזכויות בתכני האתרים שלהם שמורות להם.</p>"],
+        ["שימוש מותר", "<p>אין להשתמש באתר למטרה לא חוקית, לשלוח פרטים כוזבים או של אדם אחר, לנסות לפרוץ או לפגוע בפעילות האתר, או לאסוף ממנו מידע באופן אוטומטי.</p>"],
+        ["קישורים לאתרים אחרים", "<p>באתר יש קישורים לאתרים של לקוחות ולשירותים חיצוניים. אין לנו שליטה עליהם ואנחנו לא אחראים לתוכן או למדיניות שלהם.</p>"],
+        ["אחריות", "<p>האתר מוצג כפי שהוא. אנחנו עושים מאמץ שהמידע יהיה מדויק והאתר יהיה זמין, אבל לא מתחייבים שלא יהיו תקלות או הפסקות. לא נהיה אחראים לנזק עקיף שייגרם מהשימוש באתר.</p>"],
+        ["פרטיות ונגישות", "<p>השימוש במידע אישי מוסבר ב<a href=\"#privacy\">מדיניות הפרטיות</a>. פרטים על הנגישות מופיעים ב<a href=\"#accessibility\">הצהרת הנגישות</a>.</p>"],
+        ["דין וסמכות שיפוט", "<p>על התנאים חל הדין הישראלי בלבד. סמכות השיפוט הבלעדית נתונה לבתי המשפט המוסמכים בירושלים.</p>"],
+        ["שינויים ויצירת קשר", "<p>אנחנו רשאים לעדכן את התנאים מעת לעת. לשאלות: <a class=\"ltr ct-mail-link ct-email\" href=\"#\"></a> או <a class=\"ltr ct-tel-link ct-phone\" href=\"#\"></a>.</p>"]
+      ] }
+    },
+    en: {
+      upd: "Last updated", back: "Back to home", eye: "Legal", toc: "On this page",
+      access: { nav: "Accessibility statement", t: "Accessibility <span class=\"serif\">statement.</span>", lead: "We want everyone, including people with disabilities, to use this site with ease.", s: [
+        ["Our commitment", "<p>B.S.Y DIGITAL is committed to equal, accessible service. This site was made accessible under the Israeli Equal Rights for Persons with Disabilities (Service Accessibility Adjustments) Regulations, 2013, and Israeli Standard IS 5568, based on WCAG 2.0 level AA.</p>"],
+        ["What we did", "<ul><li>Semantic structure with headings, landmarks and clear labels for screen readers.</li><li>Full keyboard navigation, a strong focus indicator and a \"skip to content\" link.</li><li>Alternative text for images and a full text description next to every project screenshot.</li><li>Proper colour contrast in dark and light mode.</li><li>Fully responsive, with support for zooming up to 200%.</li><li>Respects the operating system's \"reduce motion\" setting.</li><li>Forms with labels and clear error messages, plus phone, WhatsApp and email as alternatives.</li><li>Available in Hebrew and English.</li></ul>"],
+        ["The accessibility menu", "<p>A small accessibility button sits at the side of the screen. It lets you:</p><ul><li>Make text larger or smaller.</li><li>Turn on high contrast.</li><li>Highlight links.</li><li>Switch to a readable font.</li><li>Increase line and letter spacing.</li><li>Stop animations and motion.</li><li>Reset everything.</li></ul><p>Your settings are saved in your browser for your next visit.</p>"],
+        ["Known limitations", "<p>We keep improving the site. Some decorative animations or visual elements may not yet be fully accessible. Client screenshots are images, so all of their information is also given as text. External sites we link to are not our responsibility.</p>"],
+        ["Browsers and technologies", "<p>The site is tested on current versions of Chrome, Safari, Edge and Firefox, on desktop and mobile, and supports screen readers such as NVDA and VoiceOver.</p>"],
+        ["Meetings at the studio", "<p>Most meetings happen remotely or by appointment. If you need any adjustment for an in-person meeting, tell us and we will arrange it.</p>"],
+        ["Found a problem?", "<p>If something on the site is not accessible to you, we want to hear about it and fix it. Contact our accessibility coordinator and we will reply within 3 business days:</p><ul class=\"lgl-c\"><li><b>Coordinator</b>B.S.Y DIGITAL</li><li><b>Phone</b><a class=\"ltr ct-tel-link ct-phone\" href=\"#\"></a></li><li><b>Email</b><a class=\"ltr ct-mail-link ct-email\" href=\"#\"></a></li><li><b>Address</b><a class=\"ct-addr\" href=\"#\" target=\"_blank\" rel=\"noopener\"></a></li></ul><p>To help us act quickly, tell us the page, the problem and the browser or assistive technology you used.</p>"]
+      ] },
+      privacy: { nav: "Privacy policy", t: "Privacy <span class=\"serif\">policy.</span>", lead: "What we collect, why, and your rights. In plain language.", s: [
+        ["Who we are", "<p>This site is run by B.S.Y DIGITAL, a web design and development studio (\"we\"). This policy explains how we use personal information, under the Israeli Protection of Privacy Law, 5741-1981, and its regulations. Questions: <a class=\"ltr ct-mail-link ct-email\" href=\"#\"></a>.</p>"],
+        ["What we collect", "<ul><li><b>What you enter in the form:</b> name, phone, email (optional), business name, existing site, project type, preferred timing and your message.</li><li><b>Direct contact:</b> when you reach us on WhatsApp, by phone or by email, we receive what you send.</li><li><b>Technical data:</b> we use no tracking, advertising or analytics tools. Hosting servers may log basic technical data, such as IP address and browser type, for security and operation.</li></ul>"],
+        ["Do you have to give it?", "<p>There is no legal obligation to give us any information. You do so voluntarily and with your consent. Without contact details we cannot get back to you.</p>"],
+        ["Why we use it", "<ul><li>To get back to you and answer your enquiry.</li><li>To prepare a quote and schedule a meeting.</li><li>To manage the project if we work together.</li><li>To meet legal requirements.</li></ul><p>We will not send you marketing without your explicit consent, and we never sell your information.</p>"],
+        ["Who we share it with", "<p>Only with providers that help us run the site, and only as needed:</p><ul><li><b>Site hosting and database</b> (including Supabase), where enquiries are stored.</li><li><b>Google Fonts</b>, which serves the typefaces. Your browser contacts Google's servers, so your IP address is visible to them.</li><li><b>WhatsApp (Meta)</b>, only if you choose to contact us on WhatsApp.</li></ul><p>We will also disclose information if the law or a competent authority requires it.</p>"],
+        ["Transfers abroad", "<p>Some of our providers store data on servers outside Israel. Transfers follow the Protection of Privacy Regulations on transferring data to databases abroad.</p>"],
+        ["Cookies and browser storage", "<p>The site uses no tracking or advertising cookies. Your browser only stores preferences: language, dark or light mode and accessibility settings. You can delete them at any time in your browser settings.</p>"],
+        ["How long we keep it", "<p>Enquiries are kept as long as needed to handle them and for the business relationship. If no business relationship follows, we delete them no later than 24 months after the last contact, unless the law requires longer.</p>"],
+        ["Security", "<p>The site uses an encrypted connection (HTTPS), and access to enquiries is limited to the studio owner. We take reasonable measures to protect your data, but no system is completely secure.</p>"],
+        ["Your rights", "<ul><li><b>Access:</b> ask to see the information we hold about you.</li><li><b>Correction and deletion:</b> ask us to correct or delete it.</li><li><b>Withdrawing consent:</b> ask us not to contact you again.</li></ul><p>Email <a class=\"ltr ct-mail-link ct-email\" href=\"#\"></a> and we will answer within 30 days. If you are not satisfied, you can contact the Israeli Privacy Protection Authority.</p>"],
+        ["Minors", "<p>The site is meant for business owners and adults. We do not knowingly collect information about minors.</p>"],
+        ["Changes", "<p>We may update this policy from time to time. The current version always appears on this page with its update date.</p>"]
+      ] },
+      terms: { nav: "Terms of use", t: "Terms <span class=\"serif\">of use.</span>", lead: "The rules for using this site. Short and clear.", s: [
+        ["General", "<p>This site is run by B.S.Y DIGITAL. Using it means you accept these terms and the privacy policy.</p>"],
+        ["Information on the site", "<p>The site gives general information about web design and development services. It is not a binding offer. Price, scope and timeline are set only in a written quote or agreement between the parties.</p>"],
+        ["Intellectual property", "<p>The design, code, texts, logo and animations on this site belong to B.S.Y DIGITAL and are protected by law. Do not copy, reproduce or use them without written permission. Portfolio projects are shown with our clients' permission, and the rights in their sites' content remain theirs.</p>"],
+        ["Acceptable use", "<p>Do not use the site for any unlawful purpose, submit false details or someone else's, try to break into or disrupt the site, or scrape it automatically.</p>"],
+        ["Links to other sites", "<p>The site links to client sites and external services. We do not control them and are not responsible for their content or policies.</p>"],
+        ["Liability", "<p>The site is provided as is. We work to keep the information accurate and the site available, but we do not guarantee it will be free of errors or interruptions. We are not liable for indirect damage arising from use of the site.</p>"],
+        ["Privacy and accessibility", "<p>How we use personal information is explained in the <a href=\"#privacy\">privacy policy</a>. Accessibility details are in the <a href=\"#accessibility\">accessibility statement</a>.</p>"],
+        ["Governing law", "<p>These terms are governed solely by Israeli law. The competent courts in Jerusalem have exclusive jurisdiction.</p>"],
+        ["Changes and contact", "<p>We may update these terms from time to time. Questions: <a class=\"ltr ct-mail-link ct-email\" href=\"#\"></a> or <a class=\"ltr ct-tel-link ct-phone\" href=\"#\"></a>.</p>"]
+      ] }
+    }
+  };
+  var LG_HASH = { accessibility: "access", privacy: "privacy", terms: "terms" };
+  function renderLegal(l) {
+    var k = legalFromHash(); if (!k) return;
+    var d = LG[l], p = d[k], el = document.getElementById("view-legal");
+    el.innerHTML = '<section class="lgl"><div class="wrap"><a href="#top" class="back">' + d.back + '</a>' +
+      '<div class="sec-head"><div><p class="eyebrow"><span>' + d.eye + "</span></p><h1 class=\"lgl-t\">" + p.t + '</h1></div><p class="sec-lead">' + p.lead + "</p></div>" +
+      '<div class="lgl-grid"><nav class="lgl-side" aria-label="' + d.eye + '"><small>' + d.eye + "</small>" +
+        ["access", "privacy", "terms"].map(function (x) { var h = Object.keys(LG_HASH).filter(function (y) { return LG_HASH[y] === x; })[0]; return '<a href="#' + h + '"' + (x === k ? ' aria-current="page"' : "") + ">" + d[x].nav + "</a>"; }).join("") +
+        '<p class="lgl-upd">' + d.upd + ": " + LG_UPD[l] + "</p></nav>" +
+      '<div class="lgl-body">' + p.s.map(function (x, n) { return '<section class="lgl-s"><h2><em>' + String(n + 1).padStart(2, "0") + "</em>" + x[0] + "</h2>" + x[1] + "</section>"; }).join("") + "</div></div></div></section>";
+    el.querySelectorAll(".ct-phone").forEach(function (e) { e.textContent = CONTACT.phone; });
+    el.querySelectorAll(".ct-email").forEach(function (e) { e.textContent = CONTACT.email; });
+    el.querySelectorAll(".ct-mail-link").forEach(function (a) { a.href = "mailto:" + CONTACT.email; });
+    el.querySelectorAll(".ct-tel-link").forEach(function (a) { a.href = "tel:" + CONTACT.tel; });
+    el.querySelectorAll(".ct-addr").forEach(function (a) { a.textContent = CONTACT.addr[l]; a.href = CONTACT.map; });
+  }  renderLegal(lang);
+
+
   // Light / dark theme
   var root = document.documentElement, thSeg = document.getElementById("thm-seg"), thBusy = false;
   function curTheme() { return root.dataset.theme === "light" ? "light" : "dark"; }
@@ -3485,7 +3672,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
   function setMenu(o) {
     clearTimeout(closeT);
     nav.classList.toggle("open", o); burger.setAttribute("aria-expanded", o);
-    var bar = document.getElementById("m-cta"); if (bar && o) bar.classList.remove("on"); else queueFx();
+    var bar = document.getElementById("m-cta"); if (bar && o) { bar.classList.remove("on"); bar.inert = true; } else queueFx();
     document.documentElement.style.overflow = o ? "hidden" : "";
     if (o) nav.classList.remove("closing");
     else { nav.classList.add("closing"); closeT = setTimeout(function () { nav.classList.remove("closing"); }, 1150); }
@@ -3495,6 +3682,66 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
   nav.querySelectorAll(".drawer a").forEach(function (a) { a.addEventListener("click", function () { if (nav.classList.contains("open")) setMenu(false); }); });
 
   var stage = document.getElementById("stage");
+
+  // Accessibility menu: a quiet button at the side; settings are kept in this browser
+  var A11Y = {
+    he: { open: "תפריט נגישות", t: "נגישות", close: "סגירה", size: "גודל טקסט", smaller: "הקטנת טקסט", bigger: "הגדלת טקסט", reset: "איפוס הגדרות", stmt: "הצהרת נגישות", skip: "דלג לתוכן",
+      o: { contrast: "ניגודיות גבוהה", links: "הדגשת קישורים", font: "גופן קריא", space: "ריווח טקסט", still: "עצירת אנימציות", cursor: "סמן גדול" } },
+    en: { open: "Accessibility menu", t: "Accessibility", close: "Close", size: "Text size", smaller: "Smaller text", bigger: "Larger text", reset: "Reset settings", stmt: "Accessibility statement", skip: "Skip to content",
+      o: { contrast: "High contrast", links: "Highlight links", font: "Readable font", space: "Text spacing", still: "Stop animations", cursor: "Big cursor" } }
+  };
+  var A11Y_ICO = {
+    contrast: '<path d="M12 3a9 9 0 100 18 9 9 0 000-18z"/><path d="M12 3v18a9 9 0 000-18z" fill="currentColor"/>',
+    links: '<path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/>',
+    font: '<path d="M5 19l5.5-14h1L17 19M7.5 13.5h7"/>',
+    space: '<path d="M4 6h16M4 12h16M4 18h16"/>',
+    still: '<rect x="7" y="5" width="3.2" height="14" rx="1"/><rect x="13.8" y="5" width="3.2" height="14" rx="1"/>',
+    cursor: '<path d="M6 3l12 9-5.5 1L15 20l-2.5 1-2.6-7L6 17z"/>'
+  };
+  var a11y = { z: 0 };
+  try { a11y = Object.assign(a11y, JSON.parse(localStorage.getItem("bsy2-a11y") || "{}")); } catch (e) {}
+  function a11yApply() {
+    Object.keys(A11Y_ICO).forEach(function (k) { root.classList.toggle("a11y-" + k, !!a11y[k]); });
+    root.style.setProperty("--a11y-z", 1 + a11y.z * .1);
+    root.classList.toggle("a11y-zoom", a11y.z > 0);
+    try { localStorage.setItem("bsy2-a11y", JSON.stringify(a11y)); } catch (e) {}
+  }
+  function a11yRender(l) {
+    var d = A11Y[l], pnl = document.getElementById("a11y-pnl");
+    document.getElementById("a11y-btn").setAttribute("aria-label", d.open);
+    document.getElementById("skip").textContent = d.skip;
+    pnl.setAttribute("aria-label", d.t);
+    pnl.innerHTML = '<div class="a11y-h"><h2>' + d.t + '</h2><button type="button" class="a11y-x" data-a="close" aria-label="' + d.close + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
+      '<div class="a11y-size"><span>' + d.size + '</span><div><button type="button" data-a="z-" aria-label="' + d.smaller + '">A−</button><output aria-live="polite">' + Math.round((1 + a11y.z * .1) * 100) + '%</output><button type="button" data-a="z+" aria-label="' + d.bigger + '">A+</button></div></div>' +
+      '<div class="a11y-opts">' + Object.keys(A11Y_ICO).map(function (k) { return '<button type="button" data-a="' + k + '" aria-pressed="' + !!a11y[k] + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + A11Y_ICO[k] + "</svg>" + d.o[k] + "</button>"; }).join("") + "</div>" +
+      '<div class="a11y-f"><button type="button" data-a="reset">' + d.reset + '</button><a href="#accessibility" data-a="stmt">' + d.stmt + "</a></div>";
+  }
+  (function a11yWire() {
+    var btn = document.getElementById("a11y-btn"), pnl = document.getElementById("a11y-pnl");
+    function show(o) { pnl.hidden = !o; btn.setAttribute("aria-expanded", o); if (o) { var f = pnl.querySelector("[data-a='z+']"); if (f) f.focus(); } }
+    btn.addEventListener("click", function () { show(pnl.hidden); });
+    pnl.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-a]"); if (!b) return;
+      var a = b.dataset.a;
+      if (a === "close") { show(false); btn.focus(); return; }
+      if (a === "stmt") { show(false); return; }
+      if (a === "z+" || a === "z-") a11y.z = Math.max(0, Math.min(3, a11y.z + (a === "z+" ? 1 : -1)));
+      else if (a === "reset") a11y = { z: 0 };
+      else a11y[a] = !a11y[a];
+      a11yApply(); a11yRender(lang);
+      var again = pnl.querySelector('[data-a="' + a + '"]'); if (again) again.focus();
+      if (typeof queueFx === "function") queueFx();
+    });
+    addEventListener("keydown", function (e) { if (e.key === "Escape" && !pnl.hidden) { show(false); btn.focus(); } });
+    document.addEventListener("pointerdown", function (e) { if (!pnl.hidden && !pnl.contains(e.target) && !btn.contains(e.target)) show(false); });
+    // Skip link: moves focus to the page that is showing, without touching the router's hash
+    document.getElementById("skip").addEventListener("click", function (e) {
+      e.preventDefault();
+      var v = document.querySelector("#top:not([hidden]), #view-projects:not([hidden]), #view-svc:not([hidden]), #view-legal:not([hidden])"); if (!v) return;
+      var h = v.querySelector("h1, h2") || v; h.setAttribute("tabindex", "-1"); h.focus();
+    });
+    a11yApply(); a11yRender(lang);
+  })();
 
   // Scroll reveal: only what starts below the fold is hidden
   var scroller = function () { return stage.classList.contains("mobile") ? site : null; };
