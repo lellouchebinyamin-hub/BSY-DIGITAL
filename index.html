@@ -58,6 +58,30 @@ button { font: inherit; color: inherit; }
 .menu a::after { content: ""; position: absolute; inset-inline: 0; bottom: -4px; height: 1px; background: var(--bone); transform: scaleX(0); transform-origin: var(--origin, right); transition: transform .45s var(--ease); }
 .menu a:hover { color: var(--bone); }
 .menu a:hover::after { transform: scaleX(1); }
+.menu { align-items: center; }
+.menu > a.on, .mn-t.on { color: var(--bone); }
+.menu > a.on::after { transform: scaleX(1); background: var(--brass); }
+.mn-dd { position: relative; }
+.mn-t { display: inline-flex; align-items: center; gap: 8px; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; transition: color .3s; }
+.mn-t i { width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .4s var(--ease); }
+.mn-t.on { position: relative; } .mn-t.on::after { content: ""; position: absolute; inset-inline: 0; bottom: -4px; height: 1px; background: var(--brass); }
+.mn-dd:hover .mn-t, .mn-dd.open .mn-t { color: var(--bone); }
+.mn-dd:hover .mn-t i, .mn-dd.open .mn-t i { transform: translateY(1px) rotate(-135deg); }
+.mn-panel { position: absolute; top: 100%; inset-inline-start: 50%; translate: 50% 0; padding-top: 18px; visibility: hidden; opacity: 0; transition: opacity .35s var(--ease), visibility .35s; }
+:lang(en) .mn-panel { translate: -50% 0; }
+.mn-dd:hover .mn-panel, .mn-dd.open .mn-panel, .mn-dd:focus-within .mn-panel { visibility: visible; opacity: 1; }
+.mn-in { width: 340px; display: grid; gap: 2px; padding: 8px; border-radius: 20px; background: color-mix(in srgb, var(--ink-2) 97%, transparent); border: 1px solid var(--line); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .6); transform: translateY(-8px) scale(.98); transform-origin: top center; transition: transform .45s var(--ease); }
+html[data-theme="light"] .mn-in { box-shadow: 0 30px 60px -24px rgba(60, 44, 20, .3); }
+.mn-dd:hover .mn-in, .mn-dd.open .mn-in, .mn-dd:focus-within .mn-in { transform: none; }
+.mn-in a { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; padding: 14px 16px; border-radius: 14px; color: var(--bone); transition: background-color .3s; }
+.mn-in a::after { display: none; }
+.mn-in a:hover, .mn-in a.on { background: color-mix(in srgb, var(--bone) 6%, transparent); }
+.mn-in em { font-style: normal; font-family: var(--mono); font-size: 11px; color: var(--brass); padding-top: 4px; }
+.mn-in b { display: block; font-size: 15px; font-weight: 700; }
+.mn-in small { display: block; margin-top: 2px; font-size: 13px; color: var(--stone); line-height: 1.4; }
+.mn-in a > span { opacity: 0; transform: translateY(6px); transition: opacity .4s, transform .5s var(--ease); }
+.mn-dd:hover .mn-in a > span, .mn-dd.open .mn-in a > span, .mn-dd:focus-within .mn-in a > span { opacity: 1; transform: none; }
+.mn-in a:nth-child(2) > span { transition-delay: .05s; } .mn-in a:nth-child(3) > span { transition-delay: .1s; }
 .tools { display: flex; align-items: center; gap: 18px; }
 .lang { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: none; cursor: pointer; direction: ltr; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; transition: border-color .4s; }
 .lang:hover { border-color: var(--brass); }
@@ -1361,10 +1385,16 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
       <div class="wrap">
         <a href="#top" class="logo" aria-label="B.S.Y DIGITAL"><img src="logo-mark.png" alt="" width="105" height="44"></a>
         <nav class="menu" aria-label="Main">
-          <a href="#work" data-k="m1">עבודות</a>
-          <a href="#services" data-k="m2">שירותים</a>
-          <a href="#process" data-k="m3">תהליך</a>
-          <a href="#about" data-k="m4">הסטודיו</a>
+          <a href="#top" data-p="home" data-k="mn_home">דף הבית</a>
+          <div class="mn-dd" id="mn-dd"><button type="button" class="mn-t" data-p="svc" aria-expanded="false" aria-haspopup="true"><span data-k="mn_svc">שירותים</span><i aria-hidden="true"></i></button>
+            <div class="mn-panel"><div class="mn-in">
+              <a href="#service-site" data-p="svc-site"><em>01</em><span><b data-k="mn_s1">אתרי תדמית</b><small data-k="mn_s1d">אתר שמציג את העסק ומביא פניות</small></span></a>
+              <a href="#service-store" data-p="svc-store"><em>02</em><span><b data-k="mn_s2">חנויות אונליין</b><small data-k="mn_s2d">חנות שמוכרת, עם סליקה וניהול</small></span></a>
+              <a href="#service-app" data-p="svc-app"><em>03</em><span><b data-k="mn_s3">אפליקציות ווב</b><small data-k="mn_s3d">מערכות, זימון תורים ודשבורדים</small></span></a>
+            </div></div>
+          </div>
+          <a href="#projects" data-p="projects" data-k="mn_proj">הפרויקטים</a>
+          <a href="#contact" data-p="contact" data-k="mn_contact">צור קשר</a>
         </nav>
         <div class="tools">
           <button class="thm" id="thm" type="button" aria-label="Light / Dark"><svg viewBox="0 0 24 24" aria-hidden="true"><mask id="t-m"><rect x="-4" y="-4" width="32" height="32" fill="#fff"/><circle class="t-bite" cx="30" cy="-6" r="7" fill="#000"/></mask><circle class="t-core" cx="12" cy="12" r="5" fill="currentColor" mask="url(#t-m)"/><g class="t-rays" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 1.5v2.2M12 20.3v2.2M1.5 12h2.2M20.3 12h2.2M4.6 4.6l1.5 1.5M17.9 17.9l1.5 1.5M4.6 19.4l1.5-1.5M17.9 6.1l1.5-1.5"/></g></svg></button>
@@ -1588,7 +1618,7 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
         <div class="foot-top">
           <p class="foot-say" data-kh="ft_say"></p>
           <div class="foot-col"><h4 data-k="ft_nav">ניווט</h4><ul>
-            <li><a href="#work" data-k="m1">עבודות</a></li><li><a href="#services" data-k="m2">שירותים</a></li><li><a href="#process" data-k="m3">תהליך</a></li><li><a href="#faq" data-k="ft_faq">שאלות נפוצות</a></li><li><a href="#projects" data-k="w_all">לכל העבודות</a></li>
+            <li><a href="#top" data-k="mn_home">דף הבית</a></li><li><a href="#service-site" data-k="mn_s1">אתרי תדמית</a></li><li><a href="#service-store" data-k="mn_s2">חנויות אונליין</a></li><li><a href="#service-app" data-k="mn_s3">אפליקציות ווב</a></li><li><a href="#projects" data-k="mn_proj">הפרויקטים</a></li><li><a href="#faq" data-k="ft_faq">שאלות נפוצות</a></li>
           </ul></div>
           <div class="foot-col"><h4 data-k="ft_talk">דברו איתי</h4><ul>
             <li><a class="ltr ct-wa-link ct-phone" href="#" target="_blank" rel="noopener"></a></li><li><a class="ltr ct-mail-link ct-email" href="#"></a></li><li><a href="#contact" data-k="cta">קבלו הצעת מחיר</a></li>
@@ -1619,17 +1649,12 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
   </div>
 </div>
 
-<div class="review" role="toolbar" aria-label="Outils de revue">
-  <button type="button" id="v-desk" aria-pressed="true">Desktop</button>
-  <button type="button" id="v-mob" aria-pressed="false">Mobile</button>
-  <button type="button" id="replay">↻ Rejouer l'intro</button>
-</div>
 
 <script>
 (function () {
   var T = {
     he: {
-      th_lbl: "מצב תצוגה", th_dark: "כהה", th_light: "בהיר", m1: "עבודות", m2: "שירותים", m3: "תהליך", m4: "הסטודיו", cta: "קבלו הצעת מחיר", cta2: "צפו בעבודות",
+      mn_home: "דף הבית", mn_svc: "שירותים", mn_s1: "אתרי תדמית", mn_s1d: "אתר שמציג את העסק ומביא פניות", mn_s2: "חנויות אונליין", mn_s2d: "חנות שמוכרת, עם סליקה וניהול", mn_s3: "אפליקציות ווב", mn_s3d: "מערכות, זימון תורים ודשבורדים", mn_proj: "הפרויקטים", mn_contact: "צור קשר", th_lbl: "מצב תצוגה", th_dark: "כהה", th_light: "בהיר", m1: "עבודות", m2: "שירותים", m3: "תהליך", m4: "הסטודיו", cta: "קבלו הצעת מחיר", cta2: "צפו בעבודות",
       avail: "זמינים לפרויקטים חדשים · נובמבר 2026",
       h1: ["אתרים", "שמציבים אתכם", "<span class=\"serif\">בליגה אחרת.</span>"],
       lead: "סטודיו לעיצוב ופיתוח אתרים בהתאמה אישית. <b>אתרי תדמית, חנויות אונליין ואפליקציות ווב.</b>",
@@ -1657,7 +1682,7 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
       cap: "בתמונה: Lévy Estates · Atelier Noa — פרויקטים לדוגמה", arr: "←", other: "EN"
     },
     en: {
-      th_lbl: "Display", th_dark: "Dark", th_light: "Light", m1: "Work", m2: "Services", m3: "Process", m4: "Studio", cta: "Get a quote", cta2: "See our work",
+      mn_home: "Home", mn_svc: "Services", mn_s1: "Brand websites", mn_s1d: "A site that presents you and brings enquiries", mn_s2: "Online stores", mn_s2d: "A store that sells, with payments and admin", mn_s3: "Web apps", mn_s3d: "Systems, booking and dashboards", mn_proj: "Projects", mn_contact: "Contact", th_lbl: "Display", th_dark: "Dark", th_light: "Light", m1: "Work", m2: "Services", m3: "Process", m4: "Studio", cta: "Get a quote", cta2: "See our work",
       avail: "Available for new projects · November 2026",
       h1: ["Websites that", "put you in", "<span class=\"serif\">another league.</span>"],
       lead: "A studio designing and building bespoke websites. <b>Brand sites, online stores and web apps.</b>",
@@ -2710,6 +2735,18 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
   }
   addEventListener("hashchange", route);
 
+  // Header menu: real pages, the current one is marked
+  function navMark() {
+    var k = location.hash === "#contact" ? "contact" : viewKey();
+    document.querySelectorAll(".menu [data-p]").forEach(function (a) { var p = a.dataset.p; a.classList.toggle("on", p === k || (p === "svc" && k.indexOf("svc-") === 0)); });
+  }
+  var mnDd = document.getElementById("mn-dd");
+  mnDd.querySelector(".mn-t").addEventListener("click", function () { var o = !mnDd.classList.contains("open"); mnDd.classList.toggle("open", o); this.setAttribute("aria-expanded", o); });
+  mnDd.querySelectorAll(".mn-in a").forEach(function (a) { a.addEventListener("click", function () { mnDd.classList.remove("open"); a.blur(); }); });
+  document.addEventListener("click", function (e) { if (!mnDd.contains(e.target)) mnDd.classList.remove("open"); });
+  addEventListener("hashchange", navMark);
+  navMark();
+
   var saved = null; try { saved = localStorage.getItem("bsy2-lang"); } catch (e) {}
   render(saved === "en" ? "en" : "he");
 
@@ -2749,7 +2786,6 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
     document.addEventListener("pointerenter", function () { dot.classList.remove("hidden"); ring.classList.remove("hidden"); });
     (function loop() { rx += (x - rx) * .16; ry += (y - ry) * .16; ring.style.transform = "translate(" + rx + "px," + ry + "px)"; requestAnimationFrame(loop); })();
     site.addEventListener("pointerover", function (e) { ring.classList.toggle("hot", !!e.target.closest("a, button")); });
-    document.querySelector(".review").addEventListener("pointerover", function () { ring.classList.add("hot"); });
 
     document.querySelectorAll(".site .pill, .site .lang, .site .logo").forEach(function (el) {
       el.classList.add("mag");
@@ -2954,14 +2990,7 @@ html[dir="rtl"] .sx-drawer { transform: translateX(-105%); }
   addEventListener("keydown", function (e) { if (e.key === "Escape" && nav.classList.contains("open")) setMenu(false); });
   nav.querySelectorAll(".drawer a").forEach(function (a) { a.addEventListener("click", function () { if (nav.classList.contains("open")) setMenu(false); }); });
 
-  var stage = document.getElementById("stage"), bd = document.getElementById("v-desk"), bm = document.getElementById("v-mob");
-  function view(m) {
-    stage.classList.toggle("mobile", m); bd.setAttribute("aria-pressed", !m); bm.setAttribute("aria-pressed", m);
-    nav.classList.remove("open"); site.scrollTop = 0; runIntro(); if (typeof arm === "function") setTimeout(arm, 60); setTimeout(sizeProc, 80);
-  }
-  bd.addEventListener("click", function () { view(false); });
-  bm.addEventListener("click", function () { view(true); });
-  document.getElementById("replay").addEventListener("click", runIntro);
+  var stage = document.getElementById("stage");
 
   // Scroll reveal: only what starts below the fold is hidden
   var scroller = function () { return stage.classList.contains("mobile") ? site : null; };
