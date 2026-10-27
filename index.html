@@ -34,7 +34,11 @@
 * { box-sizing: border-box; }
 /* No double-tap zoom; pinch zoom stays available for accessibility */
 html, body { touch-action: manipulation; }
-body { background: var(--ink); color: var(--bone); font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+/* The page never moves sideways: nothing can be panned horizontally, and the edge bounce is off */
+html { overflow-x: hidden; overflow-x: clip; overscroll-behavior-x: none; }
+body { overscroll-behavior-x: none; max-width: 100%; }
+.lgl-s a { overflow-wrap: anywhere; }
+body { background: var(--ink); color: var(--bone); font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 80; background: var(--ink); }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; }
