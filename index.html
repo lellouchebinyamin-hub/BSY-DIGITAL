@@ -6,6 +6,7 @@
 <title>B.S.Y DIGITAL Studio</title>
 </head>
 <body>
+<title>B.S.Y DIGITAL Studio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -558,6 +559,70 @@ h2 .serif { font-family: var(--serif); font-weight: 300; color: var(--brass); le
 .ld-act .chip { text-align: center; font-size: 13px; padding: 9px 14px; }
 .adm-empty { padding: 60px 0; text-align: center; color: var(--stone); }
 .adm-note { margin-top: 28px; font-size: 13px; color: var(--stone); }
+.adm [hidden] { display: none !important; }
+.adm-tr { display: flex; align-items: center; gap: 10px; }
+.adm-tabs { display: flex; gap: 6px; margin: 26px 0 0; border-bottom: 1px solid var(--line); }
+.adm-tabs button { all: unset; cursor: pointer; padding: 14px 18px; font-size: 15px; color: var(--stone); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .3s, border-color .3s; }
+.adm-tabs button sup { font-size: 11px; margin-inline-start: 4px; color: var(--brass); }
+.adm-tabs button[aria-selected="true"] { color: var(--bone); border-color: var(--brass); }
+.adm-login { max-width: 420px; margin: 56px auto 0; display: grid; gap: 16px; }
+.adm-login h4 { margin: 0; font-size: 24px; color: var(--bone); }
+.adm-login p { margin: 0; color: var(--stone); font-size: 15px; line-height: 1.6; }
+.adm-login .pill { justify-self: start; }
+.af { display: grid; gap: 7px; font-size: 13px; color: var(--stone); }
+.af input, .af textarea, .af select { font: inherit; font-size: 16px; color: var(--bone); background: var(--ink-2); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; outline: none; transition: border-color .3s; width: 100%; box-sizing: border-box; }
+.af textarea { min-height: 96px; resize: vertical; line-height: 1.6; }
+.af input:focus, .af textarea:focus, .af select:focus { border-color: var(--brass); }
+.af.bad input, .af.bad textarea { border-color: #c4553f; }
+.af i { font-style: normal; color: var(--brass); }
+.adm-err { margin: 0; min-height: 1.2em; color: #d9694f; font-size: 14px; }
+.ap-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin: 28px 0 18px; }
+.ap-head p { margin: 0; color: var(--stone); font-size: 14px; }
+.ap-list { display: grid; gap: 12px; }
+.ap-it { display: grid; grid-template-columns: 120px minmax(0, 1fr) auto; gap: 18px; align-items: center; background: var(--ink-2); border-radius: var(--r-s); padding: 14px; }
+.ap-it .th { aspect-ratio: 16 / 10; border-radius: 8px; background: var(--ink) center top / cover no-repeat; border: 1px solid var(--line); }
+.ap-it strong { display: block; color: var(--bone); font-size: 17px; }
+.ap-it span { color: var(--stone); font-size: 13px; }
+.ap-it .ap-b { display: flex; gap: 8px; flex-wrap: wrap; }
+.ap-it .ap-b .chip { font-size: 13px; padding: 8px 14px; }
+.ap-it .ap-b .del:hover { border-color: #c4553f; color: #d9694f; }
+.ap-form { display: grid; gap: 22px; background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--r-s); padding: clamp(18px, 3vw, 32px); margin-bottom: 26px; }
+.ap-form h4 { margin: 0; font-size: 22px; color: var(--bone); }
+.ap-form .af input, .ap-form .af textarea, .ap-form .af select { background: var(--ink); }
+.ap-imgs { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); gap: 14px; }
+.ap-drop { position: relative; cursor: pointer; border: 1.5px dashed color-mix(in srgb, var(--brass) 45%, var(--line)); border-radius: 14px; min-height: 190px; display: grid; place-content: center; text-align: center; gap: 4px; padding: 16px; overflow: hidden; background: var(--ink); transition: border-color .3s, background .3s; }
+.ap-drop:hover, .ap-drop.over { border-color: var(--brass); background: color-mix(in srgb, var(--brass) 6%, var(--ink)); }
+.ap-drop input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.ap-drop b { color: var(--bone); font-size: 15px; position: relative; }
+.ap-drop small { color: var(--stone); font-size: 12px; position: relative; }
+.ap-drop svg { margin: 0 auto 6px; color: var(--brass); position: relative; }
+.ap-drop .pv { position: absolute; inset: 0; background: center top / cover no-repeat; }
+.ap-drop.has .pv::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgba(0, 0, 0, .75)); }
+.ap-drop.has svg { display: none; }
+.ap-drop.has b, .ap-drop.has small { color: #fff; align-self: end; }
+.ap-drop.has { place-content: end center; }
+.ap-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.ap-grid .wide { grid-column: 1 / -1; }
+.ap-pts { display: grid; gap: 10px; }
+.ap-pts > span { font-size: 13px; color: var(--stone); }
+.ap-pt { display: flex; gap: 8px; align-items: center; }
+.ap-pt em { font-style: normal; color: var(--brass); font-size: 13px; width: 22px; flex: none; text-align: center; }
+.ap-pt input { flex: 1; min-width: 0; font: inherit; font-size: 16px; color: var(--bone); background: var(--ink); border: 1px solid var(--line); border-radius: 12px; padding: 11px 14px; outline: none; }
+.ap-pt input:focus { border-color: var(--brass); }
+.ap-pt button { all: unset; cursor: pointer; width: 38px; height: 38px; flex: none; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); color: var(--stone); }
+.ap-pt button:hover { color: #d9694f; border-color: #c4553f; }
+.ap-pts .chip { justify-self: start; }
+.ap-act { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.ap-act .pill[disabled] { opacity: .5; pointer-events: none; }
+.ap-act small { color: var(--stone); font-size: 13px; }
+@media (max-width: 760px) {
+  .ap-grid, .ap-imgs { grid-template-columns: minmax(0, 1fr); }
+  .ap-drop.m { min-height: 160px; }
+  .ap-it { grid-template-columns: 84px minmax(0, 1fr); }
+  .ap-it .ap-b { grid-column: 1 / -1; }
+}
+.adm-sub { margin: 0 0 4px; font-size: 20px; color: var(--bone); }
+.pz-ttl, .cs-ttl { margin: 4px 0 0; font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--bone); font-weight: 500; line-height: 1.4; }
 @media (max-width: 700px) {
   .ld { grid-template-columns: minmax(0, 1fr); }
   .ld-act { grid-column: 1; grid-row: auto; flex-direction: row; }
@@ -1711,7 +1776,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
             <li><a href="#top" data-k="mn_home">דף הבית</a></li><li><a href="#service-site" data-k="mn_s1">אתרי תדמית</a></li><li><a href="#service-store" data-k="mn_s2">חנויות אונליין</a></li><li><a href="#service-app" data-k="mn_s3">אפליקציות ווב</a></li><li><a href="#projects" data-k="mn_proj">הפרויקטים</a></li><li><a href="#faq" data-k="ft_faq">שאלות נפוצות</a></li>
           </ul></div>
           <div class="foot-col"><h4 data-k="ft_talk">דברו איתי</h4><ul>
-            <li><a class="ltr ct-wa-link ct-phone" href="#" target="_blank" rel="noopener"></a></li><li><a class="ltr ct-mail-link ct-email" href="#"></a></li><li><a href="#contact" data-k="cta">קבלו הצעת מחיר</a></li>
+            <li><a class="ltr ct-tel-link ct-phone" href="#"></a></li><li><a class="ltr ct-mail-link ct-email" href="#"></a></li><li><a class="ct-addr" href="#" target="_blank" rel="noopener"></a></li><li><a href="#contact" data-k="cta">קבלו הצעת מחיר</a></li>
           </ul></div>
         </div>
         <div class="foot-mark rv" id="foot-mark" aria-hidden="true"><img src="logo-mark.png" alt=""><span class="f-sheen"></span></div>
@@ -1731,11 +1796,24 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
 
 <div class="adm" id="adm" role="dialog" aria-modal="true" aria-labelledby="adm-title">
   <div class="adm-in">
-    <div class="adm-top"><h3 id="adm-title"></h3><button type="button" class="adm-close" id="adm-close" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-    <div class="adm-stats" id="adm-stats"></div>
-    <div class="adm-filter chips" id="adm-filter"></div>
-    <div class="adm-list" id="adm-list"></div>
-    <p class="adm-note" id="adm-note"></p>
+    <div class="adm-top"><h3 id="adm-title"></h3><div class="adm-tr"><button type="button" class="chip" id="adm-out" hidden></button><button type="button" class="adm-close" id="adm-close" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>
+    <form class="adm-login" id="adm-login" hidden novalidate>
+      <h4 id="al-t"></h4><p id="al-p"></p>
+      <label class="af"><span id="al-e"></span><input type="email" id="al-email" autocomplete="username" dir="ltr"></label>
+      <label class="af"><span id="al-w"></span><input type="password" id="al-pass" autocomplete="current-password" dir="ltr"></label>
+      <p class="adm-err" id="al-err" role="alert"></p>
+      <button class="pill solid" type="submit" id="al-go"></button>
+    </form>
+    <div id="adm-main">
+      <div class="adm-tabs" id="adm-tabs" role="tablist"><button type="button" role="tab" data-tab="leads"></button><button type="button" role="tab" data-tab="projects"></button></div>
+      <section id="adm-leads">
+        <div class="adm-stats" id="adm-stats"></div>
+        <div class="adm-filter chips" id="adm-filter"></div>
+        <div class="adm-list" id="adm-list"></div>
+      </section>
+      <section id="adm-proj" hidden></section>
+      <p class="adm-note" id="adm-note"></p>
+    </div>
   </div>
 </div>
 
@@ -1921,21 +1999,68 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
     });
   })();
 
-  // Contact. Placeholder details until the real ones are confirmed
-  var CONTACT = { wa: "972500000000", phone: "+972 50-000-0000", email: "contact@bsydigital.com" };
+  // Contact details
+  var CONTACT = { wa: "972587888349", phone: "058-788-8349", tel: "+972587888349", email: "bsydigital@icloud.com", addr: { he: "שמעון מישורי 3, ירושלים", en: "Shimon Mishori 3, Jerusalem" }, map: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("שמעון מישורי 3 ירושלים") };
 
-  // Enquiries are saved in the artifact's database; the owner reads them in the admin panel
+  // Live site backend (Supabase): enquiries, projects and their images. Empty until the project exists; the artifact's own database is used meanwhile
+  var SB = { url: "", key: "" };
+  var sbOn = !!(SB.url && SB.key), sbSess = null;
+  try { sbSess = JSON.parse(localStorage.getItem("bsy-sb") || "null"); } catch (e) {}
+  function sbKeep(v) { sbSess = v; try { if (v) localStorage.setItem("bsy-sb", JSON.stringify(v)); else localStorage.removeItem("bsy-sb"); } catch (e) {} }
+  function sbAuth(grant, body) {
+    return fetch(SB.url + "/auth/v1/token?grant_type=" + grant, { method: "POST", headers: { apikey: SB.key, "Content-Type": "application/json" }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw { code: "login", msg: j.error_description || j.msg || "" }; sbKeep({ at: j.access_token, rt: j.refresh_token, exp: Date.now() + (j.expires_in - 60) * 1000 }); return sbSess; }); });
+  }
+  function sbToken() {
+    if (!sbSess) return Promise.resolve(null);
+    if (Date.now() < sbSess.exp) return Promise.resolve(sbSess.at);
+    return sbAuth("refresh_token", { refresh_token: sbSess.rt }).then(function (v) { return v.at; }, function () { sbKeep(null); return null; });
+  }
+  function sb(path, opt, auth) {
+    opt = opt || {};
+    return (auth ? sbToken() : Promise.resolve(null)).then(function (tok) {
+      if (auth && !tok) throw { code: "auth" };
+      var h = Object.assign({ apikey: SB.key }, opt.headers);
+      if (tok) h.Authorization = "Bearer " + tok;
+      return fetch(SB.url + path, { method: opt.method || "GET", headers: h, body: opt.body });
+    }).then(function (r) {
+      if (r.status === 401 && auth) { sbKeep(null); throw { code: "auth" }; }
+      if (!r.ok) return r.text().then(function (t) { throw { code: r.status, msg: t }; });
+      return r.text().then(function (t) { return t ? JSON.parse(t) : null; });
+    });
+  }
+  function sbSend(method, path, row) { return sb(path, { method: method, headers: { "Content-Type": "application/json", Prefer: "return=minimal" }, body: JSON.stringify(row) }, true); }
+
   var ADM = {
-    he: { title: "פניות <span>מהאתר</span>", total: "סה״כ פניות", fresh: "חדשות", handled: "טופלו", all: "הכול", mark: "סמן כטופל", unmark: "החזר לחדש", wa: "וואטסאפ", isNew: "חדש", isDone: "טופל", empty: "עדיין אין פניות. כשמישהו ימלא את הטופס, היא תופיע כאן.", none: "אין פניות בסינון הזה.", note: "רק אתה רואה את הדף הזה. הפניות נשמרות באופן מאובטח באתר.", noMsg: "(בלי הודעה)" },
-    en: { title: "Site <span>enquiries</span>", total: "Total enquiries", fresh: "New", handled: "Handled", all: "All", mark: "Mark handled", unmark: "Mark as new", wa: "WhatsApp", isNew: "New", isDone: "Handled", empty: "No enquiries yet. When someone fills in the form, it shows up here.", none: "No enquiries in this filter.", note: "Only you can see this panel. Enquiries are stored securely in the site.", noMsg: "(no message)" }
+    he: { title: "ניהול <span>האתר</span>", tabL: "פניות", tabP: "פרויקטים", total: "סה״כ פניות", fresh: "חדשות", handled: "טופלו", all: "הכול", mark: "סמן כטופל", unmark: "החזר לחדש", wa: "וואטסאפ", isNew: "חדש", isDone: "טופל", empty: "עדיין אין פניות. כשמישהו ימלא את הטופס, היא תופיע כאן.", none: "אין פניות בסינון הזה.", note: "רק אתה רואה את הדף הזה.", noMsg: "(בלי הודעה)",
+      lt: "כניסה לניהול", lp: "הדף הזה פרטי. התחבר עם האימייל והסיסמה של האתר.", le: "אימייל", lw: "סיסמה", lgo: "כניסה", lbad: "האימייל או הסיסמה לא נכונים.", lnet: "אין חיבור כרגע. נסה שוב.", out: "יציאה",
+      pT: "הפרויקטים שהוספת", pHint: "פרויקטים שתוסיף כאן יופיעו ראשונים בעמוד הפרויקטים ובתצוגה המלאה.", pNew: "+ פרויקט חדש", pEmpty: "עוד לא הוספת פרויקטים. ששת הפרויקטים הקיימים כבר מופיעים באתר.", edit: "עריכה", del: "מחיקה", see: "צפייה באתר", delQ: "למחוק את הפרויקט \"{n}\"? אי אפשר לבטל.",
+      fNew: "פרויקט חדש", fEdit: "עריכת פרויקט", imgD: "תמונה במחשב (PC)", imgDs: "צילום מסך של האתר, רוחב מלא", imgM: "תמונה במובייל", imgMs: "צילום מסך מהטלפון", imgPick: "לחץ או גרור תמונה", imgSwap: "לחץ להחלפה",
+      name: "שם האתר", url: "קישור לאתר", ttl: "כותרת", sub: "תת כותרת", type: "סוג", field: "תחום", loc: "מיקום", cat: "קטגוריה בסינון", ch: "האתגר", so: "מה בנינו", pts: "נקודות חזקות באתר", pt: "נקודה חזקה", addPt: "+ הוסף נקודה", rmPt: "הסר", save: "שמור ופרסם", saving: "שומר…", cancel: "ביטול", req: "חסרים: ", needImg: "צריך תמונה למחשב ולמובייל.", badUrl: "הקישור צריך להתחיל ב־https://", fail: "השמירה נכשלה. נסה שוב.", saved: "נשמר ופורסם באתר.",
+      types: ["אתר תדמית", "חנות אונליין", "אפליקציית ווב"], cats: [["beauty", "יופי וטיפוח"], ["estate", "נדל״ן ומשפט"], ["service", "שירות ואירוח"], ["other", "אחר"]] },
+    en: { title: "Site <span>admin</span>", tabL: "Enquiries", tabP: "Projects", total: "Total enquiries", fresh: "New", handled: "Handled", all: "All", mark: "Mark handled", unmark: "Mark as new", wa: "WhatsApp", isNew: "New", isDone: "Handled", empty: "No enquiries yet. When someone fills in the form, it shows up here.", none: "No enquiries in this filter.", note: "Only you can see this page.", noMsg: "(no message)",
+      lt: "Admin sign in", lp: "This page is private. Sign in with the site's email and password.", le: "Email", lw: "Password", lgo: "Sign in", lbad: "Wrong email or password.", lnet: "No connection right now. Try again.", out: "Sign out",
+      pT: "Projects you added", pHint: "Projects added here show first on the projects page and in the full view.", pNew: "+ New project", pEmpty: "No projects added yet. The six existing projects are already on the site.", edit: "Edit", del: "Delete", see: "Visit site", delQ: "Delete the project \"{n}\"? This can't be undone.",
+      fNew: "New project", fEdit: "Edit project", imgD: "Desktop image (PC)", imgDs: "Full-width screenshot of the site", imgM: "Mobile image", imgMs: "Screenshot from a phone", imgPick: "Click or drop an image", imgSwap: "Click to replace",
+      name: "Site name", url: "Site link", ttl: "Title", sub: "Subtitle", type: "Type", field: "Field", loc: "Location", cat: "Filter category", ch: "The challenge", so: "What we built", pts: "Strong points", pt: "Strong point", addPt: "+ Add a point", rmPt: "Remove", save: "Save and publish", saving: "Saving…", cancel: "Cancel", req: "Missing: ", needImg: "A desktop and a mobile image are needed.", badUrl: "The link must start with https://", fail: "Saving failed. Try again.", saved: "Saved and live on the site.",
+      types: ["Brand website", "Online store", "Web app"], cats: [["beauty", "Beauty"], ["estate", "Real estate & law"], ["service", "Service & hospitality"], ["other", "Other"]] }
   };
-  var DB = null, ME = null, leads = [], leadStatus = {}, admFilter = "all", admSubs = null;
+  var DB = null, ME = null, ASSETS = null, leads = [], leadStatus = {}, admFilter = "all", admSubs = null, admTab = "leads", admPoll = 0;
   function leadKey(uid, l) { return uid + "_" + l.at; }
   function admRender() {
     var a = ADM[lang], adm = document.getElementById("adm");
     document.getElementById("adm-title").innerHTML = a.title;
-    var nNew = leads.filter(function (l) { return leadStatus[l.key] !== "done"; }).length;
     if (!adm.classList.contains("open")) return;
+    var nNew = leads.filter(function (l) { return leadStatus[l.key] !== "done"; }).length;
+    document.querySelectorAll("#adm-tabs [data-tab]").forEach(function (b) {
+      var on = b.dataset.tab === admTab; b.setAttribute("aria-selected", on);
+      b.innerHTML = b.dataset.tab === "leads" ? a.tabL + (nNew ? "<sup>" + nNew + "</sup>" : "") : a.tabP + (userPJ.length ? "<sup>" + userPJ.length + "</sup>" : "");
+    });
+    document.getElementById("adm-leads").hidden = admTab !== "leads";
+    document.getElementById("adm-proj").hidden = admTab !== "projects";
+    var out = document.getElementById("adm-out"); out.hidden = !sbOn || !sbSess; out.textContent = a.out;
+    document.getElementById("adm-note").textContent = a.note;
+    if (admTab === "projects") return apRender();
     document.getElementById("adm-stats").innerHTML = [[leads.length, a.total], [nNew, a.fresh], [leads.length - nNew, a.handled]].map(function (x) { return "<div><b>" + x[0] + "</b><span>" + x[1] + "</span></div>"; }).join("");
     document.getElementById("adm-filter").innerHTML = [["all", a.all], ["new", a.fresh], ["done", a.handled]].map(function (f) { return '<button type="button" class="chip" data-f="' + f[0] + '" aria-pressed="' + (admFilter === f[0]) + '">' + f[1] + "</button>"; }).join("");
     var shown = leads.filter(function (l) { var d = leadStatus[l.key] === "done"; return admFilter === "all" || (admFilter === "done") === d; });
@@ -1947,9 +2072,19 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
         '<div class="ld-act"><a class="chip" target="_blank" rel="noopener" href="https://wa.me/' + digits + '">' + a.wa + '</a><button type="button" class="chip" data-k2="' + esc(l.key) + '">' + (done ? a.unmark : a.mark) + "</button></div>" +
         '<p class="ld-m">' + (l.biz ? "<b>" + esc(l.biz) + "</b>" + (l.site ? " · " + esc(l.site) : "") + "\n" : "") + (l.msg ? esc(l.msg) : a.noMsg) + "</p></article>";
     }).join("") : '<p class="adm-empty">' + (leads.length ? a.none : a.empty) + "</p>";
-    document.getElementById("adm-note").textContent = a.note;
+  }
+  function sbLeads() {
+    return sb("/rest/v1/leads?select=*&order=created_at.desc&limit=500", null, true).then(function (rows) {
+      var st = {};
+      leads = (rows || []).map(function (r) { if (r.handled) st[r.id] = "done"; return { key: r.id, name: r.name, phone: r.phone, email: r.email, type: r.type, when: r.timing, biz: r.biz, site: r.site, msg: r.msg, at: Date.parse(r.created_at) }; });
+      leadStatus = st; admRender();
+    });
   }
   function admSubscribe() {
+    if (sbOn) {
+      clearInterval(admPoll); admPoll = setInterval(function () { if (!document.hidden) sbLeads().catch(admAuthFail); }, 60000);
+      return sbLeads().catch(admAuthFail);
+    }
     if (admSubs || !DB) return;
     admSubs = [
       DB.collection("leads").onSnapshot(function (snap) {
@@ -1960,42 +2095,75 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
       DB.doc("admin/status").onSnapshot(function (snap) { leadStatus = (snap.exists && snap.data().map) || {}; admRender(); }, function () {})
     ];
   }
-  // The admin panel has no visible entry point: open the page with #admin, or tap the footer logo three times
+  function admAuthFail(e) { if (e && e.code === "auth") admLogin(true); }
+  function admLogin(show) {
+    var a = ADM[lang];
+    document.getElementById("adm-login").hidden = !show; document.getElementById("adm-main").hidden = show;
+    if (!show) return;
+    clearInterval(admPoll);
+    [["al-t", a.lt], ["al-p", a.lp], ["al-e", a.le], ["al-w", a.lw], ["al-go", a.lgo]].forEach(function (x) { document.getElementById(x[0]).textContent = x[1]; });
+    document.getElementById("adm-out").hidden = true;
+    setTimeout(function () { document.getElementById("al-email").focus(); }, 300);
+  }
+  // The admin page has no visible entry point: open the site at /admin (or #admin), or tap the footer logo three times
   var IS_OWNER = null, admWanted = false;
   function openAdmin() {
     admWanted = true;
-    if (IS_OWNER === null) return;
+    if (!sbOn && IS_OWNER === null) return;
     admWanted = false;
-    if (!IS_OWNER) return;
-    var adm = document.getElementById("adm"); adm.classList.add("open"); document.documentElement.style.overflow = "hidden"; admSubscribe(); admRender();
+    if (!sbOn && !IS_OWNER) return;
+    var adm = document.getElementById("adm"); adm.classList.add("open"); document.documentElement.style.overflow = "hidden";
+    if (sbOn && !sbSess) { admRender(); return admLogin(true); }
+    admLogin(false); admSubscribe(); admRender();
   }
   (function admin() {
     var adm = document.getElementById("adm");
     function close() {
-      adm.classList.remove("open"); document.documentElement.style.overflow = "";
-      if (location.hash === "#admin") try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+      adm.classList.remove("open"); document.documentElement.style.overflow = ""; clearInterval(admPoll);
+      try { if (location.hash === "#admin" || /\/admin\/?$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/admin\/?$/, "") + location.search); } catch (e) {}
     }
     document.getElementById("adm-close").addEventListener("click", close);
-    addEventListener("keydown", function (e) { if (e.key === "Escape" && adm.classList.contains("open")) close(); });
+    addEventListener("keydown", function (e) { if (e.key === "Escape" && adm.classList.contains("open") && !document.getElementById("case").classList.contains("on")) close(); });
     var taps = [], mark = document.getElementById("foot-mark");
     mark.addEventListener("click", function () { var now = Date.now(); taps = taps.filter(function (t) { return now - t < 900; }); taps.push(now); if (taps.length >= 3) { taps = []; openAdmin(); } });
+    document.getElementById("adm-tabs").addEventListener("click", function (e) { var b = e.target.closest("[data-tab]"); if (b) { admTab = b.dataset.tab; admRender(); } });
     document.getElementById("adm-filter").addEventListener("click", function (e) { var c = e.target.closest("[data-f]"); if (c) { admFilter = c.dataset.f; admRender(); } });
+    document.getElementById("adm-out").addEventListener("click", function () { sbKeep(null); leads = []; admLogin(true); });
+    document.getElementById("adm-login").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var a = ADM[lang], err = document.getElementById("al-err"), go = document.getElementById("al-go");
+      var em = document.getElementById("al-email").value.trim(), pw = document.getElementById("al-pass").value;
+      if (!em || !pw) { err.textContent = a.lbad; return; }
+      err.textContent = ""; go.disabled = true;
+      sbAuth("password", { email: em, password: pw }).then(function () {
+        document.getElementById("al-pass").value = ""; admLogin(false); admSubscribe(); admRender();
+      }, function (x) { err.textContent = x && x.code === "login" ? a.lbad : a.lnet; }).then(function () { go.disabled = false; });
+    });
     var writing = false;
     document.getElementById("adm-list").addEventListener("click", function (e) {
-      var c = e.target.closest("[data-k2]"); if (!c || writing || !DB) return;
-      var map = Object.assign({}, leadStatus), k = c.dataset.k2;
-      if (map[k] === "done") delete map[k]; else map[k] = "done";
+      var c = e.target.closest("[data-k2]"); if (!c || writing) return;
+      var map = Object.assign({}, leadStatus), k = c.dataset.k2, done = map[k] !== "done";
+      if (done) map[k] = "done"; else delete map[k];
+      if (sbOn) { leadStatus = map; admRender(); writing = true; sbSend("PATCH", "/rest/v1/leads?id=eq." + encodeURIComponent(k), { handled: done }).catch(admAuthFail).then(function () { writing = false; }); return; }
+      if (!DB) return;
       leadStatus = map; admRender(); writing = true;
       DB.doc("admin/status").set({ map: map }).catch(function () {}).then(function () { writing = false; });
     });
-    if (location.hash === "#admin") admWanted = true;
+    if (location.hash === "#admin" || /\/admin\/?$/.test(location.pathname)) admWanted = true;
+    if (sbOn) { if (admWanted) setTimeout(openAdmin, 0); return; }
     if (!window.claude || !claude.use) { IS_OWNER = false; return; }
     Promise.all([claude.use("db"), claude.use("user")]).then(function (r) {
       DB = r[0]; ME = r[1];
+      if (DB && typeof pjListen === "function") pjListen();
       return DB && ME ? ME.isOwner() : false;
-    }).catch(function () { return false; }).then(function (own) { IS_OWNER = !!own; if (admWanted) openAdmin(); });
+    }).catch(function () { return false; }).then(function (own) {
+      IS_OWNER = !!own;
+      if (IS_OWNER) claude.use("assets").then(function (x) { ASSETS = x; }, function () {});
+      if (admWanted) openAdmin();
+    });
   })();
   function saveLead(lead) {
+    if (sbOn) return sb("/rest/v1/leads", { method: "POST", headers: { "Content-Type": "application/json", Prefer: "return=minimal" }, body: JSON.stringify({ name: lead.name, phone: lead.phone, email: lead.email || null, type: lead.type, timing: lead.when, biz: lead.biz, site: lead.site, msg: lead.msg, lang: lead.lang }) });
     return ME.id().then(function (uid) {
       if (!uid) throw new Error("no id");
       var ref = DB.doc("leads/" + uid);
@@ -2014,6 +2182,8 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
     document.querySelectorAll(".ct-email").forEach(function (e) { e.textContent = CONTACT.email; });
     document.querySelectorAll("#ct-wa, .ct-wa-link").forEach(function (a) { a.href = waLink(); });
     document.querySelectorAll("#ct-mail, .ct-mail-link").forEach(function (a) { a.href = "mailto:" + CONTACT.email; });
+    document.querySelectorAll(".ct-tel-link").forEach(function (a) { a.href = "tel:" + CONTACT.tel; });
+    document.querySelectorAll(".ct-addr").forEach(function (a) { a.textContent = CONTACT.addr[l]; a.href = CONTACT.map; });
     ["type", "when"].forEach(function (k) {
       document.getElementById("opts-" + k).innerHTML = d["o_" + k].map(function (o, i) {
         return '<button type="button" class="opt" role="radio" aria-checked="' + (wz[k] === i) + '" data-i="' + i + '"><em>0' + (i + 1) + "</em><strong>" + esc(o[0]) + "</strong><span>" + esc(o[1]) + "</span></button>";
@@ -2070,7 +2240,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
       document.getElementById("f-okp").textContent = d.f_okp.replace("{n}", lead.name.split(" ")[0]);
       function done() { f.classList.remove("sending"); box.classList.add("done"); }
       // Without the site database (signed-out visitor), the brief goes out on WhatsApp instead
-      if (!DB || !ME) { window.open(document.getElementById("f-wa").href, "_blank", "noopener"); return done(); }
+      if (!sbOn && (!DB || !ME)) { window.open(document.getElementById("f-wa").href, "_blank", "noopener"); return done(); }
       f.classList.add("sending");
       var t0 = Date.now();
       saveLead(lead).then(function () { setTimeout(done, Math.max(0, 800 - (Date.now() - t0))); }, function () { window.open(document.getElementById("f-wa").href, "_blank", "noopener"); done(); });
@@ -2213,7 +2383,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
       '<section class="svp-sec"><div class="wrap fit"><h3 class="t rv">' + (he ? 'למי זה <span class="serif">מתאים?</span>' : 'Who is it <span class="serif">for?</span>') + '</h3><ul class="rv">' +
         v.fit.map(function (f) { return "<li>" + tick + "<span>" + esc(f) + "</span></li>"; }).join("") + "</ul></div></section>" +
       '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + (key === "site" ? (he ? 'אתרים <span class="serif">שבניתי.</span>' : 'Sites <span class="serif">I built.</span>') : (he ? 'רמת <span class="serif">העבודה.</span>' : 'The level <span class="serif">of work.</span>')) + '</h3><div class="svp-work rv">' +
-        PJ.slice(0, 3).map(function (p) { return '<a href="' + p.url + '" target="_blank" rel="noopener"><div class="shot"><img src="work/' + p.id + '-d.jpg" alt="' + esc(p.name) + '" loading="lazy"></div><b>' + esc(p.name) + "</b><span>" + esc(p[l][0]) + "</span></a>"; }).join("") + "</div>" +
+        PJ.slice(0, 3).map(function (p) { return '<a href="' + p.url + '" target="_blank" rel="noopener"><div class="shot"><img src="' + esc(pjImg(p, "d")) + '" alt="' + esc(p.name) + '" loading="lazy"></div><b>' + esc(p.name) + "</b><span>" + esc(pjTxt(p, l)[0]) + "</span></a>"; }).join("") + "</div>" +
         '<div class="svp-band rv"><h3>' + (he ? 'מוכנים <span class="serif">להתחיל?</span>' : 'Ready <span class="serif">to start?</span>') + '</h3><a href="#contact" class="pill solid" data-svc="' + i + '">' + T[l].cta + "</a></div>" +
         '<div class="svp-next"><a href="#service-' + prev.key + '">' + (he ? "השירות הקודם" : "Previous service") + "<b>" + esc(prev.name) + '</b></a><a href="#service-' + next.key + '" style="text-align:end">' + (he ? "השירות הבא" : "Next service") + "<b>" + esc(next.name) + "</b></a></div></div></section>";
     clearTimeout(ahT); if (key === "site") shStart(); if (key === "app") ahStart(l);
@@ -2675,20 +2845,28 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
     { id: "garage", name: "BHV26 Garage Door", url: "https://bhv26-garage-door.web.app", he: ["דלתות מוסך · ניו ג׳רזי", "אתר שירות בארה״ב, בנוי להביא שיחות ופניות כל יום."], en: ["Garage doors · New Jersey", "A US service business site, built to bring in calls and leads every day."] },
     { id: "sweet", name: "Sweet Tours", url: "https://sweet-tours.vercel.app", he: ["סוויטות בוטיק · נתניה", "אתר לסוויטות מול הים, עם מחירים, ג׳קוזי ושקיעה שמוכרים לבד."], en: ["Boutique suites · Netanya", "Seafront suites site where the sunset, jacuzzi and prices sell themselves."] }
   ];
+  // Projects added from the admin page come first; the six built-in ones keep their own texts and screenshots
+  var PJ_BASE = PJ.slice(), userPJ = [];
+  function pjImg(p, k) { return (k === "d" ? p.imgD : p.imgM) || "work/" + p.id + "-" + k + ".jpg"; }
+  function pjTint(p) { return (typeof PG_TINT !== "undefined" && PG_TINT[p.id]) || "#b8955a"; }
+  function pjCat(p) { return PG_CAT[p.id] || p.cat || "other"; }
+  function pjTxt(p, l) { return p.user ? [[p.field, p.location].filter(Boolean).join(" · "), p.subtitle || ""] : p[l]; }
+  function pjDet(p, l) { return p.user ? { ch: p.challenge || "", so: p.built || "", ft: p.points || [] } : PJD[l][p.id]; }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function renderProjects(l) {
     var view = l === "he" ? "צפו באתר" : "Visit site", soon = l === "he" ? "צילום מסך בדרך" : "Screenshot coming";
     function build(arr) { return arr.map(function (p, i) {
-      var t = p[l], host = p.url.replace("https://", "");
+      var t = pjTxt(p, l), host = p.url.replace(/^https?:\/\//, "");
       return '<article class="pj">' +
         '<div class="pj-info"><span class="pj-cat">' + esc(t[0]) + '</span><h3 class="pj-name">' + esc(p.name) + '</h3><p class="pj-desc">' + esc(t[1]) + '</p>' +
         '<a class="pill line pj-link" href="' + p.url + '" target="_blank" rel="noopener"><span>' + view + '</span> <span class="ext" aria-hidden="true">↗</span></a></div>' +
         '<div class="pj-stage">' +
-          '<div class="pj-desk"><div class="pj-bar"><i></i><i></i><i></i><span>' + host + '</span></div><div class="pj-screen"><img src="work/' + p.id + '-d.jpg" alt="' + esc(p.name) + ' desktop" loading="lazy"><div class="pj-ph"><b>' + esc(p.name) + '</b>' + soon + '</div></div></div>' +
-          '<div class="pj-phone"><div class="pj-screen"><img src="work/' + p.id + '-m.jpg" alt="' + esc(p.name) + ' mobile" loading="lazy"><div class="pj-ph"><b>' + esc(p.name) + '</b></div></div></div>' +
+          '<div class="pj-desk"><div class="pj-bar"><i></i><i></i><i></i><span>' + host + '</span></div><div class="pj-screen"><img src="' + esc(pjImg(p, "d")) + '" alt="' + esc(p.name) + ' desktop" loading="lazy"><div class="pj-ph"><b>' + esc(p.name) + '</b>' + soon + '</div></div></div>' +
+          '<div class="pj-phone"><div class="pj-screen"><img src="' + esc(pjImg(p, "m")) + '" alt="' + esc(p.name) + ' mobile" loading="lazy"><div class="pj-ph"><b>' + esc(p.name) + '</b></div></div></div>' +
         '</div></article>';
     }).join(""); }
     document.getElementById("pj-list").innerHTML = build(PJ.slice(0, 3));
+    document.querySelectorAll(".pj-more-n").forEach(function (el) { el.textContent = l === "he" ? PJ.length + " פרויקטים באוויר" : PJ.length + " projects live"; });
     if (typeof PG_T !== "undefined") renderGallery(l);
     setTimeout(drift, 0);
     document.querySelectorAll(".pj-screen img").forEach(function (img) {
@@ -2918,10 +3096,10 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
   var CK = {
     he: { t1: 'מה קורה <span class="serif">אחרי ששולחים?</span>', steps: [["תוך 24 שעות", "חוזרים אליכם", "בוואטסאפ או בטלפון, בשעה שנוחה לכם."], ["שיחת היכרות", "מבינים את העסק", "כ־20 דקות על המטרות, הקהל, הסגנון והתקציב."], ["אחרי השיחה", "הצעת מחיר סגורה", "מפורטת, עם לוח זמנים ברור ובלי הפתעות בהמשך."], ["יוצאים לדרך", "אפיון, עיצוב ופיתוח", "אתם מאשרים כל שלב, ורואים את האתר נבנה."]],
       t2: 'כדאי <span class="serif">להכין מראש.</span>', prep: [["לוגו וצבעי מותג", "אם יש. אם אין, נבנה יחד."], ["2-3 אתרים שאהבתם", "כדי להבין את הטעם שלכם."], ["טקסטים ותמונות", "מה שיש. את השאר נשלים יחד."], ["טווח תקציב ותאריך יעד", "עוזר לתכנן נכון מההתחלה."], ["דומיין קיים", "אם כבר רכשתם כתובת לאתר."]],
-      facts: [["שיחת היכרות", "בלי התחייבות"], ["עברית · Français", "השפות שבהן אני עובד"], ["ישראל וחו״ל", "לקוחות גם בארה״ב"], ["שאלות על מחיר וזמנים?", '<a href="#faq">לשאלות הנפוצות</a>']] },
+      facts: [["שיחת היכרות", "בלי התחייבות"], ["עברית · Français", "השפות שבהן אני עובד"], ["הסטודיו", '<a class="ct-addr" href="#" target="_blank" rel="noopener"></a>'], ["שאלות על מחיר וזמנים?", '<a href="#faq">לשאלות הנפוצות</a>']] },
     en: { t1: 'What happens <span class="serif">after you send?</span>', steps: [["Within 24 hours", "I get back to you", "On WhatsApp or by phone, at a time that suits you."], ["Intro call", "Understanding your business", "About 20 minutes on goals, audience, style and budget."], ["After the call", "A fixed quote", "Detailed, with a clear timeline and no surprises later."], ["Kick-off", "Planning, design, build", "You approve every stage and watch the site come together."]],
       t2: 'Good to <span class="serif">prepare.</span>', prep: [["Logo and brand colours", "If you have them. If not, we build them together."], ["2-3 sites you like", "So I understand your taste."], ["Texts and photos", "Whatever you have. We complete the rest together."], ["Budget range and target date", "Helps plan it right from the start."], ["Existing domain", "If you already bought an address."]],
-      facts: [["Intro call", "No commitment"], ["עברית · Français", "Languages I work in"], ["Israel and abroad", "Clients in the US too"], ["Questions on price or timing?", '<a href="#faq">See the FAQ</a>']] }
+      facts: [["Intro call", "No commitment"], ["עברית · Français", "Languages I work in"], ["The studio", '<a class="ct-addr" href="#" target="_blank" rel="noopener"></a>'], ["Questions on price or timing?", '<a href="#faq">See the FAQ</a>']] }
   };
   var ckIO = null;
   function renderKnow(l) {
@@ -2930,6 +3108,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
     el.innerHTML = '<div><h3>' + d.t1 + '</h3><ol class="ck-steps">' + d.steps.map(function (x, n) { return "<li><i>0" + (n + 1) + "</i><div><small>" + x[0] + "</small><b>" + x[1] + "</b><p>" + x[2] + "</p></div></li>"; }).join("") + "</ol></div>" +
       '<div class="ck-card"><h3>' + d.t2 + '</h3><ul class="ck-prep">' + d.prep.map(function (x) { return "<li>" + tick + "<div>" + x[0] + "<small>" + x[1] + "</small></div></li>"; }).join("") + "</ul></div>" +
       '<div class="ck-facts">' + d.facts.map(function (x) { return "<div><b>" + x[0] + "</b><span>" + x[1] + "</span></div>"; }).join("") + "</div>";
+    el.querySelectorAll(".ct-addr").forEach(function (a) { a.textContent = CONTACT.addr[l]; a.href = CONTACT.map; });
     if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) { el.classList.add("in"); return; }
     if (!ckIO) ckIO = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); ckIO.unobserve(e.target); } }); }, { threshold: .2 });
     ckIO.observe(el);
@@ -2939,8 +3118,8 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
   var PG_CAT = { luma: "beauty", myriam: "beauty", pnim: "estate", yesod: "estate", garage: "service", sweet: "service" };
   var PG_TINT = { luma: "#b0703f", myriam: "#d7a89c", pnim: "#7f9a86", yesod: "#8a8f96", garage: "#6f6ca8", sweet: "#c9a46e" };
   var PG_T = {
-    he: { f: [["all", "הכל"], ["beauty", "יופי וטיפוח"], ["estate", "נדל״ן ומשפט"], ["service", "שירות ואירוח"]], stats: [["06", "פרויקטים באוויר"], ["IL + US", "ישראל וארה״ב"], ["100%", "עיצוב אישי"]], view: "צפו בפרויקט", open: "פתחו את הפרויקט", live: "צפו באתר החי", full: "תצוגה מלאה", ch: "האתגר", so: "מה בנינו", ftT: "מה יש באתר", m: ["סוג", "תחום", "מיקום"], type: "אתר תדמית" },
-    en: { f: [["all", "All"], ["beauty", "Beauty"], ["estate", "Real estate & law"], ["service", "Service & hospitality"]], stats: [["06", "projects live"], ["IL + US", "Israel and the US"], ["100%", "bespoke design"]], view: "View project", open: "Open project", live: "Visit the live site", full: "Full view", ch: "The challenge", so: "What we built", ftT: "On the site", m: ["Type", "Field", "Location"], type: "Brand website" }
+    he: { f: [["all", "הכל"], ["beauty", "יופי וטיפוח"], ["estate", "נדל״ן ומשפט"], ["service", "שירות ואירוח"], ["other", "עוד"]], stats: [["06", "פרויקטים באוויר"], ["IL + US", "ישראל וארה״ב"], ["100%", "עיצוב אישי"]], view: "צפו בפרויקט", open: "פתחו את הפרויקט", live: "צפו באתר החי", full: "תצוגה מלאה", ch: "האתגר", so: "מה בנינו", ftT: "מה יש באתר", m: ["סוג", "תחום", "מיקום"], type: "אתר תדמית" },
+    en: { f: [["all", "All"], ["beauty", "Beauty"], ["estate", "Real estate & law"], ["service", "Service & hospitality"], ["other", "More"]], stats: [["06", "projects live"], ["IL + US", "Israel and the US"], ["100%", "bespoke design"]], view: "View project", open: "Open project", live: "Visit the live site", full: "Full view", ch: "The challenge", so: "What we built", ftT: "On the site", m: ["Type", "Field", "Location"], type: "Brand website" }
   };
 
   var PJD = {
@@ -2964,26 +3143,31 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
   var pgFilter = "all";
   function renderGallery(l) {
     var t = PG_T[l];
-    document.getElementById("pg-stats").innerHTML = t.stats.map(function (x) { return "<span><b>" + x[0] + "</b>" + x[1] + "</span>"; }).join("");
+    if (pgFilter !== "all" && !PJ.some(function (p) { return pjCat(p) === pgFilter; })) pgFilter = "all";
+    document.getElementById("pg-stats").innerHTML = t.stats.map(function (x, n) { return n ? x : [String(PJ.length).padStart(2, "0"), x[1]]; }).map(function (x) { return "<span><b>" + x[0] + "</b>" + x[1] + "</span>"; }).join("");
     document.getElementById("pg-filters").innerHTML = '<span class="pg-thumb"></span>' + t.f.map(function (f) {
-      var n = f[0] === "all" ? PJ.length : PJ.filter(function (p) { return PG_CAT[p.id] === f[0]; }).length;
+      var n = f[0] === "all" ? PJ.length : PJ.filter(function (p) { return pjCat(p) === f[0]; }).length;
+      if (!n) return "";
       return '<button type="button" role="tab" data-f="' + f[0] + '" aria-selected="' + (f[0] === pgFilter) + '">' + f[1] + "<sup>" + n + "</sup></button>";
     }).join("");
-    var dd = PJD[l];
-    var media = function (p, cls) { return '<div class="' + cls + '" style="--tint:' + PG_TINT[p.id] + '"><span class="pz-desk"><span class="pz-bar"><i></i><i></i><i></i><b>' + p.url.replace("https://", "") + '</b></span><img src="work/' + p.id + '-d.jpg" alt="" loading="lazy"></span><span class="pz-ph"><img src="work/' + p.id + '-m.jpg" alt="" loading="lazy"></span></div>'; };
+    var media = function (p, cls) { return '<div class="' + cls + '" style="--tint:' + pjTint(p) + '"><span class="pz-desk"><span class="pz-bar"><i></i><i></i><i></i><b>' + esc(p.url.replace(/^https?:\/\//, "")) + '</b></span><img src="' + esc(pjImg(p, "d")) + '" alt="" loading="lazy"></span><span class="pz-ph"><img src="' + esc(pjImg(p, "m")) + '" alt="" loading="lazy"></span></div>'; };
     document.getElementById("pg").innerHTML = '<div class="pz" id="pz"><div class="pz-stick"><div class="pz-frame" id="pz-frame">' +
         PJ.map(function (p, i) { return media(p, "pz-m" + (i ? "" : " on")).replace('class="pz-m', 'data-i="' + i + '" class="pz-m'); }).join("") +
-        '<div class="pz-count" id="pz-count"><b>01</b><i><s></s></i><span>06</span></div></div></div><div class="pz-list">' +
+        '<div class="pz-count" id="pz-count"><b>01</b><i><s></s></i><span>' + String(PJ.length).padStart(2, "0") + '</span></div></div></div><div class="pz-list">' +
       PJ.map(function (p, i) {
-        var x = dd[p.id];
-        return '<article class="pz-c" data-i="' + i + '" data-c="' + PG_CAT[p.id] + '">' + media(p, "pz-mm") +
-          '<div class="pz-h"><em>' + String(i + 1).padStart(2, "0") + '</em><span class="pj-cat">' + esc(p[l][0]) + "</span></div><h3>" + esc(p.name) + '</h3><p class="pz-lead">' + esc(p[l][1]) + "</p>" +
-          '<div class="pz-cs"><div><small>' + t.ch + "</small><p>" + esc(x.ch) + "</p></div><div><small>" + t.so + "</small><p>" + esc(x.so) + "</p></div></div>" +
-          '<ul class="pz-ft">' + x.ft.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>" +
-          '<div class="pz-act"><button type="button" class="pill solid pz-open">' + t.full + '</button><a class="pill line" href="' + p.url + '" target="_blank" rel="noopener">' + t.live + "</a></div></article>";
+        var x = pjDet(p, l), tx = pjTxt(p, l);
+        return '<article class="pz-c" data-i="' + i + '" data-c="' + pjCat(p) + '">' + media(p, "pz-mm") +
+          '<div class="pz-h"><em>' + String(i + 1).padStart(2, "0") + '</em><span class="pj-cat">' + esc(tx[0]) + "</span></div><h3>" + esc(p.name) + "</h3>" + (p.title ? '<p class="pz-ttl">' + esc(p.title) + "</p>" : "") + (tx[1] ? '<p class="pz-lead">' + esc(tx[1]) + "</p>" : "") +
+          csHtml(x, t, "pz-cs") +
+          '<div class="pz-act"><button type="button" class="pill solid pz-open">' + t.full + '</button><a class="pill line" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + t.live + "</a></div></article>";
       }).join("") + "</div></div>";
     pzWatch();
     pgApply(false);
+  }
+  function csHtml(x, t, cls) {
+    var b = [[t.ch, x.ch], [t.so, x.so]].filter(function (y) { return y[1]; });
+    return (b.length ? '<div class="' + cls + '">' + b.map(function (y) { return "<div><small>" + y[0] + "</small><p>" + esc(y[1]) + "</p></div>"; }).join("") + "</div>" : "") +
+      (x.ft && x.ft.length ? '<ul class="pz-ft">' + x.ft.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>" : "");
   }
   function pgThumb() {
     var bar = document.getElementById("pg-filters"), on = bar.querySelector('[aria-selected="true"]'), th = bar.querySelector(".pg-thumb");
@@ -3036,17 +3220,17 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
 
   // Case view: grows out of the card that was clicked
   var cs = document.getElementById("case"), csI = 0, csFrom = null, csBusy = false;
-  function csList() { return PJ.map(function (p, i) { return i; }).filter(function (i) { return pgFilter === "all" || PG_CAT[PJ[i].id] === pgFilter; }); }
+  function csList() { return PJ.map(function (p, i) { return i; }).filter(function (i) { return pgFilter === "all" || pjCat(PJ[i]) === pgFilter; }); }
   function csFill(i) {
-    var p = PJ[i], t = PG_T[lang], c = p[lang][0].split(" · "), list = csList();
+    var p = PJ[i], t = PG_T[lang], tx = pjTxt(p, lang), c = p.user ? [p.field, p.location] : tx[0].split(" · "), list = csList();
     csI = i;
     document.getElementById("cs-n").innerHTML = "<b>" + String(list.indexOf(i) + 1).padStart(2, "0") + "</b> / " + String(list.length).padStart(2, "0");
-    var meta = [[t.m[0], t.type], [t.m[1], c[0]]]; if (c[1]) meta.push([t.m[2], c[1]]);
+    var meta = [[t.m[0], (p.user && p.type) || t.type], [t.m[1], c[0]], [t.m[2], c[1]]].filter(function (m) { return m[1]; });
     document.getElementById("cs-body").innerHTML =
-      '<div class="cs-info"><span class="pj-cat">' + esc(p[lang][0]) + '</span><h3 id="cs-name">' + esc(p.name) + "</h3><p>" + esc(p[lang][1]) + '</p><dl class="cs-meta">' + meta.map(function (m) { return "<div><dt>" + m[0] + "</dt><dd>" + esc(m[1]) + "</dd></div>"; }).join("") + "</dl>" +
-      '<div class="cs-cs"><div><small>' + t.ch + "</small><p>" + esc(PJD[lang][p.id].ch) + "</p></div><div><small>" + t.so + "</small><p>" + esc(PJD[lang][p.id].so) + '</p></div></div><ul class="pz-ft">' + PJD[lang][p.id].ft.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>" +
-      '<a class="pill solid" href="' + p.url + '" target="_blank" rel="noopener">' + t.live + "</a></div>" +
-      '<div class="cs-media" style="--tint:' + PG_TINT[p.id] + '"><div class="cs-desk"><div class="pj-bar"><i></i><i></i><i></i><span>' + p.url.replace("https://", "") + '</span></div><img src="work/' + p.id + '-d.jpg" alt="' + esc(p.name) + '"></div><div class="cs-phone"><img src="work/' + p.id + '-m.jpg" alt=""></div></div>';
+      '<div class="cs-info"><span class="pj-cat">' + esc(tx[0]) + '</span><h3 id="cs-name">' + esc(p.name) + "</h3>" + (p.title ? '<p class="cs-ttl">' + esc(p.title) + "</p>" : "") + (tx[1] ? "<p>" + esc(tx[1]) + "</p>" : "") + '<dl class="cs-meta">' + meta.map(function (m) { return "<div><dt>" + m[0] + "</dt><dd>" + esc(m[1]) + "</dd></div>"; }).join("") + "</dl>" +
+      csHtml(pjDet(p, lang), t, "cs-cs") +
+      '<a class="pill solid" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + t.live + "</a></div>" +
+      '<div class="cs-media" style="--tint:' + pjTint(p) + '"><div class="cs-desk"><div class="pj-bar"><i></i><i></i><i></i><span>' + esc(p.url.replace(/^https?:\/\//, "")) + '</span></div><img src="' + esc(pjImg(p, "d")) + '" alt="' + esc(p.name) + '"></div><div class="cs-phone"><img src="' + esc(pjImg(p, "m")) + '" alt=""></div></div>';
   }
   function csClip(el) {
     var box = cs.getBoundingClientRect();
@@ -3088,6 +3272,160 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
   addEventListener("hashchange", function () { if (cs.classList.contains("on")) { cs.classList.remove("on", "open"); root.style.overflow = ""; } });
   renderGallery(lang);
   addEventListener("hashchange", function () { if (onProjects()) setTimeout(pgThumb, 80); });
+
+  // Added projects: read from Supabase (or the artifact's database) and merged in front of the built-in ones
+  var pjRows = {};
+  function pjFromRow(r) {
+    return { id: "u-" + r.id, rid: r.id, user: true, name: r.name || "", url: r.url || "#", title: r.title || "", subtitle: r.subtitle || "", type: r.type || "", field: r.field || "", location: r.location || "", cat: r.cat || "other", challenge: r.challenge || "", built: r.built || "", points: (r.points || []).filter(Boolean), imgD: r.img_d || "", imgM: r.img_m || "" };
+  }
+  function pjSet(rows) {
+    pjRows = {}; rows.forEach(function (r) { pjRows[r.id] = r; });
+    userPJ = rows.map(pjFromRow); PJ = userPJ.concat(PJ_BASE);
+    renderProjects(lang);
+    if (document.getElementById("adm").classList.contains("open")) admRender();
+  }
+  function pjLoad() { if (sbOn) return sb("/rest/v1/projects?select=*&order=created_at.desc").then(function (r) { pjSet(r || []); }, function () {}); }
+  var pjSub = null;
+  function pjListen() {
+    if (pjSub || !DB) return;
+    pjSub = DB.collection("projects").onSnapshot(function (snap) {
+      pjSet(snap.docs.map(function (d) { return Object.assign({}, d.data(), { id: d.id }); }).sort(function (x, y) { return (y.created_at || 0) - (x.created_at || 0); }));
+    }, function () {});
+  }
+  pjLoad();
+
+  // Admin: the projects tab, with the add / edit form
+  var apEdit = null, apOpen = false, apImgs = { d: null, m: null }, apBusy = false;
+  var AP_ICON = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m0 0l-4 4m4-4l4 4M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>';
+  function apRender() {
+    var a = ADM[lang], box = document.getElementById("adm-proj");
+    if (apOpen && box.querySelector("#ap-form")) return;
+    box.innerHTML = (apOpen ? apFormHtml(a) : "") +
+      '<div class="ap-head"><div><h4 class="adm-sub">' + a.pT + "</h4><p>" + a.pHint + "</p></div>" + (apOpen ? "" : '<button type="button" class="pill solid" id="ap-new">' + a.pNew + "</button>") + "</div>" +
+      '<div class="ap-list">' + (userPJ.length ? userPJ.map(function (p) {
+        return '<div class="ap-it"><span class="th" style="background-image:url(\'' + esc(p.imgD) + '\')"></span><div><strong>' + esc(p.name) + "</strong><span>" + esc([p.type, p.field, p.location].filter(Boolean).join(" · ")) + '</span></div><div class="ap-b"><button type="button" class="chip" data-ed="' + esc(p.rid) + '">' + a.edit + '</button><a class="chip" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + a.see + '</a><button type="button" class="chip del" data-rm="' + esc(p.rid) + '">' + a.del + "</button></div></div>";
+      }).join("") : '<p class="adm-empty">' + a.pEmpty + "</p>") + "</div>";
+    if (apOpen) apFill();
+  }
+  function apFormHtml(a) {
+    function f(k, lbl, o) { o = o || {}; var req = o.req ? " <i>*</i>" : "";
+      if (o.area) return '<label class="af wide"><span>' + lbl + req + '</span><textarea id="ap-' + k + '" maxlength="900"></textarea></label>';
+      if (o.sel) return '<label class="af"><span>' + lbl + '</span><select id="ap-' + k + '">' + a.cats.map(function (c) { return '<option value="' + c[0] + '">' + c[1] + "</option>"; }).join("") + "</select></label>";
+      return '<label class="af' + (o.wide ? " wide" : "") + '"><span>' + lbl + req + '</span><input id="ap-' + k + '" maxlength="160"' + (o.ltr ? ' dir="ltr" inputmode="url" placeholder="https://"' : "") + (o.list ? ' list="ap-types"' : "") + "></label>"; }
+    function drop(k, lbl, sm) { return '<label class="ap-drop' + (k === "m" ? " m" : "") + '" data-img="' + k + '"><input type="file" accept="image/*"><span class="pv"></span>' + AP_ICON + "<b>" + lbl + ' <i style="color:var(--brass);font-style:normal">*</i></b><small>' + sm + "</small></label>"; }
+    return '<form class="ap-form" id="ap-form" novalidate><h4>' + (apEdit ? a.fEdit : a.fNew) + "</h4>" +
+      '<div class="ap-imgs">' + drop("d", a.imgD, a.imgDs) + drop("m", a.imgM, a.imgMs) + "</div>" +
+      '<div class="ap-grid">' + f("name", a.name, { req: 1 }) + f("url", a.url, { req: 1, ltr: 1 }) + f("title", a.ttl, { wide: 1 }) + f("subtitle", a.sub, { wide: 1 }) +
+        f("type", a.type, { list: 1 }) + f("field", a.field) + f("location", a.loc) + f("cat", a.cat, { sel: 1 }) + f("challenge", a.ch, { area: 1 }) + f("built", a.so, { area: 1 }) + "</div>" +
+      '<datalist id="ap-types">' + a.types.map(function (t) { return '<option value="' + t + '">'; }).join("") + "</datalist>" +
+      '<div class="ap-pts"><span>' + a.pts + '</span><div id="ap-pts"></div><button type="button" class="chip" id="ap-add">' + a.addPt + "</button></div>" +
+      '<p class="adm-err" id="ap-err" role="alert"></p>' +
+      '<div class="ap-act"><button type="submit" class="pill solid" id="ap-save">' + a.save + '</button><button type="button" class="pill line" id="ap-cancel">' + a.cancel + "</button></div></form>";
+  }
+  function apPoint(v) {
+    var list = document.getElementById("ap-pts"), row = document.createElement("div");
+    row.className = "ap-pt";
+    row.innerHTML = '<em></em><input maxlength="80" placeholder="' + ADM[lang].pt + '"><button type="button" aria-label="' + ADM[lang].rmPt + '"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+    row.querySelector("input").value = v || "";
+    list.appendChild(row); apNum(); return row;
+  }
+  function apNum() { document.querySelectorAll("#ap-pts .ap-pt em").forEach(function (e, n) { e.textContent = String(n + 1).padStart(2, "0"); }); }
+  function apPrev(k, url) { var d = document.querySelector('.ap-drop[data-img="' + k + '"]'); if (!d) return; d.classList.toggle("has", !!url); d.querySelector(".pv").style.backgroundImage = url ? "url('" + url + "')" : ""; d.querySelector("small").textContent = url ? ADM[lang].imgSwap : ADM[lang][k === "d" ? "imgDs" : "imgMs"]; }
+  function apFill() {
+    var r = apEdit ? pjRows[apEdit] || {} : {};
+    ["name", "url", "title", "subtitle", "type", "field", "location", "challenge", "built"].forEach(function (k) { document.getElementById("ap-" + k).value = r[k] || ""; });
+    document.getElementById("ap-cat").value = r.cat || "other";
+    (r.points && r.points.length ? r.points : ["", "", ""]).forEach(function (v) { apPoint(v); });
+    apImgs = { d: null, m: null };
+    apPrev("d", r.img_d); apPrev("m", r.img_m);
+  }
+  function apShow(id) { apEdit = id || null; apOpen = true; document.getElementById("adm-proj").innerHTML = ""; apRender(); var fm = document.getElementById("ap-form"); fm.scrollIntoView({ behavior: "smooth", block: "start" }); setTimeout(function () { document.getElementById("ap-name").focus({ preventScroll: true }); }, 400); }
+  function apHide() { apOpen = false; apEdit = null; document.getElementById("adm-proj").innerHTML = ""; apRender(); }
+  // Screenshots are scaled down in the browser before upload; very tall pages are trimmed to what a canvas can hold
+  function apShrink(file, maxW, q) {
+    return new Promise(function (res, rej) {
+      var u = URL.createObjectURL(file), img = new Image();
+      img.onload = function () {
+        var sc = Math.min(1, maxW / img.naturalWidth), w = Math.round(img.naturalWidth * sc), h = Math.round(img.naturalHeight * sc);
+        h = Math.min(h, Math.floor(16e6 / w));
+        var c = document.createElement("canvas"); c.width = w; c.height = h;
+        c.getContext("2d").drawImage(img, 0, 0, Math.round(img.naturalWidth * sc), Math.round(img.naturalHeight * sc));
+        URL.revokeObjectURL(u);
+        c.toBlob(function (b) { if (b) res(b); else rej(new Error("encode")); }, "image/jpeg", q);
+      };
+      img.onerror = function () { URL.revokeObjectURL(u); rej(new Error("read")); };
+      img.src = u;
+    });
+  }
+  function apStoreImg(blob, name) {
+    if (sbOn) return sb("/storage/v1/object/projects/" + name, { method: "POST", headers: { "Content-Type": "image/jpeg", "x-upsert": "true" }, body: blob }, true).then(function () { return SB.url + "/storage/v1/object/public/projects/" + name; });
+    if (ASSETS) return ASSETS.upload(blob).then(function (x) { return x.url; });
+    return new Promise(function (res) { var fr = new FileReader(); fr.onload = function () { res(fr.result); }; fr.readAsDataURL(blob); });
+  }
+  function apWrite(row, rid) {
+    if (sbOn) return rid ? sbSend("PATCH", "/rest/v1/projects?id=eq." + encodeURIComponent(rid), row) : sbSend("POST", "/rest/v1/projects", row);
+    if (!DB) return Promise.reject(new Error("no db"));
+    var id = rid || "p" + Date.now().toString(36);
+    var base = rid ? Object.assign({}, pjRows[rid]) : { created_at: Date.now() };
+    delete base.id;
+    return DB.doc("projects/" + id).set(Object.assign(base, row));
+  }
+  function apDelete(rid) {
+    var p = sbOn ? sb("/rest/v1/projects?id=eq." + encodeURIComponent(rid), { method: "DELETE" }, true) : DB.doc("projects/" + rid).delete();
+    return p.then(function () { if (sbOn) return pjLoad(); });
+  }
+  (function apWire() {
+    var box = document.getElementById("adm-proj");
+    box.addEventListener("click", function (e) {
+      var t = e.target;
+      if (t.closest("#ap-new")) return apShow(null);
+      if (t.closest("#ap-cancel")) return apHide();
+      if (t.closest("#ap-add")) { apPoint("").querySelector("input").focus(); return; }
+      var rm = t.closest(".ap-pt button"); if (rm) { rm.parentNode.remove(); apNum(); return; }
+      var ed = t.closest("[data-ed]"); if (ed) return apShow(ed.dataset.ed);
+      var del = t.closest("[data-rm]");
+      if (del) { var r = pjRows[del.dataset.rm]; if (r && confirm(ADM[lang].delQ.replace("{n}", r.name))) apDelete(del.dataset.rm).catch(function (x) { admAuthFail(x); alert(ADM[lang].fail); }); }
+    });
+    box.addEventListener("keydown", function (e) { if (e.key === "Enter" && e.target.closest(".ap-pt input")) { e.preventDefault(); apPoint("").querySelector("input").focus(); } });
+    function take(k, file) {
+      if (!file || !/^image\//.test(file.type)) return;
+      apImgs[k] = file; var fr = new FileReader(); fr.onload = function () { apPrev(k, fr.result); }; fr.readAsDataURL(file);
+    }
+    box.addEventListener("input", function (e) { var f = e.target.closest(".af"); if (f) f.classList.remove("bad"); });
+    box.addEventListener("change", function (e) { var d = e.target.closest(".ap-drop"); if (d && e.target.files) take(d.dataset.img, e.target.files[0]); });
+    ["dragenter", "dragover"].forEach(function (ev) { box.addEventListener(ev, function (e) { var d = e.target.closest(".ap-drop"); if (d) { e.preventDefault(); d.classList.add("over"); } }); });
+    ["dragleave", "drop"].forEach(function (ev) { box.addEventListener(ev, function (e) { var d = e.target.closest(".ap-drop"); if (!d) return; e.preventDefault(); d.classList.remove("over"); if (ev === "drop" && e.dataTransfer.files) take(d.dataset.img, e.dataTransfer.files[0]); }); });
+    box.addEventListener("submit", function (e) {
+      e.preventDefault(); if (apBusy) return;
+      var a = ADM[lang], err = document.getElementById("ap-err"), save = document.getElementById("ap-save"), old = apEdit ? pjRows[apEdit] || {} : {};
+      function v(k) { return document.getElementById("ap-" + k).value.trim(); }
+      var row = { name: v("name"), url: v("url"), title: v("title"), subtitle: v("subtitle"), type: v("type"), field: v("field"), location: v("location"), cat: v("cat"), challenge: v("challenge"), built: v("built"),
+        points: [].map.call(document.querySelectorAll("#ap-pts input"), function (i) { return i.value.trim(); }).filter(Boolean) };
+      if (row.url && !/^https?:\/\//i.test(row.url)) row.url = "https://" + row.url;
+      document.querySelectorAll("#ap-form .af").forEach(function (x) { x.classList.remove("bad"); });
+      var miss = [["name", a.name], ["url", a.url]].filter(function (x) { return !row[x[0]]; });
+      miss.forEach(function (x) { document.getElementById("ap-" + x[0]).parentNode.classList.add("bad"); });
+      if (miss.length) { err.textContent = a.req + miss.map(function (x) { return x[1]; }).join(", "); return; }
+      if (!/^https?:\/\/[^\s.]+\.[^\s]+$/i.test(row.url)) { document.getElementById("ap-url").parentNode.classList.add("bad"); err.textContent = a.badUrl; return; }
+      if (!(apImgs.d || old.img_d) || !(apImgs.m || old.img_m)) { err.textContent = a.needImg; return; }
+      apBusy = true; err.textContent = ""; save.disabled = true; save.textContent = a.saving;
+      var stamp = Date.now().toString(36), slug = (row.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "project").slice(0, 40);
+      var small = !sbOn && !ASSETS;
+      function up(k) { return apImgs[k] ? apShrink(apImgs[k], k === "d" ? (small ? 1100 : 1600) : (small ? 520 : 780), small ? .72 : .84).then(function (b) { return apStoreImg(b, slug + "-" + k + "-" + stamp + ".jpg"); }) : Promise.resolve(old["img_" + k]); }
+      Promise.all([up("d"), up("m")]).then(function (u) {
+        row.img_d = u[0]; row.img_m = u[1];
+        return apWrite(row, apEdit);
+      }).then(function () {
+        apBusy = false; apHide();
+        if (sbOn) pjLoad();
+        var n = document.querySelector("#adm-proj .ap-head p"); if (n) { n.textContent = a.saved; n.style.color = "var(--brass)"; }
+      }, function (x) {
+        apBusy = false; save.disabled = false; save.textContent = a.save;
+        if (x && x.code === "auth") return admAuthFail(x);
+        err.textContent = a.fail;
+      });
+    });
+  })();
   if ("ResizeObserver" in window) new ResizeObserver(function () { pgThumb(); }).observe(document.getElementById("pg-filters"));
   if (onProjects()) setTimeout(pgThumb, 80);
 
