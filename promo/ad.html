@@ -862,8 +862,8 @@ window.__ready = new Promise(r => { __resolveReady = r; });
   scene('s4', 14, 19);
   sect(1, 13.75);
   const pW = V ? -40 : -55, pRot = V ? 'rotateX(50deg) rotateZ(28deg)' : 'rotateX(48deg) rotateZ(32deg)';
-  gsap.set('#plane', { xPercent: -50, yPercent: -50, transform: `translate(-50%,-50%) ${pRot}` });
-  const planeEl = $('#plane');
+  // static 3D tilt, plain CSS on purpose: GSAP would bake the -50% into pixels
+  $('#plane').style.transform = `translate(-50%, -50%) ${pRot}`;
   tl.fromTo('#wall', { scale: 1.35, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.6, ease: 'expo.out' }, 14.0);
   $$('#plane .col').forEach((c, i) => tl.fromTo(c, { y: i % 2 ? -260 : 60 }, { y: i % 2 ? 60 : -260, duration: 2.6, ease: 'none' }, 14));
   tl.fromTo('#s4shade', { opacity: 0 }, { opacity: 1, duration: .8, ease: 'power1.out' }, 14.0);

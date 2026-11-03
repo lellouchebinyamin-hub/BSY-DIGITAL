@@ -222,7 +222,8 @@ def impact(t0, amp=1.0):
     f = 34 + 52 * np.exp(-t / 0.07)
     boom = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t / 0.85)
     thud = signal.sosfilt(sos_lp(1800), rs.standard_normal(n)) * np.exp(-t / 0.09) * 0.8
-    add(HIT, np.tanh((boom * 1.2 + thud) * 1.4) * amp, t0, send=0.35)
+    ramp = np.minimum(1, t / 0.004)   # soft 4 ms attack keeps AAC from overshooting on the hit
+    add(HIT, np.tanh((boom * 1.2 + thud) * 1.4) * ramp * amp, t0, send=0.35)
     add(HIT, crash(0.55 * amp, 3.4), t0, pan=0.0, send=0.4)
 
 

@@ -58,11 +58,13 @@ async function grab(page, t, file, gi) {
       const total = Math.round(dur * fps) * S;
       const workers = parseInt(workersArg || '4', 10);
       const expo = 0.5 / fps;               // 180° shutter
-      let next = 0, done = 0;
+      // optional output-frame range, e.g. FROM=420 TO=490 to re-render one passage
+      const lo = (+process.env.FROM || 0) * S, hi = process.env.TO ? +process.env.TO * S : total;
+      let next = lo, done = 0;
       const t0 = Date.now();
       await Promise.all(Array.from({ length: workers }, async () => {
         const page = await openPage(browser, port, fmt);
-        while (next < total) {
+        while (next < hi) {
           const g = next++;
           const i = Math.floor(g / S), j = g % S;
           const t = Math.min(dur - 1e-3, Math.max(0, i / fps + ((j + 0.5) / S - 0.5) * expo));
