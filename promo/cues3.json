@@ -1,0 +1,54 @@
+{
+  "_": "Beat map for ad3.html and soundtrack3.py. 120 BPM, 4/4, 30 fps: beat = 0.5 s = 15 frames, bar = 2 s = 60 frames. Times in seconds; frame = round(t * 30).",
+  "bpm": 120,
+  "fps": 30,
+  "dur": 30,
+  "hook": {
+    "dot": 0.0,
+    "words": [0.5, 1.0, 1.5],
+    "weight": [1.5, 2.0],
+    "through": [2.0, 2.6],
+    "question": 2.6,
+    "morph": 3.5,
+    "click": 4.3,
+    "outline": [4.3, 4.9]
+  },
+  "problem": {
+    "explode": [4.9, 5.45],
+    "words": [5.0, 6.0, 7.0],
+    "collapse": [5.5, 6.0],
+    "interact": [6.05, 6.95],
+    "realButton": 7.0,
+    "press": 7.5,
+    "intoButton": [7.55, 8.1]
+  },
+  "brand": {
+    "morph": [8.0, 8.8],
+    "draw": [8.6, 9.6],
+    "fill": [9.6, 10.0],
+    "accent": 10.0,
+    "wordmark": 10.2,
+    "line": 10.6,
+    "out": [11.6, 12.5]
+  },
+  "projects": {
+    "phrases": [12.5, 15.0, 17.5, 20.0],
+    "cuts": [14.0, 15.5, 17.0, 18.5, 20.0],
+    "cutSpans": [[13.6, 14.6], [15.1, 16.2], [16.6, 17.6], [18.2, 18.8], [19.6, 20.6]]
+  },
+  "value": {
+    "pullout": [22.0, 22.9],
+    "lines": [22.6, 23.2],
+    "converge": [23.4, 24.2],
+    "text1": 23.0,
+    "text2": 24.0,
+    "riser": [24.6, 26.0]
+  },
+  "end": {
+    "accent": 26.0,
+    "headline": 26.5,
+    "sub": 27.0,
+    "button": 27.5,
+    "contacts": 28.0
+  }
+}
