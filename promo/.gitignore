@@ -1,0 +1,10 @@
+out/*.wav
+# full-quality masters are delivered separately; the light versions are kept in git
+out/BSY-Digital-Promo-16x9.mp4
+out/BSY-Digital-Promo-9x16.mp4
+out/BSY-Digital-Promo2-16x9.mp4
+out/BSY-Digital-Promo2-9x16.mp4
+out/BSY-Digital-Launch-16x9.mp4
+out/BSY-Digital-Launch-9x16.mp4
+out/BSY-Digital-Services-16x9.mp4
+out/BSY-Digital-Services-9x16.mp4

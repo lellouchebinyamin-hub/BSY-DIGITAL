@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BSY Digital — Same Customer</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+/* Bright studio: porcelain ground, soft top-right key light, ink type, one brass accent. 45 s at 96 BPM (bar = 2.5 s). */
+:root {
+  --bg: #F6F5F2; --paper: #FFFFFF; --ink: #141416; --ink2: #34332F; --gray: #77726B; --gray2: #A8A39B;
+  --hair: rgba(20, 20, 22, .09); --hair2: rgba(20, 20, 22, .14);
+  --gold: #A9803F; --gold2: #CDAA6C; --gold3: #EEDFC2; --rust: #B0654A; --ok: #3E9A62;
+  --he: "Heebo", "Liberation Sans", Arial, sans-serif;
+  --serif: "Frank Ruhl Libre", "Times New Roman", serif;
+  --en: "Archivo", "Heebo", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --sh1: 0 .5rem 1.2rem rgba(70, 52, 26, .06), 0 2.6rem 5rem rgba(70, 52, 26, .10);
+  --sh2: 0 1rem 2rem rgba(70, 52, 26, .07), 0 5rem 11rem rgba(70, 52, 26, .17);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 10.8px; }
+body { background: #000; overflow: hidden; }
+#stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: var(--he); direction: rtl; -webkit-font-smoothing: antialiased; transform-origin: 0 0; }
+#stage.v { width: 1080px; height: 1920px; }
+#world { position: absolute; inset: 0; }
+.scene { position: absolute; inset: 0; visibility: hidden; }
+.mono { font-family: var(--mono); direction: ltr; unicode-bidi: isolate; }
+.en { font-family: var(--en); direction: ltr; unicode-bidi: isolate; }
+
+/* light */
+#bg { position: absolute; inset: 0; background: linear-gradient(180deg, #F9F8F5 0%, #F3F1ED 100%); }
+#key { position: absolute; width: 150rem; height: 150rem; left: 50%; top: 50%; margin: -75rem 0 0 -75rem; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.95), rgba(255,255,255,.55) 45%, rgba(255,255,255,0) 75%); }
+#warm { position: absolute; width: 120rem; height: 90rem; left: 50%; top: 50%; margin: -45rem 0 0 -60rem; border-radius: 50%; background: radial-gradient(closest-side, rgba(225,196,140,.16), rgba(225,196,140,0) 80%); }
+#floor { position: absolute; left: -10%; right: -10%; bottom: -30%; height: 60%; background: radial-gradient(60% 50% at 50% 0%, rgba(232,228,220,.0), rgba(228,224,216,.7) 70%); }
+#grain { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light; opacity: .22; background-size: 320px 320px; z-index: 50; }
+#white { position: absolute; inset: 0; background: #FDFCFA; opacity: 0; z-index: 45; pointer-events: none; }
+
+/* type */
+.hd { font-family: var(--he); font-weight: 800; font-size: 8.6rem; line-height: 1.08; letter-spacing: -.016em; color: var(--ink); white-space: nowrap; }
+.hs { font-family: var(--serif); font-weight: 300; font-size: 8.6rem; line-height: 1.16; color: var(--gold); white-space: nowrap; }
+.hs.g { color: var(--gray); }
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding: .3em .1em .26em; margin: -.3em -.1em -.26em; }
+.wi { display: inline-block; }
+.sub { font-size: 2.6rem; color: var(--gray); line-height: 1.5; }
+.eyebrow { display: flex; align-items: center; gap: 1.4rem; font-size: 2rem; font-weight: 500; color: var(--gray); }
+.eyebrow .ln { width: 5rem; height: 2px; background: var(--gold); transform-origin: 100% 50%; }
+.v .hd, .v .hs { white-space: normal; }
+
+/* ---------- phone ---------- */
+.phone { position: absolute; width: 32em; height: 67em; padding: 1em; border-radius: 5.2em; font-size: 1rem; background: linear-gradient(145deg, #55555A, #1E1E21 38%, #2E2E32 70%, #48484C); box-shadow: inset 0 0 0 .12em rgba(255,255,255,.22), inset 0 0 0 .34em #0D0D0F, var(--sh2); }
+.phone .scr { position: relative; width: 100%; height: 100%; border-radius: 4.25em; overflow: hidden; background: #FFFFFF; }
+.phone .island { position: absolute; left: 50%; top: 1.1em; width: 9em; height: 2.6em; margin-left: -4.5em; border-radius: 2em; background: #111; z-index: 20; }
+.layer { position: absolute; inset: 0; }
+.sbar { height: 5em; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 2.6em .8em; font-family: var(--en); font-weight: 600; font-size: 1.25em; color: var(--ink); direction: ltr; }
+.sbar .ic { display: flex; gap: .45em; align-items: center; }
+.sbar .ic i { width: 1.1em; height: .75em; border-radius: .2em; background: var(--ink); }
+.sbar .ic i:last-child { width: 1.9em; border-radius: .3em; }
+.sfield { margin: .8em 1.6em 0; height: 4.6em; border-radius: 2.3em; background: #F2F0EC; display: flex; align-items: center; gap: 1em; padding: 0 1.6em; font-size: 1em; }
+.sfield svg { width: 1.9em; height: 1.9em; flex: none; }
+.sfield .q { font-size: 1.75em; color: var(--ink); white-space: nowrap; }
+.sfield .car { display: inline-block; width: 2px; height: 1.9em; background: var(--gold); margin-inline-start: .15em; }
+.rlabel { margin: 2em 2em .8em; font-size: 1.3em; color: var(--gray); }
+.res { position: relative; margin: 0 1.6em 1.1em; padding: 1.5em 1.6em; border-radius: 1.8em; background: #FFFFFF; border: 1px solid rgba(20,20,22,.07); box-shadow: 0 .4em 1.4em rgba(60,45,25,.06); display: flex; gap: 1.2em; align-items: flex-start; overflow: hidden; }
+.res .fav { width: 3.4em; height: 3.4em; border-radius: 50%; flex: none; background: #EAE6DF; display: grid; place-items: center; font-weight: 800; font-size: 1.3em; color: #8b857b; overflow: hidden; }
+.res .fav img { width: 100%; height: 100%; object-fit: cover; }
+.res .tt { font-size: 1.55em; font-weight: 700; color: var(--ink); line-height: 1.25; }
+.res .ds { font-size: 1.2em; color: var(--gray); margin-top: .3em; }
+.res .ln2 { height: .55em; border-radius: .3em; background: #EEEBE6; margin-top: .9em; width: 92%; }
+.res .ln3 { height: .55em; border-radius: .3em; background: #EEEBE6; margin-top: .6em; width: 64%; }
+.res .hl { position: absolute; inset: 0; background: rgba(169,128,63,.10); opacity: 0; }
+.ripple { position: absolute; width: 4em; height: 4em; margin: -2em 0 0 -2em; border-radius: 50%; background: rgba(169,128,63,.28); opacity: 0; pointer-events: none; z-index: 15; }
+.touch { position: absolute; width: 5.4em; height: 5.4em; margin: -2.7em 0 0 -2.7em; border-radius: 50%; background: rgba(255,255,255,.55); border: .25em solid rgba(20,20,22,.18); box-shadow: 0 .6em 1.6em rgba(0,0,0,.12); opacity: 0; z-index: 16; }
+.fillw { position: absolute; width: 4em; height: 4em; margin: -2em 0 0 -2em; border-radius: 50%; background: #FFFFFF; opacity: 0; z-index: 14; }
+.spin { position: absolute; left: 50%; top: 46%; width: 4.4em; height: 4.4em; margin: -2.2em 0 0 -2.2em; border-radius: 50%; border: .45em solid #E7E3DC; border-top-color: #9A948A; }
+.lbar { position: absolute; left: 0; right: 0; top: 0; height: .5em; background: #9A948A; transform-origin: 100% 50%; }
+.urlbar { height: 4.6em; margin: .4em 1.6em 0; border-radius: 1.6em; background: #F2F0EC; display: flex; align-items: center; justify-content: center; gap: .6em; font-size: 1em; }
+.urlbar span { font-family: var(--mono); font-size: 1.15em; color: #6d685f; direction: ltr; }
+.urlbar svg { width: 1.2em; height: 1.2em; }
+
+/* the dated site */
+.old { position: absolute; left: 0; right: 0; top: 10em; bottom: 0; background: #E9E7E1; font-family: "Liberation Serif", "Times New Roman", serif; filter: saturate(.55); overflow: hidden; }
+.old > * { position: absolute; left: 0; right: 0; }
+.old .oh { top: 0; height: 5em; background: #6F7F86; display: flex; align-items: center; justify-content: space-between; padding: 0 1.2em; color: #fff; }
+.old .oh b { font-size: 1.9em; font-weight: 700; letter-spacing: -.02em; }
+.old .oh i { width: 2.6em; height: 2em; border-top: .35em solid #fff; border-bottom: .35em solid #fff; margin-top: .4em; }
+.old .om { top: 5em; height: 2.4em; background: #D9D3A0; color: #A5503F; font-family: "Liberation Sans", Arial, sans-serif; font-weight: 700; font-size: 1em; display: flex; align-items: center; justify-content: center; white-space: nowrap; }
+.old .oi { top: 8.2em; left: 1.6em; right: 4em; height: 0; background: #C9C6BF; display: grid; place-items: center; overflow: hidden; }
+.old .oi svg { width: 3.4em; height: 3.4em; }
+.old .op { top: 9.2em; padding: 0 1.4em; font-size: .92em; line-height: 1.35; color: #555; text-align: justify; font-family: "Liberation Sans", Arial, sans-serif; }
+.old .ob { top: 32em; padding: 0 1.4em; display: flex; gap: .6em; }
+.old .ob span { font-family: "Liberation Sans", Arial, sans-serif; font-size: .95em; padding: .45em .9em; }
+.old .ob .b1 { background: #4D6FA3; color: #fff; }
+.old .ob .b2 { background: linear-gradient(#f4f4f4, #bdbdbd); border: 1px solid #888; color: #333; margin-top: .8em; }
+.old .oc { top: 38em; left: 30%; right: auto; font-family: "Liberation Mono", monospace; font-size: .9em; background: #111; color: #7CFC00; padding: .3em .6em; }
+.old .of { bottom: 0; height: 3.2em; background: #8E9A9F; }
+
+/* Luma inside the phone */
+.luma img { position: absolute; left: 0; top: 10.2em; width: 100%; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 30em; border-radius: 2.8em 2.8em 0 0; background: #FFFFFF; box-shadow: 0 -1em 3em rgba(0,0,0,.25); padding: 1.4em 2.2em; z-index: 12; }
+.sheet .grab { width: 5em; height: .55em; border-radius: 1em; background: #DDD8D0; margin: 0 auto 1.6em; }
+.sheet .st1 { font-size: 1.9em; font-weight: 800; }
+.sheet .st2 { font-size: 1.25em; color: var(--gray); margin-top: .2em; }
+.sheet .days { display: flex; gap: .7em; margin-top: 1.6em; }
+.sheet .days span { flex: 1; text-align: center; padding: .7em 0; border-radius: 1.2em; border: 1px solid var(--hair2); font-size: 1.15em; }
+.sheet .days span.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.sheet .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7em; margin-top: 1.2em; }
+.sheet .slots span { text-align: center; padding: .8em 0; border-radius: 1.2em; background: #F2F0EC; font-family: var(--en); font-size: 1.2em; direction: ltr; }
+.sheet .slots span.on { background: #C0703F; color: #fff; }
+.sheet .done { position: absolute; inset: 0; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1em; opacity: 0; border-radius: 2.8em 2.8em 0 0; }
+.sheet .done .ck { width: 7em; height: 7em; border-radius: 50%; background: var(--ok); display: grid; place-items: center; }
+.sheet .done .ck svg { width: 3.8em; height: 3.8em; }
+.sheet .done b { font-size: 2.1em; font-weight: 800; }
+.sheet .done span { font-size: 1.3em; color: var(--gray); }
+
+/* annotations (S2) */
+.ann { position: absolute; z-index: 8; opacity: 0; }
+.ann .dot { position: absolute; left: -.8rem; top: -.8rem; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--rust); box-shadow: 0 0 0 .6rem rgba(176,101,74,.18); }
+.ann .ln { position: absolute; top: -1px; height: 2px; background: var(--rust); }
+.ann .lab { position: absolute; top: -3.2rem; white-space: nowrap; display: flex; align-items: center; gap: 1rem; padding: 1.2rem 2.2rem; border-radius: 10rem; background: #FFFFFF; border: 1.5px solid rgba(176,101,74,.55); box-shadow: var(--sh1); font-size: 2.5rem; font-weight: 600; color: var(--ink); }
+.v .ann .lab { font-size: 2.3rem; padding: 1.1rem 1.8rem; }
+.ann .lab i { width: 1rem; height: 1rem; border-radius: 50%; background: var(--rust); }
+
+/* S1/S2/S6 text blocks */
+.side { position: absolute; right: 10rem; top: 50%; transform: translateY(-50%); text-align: right; }
+.v .side { right: 8rem; left: 8rem; top: 20rem; transform: none; }
+#gline { position: absolute; left: 50%; top: 50%; width: 70rem; height: 2px; margin-left: -35rem; background: linear-gradient(90deg, rgba(169,128,63,0), var(--gold) 20%, var(--gold) 80%, rgba(169,128,63,0)); opacity: 0; z-index: 6; }
+#s3t { position: absolute; left: 0; right: 0; top: 23%; text-align: center; }
+#s3t .hd { font-size: 7.8rem; font-weight: 700; }
+#s3t .l2 { margin-top: 1.4rem; }
+#s3t .acc { font-family: var(--serif); font-weight: 300; color: var(--gold); font-size: 1.1em; }
+.v #s3t { top: 19%; padding: 0 7rem; }
+.v #s3t .hd { font-size: 8.2rem; }
+
+/* logo */
+#lg { position: absolute; left: 50%; top: 50%; width: 66rem; z-index: 30; opacity: 0; }
+#lg img { display: block; width: 100%; }
+#lg .shine { position: absolute; inset: 0; -webkit-mask: url(assets/logo-mark-light.png) center / 100% 100% no-repeat; mask: url(assets/logo-mark-light.png) center / 100% 100% no-repeat; background: linear-gradient(100deg, transparent 0%, transparent 40%, rgba(255,250,236,.95) 50%, transparent 60%, transparent 100%); background-size: 260% 100%; background-position: 130% 0; mix-blend-mode: overlay; }
+#lgGlow { position: absolute; left: 50%; top: 50%; width: 130rem; height: 70rem; margin: -35rem 0 0 -65rem; background: radial-gradient(closest-side, rgba(226,196,140,.45), rgba(226,196,140,.12) 55%, rgba(226,196,140,0) 80%); opacity: 0; z-index: 4; }
+.digital { position: absolute; left: 0; right: 0; text-align: center; font-family: var(--en); font-weight: 300; font-size: 3rem; color: var(--gray); letter-spacing: .95em; direction: ltr; margin-left: .95em; z-index: 31; white-space: nowrap; opacity: 0; }
+.digital b { font-weight: 300; color: var(--gold); }
+.digital .c { display: inline-block; }
+.digital .lam { transform: scaleY(-1); }
+#tagline { position: absolute; left: 0; right: 0; text-align: center; font-size: 2.6rem; color: var(--gray); z-index: 31; opacity: 0; }
+
+/* ---------- S4: the build ---------- */
+.s4text { position: absolute; right: 10rem; top: 34rem; text-align: right; }
+.s4text .hd, .s4text .hs { font-size: 7.4rem; }
+.v .s4text { right: 8rem; left: 8rem; top: 20rem; }
+#artWrap { position: absolute; left: 7rem; top: 23rem; width: 92rem; height: 49rem; perspective: 3200px; }
+.v #artWrap { left: 6rem; top: 70rem; width: 88rem; height: 46.7rem; }
+#art { position: absolute; inset: 0; transform-style: preserve-3d; }
+.board { position: absolute; inset: 0; border-radius: 1.6rem; background: #FFFFFF; box-shadow: var(--sh2); overflow: hidden; }
+.board .frame { position: absolute; inset: 0; border-radius: 1.6rem; border: 1px solid var(--hair2); }
+.grid { position: absolute; inset: 2.6rem; display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.4rem; }
+.grid i { background: rgba(169,128,63,.07); border-left: 1px solid rgba(169,128,63,.22); border-right: 1px solid rgba(169,128,63,.22); transform-origin: 50% 0; }
+.blk { position: absolute; border-radius: .8rem; background: #ECE9E3; border: 1px solid rgba(169,128,63,.0); }
+.blk.lines { background: transparent; display: flex; flex-direction: column; gap: 1rem; }
+.blk.lines i { height: 2.4rem; border-radius: .6rem; background: #E6E2DB; }
+.blk.circ { border-radius: 50%; }
+#lumaD { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; clip-path: inset(0 0 0 100%); }
+.callout { position: absolute; z-index: 9; opacity: 0; }
+.callout .dot { position: absolute; left: -.9rem; top: -.9rem; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: var(--paper); border: .45rem solid var(--gold); box-shadow: 0 0 0 .7rem rgba(169,128,63,.16); }
+.callout .ln { position: absolute; top: -1px; height: 2px; background: var(--gold); }
+.callout .lab { position: absolute; top: -3.6rem; white-space: nowrap; padding: 1.1rem 2rem; border-radius: 1.4rem; background: rgba(255,255,255,.94); border: 1px solid var(--hair2); box-shadow: var(--sh1); }
+.callout .lab .mono { display: block; font-size: 1.3rem; color: var(--gold); letter-spacing: .14em; }
+.callout .lab b { display: block; font-size: 2.3rem; font-weight: 700; color: var(--ink); }
+#p4 { left: -5rem; top: 17rem; font-size: .78rem; z-index: 8; }
+.v #p4 { left: -2rem; top: 22rem; font-size: .82rem; }
+#p4 .scr img, #pA .scr img { position: absolute; left: 0; top: 0; width: 100%; }
+
+/* ---------- S5: four solutions ---------- */
+.s5text { position: absolute; right: 10rem; top: 30rem; width: 62rem; height: 40rem; text-align: right; }
+.v .s5text { right: 8rem; left: 8rem; width: auto; top: 18rem; height: 34rem; }
+.s5text .eyebrow { position: absolute; right: 0; top: 0; }
+.s5n { position: relative; display: inline-block; width: 3rem; height: 2.6rem; overflow: hidden; vertical-align: middle; }
+.s5n span { position: absolute; left: 0; top: 0; font-family: var(--mono); font-size: 2rem; line-height: 2.6rem; color: var(--gold); }
+.s5slot { position: absolute; right: 0; left: 0; top: 7rem; }
+.s5slot .hd { font-size: 9.6rem; }
+.s5slot .hs { font-size: 7.6rem; margin-top: .4rem; }
+.v .s5slot .hd { font-size: 10rem; }
+.v .s5slot .hs { font-size: 7.6rem; }
+#stArea { position: absolute; left: 6rem; top: 12rem; width: 104rem; height: 78rem; }
+.v #stArea { left: 4rem; top: 64rem; width: 92rem; height: 96rem; }
+.station { position: absolute; inset: 0; opacity: 0; }
+.chip { position: absolute; display: inline-flex; align-items: center; gap: 1rem; padding: 1.1rem 2rem; border-radius: 10rem; background: rgba(255,255,255,.95); border: 1px solid var(--hair2); box-shadow: var(--sh1); font-size: 2rem; color: var(--ink2); white-space: nowrap; }
+.chip i { width: 1rem; height: 1rem; border-radius: 50%; background: var(--ok); }
+.toast { position: absolute; display: flex; align-items: center; gap: 1.6rem; width: 44rem; padding: 1.7rem 2.1rem; border-radius: 2.2rem; background: rgba(255,255,255,.97); border: 1px solid var(--hair); box-shadow: var(--sh2); opacity: 0; z-index: 12; }
+.toast .ic { flex: none; width: 5.2rem; height: 5.2rem; border-radius: 1.5rem; display: grid; place-items: center; background: var(--ok); }
+.toast .ic.gold { background: linear-gradient(140deg, var(--gold2), var(--gold)); }
+.toast .ic svg { width: 2.8rem; height: 2.8rem; }
+.toast .tt { font-size: 2.2rem; font-weight: 700; line-height: 1.25; }
+.toast .ts { font-size: 1.75rem; color: var(--gray); }
+.toast .tm { margin-inline-start: auto; align-self: flex-start; font-family: var(--mono); font-size: 1.4rem; color: var(--gray2); padding-top: .4rem; }
+.cursor { position: absolute; left: 0; top: 0; width: 4.4rem; height: 4.4rem; z-index: 14; filter: drop-shadow(0 .6rem 1rem rgba(0,0,0,.18)); opacity: 0; }
+.ripD { position: absolute; width: 6rem; height: 6rem; margin: -3rem 0 0 -3rem; border-radius: 50%; background: rgba(169,128,63,.3); opacity: 0; z-index: 13; }
+
+/* laptop */
+.laptop { position: absolute; left: 6rem; top: 6rem; width: 86rem; }
+.v .laptop { left: 2rem; top: 4rem; width: 88rem; }
+.lid { position: relative; padding: 1.3rem 1.3rem 1.8rem; border-radius: 2rem 2rem .6rem .6rem; background: #1B1B1D; box-shadow: inset 0 0 0 .25rem #D7D3CC, var(--sh2); }
+.lid .ls { position: relative; aspect-ratio: 1400 / 720; overflow: hidden; border-radius: .5rem; background: #fff; }
+.lid .ls img { position: absolute; left: 0; top: 0; width: 100%; }
+.base { position: relative; height: 2.4rem; margin: 0 -6rem; border-radius: 0 0 3rem 3rem; background: linear-gradient(180deg, #ECEAE6, #C9C5BE); box-shadow: 0 3rem 4rem rgba(70,52,26,.16); }
+.base::before { content: ""; position: absolute; left: 50%; top: 0; width: 16rem; height: 1rem; margin-left: -8rem; border-radius: 0 0 1rem 1rem; background: #D3CFC8; }
+#pA { left: 0; top: 24rem; font-size: .66rem; }
+.v #pA { left: 0; top: 30rem; font-size: .7rem; }
+#stA .chip { left: 30rem; top: 66rem; }
+.v #stA .chip { left: 18rem; top: 82rem; }
+
+/* browser (light) */
+.bw { position: absolute; border-radius: 1.8rem; background: #FFFFFF; box-shadow: var(--sh2); overflow: hidden; border: 1px solid var(--hair); }
+.bw .bb { height: 4.4rem; display: flex; align-items: center; gap: .8rem; padding: 0 1.8rem; direction: ltr; background: #F4F2EE; border-bottom: 1px solid var(--hair); }
+.bw .bb i { width: 1.2rem; height: 1.2rem; border-radius: 50%; background: #D9D5CE; }
+.bw .bb .u { margin: 0 auto; font-family: var(--mono); font-size: 1.4rem; color: #7d786f; background: #FFFFFF; padding: .5rem 3rem; border-radius: 3rem; border: 1px solid var(--hair); }
+#stB .bw { left: 4rem; top: 6rem; width: 92rem; height: 58rem; }
+.v #stB .bw { left: 2rem; top: 4rem; width: 88rem; height: 62rem; }
+.lp { position: absolute; left: 0; right: 0; top: 4.4rem; bottom: 0; display: flex; background: linear-gradient(160deg, #FFFFFF 40%, #F6F1E8); }
+.lp .lpc { flex: 1.15; padding: 6rem 5rem 4rem; }
+.lp .lpn { position: absolute; right: 5rem; top: 2.4rem; display: flex; gap: 1rem; align-items: center; font-weight: 800; font-size: 2rem; }
+.lp .lpn i { width: 2.6rem; height: 2.6rem; border-radius: .8rem; background: var(--ink); }
+.lp .k { font-size: 1.7rem; color: var(--gold); font-weight: 600; margin-top: 4rem; }
+.lp h4 { font-size: 5.2rem; font-weight: 800; line-height: 1.08; margin-top: 1.2rem; letter-spacing: -.01em; }
+.lp p { font-size: 2rem; color: var(--gray); margin-top: 1.6rem; line-height: 1.5; }
+.lp .ticks { display: flex; flex-direction: column; gap: 1rem; margin-top: 2.4rem; font-size: 1.8rem; color: var(--ink2); }
+.lp .ticks span::before { content: "✓"; color: var(--ok); font-weight: 800; margin-inline-end: .8rem; }
+.lp .lpf { flex: .95; padding: 6rem 3rem 4rem 4rem; }
+.form { border-radius: 2.2rem; background: #FFFFFF; border: 1px solid var(--hair); box-shadow: var(--sh1); padding: 3rem; display: flex; flex-direction: column; gap: 1.6rem; margin-top: 2rem; }
+.form .ft { font-size: 2.6rem; font-weight: 800; }
+.form .fs { font-size: 1.6rem; color: var(--gray); margin-top: -.8rem; }
+.fld { height: 6rem; border-radius: 1.4rem; border: 1.5px solid var(--hair2); display: flex; align-items: center; padding: 0 2rem; font-size: 2rem; color: var(--ink); position: relative; }
+.fld .ph { color: var(--gray2); }
+.fld.on { border-color: var(--gold); box-shadow: 0 0 0 .5rem rgba(169,128,63,.12); }
+.fbtn { position: relative; height: 6.4rem; border-radius: 1.4rem; background: var(--ink); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 2.2rem; overflow: hidden; }
+.fbtn .ok { position: absolute; inset: 0; background: var(--ok); display: flex; align-items: center; justify-content: center; gap: 1rem; opacity: 0; }
+.fbtn .ok svg { width: 2.6rem; height: 2.6rem; }
+#stB .toast { left: -2rem; top: 58rem; }
+.v #stB .toast { left: 2rem; top: 70rem; }
+
+/* store (light) */
+#stC .bw { left: 4rem; top: 6rem; width: 92rem; height: 58rem; }
+.v #stC .bw { left: 2rem; top: 4rem; width: 88rem; height: 62rem; }
+.shop { position: absolute; left: 0; right: 0; top: 4.4rem; bottom: 0; display: flex; }
+.shop .pim { width: 46%; position: relative; background: radial-gradient(70% 60% at 50% 42%, #FBF4E8, #EFE3CF 80%); display: grid; place-items: center; overflow: hidden; }
+.bottle { position: relative; width: 15rem; height: 30rem; margin-top: 3rem; }
+.bottle .cap { position: absolute; left: 50%; top: 0; width: 8.4rem; height: 5.2rem; margin-left: -4.2rem; border-radius: .8rem .8rem .4rem .4rem; background: linear-gradient(90deg, #6d522b, #f0d9a8 35%, #b18a50 60%, #5d4524); }
+.bottle .neck { position: absolute; left: 50%; top: 4.6rem; width: 4.4rem; height: 3rem; margin-left: -2.2rem; background: linear-gradient(90deg, #8a6a3c, #e7cc96 45%, #8a6a3c); }
+.bottle .glass { position: absolute; left: 0; right: 0; top: 7.4rem; bottom: 0; border-radius: 3rem 3rem 2.4rem 2.4rem; background: linear-gradient(115deg, rgba(255,232,186,.9), rgba(222,164,86,.92) 32%, rgba(166,102,40,.95) 72%, rgba(118,70,28,.95)); box-shadow: inset 0 0 0 .4rem rgba(255,236,200,.35), 0 3rem 5rem rgba(120,80,30,.28); overflow: hidden; }
+.bottle .glass::before { content: ""; position: absolute; left: 1.6rem; top: 1.6rem; width: 2rem; bottom: 2rem; border-radius: 2rem; background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.05)); }
+.bottle .lab { position: absolute; left: 50%; top: 52%; width: 9.6rem; margin-left: -4.8rem; padding: 1.1rem 0; background: rgba(255,255,255,.92); text-align: center; font-family: var(--en); font-weight: 600; font-size: 1.2rem; letter-spacing: .3em; color: #3a2a18; direction: ltr; }
+.pshadow { position: absolute; left: 50%; bottom: 7rem; width: 22rem; height: 3rem; margin-left: -11rem; border-radius: 50%; background: radial-gradient(closest-side, rgba(110,80,40,.35), transparent); }
+.shop .pin { flex: 1; padding: 5rem 4.4rem; position: relative; }
+.shop .pcat { font-size: 1.7rem; color: var(--gold); font-weight: 600; }
+.shop .pname { font-size: 5rem; font-weight: 800; margin-top: .8rem; }
+.shop .pdesc { font-size: 1.9rem; color: var(--gray); margin-top: .8rem; }
+.shop .prow { display: flex; align-items: center; gap: 2rem; margin-top: 2.4rem; }
+.shop .price { font-family: var(--en); font-weight: 700; font-size: 4.2rem; direction: ltr; }
+.shop .stars { color: var(--gold); font-size: 2rem; letter-spacing: .15em; }
+.addb { position: relative; margin-top: 3rem; height: 7rem; border-radius: 1.6rem; background: var(--ink); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 2.4rem; overflow: hidden; }
+.addb .ok { position: absolute; inset: 0; background: var(--gold); color: #fff; display: flex; align-items: center; justify-content: center; gap: 1rem; opacity: 0; }
+.addb .ok svg { width: 2.6rem; height: 2.6rem; }
+.pays { display: flex; gap: 1rem; margin-top: 2.4rem; direction: ltr; }
+.pays span { font-family: var(--en); font-weight: 600; font-size: 1.5rem; color: var(--ink2); padding: .8rem 1.4rem; border-radius: 1rem; border: 1px solid var(--hair2); background: #FFFFFF; }
+.pay { position: absolute; right: 0; top: 0; bottom: 0; width: 54%; background: rgba(255,255,255,.98); border-left: 1px solid var(--hair); padding: 5rem 4rem; display: flex; flex-direction: column; gap: 1.6rem; }
+.pay .pt { font-size: 2.6rem; font-weight: 800; }
+.pay .pl { display: flex; justify-content: space-between; font-size: 1.9rem; color: var(--gray); border-bottom: 1px solid var(--hair); padding-bottom: 1.2rem; }
+.pay .pl b { color: var(--ink); font-family: var(--en); direction: ltr; }
+.pay .pbtn { height: 6.4rem; border-radius: 1.4rem; background: var(--ink); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 2.1rem; position: relative; overflow: hidden; margin-top: auto; }
+.pay .pbtn .ok { position: absolute; inset: 0; background: var(--ok); display: flex; align-items: center; justify-content: center; gap: 1rem; opacity: 0; }
+.pay .pbtn .ok svg { width: 2.6rem; height: 2.6rem; }
+.pay .lock { display: flex; align-items: center; gap: .8rem; font-size: 1.5rem; color: var(--gray); }
+#stC .toast { left: -2rem; top: 58rem; }
+.v #stC .toast { left: 2rem; top: 70rem; }
+
+/* system */
+#stD .bw { left: 2rem; top: 5rem; width: 96rem; height: 60rem; }
+.v #stD .bw { left: 0; top: 4rem; width: 92rem; height: 66rem; }
+.sys { position: absolute; left: 0; right: 0; top: 4.4rem; bottom: 0; display: flex; gap: 2rem; padding: 2.6rem; background: #FBFAF8; }
+.cal { flex: 1.5; border-radius: 1.8rem; background: #FFFFFF; border: 1px solid var(--hair); padding: 2rem; display: flex; flex-direction: column; }
+.cal .ct { display: flex; justify-content: space-between; align-items: center; font-size: 2.1rem; font-weight: 800; }
+.cal .ct span { font-size: 1.5rem; color: var(--gray); font-weight: 500; }
+.cal .days { display: grid; grid-template-columns: 4.6rem repeat(5, 1fr); gap: .6rem; margin-top: 1.6rem; font-size: 1.45rem; color: var(--gray); text-align: center; }
+.cal .rows { position: relative; flex: 1; display: grid; grid-template-columns: 4.6rem repeat(5, 1fr); grid-auto-rows: 1fr; gap: .6rem; margin-top: .8rem; }
+.cal .rows .h { font-family: var(--en); font-size: 1.25rem; color: var(--gray2); direction: ltr; text-align: right; padding-top: .2rem; }
+.cal .rows .c { border-radius: .7rem; background: #F5F3EF; }
+.cal .rows .bk { background: #EDE5D6; position: relative; }
+.cal .rows .bk::after { content: ""; position: absolute; right: 0; top: .6rem; bottom: .6rem; width: .35rem; border-radius: .3rem; background: var(--gold2); }
+.newslot { position: absolute; border-radius: .7rem; background: var(--gold); color: #fff; font-size: 1.25rem; font-weight: 700; padding: .4rem .8rem; line-height: 1.25; overflow: hidden; opacity: 0; box-shadow: 0 .8rem 2rem rgba(169,128,63,.35); }
+.side2 { flex: 1; display: flex; flex-direction: column; gap: 1.6rem; }
+.kpi { border-radius: 1.8rem; background: #FFFFFF; border: 1px solid var(--hair); padding: 1.8rem 2rem; }
+.kpi .k { font-size: 1.6rem; color: var(--gray); }
+.kpi .n { font-family: var(--en); font-weight: 800; font-size: 4.4rem; direction: ltr; text-align: right; margin-top: .2rem; letter-spacing: -.01em; }
+.kpi .d { font-family: var(--mono); font-size: 1.35rem; color: var(--ok); direction: ltr; text-align: right; }
+.kpi.hi { background: linear-gradient(150deg, #FBF5EA, #FFFFFF); border-color: rgba(169,128,63,.3); }
+.chart { flex: 1; border-radius: 1.8rem; background: #FFFFFF; border: 1px solid var(--hair); padding: 1.8rem 2rem; position: relative; }
+.chart .k { font-size: 1.6rem; color: var(--gray); }
+.bars { position: absolute; left: 2rem; right: 2rem; bottom: 2rem; top: 5.4rem; display: flex; align-items: flex-end; gap: .9rem; direction: ltr; }
+.bars i { flex: 1; border-radius: .6rem .6rem .2rem .2rem; background: linear-gradient(180deg, var(--gold2), rgba(205,170,108,.35)); transform-origin: 50% 100%; }
+#stD .toast { left: -2rem; top: 60rem; }
+.v #stD .toast { left: 0; top: 74rem; }
+
+/* ---------- S6 ---------- */
+#s6t .hd { font-size: 10rem; }
+#s1t, #s2t { max-width: 86rem; }
+#s6t .hs { font-size: 10rem; }
+.v #s6t .hd, .v #s6t .hs { font-size: 10.5rem; }
+
+/* ---------- S7 ---------- */
+#endc { position: absolute; left: 0; right: 0; text-align: center; }
+#endc .tg { font-size: 4.4rem; font-weight: 700; color: var(--ink); }
+#endc .tg em { font-style: normal; font-family: var(--serif); font-weight: 300; color: var(--gold); font-size: 1.12em; }
+.cta { display: inline-flex; align-items: center; gap: 1.8rem; margin-top: 4.2rem; padding: 2.3rem 4.6rem; border-radius: 10rem; background: var(--ink); color: #FFFFFF; font-weight: 700; font-size: 3.1rem; box-shadow: 0 2.4rem 5rem rgba(20,20,22,.18); }
+.cta svg { width: 3rem; height: 3rem; }
+.contacts { display: flex; justify-content: center; gap: 5rem; margin-top: 4.4rem; }
+.ct { display: inline-flex; align-items: center; gap: 1.3rem; font-size: 2.7rem; color: var(--ink2); }
+.ct .ci { width: 5rem; height: 5rem; border-radius: 50%; display: grid; place-items: center; background: #FFFFFF; border: 1px solid var(--hair2); box-shadow: var(--sh1); }
+.ct .ci svg { width: 2.4rem; height: 2.4rem; }
+.ct .mono { font-size: 2.6rem; }
+.svcl { margin-top: 4rem; font-size: 2.1rem; color: var(--gray); }
+.svcl b { color: var(--gold); font-weight: 400; margin: 0 1.3rem; }
+.v .contacts { flex-direction: column; align-items: center; gap: 2.4rem; }
+.v #endc .tg { font-size: 4.8rem; padding: 0 6rem; }
+.v .cta { font-size: 3.6rem; padding: 2.7rem 5.4rem; }
+.v .ct { font-size: 3.1rem; }
+.v .ct .mono { font-size: 3rem; }
+.v .svcl { font-size: 2.4rem; padding: 0 6rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="stage">
+<div id="world">
+  <div id="bg"></div><div id="warm"></div><div id="key"></div><div id="floor"></div>
+  <div id="lgGlow"></div>
+
+  <!-- S1 + S2 + S6 share the phone -->
+  <section class="scene" id="sP">
+    <div id="pcam">
+      <div class="phone" id="phone"><div class="scr" id="scr">
+        <div class="island"></div>
+        <div class="layer" id="lSearch">
+          <div class="sbar"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+          <div class="sfield"><svg viewBox="0 0 24 24" fill="none" stroke="#77726B" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4-4"/></svg><span class="q" id="q1"></span><i class="car" id="car1"></i></div>
+          <div class="rlabel" id="rl1">תוצאות באזור שלך</div>
+          <div class="res" id="r1"><div class="fav">מ</div><div><div class="tt">מספרה במרכז העיר</div><div class="ds">תספורות גברים · ירושלים</div><div class="ln2"></div><div class="ln3"></div></div><i class="hl"></i></div>
+          <div class="res" id="r2"><div class="fav">ש</div><div><div class="tt">המספרה השכונתית</div><div class="ds">תספורת, זקן וצבע · ירושלים</div><div class="ln2"></div><div class="ln3"></div></div><i class="hl"></i></div>
+          <div class="res" id="r3"><div class="fav">ס</div><div><div class="tt">סלון שיער ועיצוב</div><div class="ds">נשים וגברים · ירושלים</div><div class="ln2"></div><div class="ln3"></div></div><i class="hl"></i></div>
+        </div>
+        <div class="layer" id="lLoad" style="opacity:0;background:#fff">
+          <div class="sbar"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+          <div class="urlbar"><svg viewBox="0 0 24 24" fill="none" stroke="#8a857c" stroke-width="2"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>hamispara-hashchunatit.co.il</span></div>
+          <div class="lbar" id="lbar"></div>
+          <div class="spin" id="spin"></div>
+          <div class="old" id="old">
+            <div class="oh" id="o1"><i></i><b>המספרה השכונתית</b></div>
+            <div class="om" id="o2">!!! ברוכים הבאים לאתר שלנו !!!</div>
+            <div class="oi" id="o4"><svg viewBox="0 0 24 24" fill="none" stroke="#8d8a84" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="m3 17 5-5 4 4 3-3 6 6"/><path d="M4 4l16 16"/></svg></div>
+            <div class="op" id="o3">המספרה שלנו פועלת בשכונה כבר שנים רבות ומציעה מגוון רחב של שירותים ללקוחות שלנו. אנו מזמינים אתכם להגיע אלינו בכל שעות הפעילות. לפרטים נוספים ניתן להתקשר או לשלוח הודעה. שעות פעילות: א׳–ה׳ 9:00–19:00, ו׳ 8:00–13:00. מחירים משתנים בהתאם לסוג השירות.</div>
+            <div class="ob" id="o5"><span class="b1">צור קשר</span><span class="b2">מחירון</span></div>
+            <div class="oc" id="o6">מבקרים: 001284</div>
+            <div class="of"></div>
+          </div>
+        </div>
+        <div class="layer luma" id="lLuma" style="opacity:0;background:#1a1512">
+          <div class="sbar" style="color:#fff;background:#fff;color:#141416"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+          <div class="urlbar" style="background:#fff;margin:0;border-radius:0;height:5.2em"><svg viewBox="0 0 24 24" fill="none" stroke="#3E9A62" stroke-width="2"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>luma-hair-studio.vercel.app</span></div>
+          <img src="assets/luma-m.jpg" alt="">
+          <div class="sheet" id="sheet"><div class="grab"></div><div class="st1">קביעת תור</div><div class="st2">Luma Hair Studio · פייד וזקן</div>
+            <div class="days"><span>א׳ 9</span><span>ב׳ 10</span><span class="on">ג׳ 11</span><span>ד׳ 12</span></div>
+            <div class="slots"><span>10:00</span><span>11:30</span><span>13:00</span><span class="on">14:30</span><span>16:00</span><span>17:30</span></div>
+            <div class="done" id="done"><div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div><b>התור נקבע</b><span>יום ג׳ · 14:30 · Luma Hair Studio</span></div>
+          </div>
+        </div>
+        <div class="fillw" id="fillw"></div>
+        <div class="ripple" id="rip"></div>
+        <div class="touch" id="touch"></div>
+      </div></div>
+    </div>
+    <div class="ann" id="a1"><i class="ln"></i><i class="dot"></i><span class="lab"><i></i>נטען לאט</span></div>
+    <div class="ann" id="a2"><i class="ln"></i><i class="dot"></i><span class="lab"><i></i>לא ברור</span></div>
+    <div class="ann" id="a3"><i class="ln"></i><i class="dot"></i><span class="lab"><i></i>לא מותאם לנייד</span></div>
+    <div class="side" id="s1t"><div class="hd sp fit" data-fitg="s1" data-max="84" data-fitv="1">לפני שלקוח מתקשר אליכם,</div><div class="hs sp fit" data-fitg="s1" data-max="84" data-fitv="1">הוא כבר בודק אתכם באינטרנט.</div></div>
+    <div class="side" id="s2t"><div class="hd sp fit" data-fitg="s2" data-max="84" data-fitv="1">ותוך שנייה,</div><div class="hs g sp fit" data-fitg="s2" data-max="84" data-fitv="1">הוא כבר אצל המתחרים.</div></div>
+    <div class="side" id="s6t"><div class="hd sp" id="s6a">אותו לקוח.</div><div class="hd sp" id="s6b">אתר אחר.</div><div class="hs sp" id="s6c">תוצאה אחרת.</div></div>
+  </section>
+
+  <!-- S3 -->
+  <section class="scene" id="s3">
+    <div id="s3t">
+      <div class="hd sp fit" data-fitg="s3">עסק שרוצה להיראות מקצועי, אמין ומתקדם</div>
+      <div class="hd l2 fit" data-fitg="s3"><span class="sp">צריך נוכחות דיגיטלית</span> <span class="acc sp">ברמה אחרת.</span></div>
+    </div>
+  </section>
+  <div id="gline"></div>
+
+  <!-- S4 -->
+  <section class="scene" id="s4">
+    <div class="s4text" id="s4t"><div class="hd sp fit" data-fitg="s4" data-max="58">כל פרויקט מתחיל מדף לבן.</div><div class="hs sp fit" data-fitg="s4" data-max="58">ונבנה סביב העסק שלכם.</div></div>
+    <div id="artWrap"><div id="art">
+      <div class="board" id="board">
+        <div class="grid" id="grid"></div>
+        <div class="blk" id="bk1" style="left:2.6%;right:2.6%;top:3%;height:7%"></div>
+        <div class="blk lines" id="bk2" style="right:9%;width:36%;top:26%;height:50%"><i style="width:40%"></i><i style="width:100%;height:5rem"></i><i style="width:88%;height:5rem"></i><i style="width:60%;height:5rem"></i></div>
+        <div class="blk circ" id="bk3" style="left:4%;top:14%;width:8%;aspect-ratio:1"></div>
+        <div class="blk lines" id="bk4" style="left:13%;width:22%;top:64%;height:22%"><i style="width:100%"></i><i style="width:80%"></i><i style="width:46%;height:4rem;border-radius:3rem;background:#E3D8C6"></i></div>
+        <div class="blk" id="bk5" style="left:13%;right:13%;top:88%;height:7%"></div>
+        <img id="lumaD" src="assets/luma-d.jpg" alt="">
+        <div class="frame"></div>
+      </div>
+      <div class="callout" id="c1"><i class="ln"></i><i class="dot"></i><div class="lab"><span class="mono">UI DESIGN</span><b>עיצוב בהתאמה אישית</b></div></div>
+      <div class="callout" id="c2"><i class="ln"></i><i class="dot"></i><div class="lab"><span class="mono">UX</span><b>חוויית משתמש</b></div></div>
+      <div class="callout" id="c3"><i class="ln"></i><i class="dot"></i><div class="lab"><span class="mono">RESPONSIVE</span><b>מובייל קודם</b></div></div>
+      <div class="callout" id="c4"><i class="ln"></i><i class="dot"></i><div class="lab"><span class="mono">SEO</span><b>מוכן לגוגל</b></div></div>
+      <div class="phone" id="p4"><div class="scr"><div class="island"></div><img src="assets/luma-m.jpg" alt=""></div></div>
+    </div></div>
+  </section>
+
+  <!-- S5 -->
+  <section class="scene" id="s5">
+    <div class="s5text">
+      <div class="eyebrow" id="s5eb"><span class="ln"></span><span>פתרונות דיגיטליים</span><span class="mono" style="font-size:2rem;color:var(--gray2)"><span class="s5n" id="s5n"><span>01</span><span>02</span><span>03</span><span>04</span></span> / 04</span></div>
+      <div class="s5slot" id="t0"><div class="hd sp fit" data-fitg="s5" data-max="62">אתרי תדמית</div><div class="hs sp fit" data-fitg="s5b" data-max="62">שמציגים את העסק במיטבו.</div></div>
+      <div class="s5slot" id="t1"><div class="hd sp fit" data-fitg="s5" data-max="62">דפי נחיתה</div><div class="hs sp fit" data-fitg="s5b" data-max="62">שהופכים מבקרים לפניות.</div></div>
+      <div class="s5slot" id="t2"><div class="hd sp fit" data-fitg="s5" data-max="62">חנויות אונליין</div><div class="hs sp fit" data-fitg="s5b" data-max="62">שמוכרות גם כשאתם ישנים.</div></div>
+      <div class="s5slot" id="t3"><div class="hd sp fit" data-fitg="s5" data-max="62">מערכות דיגיטליות</div><div class="hs sp fit" data-fitg="s5b" data-max="62">שעובדות בשבילכם, 24/7.</div></div>
+    </div>
+    <div id="stArea">
+      <!-- A: brand sites -->
+      <div class="station" id="stA">
+        <div class="laptop" id="lapA"><div class="lid"><div class="ls"><img id="myrD" src="assets/myriam-d.jpg" alt=""></div></div><div class="base"></div></div>
+        <div class="phone" id="pA"><div class="scr"><div class="island"></div><img src="assets/myriam-m.jpg" alt=""></div></div>
+        <div class="chip" id="chipA"><i></i><span class="en" style="font-weight:600">Myriam Lellouche</span><span>· איפור קבוע · ירושלים</span></div>
+      </div>
+      <!-- B: landing page -->
+      <div class="station" id="stB">
+        <div class="bw"><div class="bb"><i></i><i></i><i></i><span class="u">mashkanta-chachama.co.il</span></div>
+          <div class="lp">
+            <div class="lpn"><i></i>משכנתא חכמה</div>
+            <div class="lpc"><div class="k">ייעוץ משכנתאות אישי</div><h4>המשכנתא הנכונה,<br>בלי כאב ראש.</h4><p>בודקים את כל האפשרויות בשבילכם, ומלווים עד החתימה בבנק.</p><div class="ticks"><span>שיחת ייעוץ ראשונה ללא עלות</span><span>תשובה באותו יום</span></div></div>
+            <div class="lpf"><div class="form"><div class="ft">בדיקת זכאות</div><div class="fs">השאירו פרטים ונחזור אליכם</div>
+              <div class="fld" id="fN"><span class="ph" id="fNp">שם מלא</span><span id="fNt"></span></div>
+              <div class="fld" id="fP"><span class="ph" id="fPp">טלפון</span><span id="fPt" class="mono" style="font-family:var(--en)"></span></div>
+              <div class="fbtn" id="fB">חזרו אליי<span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>נשלח</span></div>
+            </div></div>
+          </div>
+        </div>
+        <svg class="cursor" id="curB" viewBox="0 0 24 24"><path d="M5 3l14 8-6.2 1.6L10 19z" fill="#141416" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        <div class="toast" id="toB"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div><div><div class="tt">פנייה חדשה התקבלה</div><div class="ts">דנה כהן · דף נחיתה</div></div><div class="tm">עכשיו</div></div>
+      </div>
+      <!-- C: store -->
+      <div class="station" id="stC">
+        <div class="bw"><div class="bb"><i></i><i></i><i></i><span class="u">atelier-amber.co.il</span></div>
+          <div class="shop">
+            <div class="pin"><div class="pcat">קולקציית חורף · בשמים</div><div class="pname">בושם ענבר</div><div class="pdesc">ענבר, וניל ועץ סנדל · 100 מ״ל</div>
+              <div class="prow"><span class="price">₪240</span><span class="stars">★★★★★</span></div>
+              <div class="addb" id="addb">הוספה לסל<span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>נוסף לסל</span></div>
+              <div class="pays"><span>Apple Pay</span><span>Google Pay</span><span>bit</span><span>VISA</span></div>
+            </div>
+            <div class="pim"><div class="pshadow"></div><div class="bottle"><div class="cap"></div><div class="neck"></div><div class="glass"><div class="lab">AMBER</div></div></div></div>
+            <div class="pay" id="payP"><div class="pt">תשלום מאובטח</div><div class="pl"><span>בושם ענבר × 1</span><b>₪240</b></div><div class="pl"><span>משלוח</span><b>₪0</b></div><div class="pl" style="border:0"><span style="color:var(--ink);font-weight:700">סה״כ</span><b>₪240</b></div><div class="lock"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#77726B" stroke-width="2"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>תשלום מוצפן ומאובטח</div><div class="pbtn" id="payB">תשלום · Apple Pay<span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>התשלום אושר</span></div></div>
+          </div>
+        </div>
+        <svg class="cursor" id="curC" viewBox="0 0 24 24"><path d="M5 3l14 8-6.2 1.6L10 19z" fill="#141416" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        <div class="toast" id="toC"><div class="ic gold"><svg viewBox="0 0 24 24" fill="#fff"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></div><div><div class="tt">הזמנה חדשה · ₪240</div><div class="ts">בושם ענבר · נשלח לאריזה</div></div><div class="tm">02:14</div></div>
+      </div>
+      <!-- D: systems -->
+      <div class="station" id="stD">
+        <div class="bw"><div class="bb"><i></i><i></i><i></i><span class="u">app.studio-noa.co.il</span></div>
+          <div class="sys">
+            <div class="cal"><div class="ct">יומן תורים<span>12–16 בנובמבר</span></div>
+              <div class="days"><span></span><span>א׳</span><span>ב׳</span><span>ג׳</span><span>ד׳</span><span>ה׳</span></div>
+              <div class="rows" id="rows"></div>
+            </div>
+            <div class="side2">
+              <div class="kpi hi"><div class="k">תורים השבוע</div><div class="n" id="kT">0</div><div class="d">+12% ▲</div></div>
+              <div class="kpi"><div class="k">הכנסות החודש</div><div class="n" id="kR">₪0</div><div class="d">+18% ▲</div></div>
+              <div class="chart"><div class="k">הזמנות אונליין · 30 יום</div><div class="bars" id="bars"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="toast" id="toD"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div><div><div class="tt">תור חדש נקבע</div><div class="ts">נועה ברק · יום ד׳ 14:30</div></div><div class="tm">אוטומטי</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 -->
+  <section class="scene" id="s7">
+    <div id="endc">
+      <div class="tg" id="eTag">אתרים שמציבים אתכם <em>בליגה אחרת.</em></div>
+      <div class="cta" id="eCta"><span>קבלו הצעת מחיר</span><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg></div>
+      <div class="contacts" id="eCt">
+        <span class="ct"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="#A9803F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5z"/></svg></span><span>וואטסאפ</span><span class="mono">058-788-8349</span></span>
+        <span class="ct"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="#A9803F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg></span><span class="mono">bsy-digital.vercel.app</span></span>
+      </div>
+      <div class="svcl" id="eSv">אתרי תדמית<b>·</b>דפי נחיתה<b>·</b>חנויות אונליין<b>·</b>מערכות דיגיטליות</div>
+    </div>
+  </section>
+
+  <div class="digital" id="digital"></div>
+  <div id="tagline">פתרונות דיגיטליים לעסקים · ירושלים</div>
+  <div id="lg"><img src="assets/logo-mark-light.png" alt=""><div class="shine" id="shine"></div></div>
+</div>
+<div id="white"></div>
+<div id="grain"></div>
+</div>
+
+<script src="assets/gsap.min.js"></script>
+<script>
+let __resolveReady;
+window.__ready = new Promise(r => { __resolveReady = r; });
+(async function () {
+  const Q = new URLSearchParams(location.search);
+  const V = Q.get('fmt') === 'v';
+  const stage = document.getElementById('stage');
+  if (V) stage.classList.add('v');
+  const W = V ? 1080 : 1920, H = V ? 1920 : 1080, R = 10.8, DUR = 45;
+  const BEAT = 60 / 96, BAR = BEAT * 4;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+  /* ---------- build ---------- */
+  $('#digital').innerHTML = 'DIGITΛL'.split('').map(ch => ch === 'Λ' ? '<b class="c lam">V</b>' : `<span class="c">${ch}</span>`).join('');
+  // S4 grid
+  $('#grid').innerHTML = '<i></i>'.repeat(12);
+  // S5 calendar
+  const rows = $('#rows'); const hours = ['9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'];
+  const booked = new Set(['0-1', '0-2', '1-0', '1-4', '2-1', '2-3', '2-6', '3-0', '3-2', '3-7', '4-1', '4-4', '4-5', '0-6', '1-6']);
+  let rh = '';
+  hours.forEach((h, r) => { rh += `<span class="h">${h}</span>`; for (let d = 0; d < 5; d++) rh += `<span class="c${booked.has(d + '-' + r) ? ' bk' : ''}"></span>`; });
+  rows.innerHTML = rh + '<div class="newslot" id="nslot">נועה ברק<br>טיפול פנים</div>';
+  const br = rng(5), bars = $('#bars');
+  for (let i = 0; i < 16; i++) { const b = document.createElement('i'); b.style.height = (30 + i * 3.6 + br() * 14) + '%'; bars.appendChild(b); }
+  // split words
+  $$('.sp').forEach(el => { const ws = el.textContent.trim().split(/\s+/); el.innerHTML = ws.map(w => `<span class="w"><span class="wi">${w}</span></span>`).join(' '); });
+  // grain
+  const GT = []; const gr = rng(41);
+  for (let k = 0; k < 6; k++) {
+    const c = document.createElement('canvas'); c.width = c.height = 320; const x = c.getContext('2d'); const id = x.createImageData(320, 320);
+    for (let i = 0; i < id.data.length; i += 4) { const v = 128 + (gr() + gr() + gr() - 1.5) * 120; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
+    x.putImageData(id, 0, 0); GT.push(`url(${c.toDataURL()})`);
+  }
+
+  {
+    const fams = ['800 40px Heebo', '700 40px Heebo', '600 40px Heebo', '500 40px Heebo', '400 40px Heebo', '300 40px "Frank Ruhl Libre"', '300 40px Archivo', '600 40px Archivo', '700 40px Archivo', '800 40px Archivo', '400 40px "JetBrains Mono"'];
+    await Promise.all(fams.map(f => document.fonts.load(f, 'אבגabc123₪')));
+    await document.fonts.ready;
+    await Promise.all($$('img').map(i => i.decode().catch(() => {})));
+  }
+  // fit headline groups to their width
+  {
+    const groups = {};
+    $$('.fit').forEach((el, i) => {
+      if (V && !el.dataset.fitv) return;
+      const max = Math.min(el.dataset.max && !V ? +el.dataset.max * R : Infinity, V ? W - 16 * R : W - 20 * R);
+      const fs0 = parseFloat(getComputedStyle(el).fontSize);
+      const d = el.style.display, ws = el.style.whiteSpace; el.style.display = 'inline-block'; el.style.whiteSpace = 'nowrap';
+      const need = el.getBoundingClientRect().width; el.style.display = d; el.style.whiteSpace = ws;
+      (groups[el.dataset.fitg || ('_' + i)] ||= []).push([el, fs0, Math.min(1, max / need)]);
+    });
+    Object.values(groups).forEach(arr => { const k = Math.min(...arr.map(a => a[2])); if (k < 1) arr.forEach(([el, fs0]) => { el.style.fontSize = (fs0 * k * .985) + 'px'; }); });
+  }
+  // Λ in DIGITΛL: flip an Archivo V around its cap-height middle
+  {
+    const lam = $('#digital .lam'), cs = getComputedStyle(lam);
+    const cx = document.createElement('canvas').getContext('2d'); cx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    const m = cx.measureText('V'); lam.style.transformOrigin = `50% ${m.fontBoundingBoxAscent - m.actualBoundingBoxAscent / 2}px`;
+  }
+
+  /* ---------- geometry ---------- */
+  const PH = V ? { fs: 1.38, x: 540, y: 1215 } : { fs: 1.08, x: 600, y: 545 };   // phone centre for the hook / result
+  const phoneEl = $('#phone'); phoneEl.style.fontSize = PH.fs + 'rem';
+  const pw = 32 * PH.fs * R, ph = 67 * PH.fs * R;
+  phoneEl.style.left = (-pw / 2) + 'px'; phoneEl.style.top = (-ph / 2) + 'px';
+  $('#pcam').style.cssText = `position:absolute;left:0;top:0;width:0;height:0;perspective:2400px`;
+  const P2 = V ? { x: 540, y: 1130, s: 1.0 } : { x: 960, y: 540, s: 1.12 };   // the problem close-up
+  const P2b = V ? { x: 540, y: 1230, s: .96 } : { x: 640, y: 540, s: 1.06 };   // making room for the line
+  // points inside the phone (em from the screen's top-left) -> stage px for a given phone placement
+  function ptIn(ex, ey, P, s) { const sx = P.x - pw * s / 2 + (1 + ex) * PH.fs * R * s, sy = P.y - ph * s / 2 + (1 + ey) * PH.fs * R * s; return [sx, sy]; }
+  // annotations
+  function placeAnn(id, ex, ey, side) {
+    const [x, y] = ptIn(ex, ey, P2, P2.s); const el = $(id); el.style.left = x + 'px'; el.style.top = y + 'px';
+    const edge = side === 'l' ? P2.x - pw * P2.s / 2 - 34 : P2.x + pw * P2.s / 2 + 34, len = Math.abs(edge - x);
+    const ln = el.querySelector('.ln'), lab = el.querySelector('.lab');
+    if (side === 'l') { ln.style.right = '0'; ln.style.width = len + 'px'; lab.style.right = len + 'px'; }
+    else { ln.style.left = '0'; ln.style.width = len + 'px'; lab.style.left = len + 'px'; }
+  }
+  placeAnn('#a1', 15, 11.5, 'l');
+  placeAnn('#a2', 25, 17, 'r');
+  placeAnn('#a3', 8, 34, 'l');
+  // S4 callouts, relative to the art board
+  const AW = V ? 88 * R : 92 * R, AH = V ? 46.7 * R : 49 * R;
+  function placeCall(id, fx, fy, side, len) {
+    const el = $(id); el.style.left = (fx * AW) + 'px'; el.style.top = (fy * AH) + 'px';
+    const ln = el.querySelector('.ln'), lab = el.querySelector('.lab');
+    if (side === 'l') { ln.style.right = '0'; ln.style.width = len + 'px'; lab.style.right = len + 'px'; }
+    else { ln.style.left = '0'; ln.style.width = len + 'px'; lab.style.left = len + 'px'; }
+  }
+  if (V) {
+    placeCall('#c1', .70, .30, 'l', 60); placeCall('#c2', .25, .78, 'r', 40); placeCall('#c3', .10, .96, 'r', 160); placeCall('#c4', .55, .06, 'l', 40);
+    $('#c1 .lab').style.top = '-12rem'; $('#c4 .lab').style.top = '-12rem'; $('#c2 .lab').style.top = '4rem'; $('#c3 .lab').style.top = '5rem';
+  } else {
+    placeCall('#c1', .62, .30, 'l', 120); placeCall('#c2', .30, .78, 'r', 330); placeCall('#c3', .05, .93, 'l', 150); placeCall('#c4', .80, .08, 'r', 230);
+    $('#c4 .lab').style.top = '-11rem';
+  }
+  // logo placements
+  const lgW = 66 * R, lgH = lgW * 344 / 820;
+  const LG = { c: [W / 2, H * (V ? .46 : .47)], corner: [W - (V ? 8 : 10) * R - 7 * R, (V ? 9 : 6.5) * R + 7 * R * 344 / 820], cornerS: 14 / 66, end: [W / 2, H * (V ? .36 : .33)], endS: V ? 1.12 : .95 };
+  const digY = LG.c[1] + lgH / 2 + 5 * R;
+  $('#digital').style.top = digY + 'px';
+  $('#tagline').style.top = (digY + 6.4 * R) + 'px';
+  $('#gline').style.top = LG.c[1] + 'px';
+  const endDig = LG.end[1] + lgH * LG.endS / 2 + 4.5 * R;
+  $('#endc').style.top = (endDig + 7.5 * R) + 'px';
+
+  /* ---------- timeline ---------- */
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out', duration: 1.1 } });
+  const wis = sel => $$(sel + ' .wi');
+  function wIn(sel, t, o = {}) { tl.fromTo(wis(sel), { yPercent: 120, opacity: 0 }, { yPercent: 0, opacity: 1, duration: o.d ?? 1.2, ease: 'expo.out', stagger: o.st ?? .07, immediateRender: o.ir ?? true }, t); }
+  function fadeOut(sel, t, d = .6, y = -24) { tl.to(sel, { opacity: 0, y, duration: d, ease: 'power2.in' }, t); }
+  function scene(id, a, b) { tl.set('#' + id, { autoAlpha: 1 }, a); tl.set('#' + id, { autoAlpha: 0 }, b); }
+  gsap.set('.wi', { yPercent: 120, opacity: 0 });
+  gsap.set('#sheet', { yPercent: 105 });
+  gsap.set('#payP', { xPercent: 102 });
+  gsap.set('#lg', { xPercent: -50, yPercent: -50, x: LG.c[0] - W / 2, y: LG.c[1] - H / 2 });
+  gsap.set('#lgGlow', { x: LG.c[0] - W / 2, y: LG.c[1] - H / 2 });
+
+  /* S1 — the search (0 – 5) */
+  scene('sP', 0, 40.2);
+  const pcam = '#pcam';
+  tl.fromTo(pcam, { x: PH.x, y: PH.y + 24, scale: .975, opacity: .15 }, { x: PH.x, y: PH.y, scale: 1, opacity: 1, duration: 1.0, ease: 'power3.out' }, 0);
+  tl.fromTo('#phone', { rotateY: V ? 0 : 14, rotateX: 4 }, { rotateY: V ? 0 : 5, rotateX: 1.5, duration: 4.4, ease: 'sine.inOut' }, 0);
+  tl.to(pcam, { scale: 1.035, duration: 3.4, ease: 'none' }, 1.0);
+  wIn('#s1t .hd', .45, { st: .08 });
+  wIn('#s1t .hs', 1.9, { st: .08 });
+  tl.fromTo(['#rl1', '#r1', '#r2', '#r3'], { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .8, stagger: .15, ease: 'power3.out' }, 2.0);
+  // touch + tap on result 2
+  const r2c = () => { const r = $('#r2'); return [r.offsetLeft + r.offsetWidth * .62, r.offsetTop + r.offsetHeight * .5]; };
+  const [tx2, ty2] = r2c();
+  gsap.set(['#touch', '#rip', '#fillw'], { left: tx2, top: ty2 });
+  tl.fromTo('#touch', { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: .5, ease: 'power2.out' }, 3.15);
+  tl.to('#touch', { scale: .82, duration: .12, ease: 'power2.in' }, 3.63);
+  tl.to('#touch', { opacity: 0, scale: 1.1, duration: .35, ease: 'power2.out' }, 3.78);
+  tl.fromTo('#r2 .hl', { opacity: 0 }, { opacity: 1, duration: .15 }, 3.72);
+  tl.fromTo('#rip', { opacity: .9, scale: 0 }, { opacity: 0, scale: 3.2, duration: .7, ease: 'power2.out' }, 3.75);
+  tl.fromTo('#fillw', { opacity: 1, scale: 0 }, { scale: 22, duration: .75, ease: 'power3.inOut' }, 3.85);
+  tl.set('#lLoad', { opacity: 1 }, 4.55);
+  tl.set('#lSearch', { opacity: 0 }, 4.55);
+  tl.to('#fillw', { opacity: 0, duration: .25 }, 4.55);
+  tl.to(wis('#s1t'), { opacity: 0, y: -22, duration: .6, ease: 'power2.in', stagger: .02 }, 4.15);
+  // camera: toward the close-up
+  tl.to(pcam, { x: P2.x, y: P2.y, scale: P2.s, duration: 1.3, ease: 'power3.inOut' }, 4.2);
+  tl.to('#phone', { rotateY: 0, rotateX: 0, duration: 1.3, ease: 'power3.inOut' }, 4.2);
+
+  /* S2 — the dated site (5 – 10) */
+  tl.fromTo('#lbar', { scaleX: 0 }, { scaleX: .82, duration: 1.3, ease: 'power1.out' }, 4.6);
+  tl.to('#lbar', { scaleX: 1, opacity: 0, duration: .25 }, 5.9);
+  tl.fromTo('#spin', { opacity: 1 }, { opacity: 0, duration: .2 }, 5.85);
+  const oldIn = (s, t) => tl.fromTo(s, { opacity: 0 }, { opacity: 1, duration: .08, ease: 'none' }, t);
+  tl.set('#old', { opacity: 0 }, 0);
+  tl.set('#old', { opacity: 1 }, 5.88);
+  gsap.set(['#o1', '#o2', '#o3', '#o5', '#o6', '#o4'], { opacity: 0 });
+  oldIn('#o1', 5.9); oldIn('#o2', 6.1); oldIn('#o3', 6.3);
+  tl.fromTo('#o4', { opacity: 0, height: 0 }, { opacity: 1, height: '12em', duration: .12, ease: 'none' }, 6.55);
+  tl.to('#o3', { top: '21.4em', duration: .12, ease: 'none' }, 6.55);
+  tl.fromTo('#o5', { opacity: 0, x: 18 }, { opacity: 1, x: 0, duration: .1, ease: 'none' }, 6.8);
+  oldIn('#o6', 7.1);
+  // annotations, one per beat
+  ['#a1', '#a2', '#a3'].forEach((a, k) => {
+    tl.fromTo(a, { opacity: 0 }, { opacity: 1, duration: .5, ease: 'power2.out' }, 6.25 + k * .625);
+    tl.fromTo(a + ' .ln', { scaleX: 0, transformOrigin: k === 1 ? '0 50%' : '100% 50%' }, { scaleX: 1, duration: .7, ease: 'expo.out' }, 6.25 + k * .625);
+    tl.fromTo(a + ' .lab', { opacity: 0, x: k === 1 ? -20 : 20 }, { opacity: 1, x: 0, duration: .7, ease: 'expo.out' }, 6.4 + k * .625);
+    tl.fromTo(a + ' .dot', { scale: 0 }, { scale: 1, duration: .5, ease: 'back.out(2.4)' }, 6.25 + k * .625);
+  });
+  tl.to(['#a1', '#a2', '#a3'], { opacity: 0, duration: .45, ease: 'power2.in' }, 7.85);
+  tl.to(pcam, { x: P2b.x, y: P2b.y, scale: P2b.s, duration: 1.0, ease: 'power3.inOut' }, 7.9);
+  wIn('#s2t .hd', 8.1, { st: .08 });
+  wIn('#s2t .hs', 8.35, { st: .08 });
+  // swipe back to the results, the competitor gets the tap
+  tl.set('#lSearch', { opacity: 1 }, 8.6);
+  tl.set('#r2 .hl', { opacity: 0 }, 8.6);
+  tl.fromTo('#lLoad', { xPercent: 0 }, { xPercent: 104, duration: .5, ease: 'power3.inOut' }, 8.7);
+  const r1 = $('#r1'); const tx1 = r1.offsetLeft + r1.offsetWidth * .6, ty1 = r1.offsetTop + r1.offsetHeight * .5;
+  tl.set(['#touch', '#rip'], { left: tx1, top: ty1 }, 9.0);
+  tl.fromTo('#touch', { opacity: 0, scale: 1.2 }, { opacity: 1, scale: .85, duration: .2, ease: 'power2.out', immediateRender: false }, 9.0);
+  tl.to('#touch', { opacity: 0, duration: .2 }, 9.22);
+  tl.fromTo('#r1 .hl', { opacity: 0 }, { opacity: 1, duration: .12, immediateRender: false }, 9.1);
+  tl.fromTo('#rip', { opacity: .9, scale: 0 }, { opacity: 0, scale: 3, duration: .5, ease: 'power2.out', immediateRender: false }, 9.12);
+  // rewind and collapse to a gold line
+  tl.to(wis('#s2t'), { opacity: 0, x: 40, duration: .35, ease: 'power2.in', stagger: .015 }, 9.35);
+  tl.to(pcam, { x: W / 2, y: H / 2, scale: 1, duration: .45, ease: 'power3.in' }, 9.4);
+  tl.to(pcam, { scaleY: .004, scaleX: 1.9, opacity: 0, duration: .32, ease: 'power3.in' }, 9.72);
+  tl.fromTo('#gline', { opacity: 0, scaleX: .2 }, { opacity: 1, scaleX: 1, duration: .5, ease: 'expo.out' }, 9.88);
+
+  /* S3 — the turn and the brand (10 – 15) */
+  scene('s3', 10, 12.9);
+  wIn('#s3t > .hd', 10.2, { st: .07 });
+  wIn('#s3t .l2 .sp:not(.acc)', 11.1, { st: .07 });
+  wIn('#s3t .l2 .acc', 11.45, { st: .1 });
+  tl.to('#s3t', { opacity: 0, y: -26, duration: .5, ease: 'power2.in' }, 12.15);
+  // the line opens into the logo
+  tl.set('#lg', { opacity: 1 }, 12.5);
+  tl.fromTo('#lg', { clipPath: 'inset(50% 0% 50% 0%)', scale: .98 }, { clipPath: 'inset(0% 0% 0% 0%)', scale: 1, duration: 1.1, ease: 'expo.out', immediateRender: false }, 12.5);
+  tl.to('#gline', { scaleX: 1.7, opacity: 0, duration: 1.0, ease: 'expo.out' }, 12.5);
+  tl.fromTo('#lgGlow', { opacity: 0, scale: .7 }, { opacity: 1, scale: 1, duration: 1.6, ease: 'expo.out' }, 12.5);
+  tl.fromTo('#shine', { backgroundPosition: '130% 0' }, { backgroundPosition: '-30% 0', duration: 1.1, ease: 'power2.inOut' }, 12.9);
+  tl.fromTo('#digital', { letterSpacing: '2.2em', opacity: 0 }, { letterSpacing: '.95em', opacity: 1, duration: 1.4, ease: 'expo.out' }, 13.0);
+  tl.fromTo('#tagline', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1 }, 13.4);
+  tl.to(['#digital', '#tagline'], { opacity: 0, y: -14, duration: .45, ease: 'power2.in' }, 14.3);
+  tl.to('#lgGlow', { opacity: 0, duration: .8 }, 14.3);
+  tl.to('#lg', { x: LG.corner[0] - W / 2, y: LG.corner[1] - H / 2, scale: LG.cornerS, duration: 1.0, ease: 'expo.inOut' }, 14.35);
+
+  /* S4 — from a blank page (15 – 20) */
+  scene('s4', 14.9, 20.6);
+  tl.fromTo('#board', { opacity: 0, scale: .965, y: 24 }, { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'expo.out' }, 14.95);
+  tl.fromTo('#grid i', { scaleY: 0, opacity: 0 }, { scaleY: 1, opacity: 1, duration: .9, ease: 'expo.out', stagger: .045 }, 15.2);
+  wIn('#s4t .hd', 15.3, { st: .07 });
+  wIn('#s4t .hs', 16.6, { st: .08 });
+  const snap = (s, t) => { tl.fromTo(s, { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: .55, ease: 'back.out(1.6)' }, t); tl.fromTo(s, { borderColor: 'rgba(169,128,63,.8)' }, { borderColor: 'rgba(169,128,63,0)', duration: .9, ease: 'power1.out' }, t); };
+  snap('#bk1', 15.625); snap(['#bk2', '#bk3'], 16.25); snap(['#bk4', '#bk5'], 16.875);
+  tl.fromTo('#lumaD', { clipPath: 'inset(0% 0% 0% 100%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.0, ease: 'power3.inOut' }, 17.2);
+  tl.to(['#bk1', '#bk2', '#bk3', '#bk4', '#bk5', '#grid'], { opacity: 0, duration: .5 }, 17.9);
+  tl.fromTo('#art', { rotateY: 0, rotateX: 0, z: 0 }, { rotateY: V ? -6 : 9, rotateX: V ? 6 : 5, z: 0, duration: 3.6, ease: 'sine.inOut' }, 16.2);
+  ['#c1', '#c2', '#c3', '#c4'].forEach((c, k) => {
+    const t = 17.5 + k * .625, left = $(c + ' .lab').style.left !== '';
+    tl.fromTo(c, { opacity: 0 }, { opacity: 1, duration: .45 }, t);
+    tl.fromTo(c + ' .dot', { scale: 0 }, { scale: 1, duration: .5, ease: 'back.out(2.4)' }, t);
+    tl.fromTo(c + ' .ln', { scaleX: 0, transformOrigin: left ? '0 50%' : '100% 50%' }, { scaleX: 1, duration: .6, ease: 'expo.out' }, t + .05);
+    tl.fromTo(c + ' .lab', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .6, ease: 'expo.out' }, t + .15);
+  });
+  tl.fromTo('#p4', { opacity: 0, x: V ? -80 : -120, y: 40 }, { opacity: 1, x: 0, y: 0, duration: 1.1, ease: 'expo.out' }, 18.75);
+  // out: the camera glides on
+  tl.to(wis('#s4t'), { opacity: 0, y: -20, duration: .45, ease: 'power2.in', stagger: .015 }, 19.4);
+  tl.to('#artWrap', { x: V ? W * .9 : 0, y: V ? 0 : -H * .9, opacity: 0, duration: .95, ease: 'power3.inOut' }, 19.5);
+
+  /* S5 — four solutions (20 – 35) */
+  scene('s5', 19.5, 35.4);
+  const ST = ['#stA', '#stB', '#stC', '#stD'], TT = ['#t0', '#t1', '#t2', '#t3'], T0 = [20, 23.75, 27.5, 31.25];
+  const OFF = V ? { x: W * .85, y: 0 } : { x: 0, y: H * .9 };
+  const nn = $$('#s5n span'); nn.forEach((e, k) => gsap.set(e, { yPercent: k * 100 }));
+  tl.fromTo('#s5eb', { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: .9 }, 19.85);
+  tl.fromTo('#s5eb .ln', { scaleX: 0 }, { scaleX: 1, duration: 1, ease: 'expo.inOut' }, 19.85);
+  ST.forEach((s, i) => {
+    const T = T0[i];
+    tl.fromTo(s, { opacity: 0, x: -OFF.x, y: OFF.y }, { opacity: 1, x: 0, y: 0, duration: .95, ease: 'power3.inOut' }, T - .45);
+    wIn(TT[i] + ' .hd', i ? T - .1 : T + .05, { st: .08 });
+    wIn(TT[i] + ' .hs', T + .2, { st: .07 });
+    if (i > 0) nn.forEach((e, k) => tl.to(e, { yPercent: (k - i) * 100, duration: .7, ease: 'expo.inOut' }, T - .35));
+    if (i < 3) {
+      tl.to(s, { opacity: 0, x: OFF.x, y: -OFF.y, duration: .95, ease: 'power3.inOut' }, T0[i + 1] - .45);
+      tl.to(wis(TT[i]), { opacity: 0, y: -22, duration: .4, ease: 'power2.in', stagger: .015 }, T0[i + 1] - .55);
+    }
+  });
+  // A — brand site on a laptop + phone
+  tl.fromTo('#myrD', { yPercent: 0 }, { yPercent: -4, duration: 3.6, ease: 'sine.inOut' }, 20);
+  tl.fromTo('#pA', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out' }, 20.6);
+  tl.fromTo('#chipA', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .8 }, 21.0);
+  // B — landing page → a lead
+  const fN = $('#fN'), fP = $('#fP');
+  const fNp = () => { const o = offIn(fN, $('#stB')); return [o[0] + fN.offsetWidth * .5, o[1] + fN.offsetHeight * .5]; };
+  function offIn(el, anc) { let x = 0, y = 0; while (el && el !== anc) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; } return [x, y]; }
+  const bO = offIn($('#fB'), $('#stB')), bX = bO[0] + $('#fB').offsetWidth * .55, bY = bO[1] + $('#fB').offsetHeight * .55;
+  
+  tl.fromTo('#curB', { opacity: 0, x: bX + 160, y: bY + 140 }, { opacity: 1, x: bX, y: bY, duration: .55, ease: 'power3.inOut' }, 25.0);
+  tl.to('#curB', { scale: .85, duration: .08, transformOrigin: '20% 15%' }, 25.6);
+  tl.to('#curB', { scale: 1, duration: .2 }, 25.68);
+  tl.to('#fB', { scale: .97, duration: .08 }, 25.6); tl.to('#fB', { scale: 1, duration: .3, ease: 'back.out(3)' }, 25.68);
+  tl.fromTo('#fB .ok', { opacity: 0 }, { opacity: 1, duration: .2 }, 25.68);
+  tl.fromTo('#toB', { opacity: 0, y: 30, scale: .96 }, { opacity: 1, y: 0, scale: 1, duration: .8, ease: 'expo.out' }, 26.25);
+  // C — store → an order at 02:14
+  const aO = offIn($('#addb'), $('#stC')), aX = aO[0] + $('#addb').offsetWidth * .5, aY = aO[1] + $('#addb').offsetHeight * .55;
+  const pO = offIn($('#payB'), $('#stC')), pX = pO[0] + $('#payB').offsetWidth * .5, pY = pO[1] + $('#payB').offsetHeight * .55;
+  tl.fromTo('#curC', { opacity: 0, x: aX + 200, y: aY + 160 }, { opacity: 1, x: aX, y: aY, duration: .6, ease: 'power3.inOut' }, 28.1);
+  tl.to('#curC', { scale: .85, duration: .08, transformOrigin: '20% 15%' }, 28.75); tl.to('#curC', { scale: 1, duration: .2 }, 28.83);
+  tl.to('#addb', { scale: .97, duration: .08 }, 28.75); tl.to('#addb', { scale: 1, duration: .3, ease: 'back.out(3)' }, 28.83);
+  tl.fromTo('#addb .ok', { opacity: 0 }, { opacity: 1, duration: .2 }, 28.83);
+  tl.to('#payP', { xPercent: 0, duration: .7, ease: 'expo.out' }, 29.0);
+  tl.to('#curC', { x: pX, y: pY, duration: .3, ease: 'power2.inOut' }, 29.05);
+  tl.to('#curC', { scale: .85, duration: .06 }, 29.36); tl.to('#curC', { scale: 1, duration: .15 }, 29.42);
+  tl.fromTo('#payB .ok', { opacity: 0 }, { opacity: 1, duration: .25 }, 29.4);
+  tl.to('#curC', { opacity: 0, duration: .3 }, 29.9);
+  tl.fromTo('#toC', { opacity: 0, y: 30, scale: .96 }, { opacity: 1, y: 0, scale: 1, duration: .8, ease: 'expo.out' }, 30.0);
+  // D — systems → a booking
+  tl.fromTo('#bars i', { scaleY: 0 }, { scaleY: 1, duration: 1.1, stagger: .04, ease: 'expo.out' }, 31.35);
+  const cell = $$('#rows .c')[3 + 5 * 5]; // Wednesday (index 3) at 14:00 row (index 5)
+  const ns = $('#nslot'); ns.style.left = cell.offsetLeft + 'px'; ns.style.top = (cell.offsetTop + cell.offsetHeight * .5) + 'px'; ns.style.width = cell.offsetWidth + 'px'; ns.style.height = (cell.offsetHeight * 1.0) + 'px';
+  tl.fromTo('#nslot', { opacity: 0, scale: .6 }, { opacity: 1, scale: 1, duration: .6, ease: 'back.out(2)' }, 32.5);
+  tl.fromTo('#toD', { opacity: 0, y: 30, scale: .96 }, { opacity: 1, y: 0, scale: 1, duration: .8, ease: 'expo.out' }, 33.75);
+  // S5 out
+  tl.to('#stD', { opacity: 0, x: OFF.x, y: -OFF.y, duration: .8, ease: 'power3.in' }, 34.3);
+  tl.to(wis('#t3'), { opacity: 0, y: -22, duration: .4, ease: 'power2.in', stagger: .015 }, 34.45);
+  tl.to('#s5eb', { opacity: 0, duration: .4 }, 34.45);
+
+  /* S6 — same customer (35 – 40) */
+  // reset the phone to the hook composition, now with Luma first
+  tl.set(pcam, { scaleX: 1, scaleY: 1, x: PH.x, y: PH.y + 30, opacity: 0 }, 34.6);
+  tl.set('#lLoad', { opacity: 0, xPercent: 0 }, 34.6);
+  tl.set(['#r1 .hl', '#r2 .hl'], { opacity: 0 }, 34.6);
+  tl.set('#phone', { rotateY: V ? 0 : 10, rotateX: 3 }, 34.6);
+  tl.to(pcam, { y: PH.y, opacity: 1, duration: .8, ease: 'power3.out' }, 34.98);
+  tl.to('#phone', { rotateY: V ? 0 : 4, rotateX: 1, duration: 4.5, ease: 'sine.inOut' }, 34.85);
+  tl.to(pcam, { scale: 1.035, duration: 4.4, ease: 'none' }, 35.4);
+  tl.set(['#touch', '#rip'], { left: tx1, top: ty1 }, 34.6);
+  tl.fromTo('#touch', { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: .35, ease: 'power2.out', immediateRender: false }, 35.25);
+  tl.to('#touch', { scale: .82, duration: .1 }, 35.52); tl.to('#touch', { opacity: 0, duration: .3 }, 35.65);
+  tl.fromTo('#r1 .hl', { opacity: 0 }, { opacity: 1, duration: .12, immediateRender: false }, 35.58);
+  tl.fromTo('#rip', { opacity: .9, scale: 0 }, { opacity: 0, scale: 3.2, duration: .6, ease: 'power2.out', immediateRender: false }, 35.6);
+  tl.fromTo('#lLuma', { opacity: 0, yPercent: 6 }, { opacity: 1, yPercent: 0, duration: .5, ease: 'power3.out' }, 35.9);
+  wIn('#s6a', 35.3, { st: .1, ir: false });
+  wIn('#s6b', 36.25, { st: .1, ir: false });
+  wIn('#s6c', 37.5, { st: .1, ir: false });
+  // tap “לקביעת תור” and book
+  const bookX = 30 * .67, bookY = 10.2 + 30 * (1072 / 600) * .955;
+  tl.set(['#touch', '#rip'], { left: (bookX * PH.fs * R), top: (bookY * PH.fs * R) }, 36.6);
+  tl.fromTo('#touch', { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: .35, ease: 'power2.out', immediateRender: false }, 37.12);
+  tl.to('#touch', { scale: .82, duration: .1 }, 37.4); tl.to('#touch', { opacity: 0, duration: .3 }, 37.55);
+  tl.fromTo('#rip', { opacity: .9, scale: 0 }, { opacity: 0, scale: 3.2, duration: .6, ease: 'power2.out', immediateRender: false }, 37.5);
+  tl.to('#sheet', { yPercent: 0, duration: .55, ease: 'expo.out' }, 37.6);
+  tl.fromTo('#done', { opacity: 0 }, { opacity: 1, duration: .3 }, 38.1);
+  tl.fromTo('#done .ck', { scale: .4 }, { scale: 1, duration: .6, ease: 'back.out(2.2)' }, 38.1);
+  // bloom to white
+  tl.to(wis('#s6t'), { opacity: 0, duration: .5, ease: 'power2.in', stagger: .02 }, 39.25);
+  tl.fromTo('#white', { opacity: 0 }, { opacity: 1, duration: .7, ease: 'power2.in' }, 39.3);
+
+  /* S7 — end card (40 – 45) */
+  scene('s7', 39.9, 45.1);
+  tl.to('#lg', { x: LG.end[0] - W / 2, y: LG.end[1] - H / 2, scale: LG.endS, duration: .9, ease: 'expo.inOut' }, 39.5);
+  tl.set('#lgGlow', { x: LG.end[0] - W / 2, y: LG.end[1] - H / 2 }, 39.9);
+  tl.to('#white', { opacity: 0, duration: .9, ease: 'power2.out' }, 40.0);
+  tl.fromTo('#lgGlow', { opacity: 0 }, { opacity: .8, duration: 1.2, immediateRender: false }, 40.0);
+  tl.set('#digital', { top: endDig, y: 0 }, 39.9);
+  tl.fromTo('#digital', { letterSpacing: '2.2em', opacity: 0 }, { letterSpacing: '.95em', opacity: 1, duration: 1.4, ease: 'expo.out', immediateRender: false }, 40.3);
+  tl.fromTo('#eTag', { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 1 }, 40.6);
+  tl.fromTo('#eCta', { opacity: 0, y: 26, scale: .94 }, { opacity: 1, y: 0, scale: 1, duration: .9, ease: 'back.out(1.5)' }, 41.25);
+  tl.fromTo('#eCt', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .9 }, 41.9);
+  tl.fromTo('#eSv', { opacity: 0 }, { opacity: 1, duration: 1 }, 42.5);
+  tl.fromTo('#shine', { backgroundPosition: '130% 0' }, { backgroundPosition: '-30% 0', duration: 1.3, ease: 'power2.inOut', immediateRender: false }, 43.1);
+  tl.set({}, {}, DUR);
+
+  /* ---------- per frame ---------- */
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const eo = x => 1 - Math.pow(1 - clamp(x), 3);
+  const fmt = n => n.toLocaleString('en-US');
+  const q1 = $('#q1'), car1 = $('#car1'), spin = $('#spin'), grain = $('#grain');
+  const fNt = $('#fNt'), fPt = $('#fPt'), fNp2 = $('#fNp'), fPp = $('#fPp'), kT = $('#kT'), kR = $('#kR');
+  const Q1 = 'מספרה בירושלים';
+  const r1tt = $('#r1 .tt'), r1ds = $('#r1 .ds'), r1fav = $('#r1 .fav');
+  function type(el, txt, t, t0, t1) { const n = Math.floor(clamp((t - t0) / (t1 - t0)) * txt.length); el.textContent = txt.slice(0, n); return n; }
+  function frame(t, gi) {
+    const fi = gi ?? Math.round(t * 30);
+    const g = rng(fi + 7);
+    grain.style.backgroundImage = GT[fi % GT.length];
+    grain.style.backgroundPosition = `${Math.floor(g() * 320)}px ${Math.floor(g() * 320)}px`;
+    // key light drifts slowly
+    $('#key').style.transform = `translate(${(V ? 160 : 520) + Math.sin(t * .11) * 70}px, ${(V ? -520 : -260) + Math.cos(t * .09) * 50}px)`;
+    $('#warm').style.transform = `translate(${(V ? -200 : -420) + Math.cos(t * .07) * 60}px, ${(V ? 520 : 260) + Math.sin(t * .1) * 40}px)`;
+    // the search query
+    if (t < 34.6) { type(q1, Q1, t, .6, 1.9); } else q1.textContent = Q1;
+    car1.style.opacity = (t > .5 && t < 2.1 && (Math.floor(t * 3.2) % 2 === 0 || (t > .6 && t < 1.9))) ? 1 : 0;
+    spin.style.transform = `rotate(${t * 520}deg)`;
+    const luma = t >= 34.6;
+    if (r1tt.dataset.on !== String(luma)) {
+      r1tt.dataset.on = String(luma);
+      r1tt.textContent = luma ? 'Luma Hair Studio' : 'מספרה במרכז העיר';
+      r1ds.textContent = luma ? 'סטודיו לשיער · ירושלים' : 'תספורות גברים · ירושלים';
+      r1fav.innerHTML = luma ? '<img src="assets/luma-d.jpg" style="object-position:80% 40%">' : 'מ';
+    }
+    fN.classList.toggle('on', t >= 24.85 && t < 25.3);
+    fP.classList.toggle('on', t >= 25.3 && t < 25.6);
+    // landing form typing
+    if (t > 23 && t < 28) {
+      const a = type(fNt, 'דנה כהן', t, 24.9, 25.25); fNp2.style.display = a ? 'none' : '';
+      const b = type(fPt, '050-1234567', t, 25.3, 25.58); fPp.style.display = b ? 'none' : '';
+    }
+    if (t > 30.5 && t < 36) {
+      const p = eo((t - 31.4) / 1.3);
+      kT.textContent = String(Math.round(64 * p) + (t >= 33.75 ? 1 : 0));
+      kR.textContent = '₪' + fmt(Math.round(38400 * p / 10) * 10);
+    }
+  }
+  function seek(t, gi) { tl.seek(Math.min(t, DUR), false); frame(t, gi); }
+  seek(0);
+  window.__seek = seek; window.__dur = DUR; window.__size = [W, H];
+  __resolveReady(true);
+
+  const t0 = parseFloat(Q.get('t'));
+  if (!isNaN(t0)) { seek(t0); return; }
+  if (Q.has('render')) return;
+  const fit = () => { const s = Math.min(innerWidth / W, innerHeight / H); stage.style.transform = `translate(${(innerWidth - W * s) / 2}px, ${(innerHeight - H * s) / 2}px) scale(${s})`; };
+  fit(); addEventListener('resize', fit);
+  const start = performance.now();
+  const loop = now => { seek(((now - start) / 1000) % DUR); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
