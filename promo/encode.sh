@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Blend motion-blur sub-frames into the final film and mux the soundtrack.
 #   ./encode.sh <framesDir> <soundtrack.wav> <out.mp4> [fps=30] [samples=6] [crf=18]
+#   TUNE= (empty) drops "-tune grain" for a smaller file on bright, grainy footage
 #   AUDIO_ONLY=1 ./encode.sh - <soundtrack.wav> <existing.mp4>   (swap the soundtrack, keep the picture)
 set -euo pipefail
 F=$1; A=$2; O=$3; FPS=${4:-30}; S=${5:-6}; CRF=${6:-18}
@@ -29,6 +30,6 @@ ffmpeg -y -hide_banner -loglevel warning -nostats \
   -framerate $((FPS * S)) -i "$F/s%06d.jpg" -i "$TMP/norm.wav" \
   -filter_complex "[0:v]tmix=frames=$S,select='eq(mod(n\,$S)\,$((S - 1)))',setpts=N/($FPS*TB),format=yuv420p[v]" \
   -map "[v]" -map 1:a -r "$FPS" \
-  -c:v libx264 -preset slow -crf "$CRF" -tune grain -profile:v high -pix_fmt yuv420p \
+  -c:v libx264 -preset slow -crf "$CRF" ${TUNE-"-tune grain"} -profile:v high -pix_fmt yuv420p \
   -c:a aac -b:a 192k -ar 48000 -movflags +faststart -shortest "$O"
 echo "$O"
