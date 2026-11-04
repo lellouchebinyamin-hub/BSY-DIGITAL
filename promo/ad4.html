@@ -633,13 +633,13 @@ window.__ready = new Promise(r => { __resolveReady = r; });
     calG: '<svg viewBox="0 0 24 24" fill="none" stroke="#8a6a32" stroke-width="2" stroke-linecap="round"><rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>'
   };
   const sbar = '<div class="sbar"><span>9:41</span><span class="i3"><i></i><i></i><i></i></span></div>';
-  const results = (id, list, top) => `<div class="rlist" id="${id}">${list.map((r, i) => `<div class="rc${r.me ? ' me' : ''}" data-i="${i}" ${r.me ? `id="${r.me}"` : ''}><i class="fv">${r.img ? `<img src="${r.img}" alt="">` : r.t[0]}</i><div><b>${r.t}</b><span class="url en">${r.u}</span><i class="ln2"></i><i class="ln2 s"></i></div><span class="rk en">${r.me ? '#5' : ''}</span></div>`).join('')}</div>`;
+  const results = (id, list, top) => `<div class="rlist" id="${id}">${list.map((r, i) => `<div class="rc${r.me ? ' me' : ''}" data-i="${i}" ${r.me ? `id="${r.me}"` : ''}><i class="fv">${r.img ? `<img src="${r.img}" alt="">` : r.t[0]}</i><div><b>${r.t}</b><span class="url en">${r.u}</span><i class="ln2"></i><i class="ln2 s"></i></div><span class="rk en">${r.me && id === 'rl3' ? '#5' : ''}</span></div>`).join('')}</div>`;
   const SERP = [
     { t: 'מספרה במרכז העיר', u: 'barber-center.co.il' }, { t: 'סלון שיער ועיצוב', u: 'salon-hair.co.il' },
     { t: 'ברבר שופ השכונה', u: 'neighborhood-barber.co.il' }, { t: 'המספרה השכונתית', u: 'hamispara.co.il' },
-    { t: 'Luma Hair Studio', u: 'luma-hair-studio.vercel.app', me: 'me3', img: 'assets/luma-d.jpg' }
+    { t: 'Luma Hair Studio', u: 'luma-hair-studio-ebon.vercel.app', me: 'me3', img: 'assets/luma-d.jpg' }
   ];
-  const SERP2 = [{ t: 'Luma Hair Studio', u: 'luma-hair-studio.vercel.app', me: 'me4', img: 'assets/luma-d.jpg' }, SERP[0], SERP[1]];
+  const SERP2 = [{ t: 'Luma Hair Studio', u: 'luma-hair-studio-ebon.vercel.app', me: 'me4', img: 'assets/luma-d.jpg' }, SERP[0], SERP[1]];
   const VIDS = [['luma-m', '@luma.hair', 'פייד מדויק בלב ירושלים', 'Luma Hair Studio', '12.4K'], ['myriam-m', '@myriam.pmu', 'איפור קבוע שנראה טבעי', 'Myriam Lellouche', '8.9K'], ['sweet-m', '@sweet.tours', 'סוויטה מול הים לסופ״ש', 'Sweet Tours', '21.7K']];
   $('#svc').innerHTML = `
     <div id="morph"><img id="mD" src="assets/garage-d.jpg" alt=""><img id="mM" src="assets/garage-m.jpg" alt="" style="opacity:0"></div>
@@ -685,9 +685,9 @@ window.__ready = new Promise(r => { __resolveReady = r; });
       <div class="sc" id="sc4">${sbar}
         <div class="sf">${ICO.searchG}<span>מספרה בירושלים</span></div>
         <div class="tabs"><span class="on">הכול</span><span>מפות</span><span>תמונות</span><span>חדשות</span></div>
-        <div class="adc" id="adc"><span class="spon">ממומן</span><b>Luma Hair Studio · קבעו תור אונליין</b><span class="url en">luma-hair-studio.vercel.app</span><span class="d">פייד, זקן וצבע בלב ירושלים. תור בלחיצה.</span><div class="sl"><span>מחירון</span><span>תור מהיר</span><span>גלריה</span></div></div>
+        <div class="adc" id="adc"><span class="spon">ממומן</span><b>Luma Hair Studio · קבעו תור אונליין</b><span class="url en">luma-hair-studio-ebon.vercel.app</span><span class="d">פייד, זקן וצבע בלב ירושלים. תור בלחיצה.</span><div class="sl"><span>מחירון</span><span>תור מהיר</span><span>גלריה</span></div></div>
         ${results('rl4', SERP2)}
-        <div class="leads" id="leads"><div class="lt en">9:41</div><div class="ld">יום שלישי, 4 בנובמבר</div>
+        <div class="leads" id="leads"><div class="lt en">9:41</div><div class="ld">יום רביעי, 4 בנובמבר</div>
           <div class="nt" id="nt1"><i class="ni">${ICO.search}</i><div><b>פנייה חדשה · מודעה בגוגל</b><span>דנה: אשמח לתור מחר בבוקר</span></div><em>עכשיו</em></div>
           <div class="nt" id="nt2"><i class="ni">${ICO.cam}</i><div><b>הודעה חדשה · אינסטגרם</b><span>יוסי: כמה עולה תספורת וזקן?</span></div><em>עכשיו</em></div>
           <div class="nt" id="nt3"><i class="ni">${ICO.people}</i><div><b>פנייה חדשה · פייסבוק</b><span>מיכל: יש מקום ביום שישי?</span></div><em>עכשיו</em></div>
@@ -1036,7 +1036,7 @@ window.__ready = new Promise(r => { __resolveReady = r; });
   tl.to('#leads', { xPercent: 0, duration: .5, ease: 'power3.inOut' }, S.ads.tap + .1);
   S.ads.leads.forEach((t0, k) => tl.fromTo('#nt' + (k + 1), { opacity: 0, y: -18, scale: .96 }, { opacity: 1, y: 0, scale: 1, duration: .45, ease: 'back.out(1.6)' }, t0));
   // 5 · social video: swipe through three ads, likes land on the beat
-  S.social.swipes.forEach((t0, k) => tl.to('#feed', { y: -(k + 1) * SPH, duration: .45, ease: 'power3.inOut' }, t0));
+  S.social.swipes.forEach((t0, k) => tl.to('#feed', { y: -(k + 1) * SPH, duration: .55, ease: 'sine.inOut' }, t0));
   S.social.likes.forEach((t0, k) => { tl.to('#hrt' + k, { scale: 1.35, color: '#ff4d6d', duration: .12, ease: 'power2.out' }, t0); tl.to('#hrt' + k, { scale: 1, duration: .25, ease: 'back.out(3)' }, t0 + .12); });
   [0, 1, 2].forEach(k => tl.fromTo('#kb' + k, { scale: 1.0 }, { scale: 1.08, duration: 1.6, ease: 'none' }, SVT[4] + k));
   // the platform name changes with each video
@@ -1150,7 +1150,8 @@ window.__ready = new Promise(r => { __resolveReady = r; });
       inp.textContent = typing ? q.slice(0, n) : 'כתבו שאלה…'; inp.style.color = typing ? '#121315' : '#A9A49C';
       $$('#aiT i').forEach((d, i) => { const v = Math.max(0, Math.sin(t * 14 - i * .9)); d.style.transform = `translateY(${-v * .35}em)`; d.style.opacity = .45 + .55 * v; });
       const a = 'כן! מחר יש תור ב־10:30 וב־14:00. לקבוע לך?';
-      $('#m2t').textContent = a.slice(0, Math.floor(cl((t - 26.3) / .55) * a.length));
+      const m2 = $('#m2t'); if (!m2.dataset.w) { m2.innerHTML = a.split(' ').map(w => `<span>${w}</span>`).join(' '); m2.dataset.w = '1'; }
+      const ws = m2.children, nw = ws.length; for (let k = 0; k < nw; k++) ws[k].style.opacity = cl((t - 26.3) / .55 * nw - k);
     }
     if (t > 28.0 && t < 31.2) { const p = cl((t - 28.6) / 1.0); $('#me3 .rk').textContent = '#' + Math.max(1, 5 - Math.floor(eo3(p) * 4 + .001)); }
     if (t > 33.9 && t < 37.2) {
