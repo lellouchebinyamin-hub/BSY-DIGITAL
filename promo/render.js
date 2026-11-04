@@ -1,4 +1,4 @@
-// Renders promo/ad.html frame by frame with headless Chromium.
+// Renders a promo page (PAGE=ad.html by default, DUR = its length in seconds) frame by frame with headless Chromium.
 //   node render.js stills <fmt h|v> <outDir> <t1,t2,...>
 //   node render.js frames <fmt h|v> <outDir> <fps> [workers] [samples]
 //     writes <samples> sub-frames per output frame (180° shutter), blended later by ffmpeg tmix
@@ -27,7 +27,7 @@ async function openPage(browser, port, fmt) {
   const page = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
   page.on('pageerror', e => console.error('PAGE ERROR', e.message));
   page.on('console', m => { if (m.type() === 'error') console.error('CONSOLE', m.text()); });
-  await page.goto(`http://127.0.0.1:${port}/ad.html?render=1&fmt=${fmt}`, { waitUntil: 'load' });
+  await page.goto(`http://127.0.0.1:${port}/${process.env.PAGE || 'ad.html'}?render=1&fmt=${fmt}`, { waitUntil: 'load' });
   await page.evaluate(() => window.__ready);
   return page;
 }
@@ -54,7 +54,7 @@ async function grab(page, t, file, gi) {
     } else {
       const fps = parseInt(arg, 10);
       const S = parseInt(fromArg || '6', 10);
-      const dur = 30;
+      const dur = parseFloat(process.env.DUR || '30');
       const total = Math.round(dur * fps) * S;
       const workers = parseInt(workersArg || '4', 10);
       const expo = 0.5 / fps;               // 180° shutter
