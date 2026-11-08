@@ -1345,9 +1345,19 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
   .sx-panel { min-height: 460px; }
   .pg { grid-template-columns: minmax(0, 1fr); row-gap: 48px; }
   .pc.shift { margin-top: 0; }
-  .pg-bar { flex-direction: column; align-items: stretch; }
-  .pg-filters { flex-wrap: wrap; border-radius: 24px; }
-  .pg-filters button { padding: 9px 13px; font-size: 13px; }
+  .allwork { padding-top: 28px; }
+  .allwork .back, .allwork .sec-head .eyebrow { display: none; }
+  .allwork .sec-head { margin-bottom: 24px; gap: 12px; }
+  .pg-bar { flex-direction: column; align-items: stretch; gap: 18px; padding-block: 0; border: 0; margin-bottom: 34px; }
+  .pg-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-block: 1px solid var(--line); }
+  .pg-stats span { display: flex; flex-direction: column; gap: 4px; padding: 16px 12px; font-size: 12px; line-height: 1.35; }
+  .pg-stats span + span { border-inline-start: 1px solid var(--line); }
+  .pg-stats span:first-child { padding-inline-start: 0; }
+  .pg-stats b { margin: 0; font-size: 20px; line-height: 1.1; white-space: nowrap; }
+  .pg-filters { flex-wrap: nowrap; gap: 2px; padding: 3px; }
+  .pg-filters button { flex: 1 1 auto; min-width: 0; padding: 9px 6px; font-size: 12.5px; letter-spacing: -.01em; }
+  .pg-filters button sup { margin-inline-start: 2px; font-size: 9px; }
+  .pg-filters .pg-thumb { top: 3px; height: calc(100% - 6px); }
   .pc-view { display: none; }
   .ai .wrap { flex-direction: column; align-items: stretch; gap: 14px; }
   .ai p { max-width: none; }
@@ -1846,7 +1856,7 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
           <a href="#work" class="back" data-k="pv_back">חזרה לדף הבית</a>
           <div class="sec-head">
             <div>
-              <p class="eyebrow"><span data-k="pv_eye">כל העבודות</span></p>
+              <p class="eyebrow"><span data-k="pv_eye">תיק עבודות</span></p>
               <h2 id="pv_title"></h2>
             </div>
             <p class="sec-lead" data-k="pv_lead"></p>
@@ -1925,7 +1935,7 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
       w_eye: "עבודות נבחרות", w_title: ["עבודות שמדברות", "<span class=\"serif\">בעד עצמן.</span>"],
       w_lead: "אתרים אמיתיים שעיצבתי ופיתחתי ללקוחות. כל אחד בנוי סביב העסק שלו.",
       w1: "אתר תדמית", w1s: "נדל״ן יוקרה, הרצליה", w2: "חנות אונליין", w2s: "קרמיקה בעבודת יד", w3: "אפליקציית ווב", w3s: "זימון תורים למרפאה", w4: "אתר תדמית", w4s: "ייעוץ פיננסי",
-      w_all: "לכל העבודות", w_alln: "6 פרויקטים באוויר", pv_back: "חזרה לדף הבית", pv_eye: "כל העבודות", pv_title: "כל <span class=\"serif\">העבודות.</span>", pv_lead: "אתרים אמיתיים, ללקוחות אמיתיים, באוויר עכשיו. לחצו על כל פרויקט כדי לראות אותו חי.", pv_cta: "רוצים אתר כזה? בואו נדבר",
+      w_all: "לכל העבודות", w_alln: "6 פרויקטים באוויר", pv_back: "חזרה לדף הבית", pv_eye: "תיק עבודות", pv_title: "כל <span class=\"serif\">העבודות.</span>", pv_lead: "אתרים אמיתיים, ללקוחות אמיתיים, באוויר עכשיו. לחצו על כל פרויקט כדי לראות אותו חי.", pv_cta: "רוצים אתר כזה? בואו נדבר",
       r_eye: "ביקורות", r_title: ["מה הלקוחות", "<span class=\"serif\">אומרים.</span>"], r_count: "10 ביקורות", r_write: "השאירו ביקורת", r_note: "* ביקורות לדוגמה. יוחלפו בביקורות אמיתיות.", r_ex: "דוגמה",
       sv_more: "לכל הפרטים", nav_home: "דף הבית", nav_proj: "הפרויקטים", nav_contact: "צור קשר",
       f_eye: "שאלות נפוצות", f_title: ["שאלות", "<span class=\"serif\">לפני שמתחילים.</span>"], f_lead: "כל מה ששואלים אותי לפני שיוצאים לדרך. לא מצאתם? אני עונה אישית.", f_more: "יש לכם שאלה אחרת?", f_btn: "דברו איתי",
@@ -1953,7 +1963,7 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
       w_eye: "Selected work", w_title: ["Work that speaks", "<span class=\"serif\">for itself.</span>"],
       w_lead: "Real sites I designed and built for clients, each one shaped around its business.",
       w1: "Brand website", w1s: "Luxury real estate, Herzliya", w2: "Online store", w2s: "Hand-thrown ceramics", w3: "Web app", w3s: "Clinic booking", w4: "Brand website", w4s: "Financial advisory",
-      w_all: "See all work", w_alln: "6 projects live", pv_back: "Back to home", pv_eye: "All work", pv_title: "All <span class=\"serif\">work.</span>", pv_lead: "Real sites, for real clients, live right now. Open any project to see it in action.", pv_cta: "Want a site like this? Let's talk",
+      w_all: "See all work", w_alln: "6 projects live", pv_back: "Back to home", pv_eye: "Portfolio", pv_title: "All <span class=\"serif\">work.</span>", pv_lead: "Real sites, for real clients, live right now. Open any project to see it in action.", pv_cta: "Want a site like this? Let's talk",
       r_eye: "Reviews", r_title: ["What clients", "<span class=\"serif\">say.</span>"], r_count: "10 reviews", r_write: "Leave a review", r_note: "* Sample reviews, to be replaced with real ones.", r_ex: "Sample",
       sv_more: "Full details", nav_home: "Home", nav_proj: "Projects", nav_contact: "Contact",
       f_eye: "FAQ", f_title: ["Questions", "<span class=\"serif\">before we start.</span>"], f_lead: "Everything clients ask me before we get going. Something missing? I answer personally.", f_more: "Got another question?", f_btn: "Talk to me",
@@ -3307,6 +3317,7 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
   document.getElementById("pg-filters").addEventListener("click", function (e) {
     var b = e.target.closest("button"); if (!b || b.dataset.f === pgFilter) return;
     pgFilter = b.dataset.f;
+    if (this.scrollWidth > this.clientWidth) b.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
     this.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-selected", x === b); });
     pgApply(true);
   });
