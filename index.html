@@ -146,10 +146,42 @@ h1 .ln { display: block; overflow: hidden; padding-block: .02em .08em; }
 h1 .ln > span { display: inline-block; }
 h1 .serif { font-family: var(--serif); font-weight: 300; letter-spacing: -.02em; color: var(--brass); }
 :lang(en) h1 .serif { font-stretch: 100%; letter-spacing: -.035em; font-style: normal; }
-.hero-row { display: flex; justify-content: space-between; align-items: end; gap: 40px; flex-wrap: wrap; }
-.lead { margin: 0; max-width: 40ch; font-size: clamp(17px, 1.45cqw, 21px); line-height: 1.55; color: var(--stone); min-width: 0; }
+.lead { margin: 0; max-width: 46ch; font-size: clamp(17px, 1.45cqw, 21px); line-height: 1.55; color: var(--stone); min-width: 0; }
 .lead b { color: var(--bone); font-weight: 600; }
 .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Formal hero: pitch + proof card */
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(45% 55% at 72% 38%, rgba(37, 99, 235, .09), transparent 72%), radial-gradient(35% 45% at 24% 60%, rgba(37, 99, 235, .06), transparent 72%); }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .5;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 56px 56px;
+  -webkit-mask: radial-gradient(70% 60% at 50% 40%, #000, transparent 75%); mask: radial-gradient(70% 60% at 50% 40%, #000, transparent 75%); }
+.hero { isolation: isolate; }
+.hero-top { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); align-items: center; column-gap: clamp(40px, 6cqw, 110px); padding-block: clamp(48px, 6cqw, 96px) clamp(56px, 6.5cqw, 104px); }
+.hero-main { display: grid; gap: 26px; justify-items: start; min-width: 0; }
+.avail { padding: 7px 14px 7px 16px; border: 1px solid var(--line); border-radius: 999px; background: color-mix(in srgb, var(--ink) 70%, #fff); font-size: 13px; }
+.hero h1 { font-size: clamp(2.6rem, 5.2cqw, 5.2rem); line-height: 1.04; letter-spacing: -.03em; }
+:lang(en) .hero h1 { font-size: clamp(2.3rem, 4.2cqw, 4.4rem); }
+.hero h1 .accent { color: var(--brass); }
+.h-trust { display: flex; flex-wrap: wrap; gap: 10px 26px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 14px; color: var(--stone); }
+.h-trust li { display: flex; align-items: center; gap: 9px; }
+.h-trust li::before { content: ""; flex: none; width: 18px; height: 18px; border-radius: 50%; background: rgba(37, 99, 235, .12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 11px no-repeat; }
+.h-card { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: clamp(24px, 2.4cqw, 34px); box-shadow: 0 1px 2px rgba(15, 35, 70, .04), 0 24px 60px -24px rgba(15, 35, 70, .22); display: grid; gap: 22px; min-width: 0; }
+.h-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; border-radius: 22px 22px 0 0; background: linear-gradient(90deg, var(--brass), #7fa8ff); }
+.hc-t { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--stone); }
+.hc-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 0; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.hc-stats > div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 4px; padding: 16px 18px; background: #fff; }
+.hc-stats dt { font-size: 13px; color: var(--stone); }
+.hc-stats dd { margin: 0; font-family: var(--display-en); font-weight: 800; font-size: clamp(26px, 2.3cqw, 34px); line-height: 1; letter-spacing: -.02em; color: var(--bone); direction: ltr; text-align: start; }
+.hc-cl p { margin: 0 0 10px; font-size: 13px; color: var(--stone); }
+.hc-cl ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.hc-cl li { padding: 7px 12px; border-radius: 999px; background: var(--ink-2); font-size: 13px; font-weight: 600; color: var(--bone); direction: ltr; }
+.hc-link { display: inline-flex; align-items: center; gap: 10px; width: fit-content; font-size: 15px; font-weight: 600; color: var(--brass); }
+.hc-link .arr { transition: transform .3s var(--ease); }
+.hc-link:hover .arr { transform: translateX(calc(var(--nudge, -4px))); }
+[dir="ltr"] .hc-link .arr { transform: scaleX(-1); }
+.play .h-trust { animation: up .9s var(--ease) .82s both; }
+.play .h-card { animation: up 1s var(--ease) .5s both; }
 
 /* Hero foot: the three services, and what the visual shows */
 .hero-foot { border-top: 1px solid var(--line); }
@@ -1468,10 +1500,13 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
   .dr-meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; color: var(--stone); }
   .dr-meta a { direction: ltr; unicode-bidi: plaintext; color: var(--bone); }
   .dr-mark { position: absolute; z-index: -1; inset-inline-end: -12%; bottom: 13%; width: 92%; aspect-ratio: 820 / 344; background: url(logo-mark.png) center / contain no-repeat; opacity: 0; transition: opacity .6s; } .open .dr-mark { opacity: .06; transition-delay: .9s; } .dr-mark { filter: grayscale(1); pointer-events: none; }
-  .hero-top { padding-block: 36px 64px; gap: 26px; }
-  h1 { font-size: 15.5cqw; line-height: .95; }
-  :lang(en) h1 { font-size: 12.6cqw; }
-  .hero-row { gap: 28px; }
+  .hero-top { grid-template-columns: minmax(0, 1fr); padding-block: 28px 48px; gap: 36px; }
+  .hero-main { gap: 20px; }
+  .hero h1 { font-size: 9.6cqw; line-height: 1.1; }
+  :lang(en) .hero h1 { font-size: 9cqw; }
+  .hero::after { background-size: 40px 40px; }
+  .h-trust { flex-direction: column; gap: 10px; }
+  .h-card { padding: 22px; border-radius: 18px; gap: 18px; }
   .ctas { width: 100%; flex-direction: column; }
   .ctas .pill { width: 100%; padding-block: 17px; font-size: 16px; }
   .hero-foot { display: none; }
@@ -1679,15 +1714,34 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
     <main id="top">
       <section class="hero">
         <div class="hero-top wrap">
-          <p class="avail"><i aria-hidden="true"></i><span data-k="avail">זמינים לפרויקטים חדשים · נובמבר 2026</span></p>
-          <h1 id="h1"></h1>
-          <div class="hero-row">
+          <div class="hero-main">
+            <p class="avail"><i aria-hidden="true"></i><span data-k="avail">זמינים לפרויקטים חדשים · נובמבר 2026</span></p>
+            <h1 id="h1"></h1>
             <p class="lead" data-kh="lead"></p>
             <div class="ctas">
               <a href="#contact" class="pill solid"><span data-k="cta">קבלו הצעת מחיר</span> <span class="arr" aria-hidden="true">←</span></a>
               <a href="#work" class="pill line" data-k="cta2">צפו בעבודות</a>
             </div>
+            <ul class="h-trust">
+              <li data-k="ht1">עיצוב אישי, בלי תבניות</li>
+              <li data-k="ht2">מענה תוך 24 שעות</li>
+              <li data-k="ht3">ליווי מהאפיון ועד העלייה לאוויר</li>
+            </ul>
           </div>
+          <aside class="h-card" aria-labelledby="hc-t">
+            <p class="hc-t" id="hc-t" data-k="hc_t">B.S.Y DIGITAL בקצרה</p>
+            <dl class="hc-stats">
+              <div><dt data-k="hc_s1">פרויקטים באוויר</dt><dd id="hc-n">6</dd></div>
+              <div><dt data-k="hc_s2">זמן מענה</dt><dd>24h</dd></div>
+              <div><dt data-k="hc_s3">עיצוב בהתאמה אישית</dt><dd>100%</dd></div>
+              <div><dt data-k="hc_s4">סוגי אתרים</dt><dd>3</dd></div>
+            </dl>
+            <div class="hc-cl">
+              <p data-k="hc_cl">בין הלקוחות</p>
+              <ul><li>Pnim Nadlan</li><li>Sweet Tours</li><li>Luma Hair Studio</li><li>Yesod Law</li></ul>
+            </div>
+            <a href="#projects" class="hc-link"><span data-k="hc_link">לכל הפרויקטים</span> <span class="arr" aria-hidden="true">←</span></a>
+          </aside>
         </div>
 
         <div class="hero-foot">
@@ -1926,7 +1980,9 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
     he: {
       mn_home: "דף הבית", mn_svc: "שירותים", mn_s1: "אתרי תדמית", mn_s1d: "אתר שמציג את העסק ומביא פניות", mn_s2: "חנויות אונליין", mn_s2d: "חנות שמוכרת, עם סליקה וניהול", mn_s3: "אפליקציות ווב", mn_s3d: "מערכות, זימון תורים ודשבורדים", mn_proj: "הפרויקטים", mn_contact: "צור קשר", th_lbl: "מצב תצוגה", th_dark: "כהה", th_light: "בהיר", m1: "עבודות", m2: "שירותים", m3: "תהליך", m4: "הסטודיו", cta: "קבלו הצעת מחיר", cta2: "צפו בעבודות",
       avail: "זמינים לפרויקטים חדשים · נובמבר 2026",
-      h1: ["אתרים", "שמציבים אתכם", "<span class=\"serif\">בליגה אחרת.</span>"],
+      h1: ["אתרים שמציבים", "אתכם <span class=\"accent\">בליגה אחרת.</span>"],
+      ht1: "עיצוב אישי, בלי תבניות", ht2: "מענה תוך 24 שעות", ht3: "ליווי מהאפיון ועד העלייה לאוויר",
+      hc_t: "B.S.Y DIGITAL בקצרה", hc_s1: "פרויקטים באוויר", hc_s2: "זמן מענה", hc_s3: "עיצוב בהתאמה אישית", hc_s4: "סוגי אתרים", hc_cl: "בין הלקוחות", hc_link: "לכל הפרויקטים",
       lead: "סטודיו לעיצוב ופיתוח אתרים בהתאמה אישית. <b>אתרי תדמית, חנויות אונליין ואפליקציות ווב.</b>",
       s1: "אתרי תדמית", s2: "חנויות אונליין", s3: "אפליקציות ווב",
       w_eye: "עבודות נבחרות", w_title: ["עבודות שמדברות", "<span class=\"serif\">בעד עצמן.</span>"],
@@ -1954,7 +2010,9 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
     en: {
       mn_home: "Home", mn_svc: "Services", mn_s1: "Brand websites", mn_s1d: "A site that presents you and brings enquiries", mn_s2: "Online stores", mn_s2d: "A store that sells, with payments and admin", mn_s3: "Web apps", mn_s3d: "Systems, booking and dashboards", mn_proj: "Projects", mn_contact: "Contact", th_lbl: "Display", th_dark: "Dark", th_light: "Light", m1: "Work", m2: "Services", m3: "Process", m4: "Studio", cta: "Get a quote", cta2: "See our work",
       avail: "Available for new projects · November 2026",
-      h1: ["Websites that", "put you in", "<span class=\"serif\">another league.</span>"],
+      h1: ["Websites that put you", "in <span class=\"accent\">another league.</span>"],
+      ht1: "Bespoke design, no templates", ht2: "Reply within 24 hours", ht3: "With you from brief to launch",
+      hc_t: "B.S.Y DIGITAL at a glance", hc_s1: "Projects live", hc_s2: "Reply time", hc_s3: "Custom design", hc_s4: "Website types", hc_cl: "Among our clients", hc_link: "All projects",
       lead: "A studio designing and building bespoke websites. <b>Brand sites, online stores and web apps.</b>",
       s1: "Brand websites", s2: "Online stores", s3: "Web apps",
       w_eye: "Selected work", w_title: ["Work that speaks", "<span class=\"serif\">for itself.</span>"],
@@ -2970,6 +3028,7 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
         '</div></article>';
     }).join(""); }
     document.getElementById("pj-list").innerHTML = build(PJ.slice(0, 3));
+    var hcN = document.getElementById("hc-n"); if (hcN) hcN.textContent = PJ.length;
     document.querySelectorAll(".pj-more-n").forEach(function (el) { el.textContent = l === "he" ? PJ.length + " פרויקטים באוויר" : PJ.length + " projects live"; });
     if (typeof PG_T !== "undefined") renderGallery(l);
     setTimeout(drift, 0);
