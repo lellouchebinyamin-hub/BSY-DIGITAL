@@ -1,0 +1,64 @@
+{
+  "_": "Beat map for ad4.html and soundtrack4.py. 120 BPM, 4/4, 30 fps: beat = 0.5 s = 15 frames, bar = 2 s = 60 frames. Times in seconds; frame = round(t * 30).",
+  "bpm": 120,
+  "fps": 30,
+  "dur": 47,
+  "hook": {
+    "dot": 0.0,
+    "words": [0.5, 1.0, 1.5],
+    "weight": [1.5, 2.0],
+    "through": [2.0, 2.6],
+    "question": 2.6,
+    "morph": 3.5,
+    "click": 4.3,
+    "outline": [4.3, 4.9]
+  },
+  "problem": {
+    "explode": [4.9, 5.45],
+    "words": [5.0, 6.0, 7.0],
+    "collapse": [5.5, 6.0],
+    "interact": [6.05, 6.95],
+    "realButton": 7.0,
+    "press": 7.5,
+    "intoButton": [7.55, 8.05]
+  },
+  "brand": {
+    "bloom": 7.8,
+    "accent": 8.0,
+    "sweep": 8.85,
+    "wordmark": 9.0,
+    "line": 9.4,
+    "out": [10.35, 11.1]
+  },
+  "projects": {
+    "phrases": [11.5, 14.0, 16.5, 19.0],
+    "cuts": [13.0, 14.5, 16.0, 17.5, 19.0],
+    "cutSpans": [[12.6, 13.6], [14.1, 15.2], [15.6, 16.6], [17.2, 17.8], [18.6, 19.6]],
+    "handoff": [20.7, 21.65]
+  },
+  "services": {
+    "starts": [22.0, 25.0, 28.0, 31.0, 34.0, 37.0],
+    "names": ["payments", "ai-chat", "seo", "paid-ads", "social-video", "results"],
+    "payments": { "tap": 22.6, "sheet": 22.75, "select": 23.5, "pay": 23.85, "approved": 24.35 },
+    "chat": { "open": 25.25, "send": 25.8, "typing": [25.9, 26.3], "reply": 26.3, "chips": 26.9, "pick": 27.1, "booked": 27.4 },
+    "seo": { "climb": [28.6, 29.6], "top": 29.6 },
+    "ads": { "ad": 31.45, "tap": 31.9, "leads": [32.4, 32.75, 33.1, 33.4] },
+    "social": { "swipes": [35.0, 36.0], "likes": [34.55, 35.55, 36.55] },
+    "results": { "count": [37.3, 38.9], "notes": [37.6, 38.2, 38.8] }
+  },
+  "value": {
+    "move": [39.8, 40.6],
+    "ring": 40.2,
+    "text1": 40.0,
+    "text2": 41.0,
+    "converge": [42.55, 43.0],
+    "riser": [41.8, 43.0]
+  },
+  "end": {
+    "accent": 43.0,
+    "headline": 43.5,
+    "sub": 44.0,
+    "button": 44.5,
+    "contacts": 45.0
+  }
+}
