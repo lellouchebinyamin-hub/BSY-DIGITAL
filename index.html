@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Frank+Ruhl+Libre:wght@300;400;500&family=Archivo:wdth,wght@62..125,300..900&family=Assistant:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-<script>try { if (localStorage.getItem("bsy2-theme") === "light") document.documentElement.dataset.theme = "light"; } catch (e) {}</script>
+<script>(function () { var t = null; try { t = localStorage.getItem("bsy-theme"); } catch (e) {} if (t !== "dark") document.documentElement.dataset.theme = "light"; })();</script>
 <style>
 /* Layout: architectural dark stage. Giant headline anchored to the reading edge, work shown full-bleed rising from the bottom edge. One brass accent. */
 :root {
@@ -3639,26 +3639,27 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
   // Light / dark theme
   var root = document.documentElement, thSeg = document.getElementById("thm-seg"), thBusy = false;
   function curTheme() { return root.dataset.theme === "light" ? "light" : "dark"; }
-  function applyTheme(t) {
+  // Light is the default; only a visitor's own choice of theme is remembered
+  function applyTheme(t, save) {
     if (t === "light") root.dataset.theme = "light"; else delete root.dataset.theme;
     document.querySelectorAll('img[src^="logo-mark"]').forEach(function (im) { im.src = t === "light" ? "logo-mark-light.png" : "logo-mark.png"; });
     thSeg.setAttribute("aria-checked", t === "light");
-    try { localStorage.setItem("bsy2-theme", t); } catch (e) {}
+    if (save) try { localStorage.setItem("bsy-theme", t); } catch (e) {}
   }
   function setTheme(t) {
     if (t === curTheme() || thBusy) return;
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) { applyTheme(t); return; }
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) { applyTheme(t, true); return; }
     thBusy = true;
     if (document.startViewTransition) {
       var sc = document.querySelector(".stage.mobile .site"), y = sc ? sc.scrollTop : scrollY;
       var done = function () { root.classList.remove("vt-theme"); thBusy = false; if (sc) sc.scrollTop = y; else if (Math.abs(scrollY - y) > 2) scrollTo(0, y); };
       root.classList.add("vt-theme");
-      try { var vt = document.startViewTransition(function () { applyTheme(t); }); vt.finished.then(done, done); }
-      catch (e) { applyTheme(t); done(); }
+      try { var vt = document.startViewTransition(function () { applyTheme(t, true); }); vt.finished.then(done, done); }
+      catch (e) { applyTheme(t, true); done(); }
     } else {
       var f = document.createElement("div"); f.className = "th-fade"; f.style.background = t === "light" ? "#f4f0e8" : "#0a0a0b";
       document.body.appendChild(f); void f.offsetWidth; f.classList.add("on");
-      setTimeout(function () { applyTheme(t); f.classList.remove("on"); }, 300);
+      setTimeout(function () { applyTheme(t, true); f.classList.remove("on"); }, 300);
       setTimeout(function () { f.remove(); thBusy = false; }, 650);
     }
   }
