@@ -3054,7 +3054,6 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
   // Real projects, with their screenshots
   var PJ = [
     { id: "smiphone", name: "Smiphone", url: "https://smiphone.vercel.app", he: ["חנות אונליין · סלולר", "חנות אונליין לסמארטפונים ואביזרים, עם סל, תשלומים, אזור אישי וממשק ניהול."], en: ["Online store · Mobile phones", "Online store for smartphones and accessories, with cart, installments, accounts and an admin panel."] },
-    { id: "lumiere", name: "LUMIÈRE", url: "https://liora-jewelry-store.netlify.app", he: ["חנות אונליין · תכשיטים", "חנות תכשיטים יוקרתית עם קולקציות, בחירת סוג זהב ומידה, חריטה אישית וסל קניות."], en: ["Online store · Fine jewelry", "Luxury jewelry store with collections, metal and size options, personal engraving and a cart."] },
     { id: "pnim", name: "Pnim Nadlan", url: "https://pnim-nadlan.vercel.app", he: ["נדל״ן · גוש דן", "אתר נדל״ן אורבני עם חיפוש נכסים, קנייה, השכרה והערכת שווי."], en: ["Real estate · Tel Aviv area", "Urban real estate site with property search, rentals and valuations."] },
     { id: "sweet", name: "Sweet Tours", url: "https://sweet-tours.vercel.app", he: ["סוויטות בוטיק · נתניה", "אתר לסוויטות מול הים, עם מחירים, ג׳קוזי ושקיעה שמוכרים לבד."], en: ["Boutique suites · Netanya", "Seafront suites site where the sunset, jacuzzi and prices sell themselves."] },
     { id: "luma", name: "Luma Hair Studio", url: "https://luma-hair-studio-ebon.vercel.app", he: ["סטודיו לשיער · ירושלים", "אתר תדמית לברברשופ בלב ירושלים, עם קביעת תור ווואטסאפ בלחיצה."], en: ["Hair studio · Jerusalem", "Brand site for a Jerusalem barbershop, with one-tap booking and WhatsApp."] },
@@ -3336,8 +3335,8 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
   }
   renderKnow(lang);
   // Projects page
-  var PG_CAT = { smiphone: "store", lumiere: "store", luma: "beauty", myriam: "beauty", pnim: "estate", yesod: "estate", garage: "service", sweet: "service" };
-  var PG_TINT = { smiphone: "#2563eb", lumiere: "#9c7a45", luma: "#b0703f", myriam: "#d7a89c", pnim: "#7f9a86", yesod: "#8a8f96", garage: "#6f6ca8", sweet: "#c9a46e" };
+  var PG_CAT = { smiphone: "store", luma: "beauty", myriam: "beauty", pnim: "estate", yesod: "estate", garage: "service", sweet: "service" };
+  var PG_TINT = { smiphone: "#2563eb", luma: "#b0703f", myriam: "#d7a89c", pnim: "#7f9a86", yesod: "#8a8f96", garage: "#6f6ca8", sweet: "#c9a46e" };
   var PG_T = {
     he: { f: [["all", "הכל"], ["store", "חנויות אונליין"], ["beauty", "יופי וטיפוח"], ["estate", "נדל״ן ומשפט"], ["service", "שירות ואירוח"], ["other", "עוד"]], stats: [["06", "פרויקטים באוויר"], ["IL + US", "ישראל וארה״ב"], ["100%", "עיצוב אישי"]], view: "צפו בפרויקט", open: "פתחו את הפרויקט", live: "צפו באתר החי", full: "תצוגה מלאה", ch: "האתגר", so: "מה בנינו", ftT: "מה יש באתר", m: ["סוג", "תחום", "מיקום"], type: "אתר תדמית" },
     en: { f: [["all", "All"], ["store", "Online stores"], ["beauty", "Beauty"], ["estate", "Real estate & law"], ["service", "Service & hospitality"], ["other", "More"]], stats: [["06", "projects live"], ["IL + US", "Israel and the US"], ["100%", "bespoke design"]], view: "View project", open: "Open project", live: "Visit the live site", full: "Full view", ch: "The challenge", so: "What we built", ftT: "On the site", m: ["Type", "Field", "Location"], type: "Brand website" }
@@ -3346,7 +3345,6 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
   var PJD = {
     he: {
       smiphone: { ch: "חנות סלולר שרצתה למכור סמארטפונים ואביזרים אונליין, עם חוויה של רשת גדולה ובלי להיות תלויה בפלטפורמה חיצונית.", so: "חנות מלאה בעברית: קטגוריות, חיפוש חכם, עמוד מוצר עם צבעים ונפחים, סל ותשלומים, אזור אישי וממשק ניהול למוצרים, מלאי והזמנות.", ft: ["קטלוג וחיפוש חכם", "סל ותשלומים", "אזור אישי והזמנות", "ממשק ניהול"] },
-      lumiere: { ch: "חנות תכשיטים שרצתה שהקנייה אונליין תרגיש כמו כניסה לבוטיק יוקרתי, ולא כמו עוד קטלוג.", so: "חנות אלגנטית בעברית: קולקציות וקטגוריות, סינון לפי סוג זהב ואבן, עמוד מוצר עם זום, בחירת מידה וחריטה אישית, סל ותהליך תשלום.", ft: ["קולקציות וסינון", "זהב, מידה וחריטה", "מדריך מידות", "סל ותשלום"] },
       luma: { ch: "ברברשופ בוטיק בירושלים שרצה להיראות פרימיום ולמלא את היומן בלי לענות לטלפון כל היום.", so: "אתר כהה ויוקרתי עם קביעת תור ווואטסאפ בלחיצה, גלריית עבודות ומחירון ברור.", ft: ["קביעת תור אונליין", "וואטסאפ בלחיצה", "גלריית עבודות", "מחירון שירותים"] },
       myriam: { ch: "מומחית לאיפור קבוע והסרת קעקועים שפונה ללקוחות בעברית ובצרפתית, ורוצה שיסמכו עליה מהמבט הראשון.", so: "אתר דו־לשוני, רך ונשי, שמציג את הטיפולים והתוצאות ומוביל לשיחה או לוואטסאפ.", ft: ["עברית + צרפתית", "הסבר על כל טיפול", "תוצאות ועבודות", "פנייה מהירה"] },
       pnim: { ch: "משרד נדל״ן אורבני שצריך להציג נכסים ולקבל פניות מקונים, משכירים ובעלי נכסים.", so: "אתר עירוני ונקי עם חיפוש נכסים, אזורים לקנייה ולהשכרה וטופס הערכת שווי.", ft: ["חיפוש נכסים", "קנייה והשכרה", "הערכת שווי", "מותאם למובייל"] },
@@ -3356,7 +3354,6 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
     },
     en: {
       smiphone: { ch: "A phone shop that wanted to sell smartphones and accessories online with a big-chain experience, without depending on an outside platform.", so: "A full Hebrew store: categories, smart search, product pages with colours and storage options, cart and installments, customer accounts and an admin panel for products, stock and orders.", ft: ["Catalogue and smart search", "Cart and installments", "Accounts and orders", "Admin panel"] },
-      lumiere: { ch: "A jewelry brand that wanted buying online to feel like walking into a luxury boutique, not browsing another catalogue.", so: "An elegant Hebrew store: collections and categories, filters by metal and stone, product pages with zoom, size choice and personal engraving, a cart and checkout.", ft: ["Collections and filters", "Metal, size and engraving", "Ring size guide", "Cart and checkout"] },
       luma: { ch: "A boutique Jerusalem barbershop that wanted to look premium and fill the calendar without answering the phone all day.", so: "A dark, upscale site with one-tap booking and WhatsApp, a work gallery and a clear price list.", ft: ["Online booking", "One-tap WhatsApp", "Work gallery", "Price list"] },
       myriam: { ch: "A permanent makeup and tattoo removal specialist serving clients in Hebrew and French, who needs trust at first glance.", so: "A soft, bilingual site that presents each treatment and its results and leads to a call or WhatsApp.", ft: ["Hebrew + French", "Every treatment explained", "Results and work", "Fast contact"] },
       pnim: { ch: "An urban real estate office that needs to showcase properties and get enquiries from buyers, renters and owners.", so: "A clean, urban site with property search, buy and rent sections and a valuation form.", ft: ["Property search", "Buy and rent", "Valuation form", "Mobile ready"] },
