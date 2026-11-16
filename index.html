@@ -1717,6 +1717,66 @@ html.a11y-space .site p, html.a11y-space .site li, html.a11y-space .site dd, htm
 html.a11y-still *, html.a11y-still *::before, html.a11y-still *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: .01ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
 html.a11y-cursor .cur, html.a11y-cursor .cur-ring { display: none !important; }
 html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24'%3E%3Cpath d='M5 2l14 10.5-6.4 1.2L16 21l-3 1.3-3.1-7.6L5 19z' fill='%23111' stroke='%23fff' stroke-width='1.3'/%3E%3C/svg%3E") 6 3, auto !important; }
+
+/* Services v2 (2026-11-16): trust strip with real clients + four cards with a small live visual */
+.services { padding-block: clamp(56px, 6cqw, 90px) clamp(96px, 12cqw, 160px); border-top: 0; }
+.tr { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 28px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 18px 22px; box-shadow: 0 1px 2px rgba(15,35,70,.04), 0 12px 32px -18px rgba(15,35,70,.18); margin-bottom: clamp(64px, 8cqw, 110px); }
+.tr-l { display: flex; align-items: center; gap: 14px; padding-inline-end: 26px; border-inline-end: 1px solid var(--line); }
+.tr-l b { font-family: var(--display-he); font-size: 36px; font-weight: 900; line-height: 1; color: var(--brass); }
+.tr-l span { font-size: 14px; color: var(--stone); line-height: 1.3; }
+.tr-mq { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.tr-t { display: flex; gap: 14px; width: max-content; animation: tr-mq 40s linear infinite; }
+.tr-mq:hover .tr-t { animation-play-state: paused; }
+html[dir="ltr"] .tr-t { animation-name: tr-mq-l; }
+@keyframes tr-mq { to { transform: translateX(50%); } }
+@keyframes tr-mq-l { to { transform: translateX(-50%); } }
+.tr-c { display: flex; align-items: center; gap: 12px; padding: 7px 16px 7px 7px; padding-inline: 7px 16px; border-radius: 999px; background: var(--ink); border: 1px solid var(--line); white-space: nowrap; transition: border-color .3s; }
+.tr-c:hover { border-color: rgba(37,99,235,.4); }
+.tr-c img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(15,35,70,.15); }
+.tr-c b { display: block; font-size: 15px; font-weight: 700; line-height: 1.2; color: var(--bone); }
+.tr-c small { display: block; font-size: 12px; color: var(--stone); }
+.sc-g { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.sc { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(15,35,70,.04), 0 12px 32px -18px rgba(15,35,70,.18); transition: transform .5s var(--ease), box-shadow .5s, border-color .3s, opacity .7s var(--ease); }
+.sc:hover { transform: translateY(-6px); border-color: rgba(37,99,235,.35); box-shadow: 0 30px 60px -32px rgba(15,35,70,.4); }
+.sc.pre { opacity: 0; transform: translateY(28px); }
+.sc { transition-delay: calc(var(--d, 0) * 110ms); } .sc:hover { transition-delay: 0s; }
+.sc-v { height: 170px; background: linear-gradient(180deg, var(--ink-2), #f4f8fd); position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.sc-b { padding: 24px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.sc h3 { margin: 0; font-family: var(--display-he); font-size: 22px; font-weight: 800; line-height: 1.2; color: var(--bone); }
+:lang(en) .sc h3 { font-family: var(--display-en); font-stretch: 105%; letter-spacing: -.01em; }
+.sc p { margin: 0; color: var(--stone); font-size: 15px; }
+.sc-f { margin-top: auto; padding-top: 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-top: 1px solid var(--line); }
+.sc-o { font-size: 13px; font-weight: 700; background: var(--ink-2); color: var(--brass); padding: 4px 10px; border-radius: 999px; }
+.sc-m { font-size: 14px; font-weight: 700; color: var(--brass); white-space: nowrap; }
+.sc.hot { background: #0f1e33; border-color: #0f1e33; }
+.sc.hot .sc-v { background: linear-gradient(160deg, #16305a, #0f1e33); border-color: rgba(255,255,255,.08); }
+.sc.hot h3 { color: #fff; } .sc.hot p { color: #b7c3d6; } .sc.hot .sc-f { border-color: rgba(255,255,255,.12); }
+.sc.hot .sc-o { background: rgba(157,187,255,.15); color: #9dbbff; } .sc.hot .sc-m { color: #9dbbff; }
+.sc-new { position: absolute; top: 14px; inset-inline-end: 14px; font-size: 11px; font-weight: 700; background: var(--brass); color: #fff; padding: 4px 10px; border-radius: 999px; z-index: 2; }
+.sx-chat { position: absolute; inset: 22px 18px; display: flex; flex-direction: column; gap: 7px; justify-content: flex-end; }
+.sx-chat i { font-style: normal; font-size: 12px; padding: 6px 10px; border-radius: 12px; max-width: 80%; }
+.sx-chat .u { align-self: flex-start; background: #fff; color: #0f1e33; }
+.sx-chat .b { align-self: flex-end; background: #1f6f4a; color: #fff; }
+.sc.in .sx-chat i { animation: sx-pop .5s var(--ease) both; } .sc.in .sx-chat i:nth-child(2) { animation-delay: .5s; } .sc.in .sx-chat i:nth-child(3) { animation-delay: 1s; }
+@keyframes sx-pop { from { opacity: 0; transform: translateY(8px); } }
+.sx-shot { position: absolute; inset: 22px 22px -10px; border-radius: 12px 12px 0 0; background: #fff center top / cover no-repeat; box-shadow: 0 10px 30px -12px rgba(15,35,70,.3); transition: background-position 4s ease; }
+.sc:hover .sx-shot { background-position: center 70%; }
+.sx-store { position: absolute; inset: 24px 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.sx-store i { background: #fff; border-radius: 10px; box-shadow: 0 4px 12px -6px rgba(15,35,70,.25); position: relative; transition: outline-color .3s; outline: 2px solid transparent; }
+.sx-store i::before { content: ""; position: absolute; inset: 8px 8px 22px; border-radius: 6px; background: var(--ink-2); }
+.sx-store i::after { content: ""; position: absolute; inset: auto 8px 9px; height: 6px; border-radius: 3px; background: #d5dfec; width: 60%; }
+.sx-store i.on { outline-color: var(--brass); }
+.sx-app { position: absolute; inset: 24px 22px 18px; background: #fff; border-radius: 12px; box-shadow: 0 8px 20px -10px rgba(15,35,70,.3); padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.sx-app .k { display: flex; gap: 6px; } .sx-app .k i { flex: 1; height: 26px; border-radius: 6px; background: var(--ink-2); }
+.sx-app .bars { flex: 1; display: flex; align-items: end; gap: 5px; } .sx-app .bars i { flex: 1; border-radius: 3px 3px 1px 1px; background: #d5e2f6; height: var(--h); transition: height 1s var(--ease); } .sx-app .bars i:first-child { background: var(--brass); }
+@container site (max-width: 1180px) { .sc-g { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container site (max-width: 860px) {
+  .tr { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 14px; border-radius: 18px; margin-bottom: 56px; }
+  .tr-l { border: 0; padding: 0; } .tr-l b { font-size: 28px; }
+  .sc-g { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .sc-v { height: 150px; }
+}
+@media (prefers-reduced-motion: reduce) { .tr-t { animation: none; } .sc.pre { opacity: 1; transform: none; } }
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -1808,6 +1868,22 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
         </div>
       </section>
 
+      <section class="services" id="services">
+        <div class="wrap">
+          <div class="tr rv" id="tr">
+            <div class="tr-l"><b id="tr-n">6</b><span data-kh="tr_lbl"></span></div>
+            <div class="tr-mq"><div class="tr-t" id="tr-t"></div></div>
+          </div>
+          <div class="sec-head">
+            <div>
+              <p class="eyebrow rv"><span data-k="sv_eye">שירותים</span></p>
+              <h2 class="rvl" id="sv_title"></h2>
+            </div>
+            <p class="sec-lead rv" data-k="sv_lead"></p>
+          </div>
+          <div class="sc-g" id="svc-row"></div>
+        </div>
+      </section>
       <section class="work" id="work">
         <div class="wrap">
           <div class="sec-head">
@@ -1820,18 +1896,6 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
           <div class="pj-list" id="pj-list"></div>
           <div class="pj-more rv"><a href="#projects" class="pill solid"><span data-k="w_all">לכל העבודות</span></a><span class="pj-more-n" data-k="w_alln">6 פרויקטים באוויר</span></div>
           <div class="pj-count" id="pj-count" aria-hidden="true"><b>01</b><i></i><span>06</span><em></em></div>
-        </div>
-      </section>
-      <section class="services" id="services">
-        <div class="wrap">
-          <div class="sec-head">
-            <div>
-              <p class="eyebrow rv"><span data-k="sv_eye">שירותים</span></p>
-              <h2 class="rvl" id="sv_title"></h2>
-            </div>
-            <p class="sec-lead rv" data-k="sv_lead"></p>
-          </div>
-          <div class="svc-row" id="svc-row"></div>
         </div>
       </section>
       <section class="why" id="about">
@@ -2056,7 +2120,7 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
       ft_say: "הפרויקט הבא שלכם <span class=\"serif\">מתחיל בהודעה אחת.</span>", ft_nav: "ניווט", ft_faq: "שאלות נפוצות", ft_talk: "דברו איתי", ft_rights: "כל הזכויות שמורות", ft_acc: "הצהרת נגישות", ft_priv: "מדיניות פרטיות", ft_terms: "תנאי שימוש", f_consent: "בשליחת הבריף אתם מאשרים את <a href=\"#privacy\">מדיניות הפרטיות</a>. הפרטים משמשים רק כדי לחזור אליכם.", ft_top: "חזרה למעלה",
       p_hint: "החליקו לצדדים", p_eye: "תהליך העבודה", p_title: "מהרעיון לאתר באוויר, <span class=\"serif\">בארבעה צעדים.</span>", p_lead: "תהליך ברור עם לוחות זמנים אמיתיים. אתם מאשרים כל שלב לפני שממשיכים.",
       y_eye: "למה B.S.Y", y_title: ["סטודיו קטן.", "<span class=\"serif\">תוצאה של גדולים.</span>"], y_lead: "ההבדל בין סוכנות רגילה לבין עבודה ישירה איתי, בשורה אחת לכל דבר שחשוב.",
-      sv_eye: "שירותים", sv_title: ["AI, אתרים ומערכות.", "<span class=\"serif\">ברמה הכי גבוהה.</span>"], sv_lead: "כלים שעובדים בשבילכם: סוכני AI ואוטומציות שחוסכים שעות עבודה, ולצדם אתרים, חנויות ואפליקציות שמביאים לקוחות.",
+      sv_eye: "מה אנחנו בונים", sv_title: ["פתרון אחד לכל מה", "<span class=\"serif\">שהעסק צריך.</span>"], sv_lead: "מתחילים מהבעיה של העסק, לא מהטכנולוגיה. כל פרויקט נמדד במה שהוא חוסך לכם או מכניס לכם.", tr_lbl: "עסקים כבר<br>באוויר איתנו",
       w_cta: "הפרויקט הבא יכול להיות שלכם", w_note: "* פרויקטים לדוגמה",
       cap: "בתמונה: Lévy Estates · Atelier Noa — פרויקטים לדוגמה", arr: "←", other: "EN"
     },
@@ -2086,7 +2150,7 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
       ft_say: "Your next project <span class=\"serif\">starts with one message.</span>", ft_nav: "Navigate", ft_faq: "FAQ", ft_talk: "Talk to me", ft_rights: "All rights reserved", ft_acc: "Accessibility", ft_priv: "Privacy policy", ft_terms: "Terms of use", f_consent: "By sending the brief you accept the <a href=\"#privacy\">privacy policy</a>. Your details are used only to get back to you.", ft_top: "Back to top",
       p_hint: "Swipe sideways", p_eye: "How we work", p_title: "From idea to live site, <span class=\"serif\">in four steps.</span>", p_lead: "A clear process with real timelines. You approve every stage before we move on.",
       y_eye: "Why B.S.Y", y_title: ["A small studio.", "<span class=\"serif\">Big-league results.</span>"], y_lead: "The difference between a typical agency and working directly with me, one line for everything that matters.",
-      sv_eye: "Services", sv_title: ["AI, websites and systems.", "<span class=\"serif\">Done exceptionally.</span>"], sv_lead: "Tools that work for you: AI agents and automations that save hours of work, alongside websites, stores and apps that bring in clients.",
+      sv_eye: "What we build", sv_title: ["One partner for everything", "<span class=\"serif\">your business needs.</span>"], sv_lead: "We start from the business problem, not the technology. Every project is measured by what it saves you or brings in.", tr_lbl: "businesses already<br>live with us",
       w_cta: "Your project could be next", w_note: "* Sample projects",
       cap: "Shown: Lévy Estates · Atelier Noa — sample projects", arr: "→", other: "עב"
     }
@@ -3033,37 +3097,52 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
   // Services
   var SV = {
     he: [
-      { key: "ai", tag: "AI", name: "מערכות AI וסוכנים", pitch: "סוכנים חכמים ואוטומציות שעושים את העבודה החוזרת במקומכם. פחות זמן על משימות, פחות כאב ראש, יותר זמן לעסק.", list: ["סוכן AI שעונה ללקוחות 24/7 בוואטסאפ ובאתר", "אוטומציות להצעות מחיר, תזכורות ודוחות", "קליטה וסינון לידים אוטומטי", "חיבור לכלים שאתם כבר עובדים איתם", "כלים פנימיים מבוססי AI בהתאמה אישית"] },
-      { key: "site", tag: "Brand", name: "אתרי תדמית", pitch: "נוכחות דיגיטלית שמשדרת יוקרה ואמינות מהשנייה הראשונה, ומביאה פניות.", list: ["עיצוב בהתאמה אישית, בלי תבניות", "עברית ואנגלית, כולל RTL מלא", "אנימציות ומיקרו־אינטראקציות", "מושלם במובייל, נטען בפחות משנייה", "בסיס SEO לגוגל"] },
-      { key: "store", tag: "Store", name: "חנויות אונליין", pitch: "חנות שנראית כמו מותג, נותנת ביטחון לקנות, ומוכרת גם כשאתם ישנים.", list: ["קטלוג וניהול מוצרים פשוט", "סליקה מאובטחת", "ניהול הזמנות ומלאי", "תהליך רכישה מהיר במובייל", "חיבור לוואטסאפ ולמשלוחים"] },
-      { key: "app", tag: "App", name: "אפליקציות ווב", pitch: "מערכות בהתאמה אישית שחוסכות לכם זמן ומייצרות הכנסה.", list: ["זימון תורים והזמנות אונליין", "אזור אישי ללקוחות", "דשבורדים וממשקי ניהול", "חיבור למערכות קיימות ו־API", "קוד נקי שגדל יחד עם העסק"] }
+      { key: "ai", tag: "AI", out: "חוסך שעות כל שבוע", short: "סוכן שעונה ללקוחות 24/7, מסנן לידים וקובע פגישות, ואוטומציות לכל מה שחוזר על עצמו.", chat: ["יש תור מחר?", "כן! 11:30 או 16:00 🙂", "קבעתי לך ל־16:00 ✓"], name: "מערכות AI וסוכנים", pitch: "סוכנים חכמים ואוטומציות שעושים את העבודה החוזרת במקומכם. פחות זמן על משימות, פחות כאב ראש, יותר זמן לעסק.", list: ["סוכן AI שעונה ללקוחות 24/7 בוואטסאפ ובאתר", "אוטומציות להצעות מחיר, תזכורות ודוחות", "קליטה וסינון לידים אוטומטי", "חיבור לכלים שאתם כבר עובדים איתם", "כלים פנימיים מבוססי AI בהתאמה אישית"] },
+      { key: "site", tag: "Brand", out: "יותר פניות", short: "אתר שנראה כמו של חברה גדולה, נטען בשנייה ובנוי כדי שמבקרים יהפכו לפניות.", name: "אתרי תדמית", pitch: "נוכחות דיגיטלית שמשדרת יוקרה ואמינות מהשנייה הראשונה, ומביאה פניות.", list: ["עיצוב בהתאמה אישית, בלי תבניות", "עברית ואנגלית, כולל RTL מלא", "אנימציות ומיקרו־אינטראקציות", "מושלם במובייל, נטען בפחות משנייה", "בסיס SEO לגוגל"] },
+      { key: "store", tag: "Store", out: "מכירות 24/7", short: "קטלוג, סליקה מאובטחת ותהליך רכישה קצר במובייל. חנות שמוכרת גם כשאתם ישנים.", name: "חנויות אונליין", pitch: "חנות שנראית כמו מותג, נותנת ביטחון לקנות, ומוכרת גם כשאתם ישנים.", list: ["קטלוג וניהול מוצרים פשוט", "סליקה מאובטחת", "ניהול הזמנות ומלאי", "תהליך רכישה מהיר במובייל", "חיבור לוואטסאפ ולמשלוחים"] },
+      { key: "app", tag: "App", out: "הכול במקום אחד", short: "זימון תורים, אזור לקוחות ודשבורדים. מערכת שעובדת בדיוק כמו העסק שלכם.", name: "אפליקציות ווב", pitch: "מערכות בהתאמה אישית שחוסכות לכם זמן ומייצרות הכנסה.", list: ["זימון תורים והזמנות אונליין", "אזור אישי ללקוחות", "דשבורדים וממשקי ניהול", "חיבור למערכות קיימות ו־API", "קוד נקי שגדל יחד עם העסק"] }
     ],
     en: [
-      { key: "ai", tag: "AI", name: "AI systems & agents", pitch: "Smart agents and automations that take the repetitive work off your plate. Less time on tasks, fewer headaches, more time for the business.", list: ["An AI agent that answers clients 24/7 on WhatsApp and your site", "Automations for quotes, reminders and reports", "Automatic lead capture and qualification", "Connected to the tools you already use", "Custom AI-powered internal tools"] },
-      { key: "site", tag: "Brand", name: "Brand websites", pitch: "A presence that signals quality and trust from the first second, and brings in enquiries.", list: ["Bespoke design, no templates", "Hebrew and English, full RTL", "Animation and micro-interactions", "Flawless on mobile, loads in under a second", "SEO foundations for Google"] },
-      { key: "store", tag: "Store", name: "Online stores", pitch: "A store that looks like a brand, feels safe to buy from, and sells while you sleep.", list: ["Simple catalogue and product management", "Secure checkout", "Orders and stock management", "Fast mobile checkout", "WhatsApp and shipping integrations"] },
-      { key: "app", tag: "App", name: "Web apps", pitch: "Custom systems that save you time and make you money.", list: ["Online booking and scheduling", "Customer accounts", "Dashboards and admin panels", "Connections to your tools and APIs", "Clean code that grows with the business"] }
+      { key: "ai", tag: "AI", out: "Saves hours every week", short: "An agent that answers clients 24/7, qualifies leads and books meetings, plus automations for everything repetitive.", chat: ["Any slot tomorrow?", "Yes! 11:30 or 16:00 🙂", "Booked you for 16:00 ✓"], name: "AI systems & agents", pitch: "Smart agents and automations that take the repetitive work off your plate. Less time on tasks, fewer headaches, more time for the business.", list: ["An AI agent that answers clients 24/7 on WhatsApp and your site", "Automations for quotes, reminders and reports", "Automatic lead capture and qualification", "Connected to the tools you already use", "Custom AI-powered internal tools"] },
+      { key: "site", tag: "Brand", out: "More enquiries", short: "A site that looks like a big company's, loads in a second and turns visitors into enquiries.", name: "Brand websites", pitch: "A presence that signals quality and trust from the first second, and brings in enquiries.", list: ["Bespoke design, no templates", "Hebrew and English, full RTL", "Animation and micro-interactions", "Flawless on mobile, loads in under a second", "SEO foundations for Google"] },
+      { key: "store", tag: "Store", out: "Sales 24/7", short: "Catalogue, secure checkout and a short mobile purchase flow. A store that sells while you sleep.", name: "Online stores", pitch: "A store that looks like a brand, feels safe to buy from, and sells while you sleep.", list: ["Simple catalogue and product management", "Secure checkout", "Orders and stock management", "Fast mobile checkout", "WhatsApp and shipping integrations"] },
+      { key: "app", tag: "App", out: "All in one place", short: "Booking, customer accounts and dashboards. A system that works exactly like your business.", name: "Web apps", pitch: "Custom systems that save you time and make you money.", list: ["Online booking and scheduling", "Customer accounts", "Dashboards and admin panels", "Connections to your tools and APIs", "Clean code that grows with the business"] }
     ]
   };
+  var scTimer = 0;
+  function scVis(v) {
+    if (v.key === "ai") return '<span class="sc-new">' + (lang === "he" ? "חדש" : "New") + '</span><div class="sx-chat"><i class="u">' + esc(v.chat[0]) + '</i><i class="b">' + esc(v.chat[1]) + '</i><i class="b">' + esc(v.chat[2]) + "</i></div>";
+    if (v.key === "site") return '<div class="sx-shot" style="background-image:url(work/pnim-d.jpg)"></div>';
+    if (v.key === "store") return '<div class="sx-store"><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div>';
+    return '<div class="sx-app"><div class="k"><i></i><i></i><i></i></div><div class="bars"><i style="--h:90%"></i><i style="--h:50%"></i><i style="--h:65%"></i><i style="--h:40%"></i><i style="--h:72%"></i><i style="--h:55%"></i></div></div>';
+  }
+  function renderTrust(l) {
+    var t = document.getElementById("tr-t"); if (!t) return;
+    var list = PJ.filter(function (p) { return !p.user; });
+    var one = list.map(function (p) { return '<span class="tr-c"><img src="' + esc(pjImg(p, "m")) + '" alt="" loading="lazy"><span><b>' + esc(p.name) + "</b><small>" + esc(String(pjTxt(p, l)[0]).split(" · ")[0]) + "</small></span></span>"; }).join("");
+    t.innerHTML = one + one;
+    document.getElementById("tr-n").textContent = PJ.length;
+  }
   function renderServices(l) {
     var row = document.getElementById("svc-row"); if (!row) return;
-    var cur = row.querySelector(".svc.on"), idx = cur ? +cur.dataset.i : 0, cta = l === "he" ? "בואו נדבר על זה" : "Let's talk about it";
+    renderTrust(l);
     row.innerHTML = SV[l].map(function (v, i) {
-      return '<article class="svc' + (i === idx ? " on" : "") + '" data-i="' + i + '" tabindex="0">' +
-        '<span class="svc-tag">' + v.tag + '</span>' +
-        '<h3 class="svc-name">' + esc(v.name) + '</h3>' +
-        '<div class="svc-body"><p class="svc-pitch">' + esc(v.pitch) + '</p><ul class="svc-list">' + v.list.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + '</ul><a class="svc-cta" href="#service-' + v.key + '">' + T[l].sv_more + '</a></div>' +
-      '</article>';
+      return '<a class="sc' + (v.key === "ai" ? " hot" : "") + '" href="#service-' + v.key + '" style="--d:' + i + '"><div class="sc-v" aria-hidden="true">' + scVis(v) + '</div>' +
+        '<div class="sc-b"><h3>' + esc(v.name) + "</h3><p>" + esc(v.short) + '</p><div class="sc-f"><span class="sc-o">' + esc(v.out) + '</span><span class="sc-m">' + T[l].sv_more + "</span></div></div></a>";
     }).join("");
-    // Soft fade-up as each card scrolls into view
-    if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); } }); }, { threshold: .15 });
-      row.querySelectorAll(".svc").forEach(function (el, i) {
-        var r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0 && row.dataset.seen) return;
-        el.style.setProperty("--d", getComputedStyle(row).gridTemplateColumns.split(" ").length > 1 ? i : 0); el.classList.add("pre"); io.observe(el);
-      });
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if ("IntersectionObserver" in window && !reduce) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("pre"); e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .15 });
+      row.querySelectorAll(".sc").forEach(function (el) { if (!row.dataset.seen) el.classList.add("pre"); else el.classList.add("in"); io.observe(el); });
       row.dataset.seen = 1;
-    }
+    } else row.querySelectorAll(".sc").forEach(function (el) { el.classList.add("in"); });
+    clearInterval(scTimer);
+    if (!reduce) scTimer = setInterval(function () {
+      if (document.getElementById("top").hidden) return;
+      row.querySelectorAll(".sx-app .bars i").forEach(function (b, k) { b.style.setProperty("--h", (k ? 25 + Math.random() * 55 : 75 + Math.random() * 22) + "%"); });
+      var it = row.querySelectorAll(".sx-store i"), on = [].findIndex.call(it, function (x) { return x.classList.contains("on"); });
+      it.forEach(function (x, k) { x.classList.toggle("on", k === (on + 1) % it.length); });
+    }, 1800);
   }
 
   // Real projects, with their screenshots
