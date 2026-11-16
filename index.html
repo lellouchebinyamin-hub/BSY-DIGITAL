@@ -1777,6 +1777,33 @@ html[dir="ltr"] .tr-t { animation-name: tr-mq-l; }
   .sc-v { height: 150px; }
 }
 @media (prefers-reduced-motion: reduce) { .tr-t { animation: none; } .sc.pre { opacity: 1; transform: none; } }
+
+/* Selected work v2 (2026-11-16): magazine grid, mixed sizes, big screenshots */
+.wk-g { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 18px; }
+.wk { position: relative; display: block; border-radius: 24px; overflow: hidden; background: #0f1e33; min-height: 340px; isolation: isolate; transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: calc(var(--d, 0) * 110ms); }
+.wk.pre { opacity: 0; transform: translateY(30px); }
+.wk.w7 { grid-column: span 7; } .wk.w5 { grid-column: span 5; } .wk.w4 { grid-column: span 4; }
+.wk.big { min-height: 440px; }
+.wk-bg { position: absolute; inset: 0; background: #0f1e33 center top / cover no-repeat; transition: transform 1.2s var(--ease), background-position 5s ease; z-index: -2; }
+.wk::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,20,38,.92) 0%, rgba(10,20,38,.35) 45%, transparent 75%); z-index: -1; }
+.wk:hover .wk-bg { transform: scale(1.04); background-position: center 40%; }
+.wk-b { position: absolute; inset: auto 0 0 0; padding: 24px 26px; color: #fff; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.wk-b small { display: block; font-size: 13px; color: #c9d5e8; }
+.wk-b b { display: block; margin-top: 2px; font-family: var(--display-he); font-size: 24px; font-weight: 800; line-height: 1.15; }
+:lang(en) .wk-b b { font-family: var(--display-en); font-stretch: 105%; }
+.wk-b em { display: block; font-style: normal; margin-top: 6px; font-size: 14px; color: #c9d5e8; max-width: 420px; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .5s var(--ease), opacity .4s; }
+.wk:hover .wk-b em, .wk:focus-visible .wk-b em { max-height: 80px; opacity: 1; }
+.wk-go { flex: none; width: 46px; height: 46px; border-radius: 50%; background: #fff; color: #0f1e33; display: grid; place-items: center; transition: background .3s, color .3s, transform .4s var(--ease); }
+.wk:hover .wk-go { background: var(--brass); color: #fff; transform: rotate(90deg); }
+#work .pj-more { justify-content: center; margin-top: clamp(36px, 4cqw, 56px); }
+@container site (max-width: 1000px) { .wk.w7, .wk.w5, .wk.w4 { grid-column: span 6; } .wk:last-child:nth-child(odd) { grid-column: span 12; } }
+@container site (max-width: 760px) {
+  .wk-g { gap: 14px; }
+  .wk.w7, .wk.w5, .wk.w4, .wk:last-child:nth-child(odd) { grid-column: span 12; }
+  .wk, .wk.big { min-height: 300px; }
+  .wk-b em { max-height: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .wk.pre { opacity: 1; transform: none; } }
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -1893,9 +1920,8 @@ html[dir="ltr"] .tr-t { animation-name: tr-mq-l; }
             </div>
             <p class="sec-lead rv" data-k="w_lead"></p>
           </div>
-          <div class="pj-list" id="pj-list"></div>
+          <div class="wk-g" id="wk-g"></div>
           <div class="pj-more rv"><a href="#projects" class="pill solid"><span data-k="w_all">לכל העבודות</span></a><span class="pj-more-n" data-k="w_alln">6 פרויקטים באוויר</span></div>
-          <div class="pj-count" id="pj-count" aria-hidden="true"><b>01</b><i></i><span>06</span><em></em></div>
         </div>
       </section>
       <section class="why" id="about">
@@ -2103,7 +2129,7 @@ html[dir="ltr"] .tr-t { animation-name: tr-mq-l; }
       lead: "סטודיו שבונה לעסקים <b>מערכות AI, סוכנים חכמים ואוטומציות</b> שחוסכים זמן וכאב ראש. ובנוסף, אתרי תדמית, חנויות אונליין ואפליקציות.",
       s1: "אתרי תדמית", s2: "חנויות אונליין", s3: "אפליקציות ווב", s4: "מערכות AI וסוכנים",
       w_eye: "עבודות נבחרות", w_title: ["עבודות שמדברות", "<span class=\"serif\">בעד עצמן.</span>"],
-      w_lead: "אתרים אמיתיים שעיצבתי ופיתחתי ללקוחות. כל אחד בנוי סביב העסק שלו.",
+      w_lead: "אתרים אמיתיים, באוויר עכשיו. כל אחד בנוי סביב העסק שלו.",
       w1: "אתר תדמית", w1s: "נדל״ן יוקרה, הרצליה", w2: "חנות אונליין", w2s: "קרמיקה בעבודת יד", w3: "אפליקציית ווב", w3s: "זימון תורים למרפאה", w4: "אתר תדמית", w4s: "ייעוץ פיננסי",
       w_all: "לכל העבודות", w_alln: "6 פרויקטים באוויר", pv_back: "חזרה לדף הבית", pv_eye: "תיק עבודות", pv_title: "כל <span class=\"serif\">העבודות.</span>", pv_lead: "לחצו על כל פרויקט כדי לראות אותו חי.", pv_cta: "רוצים אתר כזה? בואו נדבר",
       r_eye: "ביקורות", r_title: ["מה הלקוחות", "<span class=\"serif\">אומרים.</span>"], r_count: "10 ביקורות", r_write: "השאירו ביקורת", r_note: "* ביקורות לדוגמה. יוחלפו בביקורות אמיתיות.", r_ex: "דוגמה",
@@ -2133,7 +2159,7 @@ html[dir="ltr"] .tr-t { animation-name: tr-mq-l; }
       lead: "A studio building <b>AI systems, smart agents and automations</b> that save businesses time and headaches. Plus brand websites, online stores and apps.",
       s1: "Brand websites", s2: "Online stores", s3: "Web apps", s4: "AI systems & agents",
       w_eye: "Selected work", w_title: ["Work that speaks", "<span class=\"serif\">for itself.</span>"],
-      w_lead: "Real sites I designed and built for clients, each one shaped around its business.",
+      w_lead: "Real sites, live right now. Each one shaped around its business.",
       w1: "Brand website", w1s: "Luxury real estate, Herzliya", w2: "Online store", w2s: "Hand-thrown ceramics", w3: "Web app", w3s: "Clinic booking", w4: "Brand website", w4s: "Financial advisory",
       w_all: "See all work", w_alln: "6 projects live", pv_back: "Back to home", pv_eye: "Portfolio", pv_title: "All <span class=\"serif\">work.</span>", pv_lead: "Open any project to see it in action.", pv_cta: "Want a site like this? Let's talk",
       r_eye: "Reviews", r_title: ["What clients", "<span class=\"serif\">say.</span>"], r_count: "10 reviews", r_write: "Leave a review", r_note: "* Sample reviews, to be replaced with real ones.", r_ex: "Sample",
@@ -3162,6 +3188,21 @@ html[dir="ltr"] .tr-t { animation-name: tr-mq-l; }
   function pjTxt(p, l) { return p.user ? [[p.field, p.location].filter(Boolean).join(" · "), p.subtitle || ""] : p[l]; }
   function pjDet(p, l) { return p.user ? { ch: p.challenge || "", so: p.built || "", ft: p.points || [] } : PJD[l][p.id]; }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  // Home "selected work": magazine grid of real sites, mixed sizes (2026-11-16)
+  function renderWorkGrid(l) {
+    var g = document.getElementById("wk-g"); if (!g) return;
+    var SZ = ["w7 big", "w5 big", "w4", "w4", "w4"], plus = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>';
+    g.innerHTML = PJ.slice(0, 5).map(function (p, i) {
+      var t = pjTxt(p, l);
+      return '<a class="wk ' + SZ[i] + '" style="--d:' + (i % 3) + '" href="' + esc(p.url) + '" target="_blank" rel="noopener" aria-label="' + esc(p.name) + '"><span class="wk-bg" style="background-image:url(' + esc(pjImg(p, "d")) + ')"></span>' +
+        '<span class="wk-b"><span><small>' + esc(t[0]) + "</small><b>" + esc(p.name) + "</b><em>" + esc(t[1]) + '</em></span><span class="wk-go" aria-hidden="true">' + plus + "</span></span></a>";
+    }).join("");
+    if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); } }); }, { threshold: .12 });
+      g.querySelectorAll(".wk").forEach(function (el) { if (!g.dataset.seen) el.classList.add("pre"); io.observe(el); });
+      g.dataset.seen = 1;
+    }
+  }
   function renderProjects(l) {
     var view = l === "he" ? "צפו באתר" : "Visit site", soon = l === "he" ? "צילום מסך בדרך" : "Screenshot coming";
     function build(arr) { return arr.map(function (p, i) {
@@ -3174,7 +3215,7 @@ html[dir="ltr"] .tr-t { animation-name: tr-mq-l; }
           '<div class="pj-phone"><div class="pj-screen"><img src="' + esc(pjImg(p, "m")) + '" alt="' + esc(p.name) + ' mobile" loading="lazy"><div class="pj-ph"><b>' + esc(p.name) + '</b></div></div></div>' +
         '</div></article>';
     }).join(""); }
-    document.getElementById("pj-list").innerHTML = build(PJ.slice(0, 3));
+    renderWorkGrid(l);
     var hcN = document.getElementById("hc-n"); if (hcN) hcN.textContent = PJ.length;
     document.querySelectorAll(".pj-more-n").forEach(function (el) { el.textContent = l === "he" ? PJ.length + " פרויקטים באוויר" : PJ.length + " projects live"; });
     if (typeof PG_T !== "undefined") renderGallery(l);
