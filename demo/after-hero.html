@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>B.S.Y · דמו לסקשן אחרי ה־Hero</title>
+<link rel="icon" type="image/png" href="/logo-mark-light.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Frank+Ruhl+Libre:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #f7fafc; --card: #ffffff; --tint: #eaf1fa; --ink: #0f1e33; --stone: #55657a;
+  --line: rgba(15, 30, 51, .12); --blue: #2563eb; --blue-2: #7fa8ff; --wa: #25d366;
+  --ease: cubic-bezier(.2, .75, .15, 1);
+  --sans: "Heebo", Arial, sans-serif; --serif: "Frank Ruhl Libre", serif; --mono: "JetBrains Mono", monospace;
+}
+* { box-sizing: border-box; }
+html { overflow-x: clip; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1280px; margin-inline: auto; padding-inline: max(16px, 4vw); }
+.serif { font-family: var(--serif); font-weight: 400; color: var(--blue); }
+.eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 14px; color: var(--stone); margin: 0 0 18px; }
+.eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--blue); }
+h2 { font-size: clamp(2.1rem, 4.6vw, 3.9rem); line-height: 1.05; font-weight: 900; letter-spacing: -.02em; margin: 0; }
+.lead { color: var(--stone); font-size: 18px; max-width: 520px; margin: 0; }
+.pill { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 26px; border-radius: 999px; font-weight: 600; font-size: 15px; border: 1px solid transparent; transition: background .3s, color .3s, border-color .3s; }
+.pill.solid { background: var(--ink); color: #fff; } .pill.solid:hover { background: var(--blue); }
+.pill.line { border-color: var(--line); } .pill.line:hover { border-color: var(--ink); }
+
+/* Demo switcher */
+.bar { position: sticky; top: 0; z-index: 50; background: rgba(247, 250, 252, .86); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.bar img { height: 30px; display: block; }
+.tabs { display: flex; gap: 6px; background: var(--tint); padding: 5px; border-radius: 999px; }
+.tabs button { font: inherit; font-size: 14px; font-weight: 600; border: 0; background: none; padding: 9px 16px; border-radius: 999px; cursor: pointer; color: var(--stone); white-space: nowrap; }
+.tabs button.on { background: #fff; color: var(--ink); box-shadow: 0 4px 14px -6px rgba(15, 35, 70, .25); }
+.note { font-size: 13px; color: var(--stone); }
+/* A slice of the real hero for context */
+.ctx { border-bottom: 1px solid var(--line); background: radial-gradient(70% 120% at 80% 0%, #e7effb, transparent 70%); }
+.ctx .wrap { padding-block: 34px 26px; display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 18px; }
+.ctx b { font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 900; line-height: 1.1; }
+.ctx b span { color: var(--blue); }
+.ctx ul { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; margin: 0; padding: 0; font-size: 14px; color: var(--stone); }
+.ctx li::before { content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); margin-inline-end: 8px; vertical-align: middle; }
+.ctx small { display: block; font-size: 12px; color: var(--stone); margin-bottom: 6px; font-family: var(--mono); letter-spacing: .04em; }
+.demo { display: none; } .demo.on { display: block; }
+.vlabel { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--blue); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; display: inline-block; margin-bottom: 26px; }
+
+/* Reveal */
+.rv { opacity: 0; translate: 0 22px; transition: opacity .7s var(--ease), translate .8s var(--ease); transition-delay: calc(var(--d, 0) * 90ms); }
+.rv.in { opacity: 1; translate: 0 0; }
+@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; translate: none; transition: none; } }
+
+/* ---------- Demo 1: Trust strip + services ---------- */
+.d1 { padding-block: 70px 100px; }
+.trust { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 30px; padding-bottom: 34px; border-bottom: 1px solid var(--line); margin-bottom: 80px; }
+.trust p { margin: 0; font-size: 14px; color: var(--stone); max-width: 150px; line-height: 1.4; }
+.logos { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 30px; }
+.logos span { font-weight: 800; font-size: 17px; letter-spacing: -.01em; color: #8693a6; transition: color .3s; white-space: nowrap; }
+.logos span:hover { color: var(--ink); }
+.logos .s2 { font-family: var(--serif); font-weight: 500; font-size: 19px; }
+.logos .s3 { font-family: var(--mono); font-weight: 500; font-size: 15px; letter-spacing: .05em; }
+.d1-head { display: grid; grid-template-columns: 1.2fr 1fr; align-items: end; gap: 40px; margin-bottom: 48px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.sv { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 28px 24px 24px; display: flex; flex-direction: column; gap: 14px; transition: transform .5s var(--ease), box-shadow .5s, border-color .3s; overflow: hidden; }
+.sv:hover { transform: translateY(-6px); border-color: rgba(37, 99, 235, .35); box-shadow: 0 26px 50px -30px rgba(15, 35, 70, .35); }
+.sv .ic { width: 52px; height: 52px; border-radius: 14px; background: var(--tint); color: var(--blue); display: grid; place-items: center; }
+.sv h3 { margin: 6px 0 0; font-size: 22px; font-weight: 800; line-height: 1.2; }
+.sv p { margin: 0; color: var(--stone); font-size: 15px; }
+.sv .out { margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--line); font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+.sv .out i { font-style: normal; color: var(--blue); }
+.sv.hot { background: var(--ink); color: #fff; border-color: var(--ink); }
+.sv.hot p { color: #b7c3d6; } .sv.hot .ic { background: rgba(255,255,255,.1); color: #9dbbff; } .sv.hot .out { border-color: rgba(255,255,255,.18); } .sv.hot .out i { color: #9dbbff; }
+.sv .badge { position: absolute; top: 18px; inset-inline-end: 18px; font-size: 11px; font-weight: 700; letter-spacing: .04em; background: var(--blue); color: #fff; padding: 4px 10px; border-radius: 999px; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 60px; border-block: 1px solid var(--line); }
+.stats div { padding: 26px 20px; border-inline-start: 1px solid var(--line); }
+.stats div:first-child { border-inline-start: 0; }
+.stats b { display: block; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 900; line-height: 1; letter-spacing: -.02em; }
+.stats span { font-size: 14px; color: var(--stone); }
+
+/* ---------- Demo 2: Problem → solution ---------- */
+.d2 { padding-block: 90px 110px; }
+.d2-head { text-align: center; max-width: 760px; margin: 0 auto 50px; }
+.d2-head .eyebrow::after { content: ""; width: 28px; height: 1px; background: var(--blue); }
+.d2-head .lead { margin: 20px auto 0; }
+.sw { display: inline-flex; margin: 34px auto 0; background: var(--tint); border-radius: 999px; padding: 5px; position: relative; }
+.sw button { position: relative; z-index: 1; font: inherit; font-weight: 700; font-size: 15px; border: 0; background: none; padding: 11px 24px; border-radius: 999px; cursor: pointer; color: var(--stone); transition: color .3s; }
+.sw button.on { color: #fff; }
+.sw i { position: absolute; top: 5px; bottom: 5px; border-radius: 999px; background: var(--ink); transition: inset .5s var(--ease), background .4s; }
+.d2.after .sw i { background: var(--blue); }
+.rows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.pr { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 26px 26px 26px; min-height: 196px; overflow: hidden; }
+.pr .k { font-family: var(--mono); font-size: 12px; color: var(--stone); letter-spacing: .05em; }
+.pr .face { transition: opacity .5s var(--ease), translate .6s var(--ease); }
+.pr .faces { display: grid; margin-top: 10px; } .pr .face { grid-area: 1 / 1; }
+.pr .face.b { opacity: 0; translate: 0 16px; }
+.d2.after .pr .face.a { opacity: 0; translate: 0 -16px; }
+.d2.after .pr .face.b { opacity: 1; translate: 0 0; transition-delay: calc(var(--d, 0) * 70ms); }
+.pr h3 { margin: 10px 0 8px; font-size: 22px; font-weight: 800; line-height: 1.25; }
+.pr p { margin: 0; color: var(--stone); font-size: 15px; }
+.pr .face.a h3::before { content: "✕"; display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #fdecec; color: #c0392b; font-size: 13px; margin-inline-end: 10px; vertical-align: 3px; }
+.pr .face.b h3::before { content: "✓"; display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #e6efff; color: var(--blue); font-size: 14px; margin-inline-end: 10px; vertical-align: 3px; }
+.pr .tag { display: inline-block; margin-top: 14px; font-size: 13px; font-weight: 700; color: var(--blue); background: var(--tint); padding: 5px 12px; border-radius: 999px; }
+.d2.after .pr { border-color: rgba(37, 99, 235, .3); }
+.d2-cta { margin-top: 44px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; background: var(--ink); color: #fff; border-radius: 24px; padding: 30px 34px; }
+.d2-cta b { font-size: clamp(1.3rem, 2.2vw, 1.8rem); font-weight: 800; line-height: 1.2; }
+.d2-cta .pill.solid { background: #fff; color: var(--ink); } .d2-cta .pill.solid:hover { background: var(--blue); color: #fff; }
+
+/* ---------- Demo 3: Bento with live AI agent ---------- */
+.d3 { padding-block: 90px 110px; }
+.d3-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 44px; }
+.bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: minmax(150px, auto); gap: 18px; }
+.tile { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 26px; overflow: hidden; display: flex; flex-direction: column; }
+.tile h3 { margin: 0 0 6px; font-size: 22px; font-weight: 800; line-height: 1.2; }
+.tile p { margin: 0; color: var(--stone); font-size: 15px; }
+.tile .k { font-family: var(--mono); font-size: 12px; color: var(--blue); letter-spacing: .06em; margin-bottom: 10px; }
+.t-ai { grid-column: span 7; grid-row: span 3; background: linear-gradient(160deg, #0f1e33, #16305a); color: #fff; border: 0; }
+.t-ai p { color: #b7c3d6; } .t-ai .k { color: #9dbbff; }
+.t-flow { grid-column: span 5; grid-row: span 2; }
+.t-num { grid-column: span 5; grid-row: span 1; background: var(--tint); border: 0; justify-content: center; }
+.t-site { grid-column: span 4; grid-row: span 2; }
+.t-store { grid-column: span 4; grid-row: span 2; }
+.t-app { grid-column: span 4; grid-row: span 2; }
+/* chat */
+.chat { margin-top: 22px; flex: 1; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .1); border-radius: 18px; display: flex; flex-direction: column; overflow: hidden; min-height: 330px; }
+.chat-h { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid rgba(255, 255, 255, .08); font-size: 14px; font-weight: 600; }
+.chat-h .av { width: 32px; height: 32px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; }
+.chat-h small { display: block; font-weight: 400; font-size: 12px; color: #8fe3b0; }
+.msgs { flex: 1; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; overflow: hidden; }
+.m { max-width: 78%; padding: 9px 13px; border-radius: 14px; font-size: 14px; line-height: 1.45; animation: pop .45s var(--ease) both; }
+.m.u { align-self: flex-start; background: #fff; color: var(--ink); border-end-start-radius: 4px; }
+.m.b { align-self: flex-end; background: #1f6f4a; color: #fff; border-end-end-radius: 4px; }
+.m.sys { align-self: center; background: rgba(157, 187, 255, .16); color: #cfe0ff; font-size: 12px; border-radius: 999px; padding: 6px 12px; }
+.typing { align-self: flex-end; display: flex; gap: 4px; padding: 12px 14px; background: #1f6f4a; border-radius: 14px; animation: pop .3s both; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: #bfe9d1; animation: blink 1s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.97); } }
+@keyframes blink { 50% { opacity: .3; } }
+.ai-foot { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.ai-foot span { font-size: 13px; padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, .08); color: #dbe6f7; }
+/* flow */
+.flow { margin-top: 20px; flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; position: relative; }
+.flow::before { content: ""; position: absolute; inset-inline: 12%; top: 50%; height: 2px; background: repeating-linear-gradient(to left, var(--line) 0 6px, transparent 6px 12px); }
+.node { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; text-align: center; }
+.node i { width: 54px; height: 54px; border-radius: 16px; background: #fff; border: 1px solid var(--line); display: grid; place-items: center; color: var(--blue); transition: background .3s, color .3s, transform .3s; }
+.node.lit i { background: var(--blue); color: #fff; transform: scale(1.08); }
+.pkt { position: absolute; top: calc(50% - 5px); width: 10px; height: 10px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 6px rgba(37, 99, 235, .15); z-index: 2; inset-inline-start: 12%; transition: inset-inline-start .9s var(--ease); }
+.t-num b { font-size: clamp(2.2rem, 3.6vw, 3rem); font-weight: 900; line-height: 1; color: var(--blue); }
+.t-num div { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.shot { margin: 18px -26px -26px; flex: 1; min-height: 150px; background: var(--tint) center top / cover no-repeat; border-top: 1px solid var(--line); transition: background-position 3.5s ease; }
+.tile:hover .shot { background-position: center 60%; }
+.mini { margin-top: 18px; flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; align-content: end; }
+.mini i { height: 80px; border-radius: 10px; background: var(--tint); position: relative; }
+.mini i::after { content: ""; position: absolute; inset: auto 8px 8px; height: 6px; border-radius: 3px; background: #cdd9ea; }
+.mini i.on { background: #dbe7fb; outline: 2px solid var(--blue); }
+.bars { margin-top: 18px; flex: 1; display: flex; align-items: end; gap: 8px; min-height: 100px; }
+.bars i { flex: 1; background: var(--tint); border-radius: 6px 6px 2px 2px; height: var(--h); transition: height 1s var(--ease); }
+.bars i:last-child { background: var(--blue); }
+.tile .more { margin-top: 14px; font-size: 14px; font-weight: 700; color: var(--blue); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 1000px) {
+  .grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t-ai, .t-flow, .t-num { grid-column: span 12; }
+  .t-site, .t-store, .t-app { grid-column: span 6; }
+  .t-app { grid-column: span 12; }
+}
+@media (max-width: 680px) {
+  .bar .wrap { flex-wrap: wrap; } .note { display: none; }
+  .tabs { width: 100%; } .tabs button { flex: 1; min-width: 0; padding: 9px 6px; font-size: 13px; } .tabs .tl { display: none; }
+  .trust { grid-template-columns: 1fr; gap: 16px; margin-bottom: 56px; }
+  .trust p { max-width: none; }
+  .logos { justify-content: flex-start; gap: 12px 22px; } .logos span { font-size: 15px; }
+  .d1-head { grid-template-columns: 1fr; gap: 18px; }
+  .grid4 { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stats div:nth-child(3) { border-inline-start: 0; } .stats div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .rows { grid-template-columns: 1fr; }
+  .pr { min-height: 0; padding: 22px; }
+  .d2-cta { padding: 24px; } .d2-cta .pill { width: 100%; }
+  .t-site, .t-store, .t-app { grid-column: span 12; }
+  .chat { min-height: 300px; }
+  .d1, .d2, .d3 { padding-block: 56px 70px; }
+}
+</style>
+</head>
+<body>
+<div class="bar"><div class="wrap">
+  <a href="/"><img src="/logo-mark-light.png" alt="B.S.Y DIGITAL"></a>
+  <div class="tabs" role="tablist">
+    <button type="button" class="on" data-t="1">דמו 1<span class="tl"> · אמון + שירותים</span></button>
+    <button type="button" data-t="2">דמו 2<span class="tl"> · בעיה ופתרון</span></button>
+    <button type="button" data-t="3">דמו 3<span class="tl"> · סוכן AI חי</span></button>
+  </div>
+  <span class="note">דמו בלבד · בחרו גרסה</span>
+</div></div>
+
+<div class="ctx"><div class="wrap">
+  <div><small>סוף ה־Hero הנוכחי (להקשר)</small><b>כלי AI ואתרים שעובדים <span>בשבילכם.</span></b></div>
+  <ul><li>מערכות AI וסוכנים</li><li>אתרי תדמית</li><li>חנויות אונליין</li><li>אפליקציות ווב</li></ul>
+</div></div>
+
+<!-- DEMO 1 -->
+<section class="demo d1 on" data-d="1"><div class="wrap">
+  <span class="vlabel">דמו 1 · סרגל אמון ושירותים עם תוצאה</span>
+  <div class="trust rv">
+    <p>עסקים שכבר עובדים עם B.S.Y</p>
+    <div class="logos"><span>Pnim Nadlan</span><span class="s2">Sweet Tours</span><span class="s3">LUMA</span><span>BHV26 Garage</span><span class="s2">Yesod Law</span><span class="s2">Myriam Lellouche</span><span class="s3">SMIPHONE</span></div>
+  </div>
+  <div class="d1-head">
+    <div><p class="eyebrow rv">מה אנחנו בונים</p><h2 class="rv">פתרון אחד לכל מה <span class="serif">שהעסק צריך.</span></h2></div>
+    <p class="lead rv">מתחילים מהבעיה של העסק, לא מהטכנולוגיה. כל פרויקט נמדד במה שהוא חוסך לכם או מכניס לכם.</p>
+  </div>
+  <div class="grid4">
+    <a class="sv hot rv" style="--d:0" href="/#service-ai"><span class="badge">חדש</span>
+      <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 7V4M9 12h.01M15 12h.01M9.5 16h5"/></svg></span>
+      <h3>מערכות AI וסוכנים</h3><p>סוכן שעונה ללקוחות 24/7, מסנן לידים וקובע פגישות. אוטומציות לכל מה שחוזר על עצמו.</p>
+      <span class="out">חוסך שעות כל שבוע <i>לפרטים</i></span></a>
+    <a class="sv rv" style="--d:1" href="/#service-site">
+      <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span>
+      <h3>אתרי תדמית</h3><p>אתר שנראה כמו של חברה גדולה, נטען בשנייה ובנוי כדי שמבקרים יהפכו לפניות.</p>
+      <span class="out">יותר פניות מגוגל <i>לפרטים</i></span></a>
+    <a class="sv rv" style="--d:2" href="/#service-store">
+      <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
+      <h3>חנויות אונליין</h3><p>חנות עם סליקה, ניהול מלאי ותהליך רכישה קצר במובייל. מוכרת גם כשאתם ישנים.</p>
+      <span class="out">מכירות 24/7 <i>לפרטים</i></span></a>
+    <a class="sv rv" style="--d:3" href="/#service-app">
+      <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><path d="M17.25 13.5v7.5M13.5 17.25H21"/></svg></span>
+      <h3>אפליקציות ווב</h3><p>זימון תורים, אזור לקוחות ודשבורדים. מערכת שעובדת בדיוק כמו העסק שלכם.</p>
+      <span class="out">הכול במקום אחד <i>לפרטים</i></span></a>
+  </div>
+  <div class="stats rv">
+    <div><b data-n="7">0</b><span>פרויקטים באוויר</span></div>
+    <div><b>24h</b><span>זמן מענה מקסימלי</span></div>
+    <div><b>3</b><span>שפות: עברית · English · Français</span></div>
+    <div><b>100%</b><span>הקוד והדומיין שלכם</span></div>
+  </div>
+</div></section>
+
+<!-- DEMO 2 -->
+<section class="demo d2" data-d="2"><div class="wrap">
+  <span class="vlabel">דמו 2 · הבעיה מול הפתרון (עם מתג)</span>
+  <div class="d2-head">
+    <p class="eyebrow rv">נשמע מוכר?</p>
+    <h2 class="rv">העסק שלכם עובד <span class="serif">קשה מדי.</span></h2>
+    <p class="lead rv">רוב בעלי העסקים מאבדים שעות כל שבוע על דברים שמערכת טובה עושה לבד. לחצו על המתג וראו את ההבדל.</p>
+    <div class="sw rv" id="sw"><i></i><button type="button" class="on" data-s="0">היום</button><button type="button" data-s="1">עם B.S.Y</button></div>
+  </div>
+  <div class="rows">
+    <div class="pr rv" style="--d:0"><span class="k">01 · לקוחות</span><div class="faces">
+      <div class="face a"><h3>עשרות הודעות בוואטסאפ כל יום</h3><p>אותן שאלות שוב ושוב: מחיר, שעות, זמינות. ובלילה אף אחד לא עונה.</p></div>
+      <div class="face b"><h3>סוכן AI עונה במקומכם, 24/7</h3><p>עונה בשפה של העסק, שולח מחירון וקובע תור. אתם רואים רק מה שצריך אתכם.</p><span class="tag">מערכות AI</span></div></div></div>
+    <div class="pr rv" style="--d:1"><span class="k">02 · לידים</span><div class="faces">
+      <div class="face a"><h3>פניות שנופלות בין הכיסאות</h3><p>טופס באתר, הודעה באינסטגרם, שיחה שלא נענתה. חלק מהלקוחות פשוט הולכים.</p></div>
+      <div class="face b"><h3>כל ליד נקלט, מסונן ומקבל מענה</h3><p>כל הפניות מגיעות למקום אחד, מסודרות לפי מי שהכי מוכן לקנות.</p><span class="tag">אוטומציות</span></div></div></div>
+    <div class="pr rv" style="--d:2"><span class="k">03 · נוכחות</span><div class="faces">
+      <div class="face a"><h3>אתר ישן שלא מביא פניות</h3><p>נראה מיושן, איטי במובייל, ולא מופיע בגוגל. לקוחות סוגרים את הלשונית.</p></div>
+      <div class="face b"><h3>אתר שנראה כמו המותג שלכם</h3><p>עיצוב אישי, נטען בשנייה, בנוי לגוגל ולהמרות. כל מבקר יודע מה לעשות.</p><span class="tag">אתרי תדמית</span></div></div></div>
+    <div class="pr rv" style="--d:3"><span class="k">04 · ניהול</span><div class="faces">
+      <div class="face a"><h3>הכול באקסל, בפתקים ובראש</h3><p>תורים, הזמנות ומלאי מפוזרים. כל יום מתחיל בבדיקה מה פספסתם.</p></div>
+      <div class="face b"><h3>מערכת אחת שמנהלת הכול</h3><p>חנות, זימון תורים ודשבורד עם כל המספרים של העסק במבט אחד.</p><span class="tag">חנויות ואפליקציות</span></div></div></div>
+  </div>
+  <div class="d2-cta rv"><b>בשיחה של 15 דקות נמצא איפה הולך לכם הכי הרבה זמן.</b><a class="pill solid" href="/#contact">קבעו שיחת היכרות</a></div>
+</div></section>
+
+<!-- DEMO 3 -->
+<section class="demo d3" data-d="3"><div class="wrap">
+  <span class="vlabel">דמו 3 · באנטו עם סוכן AI שעובד מול העיניים</span>
+  <div class="d3-head">
+    <div><p class="eyebrow rv">מה אנחנו בונים</p><h2 class="rv">לא מבטיחים. <span class="serif">מראים.</span></h2></div>
+    <p class="lead rv">ככה נראה סוכן AI שעובד בשביל עסק, ולצדו האתרים, החנויות והמערכות שאנחנו בונים.</p>
+  </div>
+  <div class="bento">
+    <div class="tile t-ai rv" style="--d:0">
+      <span class="k">AI AGENT · LIVE DEMO</span>
+      <h3>סוכן שעונה, מסנן וקובע תור. לבד.</h3>
+      <p>שיחה להמחשה: לקוח מול סוכן AI בוואטסאפ של מספרה.</p>
+      <div class="chat"><div class="chat-h"><span class="av"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></span><div>המספרה שלכם<small>סוכן AI · מחובר</small></div></div><div class="msgs" id="msgs"></div></div>
+      <div class="ai-foot"><span>וואטסאפ</span><span>אתר</span><span>יומן גוגל</span><span>CRM</span></div>
+    </div>
+    <div class="tile t-flow rv" style="--d:1">
+      <span class="k">AUTOMATION</span>
+      <h3>ליד נכנס. השאר קורה לבד.</h3>
+      <p>מהפנייה ועד הפגישה ביומן, בלי שתגעו.</p>
+      <div class="flow" id="flow"><span class="pkt" id="pkt"></span>
+        <div class="node"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H8l-4 4z"/></svg></i>פנייה</div>
+        <div class="node"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V5M9.5 13h.01M14.5 13h.01"/></svg></i>סוכן AI</div>
+        <div class="node"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></i>יומן</div>
+        <div class="node"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>נסגר</div>
+      </div>
+    </div>
+    <div class="tile t-num rv" style="--d:2"><div><b>24/7</b><p>הסוכן לא הולך הביתה. לקוחות מקבלים תשובה גם בשתיים בלילה.</p></div></div>
+    <a class="tile t-site rv" style="--d:3" href="/#service-site"><span class="k">WEBSITES</span><h3>אתרי תדמית</h3><p>Pnim Nadlan · נדל״ן</p><div class="shot" style="background-image:url(/work/pnim-d.jpg)"></div></a>
+    <a class="tile t-store rv" style="--d:4" href="/#service-store"><span class="k">E-COMMERCE</span><h3>חנויות אונליין</h3><p>קטלוג, סליקה ומשלוחים.</p><div class="mini" id="mini"><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div></a>
+    <a class="tile t-app rv" style="--d:5" href="/#service-app"><span class="k">WEB APPS</span><h3>אפליקציות ווב</h3><p>דשבורד עם כל המספרים של העסק.</p><div class="bars" id="bars"><i style="--h:30%"></i><i style="--h:45%"></i><i style="--h:38%"></i><i style="--h:60%"></i><i style="--h:52%"></i><i style="--h:74%"></i><i style="--h:90%"></i></div></a>
+  </div>
+</div></section>
+
+<script>
+(function () {
+  // Tabs
+  var tabs = document.querySelectorAll(".tabs button");
+  function show(n) {
+    tabs.forEach(function (b) { b.classList.toggle("on", b.dataset.t === n); });
+    document.querySelectorAll(".demo").forEach(function (d) { d.classList.toggle("on", d.dataset.d === n); });
+    try { history.replaceState(null, "", "#" + n); } catch (e) {}
+    reveal();
+    if (n === "3") startChat();
+  }
+  tabs.forEach(function (b) { b.addEventListener("click", function () { show(b.dataset.t); }); });
+
+  // Reveal on scroll
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .12 }) : null;
+  function reveal() { document.querySelectorAll(".demo.on .rv:not(.in)").forEach(function (el) { io ? io.observe(el) : el.classList.add("in"); }); }
+
+  // Demo 1: count up
+  var cnt = document.querySelector("[data-n]");
+  if (cnt) { var n = +cnt.dataset.n, k = 0; var t = setInterval(function () { cnt.textContent = ++k; if (k >= n) clearInterval(t); }, 120); }
+
+  // Demo 2: switch
+  var sw = document.getElementById("sw"), d2 = document.querySelector(".d2");
+  function swPaint() { var on = sw.querySelector(".on"), i = sw.querySelector("i"); i.style.insetInlineStart = (on.offsetParent === sw ? (getComputedStyle(sw).direction === "rtl" ? sw.clientWidth - on.offsetLeft - on.offsetWidth : on.offsetLeft) : 5) + "px"; i.style.width = on.offsetWidth + "px"; }
+  sw.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; sw.querySelectorAll("button").forEach(function (x) { x.classList.toggle("on", x === b); }); d2.classList.toggle("after", b.dataset.s === "1"); swPaint(); clearInterval(auto); });
+  var auto = setInterval(function () { if (!d2.classList.contains("on")) return; var nb = sw.querySelector("button:not(.on)"); sw.querySelectorAll("button").forEach(function (x) { x.classList.toggle("on", x === nb); }); d2.classList.toggle("after", nb.dataset.s === "1"); swPaint(); }, 4500);
+  new MutationObserver(swPaint).observe(d2, { attributes: true, attributeFilter: ["class"] }); addEventListener("resize", swPaint);
+
+  // Demo 3: chat script
+  var SCRIPT = [["u", "היי, יש תור לתספורת מחר?"], ["b", "היי! 👋 מחר יש מקום ב־11:30 או ב־16:00. מה מתאים לך?"], ["u", "16:00 מעולה. כמה זה עולה?"], ["b", "תספורת גברים 90 ₪. לקבוע לך ל־16:00 על שם?"], ["u", "כן, דניאל"], ["b", "סגור, דניאל ✂️ קבעתי לך מחר ב־16:00. אשלח תזכורת שעה לפני."], ["sys", "✓ נוסף ליומן · ליד חדש נשמר ב־CRM"]];
+  var chatOn = false, ci = 0, box = document.getElementById("msgs");
+  function startChat() { if (chatOn) return; chatOn = true; step(); }
+  function step() {
+    if (ci >= SCRIPT.length) { setTimeout(function () { box.innerHTML = ""; ci = 0; step(); }, 4200); return; }
+    var m = SCRIPT[ci];
+    if (m[0] === "b") { var ty = document.createElement("div"); ty.className = "typing"; ty.innerHTML = "<i></i><i></i><i></i>"; box.appendChild(ty); setTimeout(function () { ty.remove(); add(m); }, 1100); }
+    else setTimeout(function () { add(m); }, m[0] === "sys" ? 500 : 900);
+  }
+  function add(m) { var el = document.createElement("div"); el.className = "m " + m[0]; el.textContent = m[1]; box.appendChild(el); while (box.children.length > 7) box.firstChild.remove(); ci++; setTimeout(step, 900); }
+  // flow packet
+  var nodes = document.querySelectorAll(".node"), pkt = document.getElementById("pkt"), fi = 0;
+  setInterval(function () { nodes.forEach(function (n, i) { n.classList.toggle("lit", i === fi); }); pkt.style.insetInlineStart = (12 + fi * 25.3) + "%"; fi = (fi + 1) % 4; }, 1100);
+  // store tiles + bars
+  var mini = document.querySelectorAll("#mini i"), mi = 1; setInterval(function () { mini.forEach(function (x, i) { x.classList.toggle("on", i === mi); }); mi = (mi + 1) % mini.length; }, 1300);
+  var bars = document.querySelectorAll("#bars i"); setInterval(function () { bars.forEach(function (b, i) { b.style.setProperty("--h", (i === bars.length - 1 ? 80 + Math.random() * 18 : 25 + Math.random() * 55) + "%"); }); }, 2200);
+
+  show((location.hash || "#1").slice(1).replace(/[^123]/g, "") || "1");
+  swPaint();
+})();
+</script>
+</body>
+</html>
