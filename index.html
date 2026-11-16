@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>B.S.Y DIGITAL Studio</title>
 <link rel="canonical" href="https://bsy-digital.vercel.app/">
-<meta name="description" content="B.S.Y DIGITAL – סטודיו לעיצוב ופיתוח אתרים בהתאמה אישית בירושלים: אתרי תדמית, חנויות אונליין ואפליקציות ווב.">
+<meta name="description" content="B.S.Y DIGITAL – סטודיו בירושלים שבונה לעסקים מערכות AI, סוכנים חכמים ואוטומציות שחוסכים זמן וכאב ראש, וגם אתרי תדמית, חנויות אונליין ואפליקציות ווב.">
 <meta name="google-site-verification" content="LFkov3Y0XPkfk3FjcQ4mKlm0i6OUH2zXzLA4ZzIuNCM" />
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="B.S.Y DIGITAL">
 <meta property="og:title" content="B.S.Y DIGITAL">
-<meta property="og:description" content="אתרי תדמית, חנויות אונליין ואפליקציות ווב.">
+<meta property="og:description" content="מערכות AI וסוכנים חכמים, אתרי תדמית, חנויות אונליין ואפליקציות ווב.">
 <meta property="og:url" content="https://bsy-digital.vercel.app/">
 <meta property="og:image" content="https://bsy-digital.vercel.app/og-image.png?v=2">
 <meta property="og:image:width" content="1200">
@@ -375,7 +375,9 @@ h2 .serif { font-family: var(--serif); font-weight: 300; color: var(--brass); le
 .svc.on .svc-body > :nth-child(3) { transition-delay: .16s; }
 .svc:not(.on) .svc-body { pointer-events: none; }
 /* Simple version (2026-11-08): three equal cards, everything visible, a soft fade-up on scroll */
-.svc-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; min-height: 0; border: 0; }
+.svc-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; min-height: 0; border: 0; }
+@container site (max-width: 1280px) { .svc-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.opts .opt:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .svc, .svc.on { flex-grow: 0; background: #fff; border: 1px solid var(--line); border-radius: 18px; cursor: default; grid-template-rows: auto auto 1fr; gap: 18px; transition: opacity .7s var(--ease), transform .7s var(--ease), border-color .3s, box-shadow .3s; transition-delay: calc(var(--d, 0) * 110ms); }
 .svc:first-child { border-inline-start: 1px solid var(--line); }
 .svc::before { display: none; }
@@ -1715,6 +1717,93 @@ html.a11y-space .site p, html.a11y-space .site li, html.a11y-space .site dd, htm
 html.a11y-still *, html.a11y-still *::before, html.a11y-still *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: .01ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
 html.a11y-cursor .cur, html.a11y-cursor .cur-ring { display: none !important; }
 html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24'%3E%3Cpath d='M5 2l14 10.5-6.4 1.2L16 21l-3 1.3-3.1-7.6L5 19z' fill='%23111' stroke='%23fff' stroke-width='1.3'/%3E%3C/svg%3E") 6 3, auto !important; }
+
+/* Services v2 (2026-11-16): trust strip with real clients + four cards with a small live visual */
+.services { padding-block: clamp(56px, 6cqw, 90px) clamp(96px, 12cqw, 160px); border-top: 0; }
+.tr { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 28px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 18px 22px; box-shadow: 0 1px 2px rgba(15,35,70,.04), 0 12px 32px -18px rgba(15,35,70,.18); margin-bottom: clamp(64px, 8cqw, 110px); }
+.tr-l { display: flex; align-items: center; gap: 14px; padding-inline-end: 26px; border-inline-end: 1px solid var(--line); }
+.tr-l b { font-family: var(--display-he); font-size: 36px; font-weight: 900; line-height: 1; color: var(--brass); }
+.tr-l span { font-size: 14px; color: var(--stone); line-height: 1.3; }
+.tr-mq { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.tr-t { display: flex; gap: 14px; width: max-content; animation: tr-mq 40s linear infinite; }
+.tr-mq:hover .tr-t { animation-play-state: paused; }
+html[dir="ltr"] .tr-t { animation-name: tr-mq-l; }
+@keyframes tr-mq { to { transform: translateX(50%); } }
+@keyframes tr-mq-l { to { transform: translateX(-50%); } }
+.tr-c { display: flex; align-items: center; gap: 12px; padding: 7px 16px 7px 7px; padding-inline: 7px 16px; border-radius: 999px; background: var(--ink); border: 1px solid var(--line); white-space: nowrap; transition: border-color .3s; }
+.tr-c:hover { border-color: rgba(37,99,235,.4); }
+.tr-c img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(15,35,70,.15); }
+.tr-c b { display: block; font-size: 15px; font-weight: 700; line-height: 1.2; color: var(--bone); }
+.tr-c small { display: block; font-size: 12px; color: var(--stone); }
+.sc-g { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.sc { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(15,35,70,.04), 0 12px 32px -18px rgba(15,35,70,.18); transition: transform .5s var(--ease), box-shadow .5s, border-color .3s, opacity .7s var(--ease); }
+.sc:hover { transform: translateY(-6px); border-color: rgba(37,99,235,.35); box-shadow: 0 30px 60px -32px rgba(15,35,70,.4); }
+.sc.pre { opacity: 0; transform: translateY(28px); }
+.sc { transition-delay: calc(var(--d, 0) * 110ms); } .sc:hover { transition-delay: 0s; }
+.sc-v { height: 170px; background: linear-gradient(180deg, var(--ink-2), #f4f8fd); position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.sc-b { padding: 24px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.sc h3 { margin: 0; font-family: var(--display-he); font-size: 22px; font-weight: 800; line-height: 1.2; color: var(--bone); }
+:lang(en) .sc h3 { font-family: var(--display-en); font-stretch: 105%; letter-spacing: -.01em; }
+.sc p { margin: 0; color: var(--stone); font-size: 15px; }
+.sc-f { margin-top: auto; padding-top: 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-top: 1px solid var(--line); }
+.sc-o { font-size: 13px; font-weight: 700; background: var(--ink-2); color: var(--brass); padding: 4px 10px; border-radius: 999px; }
+.sc-m { font-size: 14px; font-weight: 700; color: var(--brass); white-space: nowrap; }
+.sc.hot { background: #0f1e33; border-color: #0f1e33; }
+.sc.hot .sc-v { background: linear-gradient(160deg, #16305a, #0f1e33); border-color: rgba(255,255,255,.08); }
+.sc.hot h3 { color: #fff; } .sc.hot p { color: #b7c3d6; } .sc.hot .sc-f { border-color: rgba(255,255,255,.12); }
+.sc.hot .sc-o { background: rgba(157,187,255,.15); color: #9dbbff; } .sc.hot .sc-m { color: #9dbbff; }
+.sc-new { position: absolute; top: 14px; inset-inline-end: 14px; font-size: 11px; font-weight: 700; background: var(--brass); color: #fff; padding: 4px 10px; border-radius: 999px; z-index: 2; }
+.sx-chat { position: absolute; inset: 22px 18px; display: flex; flex-direction: column; gap: 7px; justify-content: flex-end; }
+.sx-chat i { font-style: normal; font-size: 12px; padding: 6px 10px; border-radius: 12px; max-width: 80%; }
+.sx-chat .u { align-self: flex-start; background: #fff; color: #0f1e33; }
+.sx-chat .b { align-self: flex-end; background: #1f6f4a; color: #fff; }
+.sc.in .sx-chat i { animation: sx-pop .5s var(--ease) both; } .sc.in .sx-chat i:nth-child(2) { animation-delay: .5s; } .sc.in .sx-chat i:nth-child(3) { animation-delay: 1s; }
+@keyframes sx-pop { from { opacity: 0; transform: translateY(8px); } }
+.sx-shot { position: absolute; inset: 22px 22px -10px; border-radius: 12px 12px 0 0; background: #fff center top / cover no-repeat; box-shadow: 0 10px 30px -12px rgba(15,35,70,.3); transition: background-position 4s ease; }
+.sc:hover .sx-shot { background-position: center 70%; }
+.sx-store { position: absolute; inset: 24px 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.sx-store i { background: #fff; border-radius: 10px; box-shadow: 0 4px 12px -6px rgba(15,35,70,.25); position: relative; transition: outline-color .3s; outline: 2px solid transparent; }
+.sx-store i::before { content: ""; position: absolute; inset: 8px 8px 22px; border-radius: 6px; background: var(--ink-2); }
+.sx-store i::after { content: ""; position: absolute; inset: auto 8px 9px; height: 6px; border-radius: 3px; background: #d5dfec; width: 60%; }
+.sx-store i.on { outline-color: var(--brass); }
+.sx-app { position: absolute; inset: 24px 22px 18px; background: #fff; border-radius: 12px; box-shadow: 0 8px 20px -10px rgba(15,35,70,.3); padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.sx-app .k { display: flex; gap: 6px; } .sx-app .k i { flex: 1; height: 26px; border-radius: 6px; background: var(--ink-2); }
+.sx-app .bars { flex: 1; display: flex; align-items: end; gap: 5px; } .sx-app .bars i { flex: 1; border-radius: 3px 3px 1px 1px; background: #d5e2f6; height: var(--h); transition: height 1s var(--ease); } .sx-app .bars i:first-child { background: var(--brass); }
+@container site (max-width: 1180px) { .sc-g { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container site (max-width: 860px) {
+  .tr { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 14px; border-radius: 18px; margin-bottom: 56px; }
+  .tr-l { border: 0; padding: 0; } .tr-l b { font-size: 28px; }
+  .sc-g { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .sc-v { height: 150px; }
+}
+@media (prefers-reduced-motion: reduce) { .tr-t { animation: none; } .sc.pre { opacity: 1; transform: none; } }
+
+/* Selected work v2 (2026-11-16): magazine grid, mixed sizes, big screenshots */
+.wk-g { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 18px; }
+.wk { position: relative; display: block; border-radius: 24px; overflow: hidden; background: #0f1e33; min-height: 340px; isolation: isolate; transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: calc(var(--d, 0) * 110ms); }
+.wk.pre { opacity: 0; transform: translateY(30px); }
+.wk.w7 { grid-column: span 7; } .wk.w5 { grid-column: span 5; } .wk.w4 { grid-column: span 4; }
+.wk.big { min-height: 440px; }
+.wk-bg { position: absolute; inset: 0; background: #0f1e33 center top / cover no-repeat; transition: transform 1.2s var(--ease), background-position 5s ease; z-index: -2; }
+.wk::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,20,38,.92) 0%, rgba(10,20,38,.35) 45%, transparent 75%); z-index: -1; }
+.wk:hover .wk-bg { transform: scale(1.04); background-position: center 40%; }
+.wk-b { position: absolute; inset: auto 0 0 0; padding: 24px 26px; color: #fff; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.wk-b small { display: block; font-size: 13px; color: #c9d5e8; }
+.wk-b b { display: block; margin-top: 2px; font-family: var(--display-he); font-size: 24px; font-weight: 800; line-height: 1.15; }
+:lang(en) .wk-b b { font-family: var(--display-en); font-stretch: 105%; }
+.wk-b em { display: block; font-style: normal; margin-top: 6px; font-size: 14px; color: #c9d5e8; max-width: 420px; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .5s var(--ease), opacity .4s; }
+.wk:hover .wk-b em, .wk:focus-visible .wk-b em { max-height: 80px; opacity: 1; }
+.wk-go { flex: none; width: 46px; height: 46px; border-radius: 50%; background: #fff; color: #0f1e33; display: grid; place-items: center; transition: background .3s, color .3s, transform .4s var(--ease); }
+.wk:hover .wk-go { background: var(--brass); color: #fff; transform: rotate(90deg); }
+#work .pj-more { justify-content: center; margin-top: clamp(36px, 4cqw, 56px); }
+@container site (max-width: 1000px) { .wk.w7, .wk.w5, .wk.w4 { grid-column: span 6; } .wk:last-child:nth-child(odd) { grid-column: span 12; } }
+@container site (max-width: 760px) {
+  .wk-g { gap: 14px; }
+  .wk.w7, .wk.w5, .wk.w4, .wk:last-child:nth-child(odd) { grid-column: span 12; }
+  .wk, .wk.big { min-height: 300px; }
+  .wk-b em { max-height: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .wk.pre { opacity: 1; transform: none; } }
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -1736,9 +1825,10 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
           <a href="#top" data-p="home" data-k="mn_home">דף הבית</a>
           <div class="mn-dd" id="mn-dd"><button type="button" class="mn-t" data-p="svc" aria-expanded="false" aria-haspopup="true"><span data-k="mn_svc">שירותים</span><i aria-hidden="true"></i></button>
             <div class="mn-panel"><div class="mn-in">
-              <a href="#service-site" data-p="svc-site"><em>01</em><span><b data-k="mn_s1">אתרי תדמית</b><small data-k="mn_s1d">אתר שמציג את העסק ומביא פניות</small></span></a>
-              <a href="#service-store" data-p="svc-store"><em>02</em><span><b data-k="mn_s2">חנויות אונליין</b><small data-k="mn_s2d">חנות שמוכרת, עם סליקה וניהול</small></span></a>
-              <a href="#service-app" data-p="svc-app"><em>03</em><span><b data-k="mn_s3">אפליקציות ווב</b><small data-k="mn_s3d">מערכות, זימון תורים ודשבורדים</small></span></a>
+              <a href="#service-ai" data-p="svc-ai"><em>01</em><span><b data-k="mn_s4">מערכות AI וסוכנים</b><small data-k="mn_s4d">סוכנים ואוטומציות שחוסכים זמן</small></span></a>
+              <a href="#service-site" data-p="svc-site"><em>02</em><span><b data-k="mn_s1">אתרי תדמית</b><small data-k="mn_s1d">אתר שמציג את העסק ומביא פניות</small></span></a>
+              <a href="#service-store" data-p="svc-store"><em>03</em><span><b data-k="mn_s2">חנויות אונליין</b><small data-k="mn_s2d">חנות שמוכרת, עם סליקה וניהול</small></span></a>
+              <a href="#service-app" data-p="svc-app"><em>04</em><span><b data-k="mn_s3">אפליקציות ווב</b><small data-k="mn_s3d">מערכות, זימון תורים ודשבורדים</small></span></a>
             </div></div>
           </div>
           <a href="#projects" data-p="projects" data-k="mn_proj">הפרויקטים</a>
@@ -1756,11 +1846,12 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
         <span class="dr-mark" aria-hidden="true"></span>
         <div class="dr-links">
           <a href="#top" style="--i:0"><em>01</em><span class="tx"><span data-k="nav_home">דף הבית</span></span></a>
-          <a href="#service-site" style="--i:1"><em>02</em><span class="tx"><span data-k="s1">אתרי תדמית</span></span></a>
-          <a href="#service-store" style="--i:2"><em>03</em><span class="tx"><span data-k="s2">חנויות אונליין</span></span></a>
-          <a href="#service-app" style="--i:3"><em>04</em><span class="tx"><span data-k="s3">אפליקציות ווב</span></span></a>
-          <a href="#projects" style="--i:4"><em>05</em><span class="tx"><span data-k="nav_proj">הפרויקטים</span></span></a>
-          <a href="#contact" style="--i:5"><em>06</em><span class="tx"><span data-k="nav_contact">צור קשר</span></span></a>
+          <a href="#service-ai" style="--i:1"><em>02</em><span class="tx"><span data-k="s4">מערכות AI וסוכנים</span></span></a>
+          <a href="#service-site" style="--i:2"><em>03</em><span class="tx"><span data-k="s1">אתרי תדמית</span></span></a>
+          <a href="#service-store" style="--i:3"><em>04</em><span class="tx"><span data-k="s2">חנויות אונליין</span></span></a>
+          <a href="#service-app" style="--i:4"><em>05</em><span class="tx"><span data-k="s3">אפליקציות ווב</span></span></a>
+          <a href="#projects" style="--i:5"><em>06</em><span class="tx"><span data-k="nav_proj">הפרויקטים</span></span></a>
+          <a href="#contact" style="--i:6"><em>07</em><span class="tx"><span data-k="nav_contact">צור קשר</span></span></a>
         </div>
         <div></div>
         <div class="dr-foot">
@@ -1782,7 +1873,7 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
               <a href="#work" class="pill line" data-k="cta2">צפו בעבודות</a>
             </div>
             <ul class="h-trust">
-              <li data-k="ht1">עיצוב אישי, בלי תבניות</li>
+              <li data-k="ht1">בהתאמה אישית לעסק, בלי תבניות</li>
               <li data-k="ht2">מענה תוך 24 שעות</li>
               <li data-k="ht3">ליווי מהאפיון ועד העלייה לאוויר</li>
             </ul>
@@ -1795,6 +1886,7 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
         <div class="hero-foot">
           <div class="wrap">
             <ul class="svcs">
+              <li data-k="s4">מערכות AI וסוכנים</li>
               <li data-k="s1">אתרי תדמית</li>
               <li data-k="s2">חנויות אונליין</li>
               <li data-k="s3">אפליקציות ווב</li>
@@ -1803,6 +1895,22 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
         </div>
       </section>
 
+      <section class="services" id="services">
+        <div class="wrap">
+          <div class="tr rv" id="tr">
+            <div class="tr-l"><b id="tr-n">6</b><span data-kh="tr_lbl"></span></div>
+            <div class="tr-mq"><div class="tr-t" id="tr-t"></div></div>
+          </div>
+          <div class="sec-head">
+            <div>
+              <p class="eyebrow rv"><span data-k="sv_eye">שירותים</span></p>
+              <h2 class="rvl" id="sv_title"></h2>
+            </div>
+            <p class="sec-lead rv" data-k="sv_lead"></p>
+          </div>
+          <div class="sc-g" id="svc-row"></div>
+        </div>
+      </section>
       <section class="work" id="work">
         <div class="wrap">
           <div class="sec-head">
@@ -1812,21 +1920,8 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
             </div>
             <p class="sec-lead rv" data-k="w_lead"></p>
           </div>
-          <div class="pj-list" id="pj-list"></div>
+          <div class="wk-g" id="wk-g"></div>
           <div class="pj-more rv"><a href="#projects" class="pill solid"><span data-k="w_all">לכל העבודות</span></a><span class="pj-more-n" data-k="w_alln">6 פרויקטים באוויר</span></div>
-          <div class="pj-count" id="pj-count" aria-hidden="true"><b>01</b><i></i><span>06</span><em></em></div>
-        </div>
-      </section>
-      <section class="services" id="services">
-        <div class="wrap">
-          <div class="sec-head">
-            <div>
-              <p class="eyebrow rv"><span data-k="sv_eye">שירותים</span></p>
-              <h2 class="rvl" id="sv_title"></h2>
-            </div>
-            <p class="sec-lead rv" data-k="sv_lead"></p>
-          </div>
-          <div class="svc-row" id="svc-row"></div>
         </div>
       </section>
       <section class="why" id="about">
@@ -1974,7 +2069,7 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
         <div class="foot-top">
           <p class="foot-say" data-kh="ft_say"></p>
           <div class="foot-col"><h4 data-k="ft_nav">ניווט</h4><ul>
-            <li><a href="#top" data-k="mn_home">דף הבית</a></li><li><a href="#service-site" data-k="mn_s1">אתרי תדמית</a></li><li><a href="#service-store" data-k="mn_s2">חנויות אונליין</a></li><li><a href="#service-app" data-k="mn_s3">אפליקציות ווב</a></li><li><a href="#projects" data-k="mn_proj">הפרויקטים</a></li><li><a href="#faq" data-k="ft_faq">שאלות נפוצות</a></li>
+            <li><a href="#top" data-k="mn_home">דף הבית</a></li><li><a href="#service-ai" data-k="mn_s4">מערכות AI וסוכנים</a></li><li><a href="#service-site" data-k="mn_s1">אתרי תדמית</a></li><li><a href="#service-store" data-k="mn_s2">חנויות אונליין</a></li><li><a href="#service-app" data-k="mn_s3">אפליקציות ווב</a></li><li><a href="#projects" data-k="mn_proj">הפרויקטים</a></li><li><a href="#faq" data-k="ft_faq">שאלות נפוצות</a></li>
           </ul></div>
           <div class="foot-col"><h4 data-k="ft_talk">דברו איתי</h4><ul>
             <li><a class="ltr ct-tel-link ct-phone" href="#"></a></li><li><a class="ltr ct-mail-link ct-email" href="#"></a></li><li><a class="ct-addr" href="#" target="_blank" rel="noopener"></a></li><li><a href="#contact" data-k="cta">קבלו הצעת מחיר</a></li>
@@ -2026,15 +2121,15 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
 (function () {
   var T = {
     he: {
-      mn_home: "דף הבית", mn_svc: "שירותים", mn_s1: "אתרי תדמית", mn_s1d: "אתר שמציג את העסק ומביא פניות", mn_s2: "חנויות אונליין", mn_s2d: "חנות שמוכרת, עם סליקה וניהול", mn_s3: "אפליקציות ווב", mn_s3d: "מערכות, זימון תורים ודשבורדים", mn_proj: "הפרויקטים", mn_contact: "צור קשר", th_lbl: "מצב תצוגה", th_dark: "כהה", th_light: "בהיר", m1: "עבודות", m2: "שירותים", m3: "תהליך", m4: "הסטודיו", cta: "קבלו הצעת מחיר", cta2: "צפו בעבודות",
+      mn_home: "דף הבית", mn_svc: "שירותים", mn_s1: "אתרי תדמית", mn_s1d: "אתר שמציג את העסק ומביא פניות", mn_s2: "חנויות אונליין", mn_s2d: "חנות שמוכרת, עם סליקה וניהול", mn_s3: "אפליקציות ווב", mn_s3d: "מערכות, זימון תורים ודשבורדים", mn_s4: "מערכות AI וסוכנים", mn_s4d: "סוכנים ואוטומציות שחוסכים זמן", mn_proj: "הפרויקטים", mn_contact: "צור קשר", th_lbl: "מצב תצוגה", th_dark: "כהה", th_light: "בהיר", m1: "עבודות", m2: "שירותים", m3: "תהליך", m4: "הסטודיו", cta: "קבלו הצעת מחיר", cta2: "צפו בעבודות",
       avail: "זמינים לפרויקטים חדשים · נובמבר 2026",
-      h1: ["אתרים שמציבים", "אתכם <span class=\"accent\">בליגה אחרת.</span>"],
-      ht1: "עיצוב אישי, בלי תבניות", ht2: "מענה תוך 24 שעות", ht3: "ליווי מהאפיון ועד העלייה לאוויר",
+      h1: ["כלי AI ואתרים", "שעובדים <span class=\"accent\">בשבילכם.</span>"],
+      ht1: "בהתאמה אישית לעסק, בלי תבניות", ht2: "מענה תוך 24 שעות", ht3: "ליווי מהאפיון ועד העלייה לאוויר",
       hc_t: "B.S.Y DIGITAL בקצרה", hc_s1: "פרויקטים באוויר", hc_s2: "זמן מענה", hc_s3: "עיצוב בהתאמה אישית", hc_s4: "סוגי אתרים", hc_cl: "בין הלקוחות", hc_link: "לכל הפרויקטים",
-      lead: "סטודיו לעיצוב ופיתוח אתרים בהתאמה אישית. <b>אתרי תדמית, חנויות אונליין ואפליקציות ווב.</b>",
-      s1: "אתרי תדמית", s2: "חנויות אונליין", s3: "אפליקציות ווב",
+      lead: "סטודיו שבונה לעסקים <b>מערכות AI, סוכנים חכמים ואוטומציות</b> שחוסכים זמן וכאב ראש. ובנוסף, אתרי תדמית, חנויות אונליין ואפליקציות.",
+      s1: "אתרי תדמית", s2: "חנויות אונליין", s3: "אפליקציות ווב", s4: "מערכות AI וסוכנים",
       w_eye: "עבודות נבחרות", w_title: ["עבודות שמדברות", "<span class=\"serif\">בעד עצמן.</span>"],
-      w_lead: "אתרים אמיתיים שעיצבתי ופיתחתי ללקוחות. כל אחד בנוי סביב העסק שלו.",
+      w_lead: "אתרים אמיתיים, באוויר עכשיו. כל אחד בנוי סביב העסק שלו.",
       w1: "אתר תדמית", w1s: "נדל״ן יוקרה, הרצליה", w2: "חנות אונליין", w2s: "קרמיקה בעבודת יד", w3: "אפליקציית ווב", w3s: "זימון תורים למרפאה", w4: "אתר תדמית", w4s: "ייעוץ פיננסי",
       w_all: "לכל העבודות", w_alln: "6 פרויקטים באוויר", pv_back: "חזרה לדף הבית", pv_eye: "תיק עבודות", pv_title: "כל <span class=\"serif\">העבודות.</span>", pv_lead: "לחצו על כל פרויקט כדי לראות אותו חי.", pv_cta: "רוצים אתר כזה? בואו נדבר",
       r_eye: "ביקורות", r_title: ["מה הלקוחות", "<span class=\"serif\">אומרים.</span>"], r_count: "10 ביקורות", r_write: "השאירו ביקורת", r_note: "* ביקורות לדוגמה. יוחלפו בביקורות אמיתיות.", r_ex: "דוגמה",
@@ -2043,28 +2138,28 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
       c_eye: "צרו קשר", c_title: ["בואו נבנה", "<span class=\"serif\">משהו שלא שוכחים.</span>"], c_wa: "וואטסאפ", c_mail: "אימייל", c_live: "זמין עכשיו · עונה תוך 24 שעות",
       b_title: "הבריף שלכם", b_foot: "ארבע שאלות קצרות, פחות מדקה. אחרי זה אני חוזר אליכם עם רעיונות, לוח זמנים והצעת מחיר סגורה.", b_labels: ["פרויקט", "מועד", "העסק", "איש קשר"],
       q1: "מה בונים יחד?", q1p: "בחרו את מה שהכי קרוב. אפשר לשנות אחר כך.", q2: "מתי תרצו לעלות לאוויר?", q2p: "זה עוזר לי לתכנן את לוח הזמנים בשבילכם.", q3: "ספרו לי על העסק.", q3p: "כמה מילים מספיקות. מה אתם עושים ומה חשוב לכם שהאתר ישיג.", q4: "איך חוזרים אליכם?", q4p: "בלי ספאם. רק אני, עם תשובה אישית.",
-      o_type: [["אתר תדמית", "נוכחות שמביאה פניות"], ["חנות אונליין", "מכירות גם כשאתם ישנים"], ["אפליקציית ווב", "מערכת בהתאמה אישית"], ["עוד לא בטוח", "נחשוב על זה יחד"]],
+      o_type: [["אתר תדמית", "נוכחות שמביאה פניות"], ["חנות אונליין", "מכירות גם כשאתם ישנים"], ["אפליקציית ווב", "מערכת בהתאמה אישית"], ["מערכת AI / אוטומציה", "חוסכת זמן ועבודה ידנית"], ["עוד לא בטוח", "נחשוב על זה יחד"]],
       o_when: [["כמה שיותר מהר", "יש לי דדליין"], ["תוך חודש", "רוצה להתחיל עכשיו"], ["תוך 1-3 חודשים", "מתכנן קדימה"], ["רק בודק אפשרויות", "בלי לחץ"]],
       f_biz: "שם העסק", f_site: "אתר קיים (לא חובה)", f_msg: "על העסק ועל הפרויקט", f_name: "שם מלא", f_phone: "טלפון", f_email: "אימייל (לא חובה)", f_req: "שדה חובה", f_badphone: "מספר לא תקין", f_bademail: "אימייל לא תקין",
       w_back: "חזרה", w_next: "המשך", w_send: "שלחו את הבריף", w_pick: "בחרו אפשרות", w_enter: "<kbd>Enter</kbd> להמשך",
       f_ok: "הבריף אצלי.", f_okp: "תודה {n}! אחזור אליכם תוך 24 שעות עם רעיונות והצעת מחיר.", f_orwa: "רוצים מהר יותר? וואטסאפ", f_again: "בריף חדש", f_wahi: "היי, אני", f_waabout: "מעוניין/ת ב",
-      ft_say: "האתר הבא שלכם <span class=\"serif\">מתחיל בהודעה אחת.</span>", ft_nav: "ניווט", ft_faq: "שאלות נפוצות", ft_talk: "דברו איתי", ft_rights: "כל הזכויות שמורות", ft_acc: "הצהרת נגישות", ft_priv: "מדיניות פרטיות", ft_terms: "תנאי שימוש", f_consent: "בשליחת הבריף אתם מאשרים את <a href=\"#privacy\">מדיניות הפרטיות</a>. הפרטים משמשים רק כדי לחזור אליכם.", ft_top: "חזרה למעלה",
+      ft_say: "הפרויקט הבא שלכם <span class=\"serif\">מתחיל בהודעה אחת.</span>", ft_nav: "ניווט", ft_faq: "שאלות נפוצות", ft_talk: "דברו איתי", ft_rights: "כל הזכויות שמורות", ft_acc: "הצהרת נגישות", ft_priv: "מדיניות פרטיות", ft_terms: "תנאי שימוש", f_consent: "בשליחת הבריף אתם מאשרים את <a href=\"#privacy\">מדיניות הפרטיות</a>. הפרטים משמשים רק כדי לחזור אליכם.", ft_top: "חזרה למעלה",
       p_hint: "החליקו לצדדים", p_eye: "תהליך העבודה", p_title: "מהרעיון לאתר באוויר, <span class=\"serif\">בארבעה צעדים.</span>", p_lead: "תהליך ברור עם לוחות זמנים אמיתיים. אתם מאשרים כל שלב לפני שממשיכים.",
       y_eye: "למה B.S.Y", y_title: ["סטודיו קטן.", "<span class=\"serif\">תוצאה של גדולים.</span>"], y_lead: "ההבדל בין סוכנות רגילה לבין עבודה ישירה איתי, בשורה אחת לכל דבר שחשוב.",
-      sv_eye: "שירותים", sv_title: ["שלושה דברים.", "<span class=\"serif\">ברמה הכי גבוהה.</span>"], sv_lead: "אני לא עושה הכול. אני עושה שלושה דברים, ועושה אותם מצוין.",
+      sv_eye: "מה אנחנו בונים", sv_title: ["פתרון אחד לכל מה", "<span class=\"serif\">שהעסק צריך.</span>"], sv_lead: "מתחילים מהבעיה של העסק, לא מהטכנולוגיה. כל פרויקט נמדד במה שהוא חוסך לכם או מכניס לכם.", tr_lbl: "עסקים כבר<br>באוויר איתנו",
       w_cta: "הפרויקט הבא יכול להיות שלכם", w_note: "* פרויקטים לדוגמה",
       cap: "בתמונה: Lévy Estates · Atelier Noa — פרויקטים לדוגמה", arr: "←", other: "EN"
     },
     en: {
-      mn_home: "Home", mn_svc: "Services", mn_s1: "Brand websites", mn_s1d: "A site that presents you and brings enquiries", mn_s2: "Online stores", mn_s2d: "A store that sells, with payments and admin", mn_s3: "Web apps", mn_s3d: "Systems, booking and dashboards", mn_proj: "Projects", mn_contact: "Contact", th_lbl: "Display", th_dark: "Dark", th_light: "Light", m1: "Work", m2: "Services", m3: "Process", m4: "Studio", cta: "Get a quote", cta2: "See our work",
+      mn_home: "Home", mn_svc: "Services", mn_s1: "Brand websites", mn_s1d: "A site that presents you and brings enquiries", mn_s2: "Online stores", mn_s2d: "A store that sells, with payments and admin", mn_s3: "Web apps", mn_s3d: "Systems, booking and dashboards", mn_s4: "AI systems & agents", mn_s4d: "Agents and automations that save time", mn_proj: "Projects", mn_contact: "Contact", th_lbl: "Display", th_dark: "Dark", th_light: "Light", m1: "Work", m2: "Services", m3: "Process", m4: "Studio", cta: "Get a quote", cta2: "See our work",
       avail: "Available for new projects · November 2026",
-      h1: ["Websites that put you", "in <span class=\"accent\">another league.</span>"],
-      ht1: "Bespoke design, no templates", ht2: "Reply within 24 hours", ht3: "With you from brief to launch",
+      h1: ["AI tools and websites", "that <span class=\"accent\">work for you.</span>"],
+      ht1: "Built around your business, no templates", ht2: "Reply within 24 hours", ht3: "With you from brief to launch",
       hc_t: "B.S.Y DIGITAL at a glance", hc_s1: "Projects live", hc_s2: "Reply time", hc_s3: "Custom design", hc_s4: "Website types", hc_cl: "Among our clients", hc_link: "All projects",
-      lead: "A studio designing and building bespoke websites. <b>Brand sites, online stores and web apps.</b>",
-      s1: "Brand websites", s2: "Online stores", s3: "Web apps",
+      lead: "A studio building <b>AI systems, smart agents and automations</b> that save businesses time and headaches. Plus brand websites, online stores and apps.",
+      s1: "Brand websites", s2: "Online stores", s3: "Web apps", s4: "AI systems & agents",
       w_eye: "Selected work", w_title: ["Work that speaks", "<span class=\"serif\">for itself.</span>"],
-      w_lead: "Real sites I designed and built for clients, each one shaped around its business.",
+      w_lead: "Real sites, live right now. Each one shaped around its business.",
       w1: "Brand website", w1s: "Luxury real estate, Herzliya", w2: "Online store", w2s: "Hand-thrown ceramics", w3: "Web app", w3s: "Clinic booking", w4: "Brand website", w4s: "Financial advisory",
       w_all: "See all work", w_alln: "6 projects live", pv_back: "Back to home", pv_eye: "Portfolio", pv_title: "All <span class=\"serif\">work.</span>", pv_lead: "Open any project to see it in action.", pv_cta: "Want a site like this? Let's talk",
       r_eye: "Reviews", r_title: ["What clients", "<span class=\"serif\">say.</span>"], r_count: "10 reviews", r_write: "Leave a review", r_note: "* Sample reviews, to be replaced with real ones.", r_ex: "Sample",
@@ -2073,15 +2168,15 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
       c_eye: "Contact", c_title: ["Let's build", "<span class=\"serif\">something unforgettable.</span>"], c_wa: "WhatsApp", c_mail: "Email", c_live: "Available now · replies within 24 hours",
       b_title: "Your brief", b_foot: "Four quick questions, under a minute. Then I come back with ideas, a timeline and a fixed quote.", b_labels: ["Project", "Timing", "Business", "Contact"],
       q1: "What are we building?", q1p: "Pick the closest one. You can change it later.", q2: "When would you like to launch?", q2p: "It helps me plan the timeline for you.", q3: "Tell me about the business.", q3p: "A few words are enough: what you do and what the site should achieve.", q4: "How do I reach you?", q4p: "No spam. Just me, with a personal reply.",
-      o_type: [["Brand website", "A presence that brings enquiries"], ["Online store", "Sales while you sleep"], ["Web app", "A custom system"], ["Not sure yet", "Let's figure it out together"]],
+      o_type: [["Brand website", "A presence that brings enquiries"], ["Online store", "Sales while you sleep"], ["Web app", "A custom system"], ["AI system / automation", "Saves time and manual work"], ["Not sure yet", "Let's figure it out together"]],
       o_when: [["As soon as possible", "I have a deadline"], ["Within a month", "Ready to start"], ["In 1-3 months", "Planning ahead"], ["Just exploring", "No pressure"]],
       f_biz: "Business name", f_site: "Current website (optional)", f_msg: "About the business and the project", f_name: "Full name", f_phone: "Phone", f_email: "Email (optional)", f_req: "Required", f_badphone: "Invalid number", f_bademail: "Invalid email",
       w_back: "Back", w_next: "Continue", w_send: "Send the brief", w_pick: "Pick an option", w_enter: "<kbd>Enter</kbd> to continue",
       f_ok: "Brief received.", f_okp: "Thank you {n}! I'll get back to you within 24 hours with ideas and a quote.", f_orwa: "Want it faster? WhatsApp", f_again: "New brief", f_wahi: "Hi, I'm", f_waabout: "Interested in",
-      ft_say: "Your next website <span class=\"serif\">starts with one message.</span>", ft_nav: "Navigate", ft_faq: "FAQ", ft_talk: "Talk to me", ft_rights: "All rights reserved", ft_acc: "Accessibility", ft_priv: "Privacy policy", ft_terms: "Terms of use", f_consent: "By sending the brief you accept the <a href=\"#privacy\">privacy policy</a>. Your details are used only to get back to you.", ft_top: "Back to top",
+      ft_say: "Your next project <span class=\"serif\">starts with one message.</span>", ft_nav: "Navigate", ft_faq: "FAQ", ft_talk: "Talk to me", ft_rights: "All rights reserved", ft_acc: "Accessibility", ft_priv: "Privacy policy", ft_terms: "Terms of use", f_consent: "By sending the brief you accept the <a href=\"#privacy\">privacy policy</a>. Your details are used only to get back to you.", ft_top: "Back to top",
       p_hint: "Swipe sideways", p_eye: "How we work", p_title: "From idea to live site, <span class=\"serif\">in four steps.</span>", p_lead: "A clear process with real timelines. You approve every stage before we move on.",
       y_eye: "Why B.S.Y", y_title: ["A small studio.", "<span class=\"serif\">Big-league results.</span>"], y_lead: "The difference between a typical agency and working directly with me, one line for everything that matters.",
-      sv_eye: "Services", sv_title: ["Three things.", "<span class=\"serif\">Done exceptionally.</span>"], sv_lead: "I don't do everything. I do three things, and I do them very well.",
+      sv_eye: "What we build", sv_title: ["One partner for everything", "<span class=\"serif\">your business needs.</span>"], sv_lead: "We start from the business problem, not the technology. Every project is measured by what it saves you or brings in.", tr_lbl: "businesses already<br>live with us",
       w_cta: "Your project could be next", w_note: "* Sample projects",
       cap: "Shown: Lévy Estates · Atelier Noa — sample projects", arr: "→", other: "עב"
     }
@@ -2554,7 +2649,11 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
       { key: "app", name: "אפליקציות ווב", title: ["אפליקציית ווב", "<span class=\"serif\">בהתאמה אישית.</span>"], lead: "מערכות שעובדות בדיוק כמו העסק שלכם: זימון תורים, אזור לקוחות, דשבורדים. חוסכות זמן ומייצרות הכנסה.",
         facts: [["בהתאמה מלאה", "נבנית סביב התהליכים שלכם"], ["מכל מכשיר", "מחשב, טאבלט וטלפון"], ["גדלה איתכם", "קוד נקי שקל להרחיב"]],
         feat: [["זימון תורים והזמנות", "לקוחות מזמינים לבד, 24/7, עם תזכורות אוטומטיות."], ["אזור אישי ללקוחות", "התחברות, היסטוריה, מסמכים ותשלומים במקום אחד."], ["דשבורד ניהול", "כל הנתונים החשובים של העסק במבט אחד."], ["אוטומציות", "פחות עבודה ידנית: הודעות, דוחות ומשימות שרצות לבד."], ["חיבור למערכות", "API, יומנים, סליקה וכלים שאתם כבר עובדים איתם."], ["אבטחה והרשאות", "כל משתמש רואה רק את מה שהוא צריך."]],
-        fit: ["עסקים שמנהלים הכול בטלפון, באקסל ובוואטסאפ", "נותני שירות שרוצים זימון תורים אונליין", "חברות שצריכות כלי פנימי בהתאמה אישית", "יזמים עם רעיון למוצר דיגיטלי"] }
+        fit: ["עסקים שמנהלים הכול בטלפון, באקסל ובוואטסאפ", "נותני שירות שרוצים זימון תורים אונליין", "חברות שצריכות כלי פנימי בהתאמה אישית", "יזמים עם רעיון למוצר דיגיטלי"] },
+      { key: "ai", name: "מערכות AI וסוכנים", title: ["מערכות AI", "<span class=\"serif\">שעובדות בשבילכם.</span>"], lead: "סוכני AI, אוטומציות וכלים חכמים שלוקחים מכם את העבודה החוזרת: עונים ללקוחות, מסננים פניות, שולחים תזכורות ומכינים דוחות. אתם חוזרים להתעסק בעסק.",
+        facts: [["24/7", "עונה ללקוחות גם בלילה"], ["פחות עבודה ידנית", "משימות שרצות לבד"], ["מתחבר לכלים שלכם", "וואטסאפ, יומן, CRM ואקסל"]],
+        feat: [["סוכן שירות לקוחות", "עונה לשאלות בוואטסאפ ובאתר, 24/7, בשפה של העסק שלכם, ומעביר אליכם רק את מה שצריך אתכם."], ["קליטה וסינון לידים", "כל פנייה נקלטת, מסווגת ומקבלת מענה מיידי. אתם מקבלים רק את הלידים החמים."], ["אוטומציות לתהליכים", "הצעות מחיר, תזכורות, מעקבים ומסמכים שיוצאים לבד, בזמן הנכון."], ["קביעת תורים ופגישות", "הסוכן בודק זמינות ביומן וקובע פגישות בלי שתצטרכו להרים טלפון."], ["דוחות ותובנות", "סיכום יומי ושבועי של הפניות, המכירות והלקוחות, בלי לפתוח אקסל."], ["עוזר AI פנימי", "עוזר שמכיר את המסמכים והנהלים של העסק ועונה לצוות בשניות."]],
+        fit: ["עסקים שמבזבזים שעות על הודעות ומשימות חוזרות", "נותני שירות שמפספסים פניות אחרי שעות העבודה", "צוותים שעובדים עם הרבה אקסלים, טפסים ומיילים", "מי שרוצה להכניס AI לעסק ולא יודע מאיפה להתחיל"] }
     ],
     en: [
       { key: "site", name: "Brand websites", title: ["A brand website", "<span class=\"serif\">that brings clients.</span>"], lead: "A site that looks like a big company's, loads in a second, and is built to turn visitors into enquiries. Bespoke, no templates.",
@@ -2568,15 +2667,19 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
       { key: "app", name: "Web apps", title: ["A web app", "<span class=\"serif\">built for you.</span>"], lead: "Systems that work exactly like your business: booking, customer accounts, dashboards. They save time and make money.",
         facts: [["Fully custom", "Built around your processes"], ["Any device", "Desktop, tablet and phone"], ["Grows with you", "Clean code that's easy to extend"]],
         feat: [["Booking and orders", "Clients book on their own, 24/7, with automatic reminders."], ["Customer accounts", "Login, history, documents and payments in one place."], ["Admin dashboard", "Every key number of the business at a glance."], ["Automations", "Less manual work: messages, reports and tasks that run themselves."], ["Integrations", "APIs, calendars, payments and the tools you already use."], ["Security and roles", "Every user sees only what they need."]],
-        fit: ["Businesses running everything on phone, Excel and WhatsApp", "Service providers who want online booking", "Companies that need a custom internal tool", "Founders with an idea for a digital product"] }
+        fit: ["Businesses running everything on phone, Excel and WhatsApp", "Service providers who want online booking", "Companies that need a custom internal tool", "Founders with an idea for a digital product"] },
+      { key: "ai", name: "AI systems & agents", title: ["AI systems", "<span class=\"serif\">that work for you.</span>"], lead: "AI agents, automations and smart tools that take the repetitive work off your plate: answering clients, qualifying leads, sending reminders and preparing reports. You get back to running the business.",
+        facts: [["24/7", "Answers clients even at night"], ["Less manual work", "Tasks that run themselves"], ["Fits your tools", "WhatsApp, calendar, CRM and Excel"]],
+        feat: [["Customer service agent", "Answers questions on WhatsApp and your site, 24/7, in your business's voice, and only passes on what needs you."], ["Lead capture and qualification", "Every enquiry is captured, sorted and answered instantly. You only get the warm leads."], ["Process automations", "Quotes, reminders, follow-ups and documents that go out on their own, at the right time."], ["Booking and meetings", "The agent checks your calendar and books meetings without you picking up the phone."], ["Reports and insights", "Daily and weekly summaries of enquiries, sales and clients, without opening Excel."], ["Internal AI assistant", "An assistant that knows your documents and procedures and answers your team in seconds."]],
+        fit: ["Businesses losing hours to messages and repetitive tasks", "Service providers who miss enquiries after hours", "Teams juggling spreadsheets, forms and email", "Anyone who wants to bring AI into the business but doesn't know where to start"] }
     ]
   };
-  var SVC_KEYS = ["site", "store", "app"];
-  function svcFromHash() { var m = /^#service-(site|store|app)$/.exec(location.hash); return m ? m[1] : null; }
+  var SVC_KEYS = ["site", "store", "app", "ai"];
+  function svcFromHash() { var m = /^#service-(site|store|app|ai)$/.exec(location.hash); return m ? m[1] : null; }
   function renderSvcPage(l) {
     var key = svcFromHash() || "site", i = SVC_KEYS.indexOf(key), v = SVP[l][i], he = l === "he";
     var tick = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-    var prev = SVP[l][(i + 2) % 3], next = SVP[l][(i + 1) % 3];
+    var nS = SVP[l].length, prev = SVP[l][(i + nS - 1) % nS], next = SVP[l][(i + 1) % nS];
     var heroHtml = key === "site" ? siteHero(l, v, i) : key === "app" ? appHero(l, v, i) : null;
     if (key === "store") { clearTimeout(ahT); clearTimeout(stT); document.getElementById("view-svc").innerHTML = storeHero(l, v, i) + storeRest(l, v, i, prev, next); stStart(l); return; }
     if (key === "app") { document.getElementById("view-svc").innerHTML = heroHtml + appRest(l, v, i, prev, next); clearTimeout(ahT); ahStart(l); abStart(); return; }
@@ -2980,7 +3083,8 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
   // FAQ
   var FAQ = {
     he: [
-      ["כמה עולה אתר?", "זה תלוי בהיקף: אתר תדמית, חנות או מערכת. אחרי שיחת היכרות קצרה תקבלו <b>הצעת מחיר סגורה ומפורטת</b>, בלי הפתעות ובלי תוספות באמצע הדרך."],
+      ["כמה זה עולה?", "זה תלוי בהיקף: מערכת AI, אתר תדמית, חנות או אפליקציה. אחרי שיחת היכרות קצרה תקבלו <b>הצעת מחיר סגורה ומפורטת</b>, בלי הפתעות ובלי תוספות באמצע הדרך."],
+      ["מה סוכן AI יכול לעשות בשביל העסק שלי?", "הרבה מהעבודה החוזרת: לענות ללקוחות בוואטסאפ ובאתר גם בלילה, לקלוט ולסנן פניות, לקבוע פגישות, לשלוח תזכורות והצעות מחיר ולהכין דוחות. בשיחת ההיכרות נמפה יחד <b>איפה הולך לכם הכי הרבה זמן</b>, ונתחיל משם."],
       ["כמה זמן לוקח לבנות אתר?", "אתר תדמית עולה לאוויר בדרך כלל תוך <b>3-6 שבועות</b>. חנות או אפליקציית ווב לוקחות יותר, ואת לוחות הזמנים המדויקים תקבלו כבר בהצעה."],
       ["אני צריך להכין טקסטים ותמונות?", "לא חייבים. אני בונה איתכם את מבנה התוכן, עוזר לנסח את הטקסטים ומתאים את העיצוב לחומרים שיש לכם. אם צריך, אמליץ גם על צלם."],
       ["האתר והקוד שייכים לי?", "כן, <b>במלואם</b>. הדומיין, הקוד, התכנים והגישות רשומים עליכם. אתם לא תלויים בי כדי להמשיך."],
@@ -2990,7 +3094,8 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
       ["עובדים גם עם לקוחות מחוץ לישראל?", "כן. האתרים נבנים בעברית, באנגלית או בשתיהן, והעבודה כולה יכולה להתנהל מרחוק. יש לי לקוחות גם בארצות הברית."]
     ],
     en: [
-      ["How much does a website cost?", "It depends on the scope: a brand site, a store or a custom system. After a short intro call you get a <b>fixed, detailed quote</b>, with no surprises and no add-ons halfway through."],
+      ["How much does it cost?", "It depends on the scope: an AI system, a brand site, a store or an app. After a short intro call you get a <b>fixed, detailed quote</b>, with no surprises and no add-ons halfway through."],
+      ["What can an AI agent do for my business?", "A lot of the repetitive work: answer clients on WhatsApp and your site even at night, capture and sort enquiries, book meetings, send reminders and quotes, and prepare reports. In the intro call we map <b>where most of your time goes</b>, and start there."],
       ["How long does it take?", "A brand site usually goes live in <b>3-6 weeks</b>. A store or web app takes longer, and you get the exact timeline in the quote."],
       ["Do I need to prepare texts and photos?", "Not necessarily. I build the content structure with you, help write the copy and shape the design around what you have. If needed, I can recommend a photographer."],
       ["Do I own the site and the code?", "Yes, <b>entirely</b>. The domain, code, content and accounts are in your name. You never depend on me to keep going."],
@@ -3018,35 +3123,52 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
   // Services
   var SV = {
     he: [
-      { tag: "Brand", name: "אתרי תדמית", pitch: "נוכחות דיגיטלית שמשדרת יוקרה ואמינות מהשנייה הראשונה, ומביאה פניות.", list: ["עיצוב בהתאמה אישית, בלי תבניות", "עברית ואנגלית, כולל RTL מלא", "אנימציות ומיקרו־אינטראקציות", "מושלם במובייל, נטען בפחות משנייה", "בסיס SEO לגוגל"] },
-      { tag: "Store", name: "חנויות אונליין", pitch: "חנות שנראית כמו מותג, נותנת ביטחון לקנות, ומוכרת גם כשאתם ישנים.", list: ["קטלוג וניהול מוצרים פשוט", "סליקה מאובטחת", "ניהול הזמנות ומלאי", "תהליך רכישה מהיר במובייל", "חיבור לוואטסאפ ולמשלוחים"] },
-      { tag: "App", name: "אפליקציות ווב", pitch: "מערכות בהתאמה אישית שחוסכות לכם זמן ומייצרות הכנסה.", list: ["זימון תורים והזמנות אונליין", "אזור אישי ללקוחות", "דשבורדים וממשקי ניהול", "חיבור למערכות קיימות ו־API", "קוד נקי שגדל יחד עם העסק"] }
+      { key: "ai", tag: "AI", out: "חוסך שעות כל שבוע", short: "סוכן שעונה ללקוחות 24/7, מסנן לידים וקובע פגישות, ואוטומציות לכל מה שחוזר על עצמו.", chat: ["יש תור מחר?", "כן! 11:30 או 16:00 🙂", "קבעתי לך ל־16:00 ✓"], name: "מערכות AI וסוכנים", pitch: "סוכנים חכמים ואוטומציות שעושים את העבודה החוזרת במקומכם. פחות זמן על משימות, פחות כאב ראש, יותר זמן לעסק.", list: ["סוכן AI שעונה ללקוחות 24/7 בוואטסאפ ובאתר", "אוטומציות להצעות מחיר, תזכורות ודוחות", "קליטה וסינון לידים אוטומטי", "חיבור לכלים שאתם כבר עובדים איתם", "כלים פנימיים מבוססי AI בהתאמה אישית"] },
+      { key: "site", tag: "Brand", out: "יותר פניות", short: "אתר שנראה כמו של חברה גדולה, נטען בשנייה ובנוי כדי שמבקרים יהפכו לפניות.", name: "אתרי תדמית", pitch: "נוכחות דיגיטלית שמשדרת יוקרה ואמינות מהשנייה הראשונה, ומביאה פניות.", list: ["עיצוב בהתאמה אישית, בלי תבניות", "עברית ואנגלית, כולל RTL מלא", "אנימציות ומיקרו־אינטראקציות", "מושלם במובייל, נטען בפחות משנייה", "בסיס SEO לגוגל"] },
+      { key: "store", tag: "Store", out: "מכירות 24/7", short: "קטלוג, סליקה מאובטחת ותהליך רכישה קצר במובייל. חנות שמוכרת גם כשאתם ישנים.", name: "חנויות אונליין", pitch: "חנות שנראית כמו מותג, נותנת ביטחון לקנות, ומוכרת גם כשאתם ישנים.", list: ["קטלוג וניהול מוצרים פשוט", "סליקה מאובטחת", "ניהול הזמנות ומלאי", "תהליך רכישה מהיר במובייל", "חיבור לוואטסאפ ולמשלוחים"] },
+      { key: "app", tag: "App", out: "הכול במקום אחד", short: "זימון תורים, אזור לקוחות ודשבורדים. מערכת שעובדת בדיוק כמו העסק שלכם.", name: "אפליקציות ווב", pitch: "מערכות בהתאמה אישית שחוסכות לכם זמן ומייצרות הכנסה.", list: ["זימון תורים והזמנות אונליין", "אזור אישי ללקוחות", "דשבורדים וממשקי ניהול", "חיבור למערכות קיימות ו־API", "קוד נקי שגדל יחד עם העסק"] }
     ],
     en: [
-      { tag: "Brand", name: "Brand websites", pitch: "A presence that signals quality and trust from the first second, and brings in enquiries.", list: ["Bespoke design, no templates", "Hebrew and English, full RTL", "Animation and micro-interactions", "Flawless on mobile, loads in under a second", "SEO foundations for Google"] },
-      { tag: "Store", name: "Online stores", pitch: "A store that looks like a brand, feels safe to buy from, and sells while you sleep.", list: ["Simple catalogue and product management", "Secure checkout", "Orders and stock management", "Fast mobile checkout", "WhatsApp and shipping integrations"] },
-      { tag: "App", name: "Web apps", pitch: "Custom systems that save you time and make you money.", list: ["Online booking and scheduling", "Customer accounts", "Dashboards and admin panels", "Connections to your tools and APIs", "Clean code that grows with the business"] }
+      { key: "ai", tag: "AI", out: "Saves hours every week", short: "An agent that answers clients 24/7, qualifies leads and books meetings, plus automations for everything repetitive.", chat: ["Any slot tomorrow?", "Yes! 11:30 or 16:00 🙂", "Booked you for 16:00 ✓"], name: "AI systems & agents", pitch: "Smart agents and automations that take the repetitive work off your plate. Less time on tasks, fewer headaches, more time for the business.", list: ["An AI agent that answers clients 24/7 on WhatsApp and your site", "Automations for quotes, reminders and reports", "Automatic lead capture and qualification", "Connected to the tools you already use", "Custom AI-powered internal tools"] },
+      { key: "site", tag: "Brand", out: "More enquiries", short: "A site that looks like a big company's, loads in a second and turns visitors into enquiries.", name: "Brand websites", pitch: "A presence that signals quality and trust from the first second, and brings in enquiries.", list: ["Bespoke design, no templates", "Hebrew and English, full RTL", "Animation and micro-interactions", "Flawless on mobile, loads in under a second", "SEO foundations for Google"] },
+      { key: "store", tag: "Store", out: "Sales 24/7", short: "Catalogue, secure checkout and a short mobile purchase flow. A store that sells while you sleep.", name: "Online stores", pitch: "A store that looks like a brand, feels safe to buy from, and sells while you sleep.", list: ["Simple catalogue and product management", "Secure checkout", "Orders and stock management", "Fast mobile checkout", "WhatsApp and shipping integrations"] },
+      { key: "app", tag: "App", out: "All in one place", short: "Booking, customer accounts and dashboards. A system that works exactly like your business.", name: "Web apps", pitch: "Custom systems that save you time and make you money.", list: ["Online booking and scheduling", "Customer accounts", "Dashboards and admin panels", "Connections to your tools and APIs", "Clean code that grows with the business"] }
     ]
   };
+  var scTimer = 0;
+  function scVis(v) {
+    if (v.key === "ai") return '<span class="sc-new">' + (lang === "he" ? "חדש" : "New") + '</span><div class="sx-chat"><i class="u">' + esc(v.chat[0]) + '</i><i class="b">' + esc(v.chat[1]) + '</i><i class="b">' + esc(v.chat[2]) + "</i></div>";
+    if (v.key === "site") return '<div class="sx-shot" style="background-image:url(work/pnim-d.jpg)"></div>';
+    if (v.key === "store") return '<div class="sx-store"><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div>';
+    return '<div class="sx-app"><div class="k"><i></i><i></i><i></i></div><div class="bars"><i style="--h:90%"></i><i style="--h:50%"></i><i style="--h:65%"></i><i style="--h:40%"></i><i style="--h:72%"></i><i style="--h:55%"></i></div></div>';
+  }
+  function renderTrust(l) {
+    var t = document.getElementById("tr-t"); if (!t) return;
+    var list = PJ.filter(function (p) { return !p.user; });
+    var one = list.map(function (p) { return '<span class="tr-c"><img src="' + esc(pjImg(p, "m")) + '" alt="" loading="lazy"><span><b>' + esc(p.name) + "</b><small>" + esc(String(pjTxt(p, l)[0]).split(" · ")[0]) + "</small></span></span>"; }).join("");
+    t.innerHTML = one + one;
+    document.getElementById("tr-n").textContent = PJ.length;
+  }
   function renderServices(l) {
     var row = document.getElementById("svc-row"); if (!row) return;
-    var cur = row.querySelector(".svc.on"), idx = cur ? +cur.dataset.i : 0, cta = l === "he" ? "בואו נדבר על זה" : "Let's talk about it";
+    renderTrust(l);
     row.innerHTML = SV[l].map(function (v, i) {
-      return '<article class="svc' + (i === idx ? " on" : "") + '" data-i="' + i + '" tabindex="0">' +
-        '<span class="svc-tag">' + v.tag + '</span>' +
-        '<h3 class="svc-name">' + esc(v.name) + '</h3>' +
-        '<div class="svc-body"><p class="svc-pitch">' + esc(v.pitch) + '</p><ul class="svc-list">' + v.list.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + '</ul><a class="svc-cta" href="#service-' + ["site", "store", "app"][i] + '">' + T[l].sv_more + '</a></div>' +
-      '</article>';
+      return '<a class="sc' + (v.key === "ai" ? " hot" : "") + '" href="#service-' + v.key + '" style="--d:' + i + '"><div class="sc-v" aria-hidden="true">' + scVis(v) + '</div>' +
+        '<div class="sc-b"><h3>' + esc(v.name) + "</h3><p>" + esc(v.short) + '</p><div class="sc-f"><span class="sc-o">' + esc(v.out) + '</span><span class="sc-m">' + T[l].sv_more + "</span></div></div></a>";
     }).join("");
-    // Soft fade-up as each card scrolls into view
-    if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); } }); }, { threshold: .15 });
-      row.querySelectorAll(".svc").forEach(function (el, i) {
-        var r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0 && row.dataset.seen) return;
-        el.style.setProperty("--d", getComputedStyle(row).gridTemplateColumns.split(" ").length > 1 ? i : 0); el.classList.add("pre"); io.observe(el);
-      });
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if ("IntersectionObserver" in window && !reduce) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("pre"); e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .15 });
+      row.querySelectorAll(".sc").forEach(function (el) { if (!row.dataset.seen) el.classList.add("pre"); else el.classList.add("in"); io.observe(el); });
       row.dataset.seen = 1;
-    }
+    } else row.querySelectorAll(".sc").forEach(function (el) { el.classList.add("in"); });
+    clearInterval(scTimer);
+    if (!reduce) scTimer = setInterval(function () {
+      if (document.getElementById("top").hidden) return;
+      row.querySelectorAll(".sx-app .bars i").forEach(function (b, k) { b.style.setProperty("--h", (k ? 25 + Math.random() * 55 : 75 + Math.random() * 22) + "%"); });
+      var it = row.querySelectorAll(".sx-store i"), on = [].findIndex.call(it, function (x) { return x.classList.contains("on"); });
+      it.forEach(function (x, k) { x.classList.toggle("on", k === (on + 1) % it.length); });
+    }, 1800);
   }
 
   // Real projects, with their screenshots
@@ -3066,6 +3188,21 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
   function pjTxt(p, l) { return p.user ? [[p.field, p.location].filter(Boolean).join(" · "), p.subtitle || ""] : p[l]; }
   function pjDet(p, l) { return p.user ? { ch: p.challenge || "", so: p.built || "", ft: p.points || [] } : PJD[l][p.id]; }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  // Home "selected work": magazine grid of real sites, mixed sizes (2026-11-16)
+  function renderWorkGrid(l) {
+    var g = document.getElementById("wk-g"); if (!g) return;
+    var SZ = ["w7 big", "w5 big", "w4", "w4", "w4"], plus = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>';
+    g.innerHTML = PJ.slice(0, 5).map(function (p, i) {
+      var t = pjTxt(p, l);
+      return '<a class="wk ' + SZ[i] + '" style="--d:' + (i % 3) + '" href="' + esc(p.url) + '" target="_blank" rel="noopener" aria-label="' + esc(p.name) + '"><span class="wk-bg" style="background-image:url(' + esc(pjImg(p, "d")) + ')"></span>' +
+        '<span class="wk-b"><span><small>' + esc(t[0]) + "</small><b>" + esc(p.name) + "</b><em>" + esc(t[1]) + '</em></span><span class="wk-go" aria-hidden="true">' + plus + "</span></span></a>";
+    }).join("");
+    if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); } }); }, { threshold: .12 });
+      g.querySelectorAll(".wk").forEach(function (el) { if (!g.dataset.seen) el.classList.add("pre"); io.observe(el); });
+      g.dataset.seen = 1;
+    }
+  }
   function renderProjects(l) {
     var view = l === "he" ? "צפו באתר" : "Visit site", soon = l === "he" ? "צילום מסך בדרך" : "Screenshot coming";
     function build(arr) { return arr.map(function (p, i) {
@@ -3078,7 +3215,7 @@ html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xm
           '<div class="pj-phone"><div class="pj-screen"><img src="' + esc(pjImg(p, "m")) + '" alt="' + esc(p.name) + ' mobile" loading="lazy"><div class="pj-ph"><b>' + esc(p.name) + '</b></div></div></div>' +
         '</div></article>';
     }).join(""); }
-    document.getElementById("pj-list").innerHTML = build(PJ.slice(0, 3));
+    renderWorkGrid(l);
     var hcN = document.getElementById("hc-n"); if (hcN) hcN.textContent = PJ.length;
     document.querySelectorAll(".pj-more-n").forEach(function (el) { el.textContent = l === "he" ? PJ.length + " פרויקטים באוויר" : PJ.length + " projects live"; });
     if (typeof PG_T !== "undefined") renderGallery(l);
