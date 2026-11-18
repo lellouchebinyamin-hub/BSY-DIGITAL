@@ -2258,6 +2258,46 @@ h2.rvl.pre { opacity: 0; }
   .pz-act { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .pz-act .pill { padding: 12px 10px; font-size: 14px; justify-content: center; }
 }
+
+/* Hero v4: no globe; orbit motif above the title; on phones the title and both buttons sit at the bottom of the first screen */
+.h-vis { display: none !important; }
+.hero-top { padding-bottom: clamp(56px, 6cqw, 96px); }
+.h-orb { position: absolute; z-index: -1; left: 50%; top: 50%; width: min(620px, 70%); aspect-ratio: 1; translate: -50% -56%; opacity: .32; pointer-events: none; -webkit-mask: radial-gradient(closest-side, #000 60%, transparent); mask: radial-gradient(closest-side, #000 60%, transparent); }
+.hero-main { position: relative; }
+.h-orb svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.o-ln { fill: none; stroke: #2563eb; stroke-opacity: .35; stroke-width: 1; }
+.o-dash { stroke-dasharray: 3 7; }
+.o-dot-ln { stroke-dasharray: 1 5; stroke-linecap: round; stroke-width: 1.6; }
+.o-dot { fill: #2563eb; } .o-dot2 { fill: #60a5fa; }
+.o-ring { fill: #fff; stroke: #2563eb; stroke-width: 1.5; }
+.o-chip { fill: #fff; stroke: #2563eb; stroke-opacity: .6; }
+.o-pulse { fill: none; stroke: #3b82f6; stroke-width: 1.5; transform-origin: 200px 200px; animation: oPulse 3.2s ease-out infinite; }
+.o-r { transform-origin: 200px 200px; animation: oSpin 40s linear infinite; }
+.o-r2 { animation-duration: 28s; animation-direction: reverse; }
+.o-r3 { animation-duration: 18s; }
+@keyframes oSpin { to { transform: rotate(360deg); } }
+@keyframes oPulse { 0% { transform: scale(.8); opacity: .7; } 100% { transform: scale(3.6); opacity: 0; } }
+.play .h-orb { animation: fade 1.4s ease .2s both; }
+.hero-top > .h-stats { justify-self: center; margin-top: 8px; }
+.play .hero-top > .h-stats { animation: up .9s var(--ease) .85s both; }
+@media (prefers-reduced-motion: reduce) { .o-r, .o-pulse { animation: none !important; } }
+@container site (max-width: 860px) {
+  .hero-top { padding-block: 0 40px; gap: 26px; }
+  .hero-main { min-height: calc(100vh - 76px); min-height: calc(100svh - 76px); grid-template-rows: minmax(0, 1fr) auto auto auto; align-content: stretch; gap: 16px; padding-bottom: 22px; box-sizing: border-box; }
+  .h-orb { position: relative; z-index: 0; left: auto; top: auto; translate: none; width: min(92%, 340px); max-height: 100%; align-self: center; justify-self: center; opacity: .55; }
+  .hero-main > .h-orb { grid-row: 1; }
+  .hero-top > .h-stats { width: 100%; margin-top: 0; }
+  .ai-fab { transition: opacity .35s, transform .35s var(--ease); }
+  html:not(.past-hero) .ai-fab { opacity: 0; transform: translateY(20px); pointer-events: none; }
+}
+
+/* Hero v4 sizing: the orbit sits in the flow above the title and shrinks to fit */
+.h-orb { position: relative; z-index: 0; left: auto; top: auto; translate: none; width: auto; height: clamp(150px, 15cqw, 210px); max-width: 100%; aspect-ratio: 1; justify-self: center; opacity: .55; margin-bottom: -6px; }
+.hero-top { padding-top: clamp(16px, 2cqw, 32px); }
+@container site (max-width: 860px) {
+  .hero-main { height: calc(100vh - 76px); height: calc(100svh - 76px); min-height: 440px; }
+  .h-orb { width: auto; height: 100%; max-height: 330px; max-width: 92%; min-height: 0; align-self: center; margin: 0; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -2319,21 +2359,26 @@ h2.rvl.pre { opacity: 0; }
       <section class="hero">
         <div class="hero-top wrap">
           <div class="hero-main">
+            <div class="h-orb" aria-hidden="true"><svg viewBox="0 0 400 400"><defs><radialGradient id="orbG" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#3b82f6" stop-opacity=".35"/><stop offset="1" stop-color="#3b82f6" stop-opacity="0"/></radialGradient><linearGradient id="orbC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d4ed8"/><stop offset="1" stop-color="#60a5fa"/></linearGradient></defs>
+              <circle cx="200" cy="200" r="190" fill="url(#orbG)"/>
+              <circle class="o-pulse" cx="200" cy="200" r="46"/>
+              <g class="o-r o-r1"><circle cx="200" cy="200" r="172" class="o-ln o-dash"/><circle cx="372" cy="200" r="6" class="o-dot"/><circle cx="28" cy="200" r="4" class="o-dot2"/><rect x="186" y="16" width="28" height="18" rx="5" class="o-chip"/></g>
+              <g class="o-r o-r2"><circle cx="200" cy="200" r="126" class="o-ln o-dot-ln"/><circle cx="200" cy="74" r="5" class="o-dot"/><circle cx="309" cy="263" r="4" class="o-dot2"/><circle cx="91" cy="263" r="7" class="o-ring"/></g>
+              <g class="o-r o-r3"><circle cx="200" cy="200" r="82" class="o-ln"/><circle cx="282" cy="200" r="4" class="o-dot"/><circle cx="159" cy="129" r="3" class="o-dot2"/></g>
+              <circle cx="200" cy="200" r="34" fill="url(#orbC)"/><path d="M200 182l4.5 11.5 11.5 4.5-11.5 4.5-4.5 11.5-4.5-11.5-11.5-4.5 11.5-4.5z" fill="#fff"/>
+            </svg></div>
             <h1 id="h1"></h1>
             <p class="lead" data-kh="lead"></p>
             <div class="ctas">
               <a href="#contact" class="pill solid"><span data-k="cta">קבלו הצעת מחיר</span> <span class="arr" aria-hidden="true">←</span></a>
               <a href="#work" class="pill line" data-k="cta2">צפו בעבודות</a>
             </div>
-            <dl class="h-stats">
+          </div>
+          <dl class="h-stats">
               <div><dt data-k="hs1">פרויקטים באוויר</dt><dd>6+</dd></div>
               <div><dt data-k="hs2">זמן תגובה</dt><dd>24h</dd></div>
               <div><dt data-k="hs3">בהתאמה אישית</dt><dd>100%</dd></div>
             </dl>
-          </div>
-          <div class="h-vis" aria-hidden="true">
-            <canvas id="globe"></canvas>
-          </div>
         </div>
 
         <div class="hero-foot">
@@ -4568,6 +4613,11 @@ h2.rvl.pre { opacity: 0; }
   route();
 
 
+  // Phones: the assistant button appears once the hero buttons are out of the way
+  (function () {
+    function upd() { var y = stage.classList.contains("mobile") ? site.scrollTop : scrollY; document.documentElement.classList.toggle("past-hero", y > innerHeight * .45 || !document.getElementById("top") || document.getElementById("top").hidden); }
+    addEventListener("scroll", upd, { passive: true }); site.addEventListener("scroll", upd, { passive: true }); addEventListener("hashchange", function () { setTimeout(upd, 700); }); upd();
+  })();
   // Site assistant: answers questions about the services from the site's own content
   (function () {
     var fab = document.getElementById("ai-fab"), box = document.getElementById("ai-box"), logEl = document.getElementById("ai-log"), chipsEl = document.getElementById("ai-chips"), form = document.getElementById("ai-form"), q = document.getElementById("ai-q");
