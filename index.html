@@ -2230,6 +2230,34 @@ h2.rvl.pre { opacity: 0; }
   .ai-fab span { display: none; }
   .ai-box { inset: auto 0 0 0; width: auto; height: 82vh; height: 82dvh; border-radius: 22px 22px 0 0; }
 }
+
+/* Projects page, mobile: compact cards */
+@container site (max-width: 860px) {
+  .pg-bar { gap: 12px; margin-bottom: 20px; }
+  .pg-stats { border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+  .pg-stats span, .pg-stats span:first-child { padding: 12px 10px; align-items: center; text-align: center; }
+  .pg-stats b { font-size: 18px; }
+  .pg-filters { background: #fff; }
+  .pz-list { gap: 14px; }
+  .pz-c, .pz-c.now { gap: 0; padding: 0 0 16px; margin: 0; border: 1px solid var(--line); border-radius: 20px; background: #fff; overflow: hidden; box-shadow: 0 12px 30px -24px rgba(15, 35, 70, .35); opacity: 1; }
+  .pz-c:first-child { border-top: 1px solid var(--line); }
+  .pz-c > :not(.pz-mm) { margin-inline: 16px; }
+  .pz-mm { aspect-ratio: 16 / 10; margin: 0 0 14px; border-radius: 0; }
+  .pz-mm .pz-desk { top: 10%; left: 6%; right: 18%; border-radius: 8px; }
+  .pz-mm .pz-ph { width: 21%; right: 5%; bottom: -10%; border-radius: 14px; padding: 3px; }
+  .pz-mm .pz-ph img { border-radius: 11px; }
+  .pz-mm .pz-bar { height: 16px; } .pz-mm .pz-bar b { font-size: 8px; padding: 1px 8px; } .pz-mm .pz-bar i { width: 5px; height: 5px; }
+  .pz-h { gap: 10px; font-size: 12px; }
+  .pz-h .pj-cat { font-size: 12px; color: var(--stone); }
+  .pz-c h3 { margin-top: 6px; font-size: 6.4cqw; line-height: 1.1; letter-spacing: -.01em; }
+  .pz-ttl { display: none; }
+  .pz-lead { margin-top: 6px; font-size: 14px; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; max-width: none; }
+  .pz-cs { display: none; }
+  .pz-ft { margin-top: 12px; flex-wrap: nowrap; overflow: hidden; gap: 6px; }
+  .pz-ft li { flex: none; padding: 6px 11px; font-size: 12px; }
+  .pz-act { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pz-act .pill { padding: 12px 10px; font-size: 14px; justify-content: center; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
