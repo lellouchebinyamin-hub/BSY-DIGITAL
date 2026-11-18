@@ -2583,6 +2583,59 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
   .faq-side .faq-ask { align-self: stretch; }
   .faq-list { padding: 0 !important; }
 }
+
+/* Service pages: "what's included" panel grid */
+#view-svc .am { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 0; padding: 0; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 1px 2px rgba(15,35,70,.04), 0 16px 40px -24px rgba(15,35,70,.22); }
+#view-svc .am + .sw-dots { display: none !important; }
+#view-svc .am-c { flex: none; background: none; border: 0; border-radius: 0; padding: 24px; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 12px; row-gap: 8px; align-items: center; border-inline-end: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .3s; }
+#view-svc .am-c:nth-child(3n) { border-inline-end: 0; }
+#view-svc .am-c:nth-last-child(-n+3) { border-bottom: 0; }
+#view-svc .am-c:hover { background: #f7fafd; }
+#view-svc .am-ill { grid-column: 1 / -1; height: 96px; margin: 0 0 8px; border-radius: 14px; background: var(--ink-2); border: 0; }
+#view-svc .am-c em { width: 28px; height: 28px; border-radius: 9px; display: grid; place-items: center; background: rgba(37,99,235,.1); color: var(--brass); font-family: var(--display-en); font-weight: 800; font-size: 12px; }
+#view-svc .am-c h4 { font-size: 17px; font-weight: 800; }
+#view-svc .am-c p { grid-column: 1 / -1; font-size: 14px; line-height: 1.6; }
+@container site (max-width: 860px) {
+  #view-svc .am { grid-template-columns: 1fr 1fr; border-radius: 18px; margin: 0 !important; }
+  #view-svc .am-c { padding: 14px 12px; column-gap: 8px; row-gap: 6px; align-items: start; border-inline-end: 1px solid var(--line) !important; border-bottom: 1px solid var(--line) !important; }
+  #view-svc .am-c:nth-child(2n) { border-inline-end: 0 !important; }
+  #view-svc .am-c:nth-last-child(-n+2) { border-bottom: 0 !important; }
+  #view-svc .am-ill { display: none; }
+  #view-svc .am-c em { width: 24px; height: 24px; border-radius: 7px; font-size: 11px; }
+  #view-svc .am-c h4 { font-size: 14.5px; line-height: 1.3; align-self: center; }
+  #view-svc .am-c p { font-size: 12.5px; line-height: 1.5; }
+}
+/* Store: compact configurator */
+@container site (max-width: 860px) {
+  #view-svc .sx-wrap { gap: 10px; }
+  #view-svc .sx-stage { min-height: 0 !important; height: 168px; }
+  #view-svc .sx-stage svg { width: auto; height: 128px; }
+  #view-svc .sx-stage .sx-tag { top: 12px; inset-inline-start: 12px; padding: 5px 11px; font-size: 12px; }
+  #view-svc .sx-panel { min-height: 0 !important; grid-template-columns: minmax(0, 1fr) auto; gap: 12px 14px; padding: 16px; align-content: start; }
+  #view-svc .sx-panel h4 { grid-column: 1 / -1; font-size: 18px; padding-inline-end: 50px; }
+  #view-svc .sx-price { grid-column: 1 / -1; font-size: 21px; margin-top: -8px; }
+  #view-svc .sx-panel > div:has(.sx-sw) { grid-column: 1; }
+  #view-svc .sx-panel > div:has(.sx-sz) { grid-column: 2; }
+  #view-svc .sx-row, #view-svc .sx-drawer { grid-column: 1 / -1; }
+  #view-svc .sx-lbl { margin-bottom: 7px; font-size: 12px; white-space: nowrap; }
+  #view-svc .sx-sw { gap: 6px; } #view-svc .sx-sw button { width: 30px; height: 30px; }
+  #view-svc .sx-sz { gap: 5px; } #view-svc .sx-sz button { min-width: 36px; padding: 6px 8px; border-radius: 10px; font-size: 13px; }
+  #view-svc .sx-row .pill { padding-block: 12px; }
+  #view-svc .sx-cartbtn { top: 12px; inset-inline-end: 12px; width: 40px; height: 40px; }
+}
+/* App: shorter before / after with a legend */
+#view-svc .ab { max-width: 980px; margin-inline: auto; aspect-ratio: 16 / 8; }
+#view-svc .ab-head { justify-content: center; text-align: center; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 24px; }
+#view-svc .ab-head p { max-width: 46ch; }
+.ab-leg { max-width: 980px; margin: 14px auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ab-leg p { margin: 0; display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px; background: #fff; border: 1px solid var(--line); font-size: 14px; color: var(--stone); }
+.ab-leg span { flex: none; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; color: #fff; }
+.ab-leg .b { background: #a0645a; } .ab-leg .a { background: var(--brass); }
+@container site (max-width: 860px) {
+  #view-svc .ab { aspect-ratio: 1 / 1; }
+  .ab-leg { grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 10px; }
+  .ab-leg p { font-size: 13px; padding: 10px 12px; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -3793,12 +3846,12 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
       sheet: ["שם", "טלפון", "תאריך", "שעה", "שולם?", "הערות", "דנה", "050-…", "12/11", "10:00", "לא", "לחזור", "יוסי", "052-…", "12/11", "10:00", "כן", "כפול!!", "מיכל", "054-…", "13/11", "??", "חלקי", "", "אורי", "…", "14/11", "16:00", "לא", "ביטל?", "נועה", "053-…", "", "11:30", "?", "", "רון", "050-…", "15/11", "14:30", "כן", ""],
       red: [16, 21, 28, 33], yel: [11, 22, 34], n1: "להתקשר לדנה!!<br>ולבדוק אם שילמה", n2: "תור כפול ב־10:00", bub: [["יש מקום מחר בבוקר?", "08:12"], ["שלחתי לך אתמול, ראית?", "09:40"], ["אפשר להזיז לשבוע הבא?", "11:03"]], miss: "3 שיחות שלא נענו",
       days: ["א׳", "ב׳", "ג׳", "ד׳", "ה׳"], kpi: [["תורים השבוע", "38"], ["הכנסות", "₪9,240"]], ok: "תזכורת נשלחה אוטומטית ל־12 לקוחות",
-      int: "מתחברת לכלים שאתם כבר עובדים איתם", band: 'יש לכם רעיון <span class="serif">למערכת?</span>', fitT: 'למי זה <span class="serif">מתאים?</span>' },
+      int: "מתחברת לכלים שאתם כבר עובדים איתם", lb: "אקסל, הודעות ושיחות שלא נענו", la: "יומן אחד, תזכורות אוטומטיות ונתונים בזמן אמת", band: 'יש לכם רעיון <span class="serif">למערכת?</span>', fitT: 'למי זה <span class="serif">מתאים?</span>' },
     en: { h: 'From Excel and WhatsApp <span class="serif">to one system.</span>', p: "This is how the business runs today, and how it runs after. Drag the line.", b: "Before", a: "After",
       sheet: ["Name", "Phone", "Date", "Time", "Paid?", "Notes", "Dana", "050-…", "12/11", "10:00", "No", "Call back", "Yossi", "052-…", "12/11", "10:00", "Yes", "Double!!", "Michal", "054-…", "13/11", "??", "Part", "", "Uri", "…", "14/11", "16:00", "No", "Cancel?", "Noa", "053-…", "", "11:30", "?", "", "Ron", "050-…", "15/11", "14:30", "Yes", ""],
       red: [16, 21, 28, 33], yel: [11, 22, 34], n1: "Call Dana!!<br>did she pay?", n2: "Double booking 10:00", bub: [["Any slot tomorrow morning?", "08:12"], ["Sent you a message yesterday?", "09:40"], ["Can we move to next week?", "11:03"]], miss: "3 missed calls",
       days: ["Sun", "Mon", "Tue", "Wed", "Thu"], kpi: [["Bookings this week", "38"], ["Revenue", "₪9,240"]], ok: "Reminder sent automatically to 12 clients",
-      int: "Connects to the tools you already use", band: 'Got an idea <span class="serif">for a system?</span>', fitT: 'Who is it <span class="serif">for?</span>' }
+      int: "Connects to the tools you already use", lb: "Spreadsheets, messages and missed calls", la: "One calendar, automatic reminders and live numbers", band: 'Got an idea <span class="serif">for a system?</span>', fitT: 'Who is it <span class="serif">for?</span>' }
   };
   var AI_TOOLS = ["Google Calendar", "WhatsApp", "Gmail", "Excel", "Stripe", "PayPal", "Zoom", "Google Sheets", "Outlook", "Slack"];
   function appRest(l, v, i, prev, next) {
@@ -3819,7 +3872,8 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
           '<div class="ab-l ab-after"><div class="abx-app"><div class="abx-week">' + week + '</div><div class="abx-side">' + d.kpi.map(function (x) { return '<div class="abx-kpi"><span>' + x[0] + "</span><b>" + x[1] + "</b></div>"; }).join("") +
             '<div class="abx-ok"><i>✓</i>' + d.ok + '</div></div></div><span class="ab-tag">' + d.a + "</span></div>" +
           '<div class="ab-handle"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>' +
-          '<input class="ab-range" type="range" min="4" max="96" value="50" aria-label="' + d.b + " / " + d.a + '"></div></div></section>' +
+          '<input class="ab-range" type="range" min="4" max="96" value="50" aria-label="' + d.b + " / " + d.a + '"></div>' +
+        '<div class="ab-leg rv"><p><span class="b">' + d.b + "</span>" + esc(d.lb) + '</p><p><span class="a">' + d.a + "</span>" + esc(d.la) + "</p></div></div></section>" +
       '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + d.fitT + '</h3><ul class="fl" id="fl">' + v.fit.map(function (f) { return "<li><span>" + esc(f) + "</span></li>"; }).join("") + "</ul>" +
         '<div class="svp-band glow rv" id="ap-band"><h3>' + d.band + '</h3><a href="#contact" class="pill solid" data-svc="' + i + '">' + T[l].cta + "</a></div>" +
         '<div class="svp-next"><a href="#service-' + prev.key + '">' + (he ? "השירות הקודם" : "Previous service") + "<b>" + esc(prev.name) + '</b></a><a href="#service-' + next.key + '" style="text-align:end">' + (he ? "השירות הבא" : "Next service") + "<b>" + esc(next.name) + "</b></a></div></div></section>";
