@@ -2683,6 +2683,66 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
   .ps li { font-size: 12px; background: #fff; padding: 4px 10px 4px 8px; border-radius: 999px; gap: 6px; }
 }
 @keyframes psIn { from { opacity: 0; transform: translateY(8px); } }
+
+/* AI-systems hero visual */
+.aih-vis { position: relative; aspect-ratio: 1.08 / 1; container-type: inline-size; }
+.aih-chat, .aih-kpi, .aih-flow { font-size: 2.35cqw; }
+.aih-chat { position: absolute; inset-inline-start: 3%; top: 4%; width: 60%; height: 88%; display: flex; flex-direction: column; border-radius: 1.6em; overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: 0 40px 80px -34px rgba(15, 23, 42, .4); opacity: 0; translate: 0 40px; transition: opacity .8s, translate 1s var(--ease); }
+.aih-vis.in .aih-chat { opacity: 1; translate: 0 0; }
+.aih-hd { display: flex; align-items: center; gap: .8em; padding: 1em 1.1em; background: #0b1b3a; color: #fff; }
+.aih-av { flex: none; width: 2.6em; height: 2.6em; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, #2563eb, #60a5fa); }
+.aih-av svg { width: 1.3em; height: 1.3em; }
+.aih-hd b { display: block; font-size: 1.05em; font-weight: 700; }
+.aih-hd span { display: flex; align-items: center; gap: .4em; font-size: .8em; opacity: .75; }
+.aih-hd span i { width: .55em; height: .55em; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 .2em rgba(34, 197, 94, .25); }
+.aih-body { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: .6em; padding: 1em; overflow: hidden; background: #eef3fa; transition: opacity .4s; }
+.aih-body.out { opacity: 0; }
+.aih-body p { margin: 0; max-width: 82%; padding: .65em .9em; border-radius: 1.1em; font-size: .95em; line-height: 1.45; color: #0f172a; opacity: 0; translate: 0 .8em; transition: opacity .35s, translate .45s var(--ease); }
+.aih-body p.on { opacity: 1; translate: 0 0; }
+.aih-body p.c { align-self: flex-start; background: #fff; border-end-start-radius: .3em; box-shadow: 0 1px 2px rgba(15, 23, 42, .06); }
+.aih-body p.a { align-self: flex-end; background: #2563eb; color: #fff; border-end-end-radius: .3em; }
+.aih-body p.a em { display: inline-block; margin-inline-end: .45em; padding: .05em .45em; border-radius: .5em; background: rgba(255, 255, 255, .2); font-style: normal; font-size: .75em; font-weight: 700; vertical-align: .1em; }
+.aih-body p.typing { display: flex; gap: .3em; padding: .85em 1em; }
+.aih-body p.typing i { width: .45em; height: .45em; border-radius: 50%; background: #fff; animation: aihDot 1s infinite; }
+.aih-body p.typing i:nth-child(2) { animation-delay: .15s; } .aih-body p.typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes aihDot { 50% { opacity: .35; transform: translateY(-.2em); } }
+.aih-in { display: flex; align-items: center; gap: .6em; padding: .7em .9em; border-top: 1px solid var(--line); background: #fff; }
+.aih-in span { flex: 1; height: 2.2em; border-radius: 99px; background: #f1f5f9; }
+.aih-in i { width: 2.2em; height: 2.2em; border-radius: 50%; display: grid; place-items: center; background: #2563eb; color: #fff; }
+.aih-in svg { width: 1.1em; height: 1.1em; transform: scaleX(-1); } :lang(en) .aih-in svg { transform: none; }
+.aih-kpi, .aih-flow { position: absolute; inset-inline-end: 1%; background: #fff; border: 1px solid var(--line); border-radius: 1.2em; box-shadow: 0 30px 60px -30px rgba(15, 23, 42, .35); opacity: 0; translate: 0 30px; transition: opacity .8s .35s, translate 1s .35s var(--ease); }
+.aih-vis.in :is(.aih-kpi, .aih-flow) { opacity: 1; translate: 0 0; }
+.aih-kpi { top: 10%; width: 34%; padding: 1em 1.1em; display: grid; gap: .2em; }
+.aih-kpi span { font-size: .8em; color: var(--stone); }
+.aih-kpi b { font-family: var(--display-he); font-size: 2em; font-weight: 800; line-height: 1.1; color: #0f172a; }
+.aih-kpi small { font-size: .78em; color: var(--stone); } .aih-kpi small em { font-style: normal; font-weight: 700; color: #16a34a; }
+.aih-flow { bottom: 2%; width: 41%; padding: 1em 1.1em; transition-delay: .5s; }
+.aih-flow p { margin: 0 0 .7em; font-size: .8em; font-weight: 700; color: var(--stone); }
+.aih-flow ol { list-style: none; margin: 0; padding: 0; display: grid; gap: .55em; }
+.aih-flow li { display: flex; align-items: center; gap: .65em; font-size: .88em; color: #94a3b8; transition: color .4s; }
+.aih-flow li i { flex: none; width: 2em; height: 2em; border-radius: .6em; display: grid; place-items: center; background: #f1f5f9; color: #94a3b8; transition: background .4s, color .4s, box-shadow .4s; }
+.aih-flow li svg { width: 1.1em; height: 1.1em; }
+.aih-flow li.act { color: #0f172a; } .aih-flow li.act i { background: rgba(37, 99, 235, .12); color: #2563eb; box-shadow: 0 0 0 .3em rgba(37, 99, 235, .08); animation: aihAct 1.2s ease-in-out infinite; }
+.aih-flow li.done { color: #0f172a; } .aih-flow li.done i { background: #2563eb; color: #fff; }
+@keyframes aihAct { 50% { box-shadow: 0 0 0 .5em rgba(37, 99, 235, 0); } }
+.aih-vis.ping .aih-kpi { animation: aihBump .6s var(--ease); }
+@keyframes aihBump { 40% { scale: 1.05; } }
+.aih-vis.in .sh-chip { opacity: 1; translate: 0 0; animation: bob 6s ease-in-out infinite; }
+.aih-vis .sh-chip.c1 { left: auto; right: auto; inset-inline-start: 40%; top: 0; }
+.aih-vis .sh-chip.c2 { left: auto; right: auto; inset-inline-start: 1%; bottom: 0; }
+.aih-vis .sh-chip.c3 { display: none; }
+@container site (max-width: 860px) {
+  .aih-vis { aspect-ratio: 1 / 1.08; }
+  .aih-chat, .aih-kpi, .aih-flow { font-size: 3.3cqw; }
+  .aih-chat { width: 61%; top: 6%; height: 88%; inset-inline-start: 0; }
+  .aih-kpi { width: 37%; top: 12%; inset-inline-end: 0; }
+  .aih-flow { width: 43%; inset-inline-end: 0; bottom: 2%; padding: .9em; }
+  .aih-flow li { font-size: .82em; }
+  .aih-vis .sh-chip.c1 { inset-inline-start: auto; inset-inline-end: 2%; top: 0; }
+  .aih-vis .sh-chip.c2 { display: none; }
+  /* keep every hero visual inside the page gutters */
+  .sh-vis, .st-vis, .ah-vis, .aih-vis { margin-inline: 0 !important; scale: .9; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -3598,7 +3658,7 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
     var key = svcFromHash() || "site", i = SVC_KEYS.indexOf(key), v = SVP[l][i], he = l === "he";
     var tick = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
     var nS = SVP[l].length, prev = SVP[l][(i + nS - 1) % nS], next = SVP[l][(i + 1) % nS];
-    var heroHtml = key === "site" ? siteHero(l, v, i) : key === "app" ? appHero(l, v, i) : null;
+    var heroHtml = key === "site" ? siteHero(l, v, i) : key === "ai" ? aiHero(l, v, i) : key === "app" ? appHero(l, v, i) : null;
     if (key === "store") { clearTimeout(ahT); clearTimeout(stT); document.getElementById("view-svc").innerHTML = storeHero(l, v, i) + storeRest(l, v, i, prev, next); stStart(l); return; }
     if (key === "app") { document.getElementById("view-svc").innerHTML = heroHtml + appRest(l, v, i, prev, next); clearTimeout(ahT); ahStart(l); abStart(); return; }
     document.getElementById("view-svc").innerHTML = (heroHtml ||
@@ -3617,7 +3677,7 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
         PJ.slice(0, 3).map(function (p) { return '<a href="' + p.url + '" target="_blank" rel="noopener"><div class="shot"><img decoding="async" src="' + esc(pjImg(p, "d")) + '" alt="' + esc(p.name) + '" loading="lazy"></div><b>' + esc(p.name) + "</b><span>" + esc(pjTxt(p, l)[0]) + "</span></a>"; }).join("") + "</div>" +
         '<div class="svp-band rv"><h3>' + (he ? 'מוכנים <span class="serif">להתחיל?</span>' : 'Ready <span class="serif">to start?</span>') + '</h3><a href="#contact" class="pill solid" data-svc="' + i + '">' + T[l].cta + "</a></div>" +
         '<div class="svp-next"><a href="#service-' + prev.key + '">' + (he ? "השירות הקודם" : "Previous service") + "<b>" + esc(prev.name) + '</b></a><a href="#service-' + next.key + '" style="text-align:end">' + (he ? "השירות הבא" : "Next service") + "<b>" + esc(next.name) + "</b></a></div></div></section>";
-    clearTimeout(ahT); if (key === "site") shStart(); if (key === "app") ahStart(l);
+    clearTimeout(ahT); clearTimeout(aihT); if (key === "site") shStart(); if (key === "ai") aihStart(l); if (key === "app") ahStart(l);
   }
 
   // The web-app hero: a dashboard coded from scratch, fed by bookings made on the phone
@@ -3823,8 +3883,8 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
     var he = l === "he", d = ST[l], pays = ST_PAY.map(function (t) { return "<span>" + t + "</span>"; }).join("");
     var SX_C = ["#1d1b19", "#8a5a3b", "#c9b38f", "#5f6b4a"];
     return '<section class="ai"><div class="wrap"><p>' + d.payT + '</p><div class="ai-track"><div class="ai-row">' + pays + pays + "</div></div></div></section>" +
-      '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + (he ? 'מה <span class="serif">כלול.</span>' : 'What\'s <span class="serif">included.</span>') + '</h3><div class="am">' +
-        v.feat.map(function (f, n) { return '<article class="am-c rv" style="transition-delay:' + (n % 3) * 90 + 'ms"><div class="am-ill">' + SM_ILL[n] + "</div><em>0" + (n + 1) + "</em><h4>" + esc(f[0]) + "</h4><p>" + esc(f[1]) + "</p></article>"; }).join("") + "</div></div></section>" +
+      '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + (he ? 'מה <span class="serif">כלול.</span>' : 'What\'s <span class="serif">included.</span>') + '</h3><div class="feat rv">' +
+        v.feat.map(function (f, n) { return "<article><em>0" + (n + 1) + "</em><h4>" + esc(f[0]) + "</h4><p>" + esc(f[1]) + "</p></article>"; }).join("") + "</div></div></section>" +
       '<section class="svp-sec"><div class="wrap"><div class="ab-head"><h3 class="t rv">' + d.sxT + '</h3><p class="rv">' + d.sxP + "</p></div>" +
         '<div class="sx-wrap rv"><div class="sx-stage" id="sx-stage" style="--c:' + SX_C[1] + '"><span class="sx-tag">' + d.sxTag + "</span>" + ST_SVG.bag + "</div>" +
         '<div class="sx-panel" id="sx-panel"><button type="button" class="sx-cartbtn" id="sx-cartbtn" aria-label="' + d.cart + '">' + cartSvg.replace("<svg", '<svg width="20" height="20"') + "<b>0</b></button>" +
@@ -3917,8 +3977,8 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
     var week = "<span></span>" + d.days.map(function (x) { return "<b>" + x + "</b>"; }).join("");
     for (k = 0; k < 6; k++) { week += "<em>" + (9 + k * 1.5 | 0) + ":" + (k % 2 ? "30" : "00") + "</em>"; for (var c = 0; c < 5; c++) week += '<i class="' + (BK[c + "-" + k] || "") + '"></i>'; }
     return '<section class="ai"><div class="wrap"><p>' + d.int + '</p><div class="ai-track"><div class="ai-row">' + tools + tools + "</div></div></div></section>" +
-      '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + (he ? 'מה <span class="serif">כלול.</span>' : 'What\'s <span class="serif">included.</span>') + '</h3><div class="am" id="am">' +
-        v.feat.map(function (f, n) { return '<article class="am-c rv" style="transition-delay:' + (n % 3) * 90 + 'ms"><div class="am-ill">' + AM_ILL[n] + "</div><em>0" + (n + 1) + "</em><h4>" + esc(f[0]) + "</h4><p>" + esc(f[1]) + "</p></article>"; }).join("") + "</div></div></section>" +
+      '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + (he ? 'מה <span class="serif">כלול.</span>' : 'What\'s <span class="serif">included.</span>') + '</h3><div class="feat rv">' +
+        v.feat.map(function (f, n) { return "<article><em>0" + (n + 1) + "</em><h4>" + esc(f[0]) + "</h4><p>" + esc(f[1]) + "</p></article>"; }).join("") + "</div></div></section>" +
       '<section class="svp-sec"><div class="wrap"><div class="ab-head"><h3 class="t rv">' + d.h + '</h3><p class="rv">' + d.p + "</p></div>" +
         '<div class="ab rv" id="ab">' +
           '<div class="ab-l ab-before"><div class="abx-sheet">' + sheet + '</div><div class="abx-note n1">' + d.n1 + '</div><div class="abx-note n2">' + d.n2 + "</div>" +
@@ -3956,6 +4016,58 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
     band.addEventListener("pointermove", function (e) { var r = band.getBoundingClientRect(); band.style.setProperty("--mx", e.clientX - r.left + "px"); band.style.setProperty("--my", e.clientY - r.top + "px"); });
   }
   // The brand-website hero: three real sites stacked in depth, the front one changes every 4 s
+  // The AI-systems hero: a WhatsApp agent answering a lead while the automation runs beside it
+  var aihT = 0, AIH = {
+    he: { name: "העוזר של העסק", st: "מקוון · עונה מיד", ai: "AI", flowT: "האוטומציה בפעולה", kT: "זמן מענה ממוצע", kV: "3 שנ׳", kS: "לידים החודש", kN: "+42",
+      chat: [["c", "היי, אפשר לקבוע פגישת ייעוץ השבוע?"], ["a", "בשמחה! יש מקום ביום רביעי ב-10:00 או ביום חמישי ב-14:30. מה מתאים לך?"], ["c", "רביעי ב-10:00 מעולה"], ["a", "קבעתי לך ✓ שלחתי אישור ותזכורת יום לפני."]],
+      flow: ["הודעה התקבלה בוואטסאפ", "הסוכן ענה תוך 3 שניות", "הליד נשמר ב-CRM", "הפגישה נקבעה ביומן"] },
+    en: { name: "Business assistant", st: "Online · replies instantly", ai: "AI", flowT: "Automation at work", kT: "Avg. reply time", kV: "3 sec", kS: "Leads this month", kN: "+42",
+      chat: [["c", "Hi, can I book a consultation this week?"], ["a", "Happy to! I have Wednesday at 10:00 or Thursday at 14:30. Which works for you?"], ["c", "Wednesday at 10:00 is great"], ["a", "You're booked ✓ I sent a confirmation and a reminder for the day before."]],
+      flow: ["Message received on WhatsApp", "Agent replied in 3 seconds", "Lead saved to the CRM", "Meeting booked in the calendar"] }
+  };
+  var AIH_IC = ['<path d="M4 5h16v11H8l-4 4z"/>', '<path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4z"/>', '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5 7-5s5.8 1.4 7 5"/>', '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>'];
+  function aiHero(l, v, i) {
+    var he = l === "he", d = AIH[l];
+    var chips = he ? ["עונה 24/7", "עברית + English", "מחובר למערכות שלכם"] : ["Answers 24/7", "Hebrew + English", "Connected to your tools"];
+    return '<section class="sh aih"><div class="wrap"><a href="#services" class="back">' + T[l].pv_back + '</a><div class="sh-grid">' +
+      '<div class="sh-txt"><p class="eyebrow rv"><span>' + (he ? "שירות 0" : "Service 0") + (i + 1) + " · " + esc(v.name) + '</span></p>' +
+      '<h2 class="rvl">' + v.title.map(function (t, k) { return '<span class="ln"><span style="--i:' + k + '">' + t + "</span></span>"; }).join("") + "</h2>" +
+      '<p class="sec-lead rv">' + esc(v.lead) + "</p>" +
+      '<div class="sh-ctas rv"><a href="#contact" class="pill solid" data-svc="' + i + '">' + T[l].cta + '</a><a href="#projects" class="pill line">' + T[l].w_all + "</a></div>" +
+      '<ul class="sh-facts rv">' + v.facts.map(function (f) { return "<li><b>" + esc(f[0]) + "</b><span>" + esc(f[1]) + "</span></li>"; }).join("") + "</ul></div>" +
+      '<div class="aih-vis" id="aih-vis" aria-hidden="true"><span class="sh-glow"></span>' +
+        '<div class="aih-chat"><div class="aih-hd"><i class="aih-av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">' + AIH_IC[1] + '</svg></i><div><b>' + d.name + '</b><span><i></i>' + d.st + '</span></div></div>' +
+          '<div class="aih-body" id="aih-body"></div><div class="aih-in"><span></span><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20l18-8L3 4v6l12 2-12 2z"/></svg></i></div></div>' +
+        '<div class="aih-kpi"><span>' + d.kT + '</span><b>' + d.kV + '</b><small><em id="aih-n">' + d.kN + "</em> " + d.kS + "</small></div>" +
+        '<div class="aih-flow"><p>' + d.flowT + '</p><ol id="aih-flow">' + d.flow.map(function (f, k) { return '<li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + AIH_IC[k] + '</svg></i><span>' + f + "</span></li>"; }).join("") + "</ol></div>" +
+        chips.map(function (c, k) { return '<span class="sh-chip c' + (k + 1) + '">' + esc(c) + "</span>"; }).join("") +
+      "</div></div></div></section>";
+  }
+  function aihStep(l) {
+    var vis = document.getElementById("aih-vis"); if (!vis) return;
+    var d = AIH[l], body = document.getElementById("aih-body"), li = vis.querySelectorAll("#aih-flow li"), n = 0;
+    var at = function (ms, fn) { aihT = setTimeout(function () { if (document.getElementById("aih-vis") === vis && !document.getElementById("view-svc").hidden) fn(); }, ms); };
+    var add = function (cls, html) { body.insertAdjacentHTML("beforeend", '<p class="' + cls + '">' + html + "</p>"); var e = body.lastElementChild; requestAnimationFrame(function () { e.classList.add("on"); }); return e; };
+    var flow = function (k) { li.forEach(function (x, m) { x.className = m < k ? "done" : m === k ? "act" : ""; }); };
+    body.innerHTML = ""; flow(-1);
+    var msg = function (k, next) {
+      var m = d.chat[k];
+      if (m[0] === "c") { add("c", m[1]); at(900, next); return; }
+      var t = add("a typing", "<i></i><i></i><i></i>");
+      at(1100, function () { t.remove(); add("a", "<em>" + d.ai + "</em>" + m[1]); at(1300, next); });
+    };
+    flow(0);
+    at(500, function () { msg(0, function () { flow(1); msg(1, function () { flow(2); msg(2, function () { msg(3, function () { flow(3);
+      at(900, function () { flow(4); vis.classList.remove("ping"); void vis.offsetWidth; vis.classList.add("ping"); var e = document.getElementById("aih-n"); e.textContent = "+" + (42 + (++aihC)); 
+        at(3000, function () { body.classList.add("out"); at(500, function () { body.classList.remove("out"); aihStep(l); }); }); }); }); }); }); }); });
+  }
+  var aihC = 0;
+  function aihStart(l) {
+    clearTimeout(aihT); aihC = 0;
+    var vis = document.getElementById("aih-vis"); if (!vis) return;
+    setTimeout(function () { vis.classList.add("in"); }, 120);
+    aihT = setTimeout(function () { aihStep(l); }, 700);
+  }
   var shTimer = 0, shK = 0, SH_PJ = ["luma", "myriam", "pnim"];
   function siteHero(l, v, i) {
     var he = l === "he", pj = SH_PJ.map(function (id) { return PJ.filter(function (p) { return p.id === id; })[0]; });
