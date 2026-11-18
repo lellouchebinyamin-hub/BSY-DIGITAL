@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": ["firebase.json", ".firebaserc", "vercel.json", "README.md", "docs/**", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
+    "headers": [
+      { "source": "/work/**", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] },
+      { "source": "**/*.@(webp|png)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] }
+    ]
+  }
+}
