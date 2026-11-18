@@ -2135,6 +2135,22 @@ h2.rvl.pre { opacity: 0; }
   .fld textarea { min-height: 80px; }
   .fld .err { top: 24px; font-size: 12px; }
 }
+
+/* Footer mobile v3: one column, aligned to the start, links as chips */
+@container site (max-width: 860px) {
+  .fx-grid { grid-template-columns: minmax(0, 1fr); gap: 0; padding-block: 26px 8px; }
+  .fx-brand { justify-items: start; text-align: start; padding-bottom: 20px; }
+  .fx-grid .foot-mark { width: 96px; }
+  .fx-tag { margin: 8px 0 16px; }
+  .fx-contact { justify-items: stretch; gap: 8px; width: 100%; }
+  .fx-contact li { padding: 10px 12px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+  .fx-grid .foot-col { padding: 18px 0; border-radius: 0; border-bottom: 1px solid var(--line); }
+  .fx-grid .foot-col:last-child { border-bottom: 0; padding-bottom: 6px; }
+  .fx-grid .foot-col ul { display: flex; flex-wrap: wrap; gap: 8px; }
+  .fx-grid .foot-col a { display: inline-block; padding: 8px 14px; border-radius: 999px; background: rgba(37, 99, 235, .07); color: var(--bone); font-size: 13.5px; }
+  .foot .foot-bot { align-items: flex-start; text-align: start; border-top: 0; padding-top: 16px; }
+  .foot .foot-legal { justify-content: flex-start; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
