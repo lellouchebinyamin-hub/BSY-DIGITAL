@@ -2298,6 +2298,18 @@ h2.rvl.pre { opacity: 0; }
   .hero-main { height: calc(100vh - 76px); height: calc(100svh - 76px); min-height: 440px; }
   .h-orb { width: auto; height: 100%; max-height: 330px; max-width: 92%; min-height: 0; align-self: center; margin: 0; }
 }
+
+/* hero: formal circuit animation */
+.t-ln path{fill:none;stroke:#2563eb;stroke-opacity:.28;stroke-width:1.1;stroke-linejoin:round}
+.t-pl path{fill:none;stroke:#2563eb;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:10 110;stroke-dashoffset:10;animation:tFlow 5s cubic-bezier(.45,.05,.55,.95) infinite}
+.t-nd circle{fill:#fff;stroke:#2563eb;stroke-width:1.2;stroke-opacity:.7;animation:tNd 4s ease-in-out infinite}
+.t-core{fill:#fff;stroke:#2563eb;stroke-opacity:.55;stroke-width:1.2}
+.t-halo{fill:none;stroke:#3b82f6;stroke-width:1.2;transform-origin:200px 200px;animation:oPulse 4s ease-out infinite}
+.t-in{transform-origin:200px 200px;animation:tIn 4s ease-in-out infinite}
+@keyframes tFlow{0%{stroke-dashoffset:10;opacity:0}12%{opacity:1}85%{opacity:1}100%{stroke-dashoffset:-100;opacity:0}}
+@keyframes tNd{0%,100%{fill:#fff}50%{fill:#bfdbfe}}
+@keyframes tIn{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+@media (prefers-reduced-motion: reduce){.t-pl path,.t-nd circle,.t-halo,.t-in{animation:none!important}.t-pl path{opacity:0}}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -2359,14 +2371,7 @@ h2.rvl.pre { opacity: 0; }
       <section class="hero">
         <div class="hero-top wrap">
           <div class="hero-main">
-            <div class="h-orb" aria-hidden="true"><svg viewBox="0 0 400 400"><defs><radialGradient id="orbG" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#3b82f6" stop-opacity=".35"/><stop offset="1" stop-color="#3b82f6" stop-opacity="0"/></radialGradient><linearGradient id="orbC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d4ed8"/><stop offset="1" stop-color="#60a5fa"/></linearGradient></defs>
-              <circle cx="200" cy="200" r="190" fill="url(#orbG)"/>
-              <circle class="o-pulse" cx="200" cy="200" r="46"/>
-              <g class="o-r o-r1"><circle cx="200" cy="200" r="172" class="o-ln o-dash"/><circle cx="372" cy="200" r="6" class="o-dot"/><circle cx="28" cy="200" r="4" class="o-dot2"/><rect x="186" y="16" width="28" height="18" rx="5" class="o-chip"/></g>
-              <g class="o-r o-r2"><circle cx="200" cy="200" r="126" class="o-ln o-dot-ln"/><circle cx="200" cy="74" r="5" class="o-dot"/><circle cx="309" cy="263" r="4" class="o-dot2"/><circle cx="91" cy="263" r="7" class="o-ring"/></g>
-              <g class="o-r o-r3"><circle cx="200" cy="200" r="82" class="o-ln"/><circle cx="282" cy="200" r="4" class="o-dot"/><circle cx="159" cy="129" r="3" class="o-dot2"/></g>
-              <circle cx="200" cy="200" r="34" fill="url(#orbC)"/><path d="M200 182l4.5 11.5 11.5 4.5-11.5 4.5-4.5 11.5-4.5-11.5-11.5-4.5 11.5-4.5z" fill="#fff"/>
-            </svg></div>
+            <div class="h-orb" aria-hidden="true"><svg viewBox="0 0 400 400"><defs><pattern id="tgG" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#2563eb" stroke-opacity=".10" stroke-width=".6"/></pattern><radialGradient id="tgR" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#3b82f6" stop-opacity=".22"/><stop offset="1" stop-color="#3b82f6" stop-opacity="0"/></radialGradient><linearGradient id="tgC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d4ed8"/><stop offset="1" stop-color="#60a5fa"/></linearGradient></defs><rect width="400" height="400" fill="url(#tgG)"/><circle cx="200" cy="200" r="150" fill="url(#tgR)"/><g class="t-ln"><path d="M0 100H100V180H176"/><path d="M0 260H80V220H176"/><path d="M400 140H300V180H224"/><path d="M400 300H320V220H224"/><path d="M140 0V80H180V176"/><path d="M260 0V60H220V176"/><path d="M120 400V320H180V224"/><path d="M300 400V340H220V224"/></g><g class="t-pl"><path d="M0 100H100V180H176" pathLength="100" style="animation-duration:4.2s;animation-delay:-0s"/><path d="M0 260H80V220H176" pathLength="100" style="animation-duration:5.1s;animation-delay:-1.8s"/><path d="M400 140H300V180H224" pathLength="100" style="animation-duration:4.6s;animation-delay:-0.9s"/><path d="M400 300H320V220H224" pathLength="100" style="animation-duration:5.6s;animation-delay:-2.6s"/><path d="M140 0V80H180V176" pathLength="100" style="animation-duration:4.9s;animation-delay:-3.1s"/><path d="M260 0V60H220V176" pathLength="100" style="animation-duration:4.4s;animation-delay:-0.4s"/><path d="M120 400V320H180V224" pathLength="100" style="animation-duration:5.3s;animation-delay:-2.2s"/><path d="M300 400V340H220V224" pathLength="100" style="animation-duration:4.7s;animation-delay:-1.3s"/></g><g class="t-nd"><circle cx="100" cy="100" r="2.6" style="animation-delay:-0.0s"/><circle cx="100" cy="180" r="2.6" style="animation-delay:-0.7s"/><circle cx="80" cy="260" r="2.6" style="animation-delay:-1.4s"/><circle cx="80" cy="220" r="2.6" style="animation-delay:-2.1s"/><circle cx="300" cy="140" r="2.6" style="animation-delay:-2.8s"/><circle cx="300" cy="180" r="2.6" style="animation-delay:-3.5s"/><circle cx="320" cy="300" r="2.6" style="animation-delay:-0.2s"/><circle cx="320" cy="220" r="2.6" style="animation-delay:-0.9s"/><circle cx="140" cy="80" r="2.6" style="animation-delay:-1.6s"/><circle cx="180" cy="80" r="2.6" style="animation-delay:-2.3s"/><circle cx="260" cy="60" r="2.6" style="animation-delay:-3.0s"/><circle cx="220" cy="60" r="2.6" style="animation-delay:-3.7s"/><circle cx="120" cy="320" r="2.6" style="animation-delay:-0.4s"/><circle cx="180" cy="320" r="2.6" style="animation-delay:-1.1s"/><circle cx="300" cy="340" r="2.6" style="animation-delay:-1.8s"/><circle cx="220" cy="340" r="2.6" style="animation-delay:-2.5s"/></g><circle class="t-halo" cx="200" cy="200" r="30"/><rect class="t-core" x="176" y="176" width="48" height="48" rx="11"/><rect x="189" y="189" width="22" height="22" rx="5" fill="url(#tgC)" class="t-in"/></svg></div>
             <h1 id="h1"></h1>
             <p class="lead" data-kh="lead"></p>
             <div class="ctas">
