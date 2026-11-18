@@ -2410,6 +2410,48 @@ html[dir="rtl"] .wk-arr svg { transform: scaleX(-1); }
   .wc-info b { font-size: 17px; }
   #work .wk-g .sw-dots { display: flex; justify-content: center; gap: 6px; margin-top: 4px; }
 }
+
+/* Why B.S.Y v2: standard card + six pillars */
+.wy { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); gap: 20px; align-items: stretch; }
+.wy-card { position: relative; overflow: hidden; background: #0f1e33; color: #fff; border-radius: 24px; padding: clamp(26px, 3cqw, 40px); display: flex; flex-direction: column; isolation: isolate; }
+.wy-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(120% 80% at 100% 0%, rgba(59,130,246,.35), transparent 60%), linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px) 0 0 / 22px 22px, linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px) 0 0 / 22px 22px; }
+.wy-k { margin: 0; font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #9dbbff; }
+.wy-card h3 { margin: 8px 0 26px; font-family: var(--display-he); font-size: clamp(22px, 2cqw, 28px); font-weight: 800; line-height: 1.2; }
+:lang(en) .wy-card h3, :lang(en) .wy-p h4 { font-family: var(--display-en); }
+.wy-st { display: grid; grid-template-columns: 1fr 1fr; margin: 0; border-top: 1px solid rgba(255,255,255,.12); }
+.wy-st div { padding: 18px 0 18px; border-bottom: 1px solid rgba(255,255,255,.12); }
+.wy-st div:nth-child(odd) { padding-inline-end: 16px; border-inline-end: 1px solid rgba(255,255,255,.12); }
+.wy-st div:nth-child(even) { padding-inline-start: 18px; }
+.wy-st dt { font-family: var(--display-en); font-size: clamp(28px, 2.6cqw, 38px); font-weight: 800; line-height: 1; letter-spacing: -.02em; unicode-bidi: isolate; }
+.wy-st dd { margin: 8px 0 0; font-size: 13.5px; color: #b7c3d6; line-height: 1.4; }
+.wy-cta { margin-top: auto; padding-top: 26px; display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; color: #fff; font-weight: 700; font-size: 15px; }
+.wy-cta svg { width: 34px; height: 34px; padding: 9px; border-radius: 50%; background: var(--brass); box-sizing: border-box; transition: transform .4s var(--ease); }
+html[dir="ltr"] .wy-cta svg { transform: scaleX(-1); }
+.wy-cta:hover svg { transform: translateX(-4px); } html[dir="ltr"] .wy-cta:hover svg { transform: scaleX(-1) translateX(-4px); }
+.wy-p { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; background: #fff; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(15,35,70,.04), 0 16px 40px -24px rgba(15,35,70,.22); }
+.wy-p li { display: flex; gap: 16px; align-items: flex-start; padding: clamp(20px, 2.2cqw, 28px); border-bottom: 1px solid var(--line); transition: background .3s; }
+.wy-p li:nth-child(odd) { border-inline-end: 1px solid var(--line); }
+.wy-p li:nth-last-child(-n+2) { border-bottom: 0; }
+.wy-p li:hover { background: #f7fafd; }
+.wy-ic { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--ink-2); color: var(--brass); transition: background .3s, color .3s; }
+.wy-p li:hover .wy-ic { background: var(--brass); color: #fff; }
+.wy-ic svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.wy-p h4 { margin: 2px 0 6px; font-family: var(--display-he); font-size: 17px; font-weight: 800; color: var(--bone); }
+.wy-p p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--stone); }
+@container site (max-width: 1000px) { .wy { grid-template-columns: minmax(0, 1fr); } }
+@container site (max-width: 860px) {
+  .wy { gap: 14px; }
+  .wy-card { border-radius: 20px; padding: 22px 20px; }
+  .wy-card h3 { margin: 6px 0 16px; font-size: 21px; }
+  .wy-st div { padding: 14px 0; } .wy-st div:nth-child(even) { padding-inline-start: 14px; }
+  .wy-st dt { font-size: 28px; } .wy-st dd { font-size: 12.5px; margin-top: 6px; }
+  .wy-cta { padding-top: 18px; }
+  .wy-p { grid-template-columns: minmax(0, 1fr); border-radius: 20px; }
+  .wy-p li { padding: 16px 18px; gap: 14px; border-inline-end: 0 !important; border-bottom: 1px solid var(--line) !important; }
+  .wy-p li:last-child { border-bottom: 0 !important; }
+  .wy-ic { width: 38px; height: 38px; border-radius: 11px; } .wy-ic svg { width: 19px; height: 19px; }
+  .wy-p h4 { font-size: 16px; margin: 0 0 3px; } .wy-p p { font-size: 13.5px; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -2536,7 +2578,7 @@ html[dir="rtl"] .wk-arr svg { transform: scaleX(-1); }
             </div>
             <p class="sec-lead rv" data-k="y_lead"></p>
           </div>
-          <div class="cmp" id="cmp" role="table"></div>
+          <div class="wy" id="wy"></div>
         </div>
       </section>
       <section class="process" id="process">
@@ -2767,7 +2809,7 @@ html[dir="rtl"] .wk-arr svg { transform: scaleX(-1); }
       f_ok: "הבריף אצלי.", f_okp: "תודה {n}! אחזור אליכם תוך 24 שעות עם רעיונות והצעת מחיר.", f_orwa: "רוצים מהר יותר? וואטסאפ", f_again: "בריף חדש", f_wahi: "היי, אני", f_waabout: "מעוניין/ת ב",
       ft_say: "הפרויקט הבא שלכם <span class=\"serif\">מתחיל בהודעה אחת.</span>", ft_nav: "ניווט", ft_svc: "שירותים", ft_studio: "הסטודיו", ft_ct: "צור קשר", ft_faq: "שאלות נפוצות", ft_talk: "דברו איתי", ft_rights: "כל הזכויות שמורות", ft_acc: "הצהרת נגישות", ft_priv: "מדיניות פרטיות", ft_terms: "תנאי שימוש", f_consent: "בשליחת הבריף אתם מאשרים את <a href=\"#privacy\">מדיניות הפרטיות</a>. הפרטים משמשים רק כדי לחזור אליכם.", ft_top: "חזרה למעלה",
       p_hint: "החליקו לצדדים", p_eye: "תהליך העבודה", p_title: "מהרעיון לאתר באוויר, <span class=\"serif\">בארבעה צעדים.</span>", p_lead: "תהליך ברור עם לוחות זמנים אמיתיים. אתם מאשרים כל שלב לפני שממשיכים.",
-      y_eye: "למה B.S.Y", y_title: ["סטודיו קטן.", "<span class=\"serif\">תוצאה של גדולים.</span>"], y_lead: "ההבדל בין סוכנות רגילה לבין עבודה ישירה איתי, בשורה אחת לכל דבר שחשוב.",
+      y_eye: "למה B.S.Y", y_title: ["שותף דיגיטלי אחד.", "<span class=\"serif\">סטנדרט של חברה גדולה.</span>"], y_lead: "היחס האישי והזמינות של סטודיו בוטיק, יחד עם רמת העיצוב, הטכנולוגיה והאמינות של חברה גדולה.",
       sv_eye: "מה אנחנו בונים", sv_title: ["פתרון אחד לכל מה", "<span class=\"serif\">שהעסק צריך.</span>"], sv_lead: "מתחילים מהבעיה של העסק, לא מהטכנולוגיה. כל פרויקט נמדד במה שהוא חוסך לכם או מכניס לכם.", tr_lbl: "העסקים שבחרו לעבוד איתנו",
       w_cta: "הפרויקט הבא יכול להיות שלכם", w_note: "* פרויקטים לדוגמה",
       cap: "בתמונה: Lévy Estates · Atelier Noa — פרויקטים לדוגמה", arr: "←", other: "EN"
@@ -2798,7 +2840,7 @@ html[dir="rtl"] .wk-arr svg { transform: scaleX(-1); }
       f_ok: "Brief received.", f_okp: "Thank you {n}! I'll get back to you within 24 hours with ideas and a quote.", f_orwa: "Want it faster? WhatsApp", f_again: "New brief", f_wahi: "Hi, I'm", f_waabout: "Interested in",
       ft_say: "Your next project <span class=\"serif\">starts with one message.</span>", ft_nav: "Navigate", ft_svc: "Services", ft_studio: "Studio", ft_ct: "Contact", ft_faq: "FAQ", ft_talk: "Talk to me", ft_rights: "All rights reserved", ft_acc: "Accessibility", ft_priv: "Privacy policy", ft_terms: "Terms of use", f_consent: "By sending the brief you accept the <a href=\"#privacy\">privacy policy</a>. Your details are used only to get back to you.", ft_top: "Back to top",
       p_hint: "Swipe sideways", p_eye: "How we work", p_title: "From idea to live site, <span class=\"serif\">in four steps.</span>", p_lead: "A clear process with real timelines. You approve every stage before we move on.",
-      y_eye: "Why B.S.Y", y_title: ["A small studio.", "<span class=\"serif\">Big-league results.</span>"], y_lead: "The difference between a typical agency and working directly with me, one line for everything that matters.",
+      y_eye: "Why B.S.Y", y_title: ["One digital partner.", "<span class=\"serif\">A big-company standard.</span>"], y_lead: "The personal attention and availability of a boutique studio, with the design, technology and reliability of a large company.",
       sv_eye: "What we build", sv_title: ["One partner for everything", "<span class=\"serif\">your business needs.</span>"], sv_lead: "We start from the business problem, not the technology. Every project is measured by what it saves you or brings in.", tr_lbl: "Businesses that chose to work with us",
       w_cta: "Your project could be next", w_note: "* Sample projects",
       cap: "Shown: Lévy Estates · Atelier Noa — sample projects", arr: "→", other: "עב"
@@ -2860,13 +2902,17 @@ html[dir="rtl"] .wk-arr svg { transform: scaleX(-1); }
       ["Price", ["You pay for office, staff and overhead", "Extra charges for every change"], ["You pay for the work only", "A clear quote up front", "No surprises at the end"]]] }
   };
   var CHECK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>';
+  var WY = {"he": {"k": "הסטנדרט שלנו", "t": "מה שמובטח בכל פרויקט", "st": [["24h", "מענה לכל פנייה"], ["3-6", "שבועות לעלייה לאוויר"], ["100%", "עיצוב בהתאמה אישית"], ["1", "איש קשר ישיר לאורך כל הדרך"]], "cta": "לתיאום שיחת היכרות", "p": [["direct", "עבודה ישירה", "מדברים ישירות עם מי שמתכנן ובונה. בלי מתווכים ובלי טלפון שבור."], ["design", "עיצוב בהתאמה אישית", "כל פרויקט מעוצב מאפס סביב המותג שלכם, בלי תבניות מוכנות."], ["tech", "טכנולוגיה מתקדמת", "קוד נקי ומהיר, ומערכות AI ואוטומציות שעובדות בשבילכם."], ["time", "לוחות זמנים ברורים", "לו״ז מוגדר מהיום הראשון, ואישור שלכם בכל שלב."], ["price", "מחיר שקוף", "הצעת מחיר ברורה מראש. בלי תוספות ובלי הפתעות."], ["care", "ליווי אחרי ההשקה", "זמינים לשינויים, לשדרוגים ולתמיכה גם אחרי שהאתר באוויר."]]}, "en": {"k": "Our standard", "t": "Guaranteed on every project", "st": [["24h", "Reply to every enquiry"], ["3-6", "Weeks to launch"], ["100%", "Custom design"], ["1", "Direct contact from start to finish"]], "cta": "Book an intro call", "p": [["direct", "Direct collaboration", "You talk directly to the people who plan and build. No middlemen, nothing lost in translation."], ["design", "Custom design", "Every project is designed from scratch around your brand. No templates."], ["tech", "Advanced technology", "Clean, fast code, plus AI systems and automations that work for you."], ["time", "Clear timelines", "A schedule set from day one, with your approval at every stage."], ["price", "Transparent pricing", "A clear quote up front. No add-ons, no surprises."], ["care", "Support after launch", "Available for changes, upgrades and support once the site is live."]]}};
+  var WY_IC = {"direct": "<path d=\"M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z\"/><path d=\"M9 11h6M9 14h4\"/>", "design": "<path d=\"M12 3a9 9 0 1 0 0 18c1 0 1.6-.8 1.6-1.7 0-1.2-1-1.6-1-2.6 0-.9.7-1.7 1.7-1.7H17a4 4 0 0 0 4-4C21 6.6 17 3 12 3z\"/><circle cx=\"7.5\" cy=\"11\" r=\"1\"/><circle cx=\"10\" cy=\"7\" r=\"1\"/><circle cx=\"15\" cy=\"7\" r=\"1\"/>", "tech": "<path d=\"M8 8l-4 4 4 4M16 8l4 4-4 4M14 5l-4 14\"/>", "time": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "price": "<path d=\"M20 12l-8 8-9-9V3h8z\"/><circle cx=\"7.5\" cy=\"7.5\" r=\"1.3\"/>", "care": "<path d=\"M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z\"/><path d=\"M8.5 12l2.5 2.5 4.5-5\"/>"};
   function renderWhy(l) {
-    var c = document.getElementById("cmp"); if (!c) return;
-    var d = WHY[l];
-    c.innerHTML = '<div class="cmp-row cmp-head" role="row"><span class="cmp-cell cmp-k" role="columnheader"></span><span class="cmp-cell cmp-a" role="columnheader">' + d.h[1] + '</span><span class="cmp-cell cmp-b" role="columnheader">' + d.h[2] + '</span></div>' +
-      d.r.map(function (r, i) {
-        return '<div class="cmp-row rv" role="row" style="--d:' + i + '"><span class="cmp-cell cmp-k" role="rowheader">' + esc(r[0]) + '</span><span class="cmp-cell cmp-a" role="cell"><ul class="cmp-l">' + r[1].map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + '</ul></span><span class="cmp-cell cmp-b" role="cell"><ul class="cmp-l">' + r[2].map(function (x) { return "<li>" + CHECK + "<span>" + esc(x) + "</span></li>"; }).join("") + '</ul></span></div>';
-      }).join("");
+    var c = document.getElementById("wy"); if (!c) return;
+    var d = WY[l];
+    c.innerHTML = '<aside class="wy-card rv"><p class="wy-k">' + esc(d.k) + '</p><h3>' + esc(d.t) + '</h3><dl class="wy-st">' +
+      d.st.map(function (x) { return '<div><dt>' + esc(x[0]) + "</dt><dd>" + esc(x[1]) + "</dd></div>"; }).join("") +
+      '</dl><a href="#contact" class="wy-cta">' + esc(d.cta) + '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></a></aside>' +
+      '<ol class="wy-p">' + d.p.map(function (p, i) {
+        return '<li class="rv" style="--d:' + i + '"><span class="wy-ic" aria-hidden="true"><svg viewBox="0 0 24 24">' + WY_IC[p[0]] + '</svg></span><div><h4>' + esc(p[1]) + "</h4><p>" + esc(p[2]) + "</p></div></li>";
+      }).join("") + "</ol>";
     if (window.__armed && typeof arm === "function") setTimeout(arm, 0);
   }
   function whyFx() {}
