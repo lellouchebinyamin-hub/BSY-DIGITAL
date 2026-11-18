@@ -2452,6 +2452,45 @@ html[dir="ltr"] .wy-cta svg { transform: scaleX(-1); }
   .wy-ic { width: 38px; height: 38px; border-radius: 11px; } .wy-ic svg { width: 19px; height: 19px; }
   .wy-p h4 { font-size: 16px; margin: 0 0 3px; } .wy-p p { font-size: 13.5px; }
 }
+
+/* Section labels removed (2026-11-18) */
+.site .eyebrow { display: none !important; }
+/* Process v3: timeline */
+.proc-scroll { overflow: visible !important; }
+.pt { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 !important; position: relative; background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: clamp(28px, 3cqw, 40px) clamp(10px, 1.5cqw, 20px); box-shadow: 0 1px 2px rgba(15,35,70,.04), 0 16px 40px -24px rgba(15,35,70,.22); }
+.pt::before, .pt::after { content: ""; position: absolute; top: calc(clamp(28px, 3cqw, 40px) + 23px); inset-inline: 12.5%; height: 2px; background: var(--line); border-radius: 2px; }
+.pt::after { background: linear-gradient(90deg, #60a5fa, var(--brass)); transform: scaleX(0); transform-origin: right; transition: transform 1.6s cubic-bezier(.6,0,.2,1) .2s; }
+html[dir="ltr"] .pt::after { transform-origin: left; }
+.pt.go::after { transform: scaleX(1); }
+.ps { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding-inline: clamp(10px, 1.4cqw, 22px); }
+.ps-node { position: relative; z-index: 1; width: 48px; height: 48px; border-radius: 50%; background: #fff; border: 2px solid var(--line); display: grid; place-items: center; transition: border-color .4s, background .4s, color .4s, box-shadow .4s; transition-delay: calc(.3s + var(--d) * .4s); color: var(--stone); }
+.ps-node span { font-family: var(--display-en); font-size: 15px; font-weight: 800; }
+.pt.go .ps-node { border-color: var(--brass); background: var(--brass); color: #fff; box-shadow: 0 0 0 6px rgba(37,99,235,.1); }
+.ps-b { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 20px; }
+.ps-when { font-size: 12.5px; font-weight: 700; color: var(--brass); background: rgba(37,99,235,.08); padding: 3px 11px; border-radius: 999px; unicode-bidi: isolate; }
+.ps h3 { margin: 4px 0 0; font-family: var(--display-he); font-size: 20px; font-weight: 800; color: var(--bone); }
+:lang(en) .ps h3 { font-family: var(--display-en); }
+.ps p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--stone); max-width: 30ch; }
+.ps ul { list-style: none; margin: 8px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; width: 100%; max-width: 240px; }
+.ps li { font-size: 13.5px; color: var(--bone); display: flex; align-items: center; justify-content: center; gap: 8px; }
+.ps li::before { content: ""; flex: none; width: 14px; height: 14px; border-radius: 50%; background: rgba(37,99,235,.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 9px no-repeat; }
+@container site (max-width: 1000px) and (min-width: 861px) { .ps ul { display: none; } }
+@container site (max-width: 860px) {
+  .pt { grid-template-columns: minmax(0, 1fr); padding: 22px 18px !important; margin-inline: 0 !important; overflow: visible !important; border-radius: 20px; }
+  #process .sw-dots { display: none !important; }
+  .pt::before, .pt::after { top: 46px; bottom: 46px; inset-inline: auto; inset-inline-start: 41px; width: 2px; height: auto; }
+  .pt::after { transform: scaleY(0); transform-origin: top; } html[dir="ltr"] .pt::after { transform-origin: top; }
+  .pt.go::after { transform: scaleY(1); }
+  .ps { flex-direction: row; align-items: flex-start; text-align: start; gap: 16px; padding: 0 0 22px; }
+  .ps:last-child { padding-bottom: 0; }
+  .ps-node { flex: none; width: 44px; height: 44px; }
+  .ps-b { align-items: flex-start; margin-top: 0; gap: 5px; min-width: 0; }
+  .ps h3 { font-size: 18px; margin: 2px 0 0; }
+  .ps p { font-size: 14px; max-width: none; }
+  .ps ul { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; border: 0; margin-top: 4px; max-width: none; }
+  .ps li { font-size: 12px; background: var(--ink-2); padding: 4px 10px 4px 8px; border-radius: 999px; gap: 6px; }
+  .ps li::before { width: 12px; height: 12px; background-size: 8px; background-color: transparent; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -2808,7 +2847,7 @@ html[dir="ltr"] .wy-cta svg { transform: scaleX(-1); }
       w_back: "חזרה", w_next: "המשך", w_send: "שלחו את הבריף", w_pick: "בחרו אפשרות", w_enter: "<kbd>Enter</kbd> להמשך",
       f_ok: "הבריף אצלי.", f_okp: "תודה {n}! אחזור אליכם תוך 24 שעות עם רעיונות והצעת מחיר.", f_orwa: "רוצים מהר יותר? וואטסאפ", f_again: "בריף חדש", f_wahi: "היי, אני", f_waabout: "מעוניין/ת ב",
       ft_say: "הפרויקט הבא שלכם <span class=\"serif\">מתחיל בהודעה אחת.</span>", ft_nav: "ניווט", ft_svc: "שירותים", ft_studio: "הסטודיו", ft_ct: "צור קשר", ft_faq: "שאלות נפוצות", ft_talk: "דברו איתי", ft_rights: "כל הזכויות שמורות", ft_acc: "הצהרת נגישות", ft_priv: "מדיניות פרטיות", ft_terms: "תנאי שימוש", f_consent: "בשליחת הבריף אתם מאשרים את <a href=\"#privacy\">מדיניות הפרטיות</a>. הפרטים משמשים רק כדי לחזור אליכם.", ft_top: "חזרה למעלה",
-      p_hint: "החליקו לצדדים", p_eye: "תהליך העבודה", p_title: "מהרעיון לאתר באוויר, <span class=\"serif\">בארבעה צעדים.</span>", p_lead: "תהליך ברור עם לוחות זמנים אמיתיים. אתם מאשרים כל שלב לפני שממשיכים.",
+      p_hint: "החליקו לצדדים", p_eye: "תהליך העבודה", p_title: "מהרעיון ועד ההשקה, <span class=\"serif\">בארבעה שלבים ברורים.</span>", p_lead: "תהליך עבודה מסודר עם לוחות זמנים מוגדרים. כל שלב מאושר על ידכם לפני שממשיכים.",
       y_eye: "למה B.S.Y", y_title: ["שותף דיגיטלי אחד.", "<span class=\"serif\">סטנדרט של חברה גדולה.</span>"], y_lead: "היחס האישי והזמינות של סטודיו בוטיק, יחד עם רמת העיצוב, הטכנולוגיה והאמינות של חברה גדולה.",
       sv_eye: "מה אנחנו בונים", sv_title: ["פתרון אחד לכל מה", "<span class=\"serif\">שהעסק צריך.</span>"], sv_lead: "מתחילים מהבעיה של העסק, לא מהטכנולוגיה. כל פרויקט נמדד במה שהוא חוסך לכם או מכניס לכם.", tr_lbl: "העסקים שבחרו לעבוד איתנו",
       w_cta: "הפרויקט הבא יכול להיות שלכם", w_note: "* פרויקטים לדוגמה",
@@ -2839,7 +2878,7 @@ html[dir="ltr"] .wy-cta svg { transform: scaleX(-1); }
       w_back: "Back", w_next: "Continue", w_send: "Send the brief", w_pick: "Pick an option", w_enter: "<kbd>Enter</kbd> to continue",
       f_ok: "Brief received.", f_okp: "Thank you {n}! I'll get back to you within 24 hours with ideas and a quote.", f_orwa: "Want it faster? WhatsApp", f_again: "New brief", f_wahi: "Hi, I'm", f_waabout: "Interested in",
       ft_say: "Your next project <span class=\"serif\">starts with one message.</span>", ft_nav: "Navigate", ft_svc: "Services", ft_studio: "Studio", ft_ct: "Contact", ft_faq: "FAQ", ft_talk: "Talk to me", ft_rights: "All rights reserved", ft_acc: "Accessibility", ft_priv: "Privacy policy", ft_terms: "Terms of use", f_consent: "By sending the brief you accept the <a href=\"#privacy\">privacy policy</a>. Your details are used only to get back to you.", ft_top: "Back to top",
-      p_hint: "Swipe sideways", p_eye: "How we work", p_title: "From idea to live site, <span class=\"serif\">in four steps.</span>", p_lead: "A clear process with real timelines. You approve every stage before we move on.",
+      p_hint: "Swipe sideways", p_eye: "How we work", p_title: "From idea to launch, <span class=\"serif\">in four clear stages.</span>", p_lead: "A structured process with defined timelines. You approve every stage before we move on.",
       y_eye: "Why B.S.Y", y_title: ["One digital partner.", "<span class=\"serif\">A big-company standard.</span>"], y_lead: "The personal attention and availability of a boutique studio, with the design, technology and reliability of a large company.",
       sv_eye: "What we build", sv_title: ["One partner for everything", "<span class=\"serif\">your business needs.</span>"], sv_lead: "We start from the business problem, not the technology. Every project is measured by what it saves you or brings in.", tr_lbl: "Businesses that chose to work with us",
       w_cta: "Your project could be next", w_note: "* Sample projects",
@@ -2932,12 +2971,17 @@ html[dir="ltr"] .wy-cta svg { transform: scaleX(-1); }
       { when: "Week 6 onward", t: "Launch & care", p: "The site goes live, and I stay with you after.", l: ["Launch on your own domain", "Google setup and SEO foundations", "Support and changes after launch"] }
     ]
   };
+  var PS = {"he": [["שבוע 1", "אפיון ואסטרטגיה", "פגישת היכרות, הבנת העסק והמטרות, ובניית מבנה ותוכן לכל עמוד.", ["שיחת היכרות והגדרת מטרות", "ניתוח קהל יעד ומתחרים", "אפיון מבנה ותוכן"]], ["שבועות 2-3", "עיצוב", "עיצוב מלא לדסקטופ ולמובייל, שמאושר על ידכם לפני תחילת הפיתוח.", ["עיצוב בהתאמה אישית למותג", "שפה ויזואלית מלאה", "סבבי תיקונים עד לאישור"]], ["שבועות 3-5", "פיתוח", "בניית האתר או המערכת בקוד נקי ומהיר, עם בדיקות בכל המכשירים.", ["פיתוח מהיר ומאובטח", "התאמה מלאה למובייל", "חיבור טפסים, וואטסאפ ו־AI"]], ["שבוע 6", "השקה וליווי", "עלייה לאוויר על הדומיין שלכם, וליווי מקצועי גם אחרי ההשקה.", ["השקה וחיבור לגוגל", "הדרכה לניהול התוכן", "תמיכה ושדרוגים שוטפים"]]], "en": [["Week 1", "Discovery & strategy", "An intro meeting to understand the business and goals, then structure and content for every page.", ["Intro call and goal setting", "Audience and competitor analysis", "Structure and content plan"]], ["Weeks 2-3", "Design", "Full desktop and mobile design, approved by you before development starts.", ["Custom design for your brand", "A complete visual language", "Revisions until approved"]], ["Weeks 3-5", "Development", "The site or system is built in clean, fast code and tested on every device.", ["Fast, secure development", "Fully tuned for mobile", "Forms, WhatsApp and AI connected"]], ["Week 6", "Launch & support", "Live on your own domain, with professional support after launch.", ["Launch and Google setup", "Training to manage content", "Ongoing support and upgrades"]]]};
   function renderProcess(l) {
     var tr = document.getElementById("proc-track"); if (!tr) return;
-    tr.innerHTML = PROC[l].map(function (s, i) {
-      return '<article class="step' + (i === 0 ? " on" : "") + '"><div class="step-top"><span class="step-n">0' + (i + 1) + '</span><span class="step-when">' + esc(s.when) + '</span></div><h3>' + esc(s.t) + '</h3><p>' + esc(s.p) + '</p><ul>' + s.l.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></article>";
+    tr.className = "proc-track pt";
+    tr.innerHTML = PS[l].map(function (s, i) {
+      return '<article class="ps" style="--d:' + i + '"><div class="ps-node"><span>0' + (i + 1) + '</span></div><div class="ps-b"><span class="ps-when">' + esc(s[0]) + '</span><h3>' + esc(s[1]) + '</h3><p>' + esc(s[2]) + '</p><ul>' + s[3].map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div></article>";
     }).join("");
-    setTimeout(sizeProc, 0);
+    if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { tr.classList.add("go"); io.disconnect(); } }, { threshold: .25 });
+      io.observe(tr);
+    } else tr.classList.add("go");
   }
   function sizeProc() { procFx(); }
   function procFx() {
