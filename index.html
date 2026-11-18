@@ -4802,7 +4802,7 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
     nav.classList.toggle("open", o); burger.setAttribute("aria-expanded", o);
     var bar = document.getElementById("m-cta"); if (bar && o) { bar.classList.remove("on"); bar.inert = true; } else queueFx();
     document.documentElement.style.overflow = o ? "hidden" : "";
-    if (o) nav.classList.remove("closing");
+    if (o) { nav.classList.remove("closing"); nav.classList.remove("tuck"); }
     else { nav.classList.add("closing"); closeT = setTimeout(function () { nav.classList.remove("closing"); }, 1150); }
   }
   burger.addEventListener("click", function () { setMenu(!nav.classList.contains("open")); });
