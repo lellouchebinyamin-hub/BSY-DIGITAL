@@ -1870,6 +1870,66 @@ h2.rvl.pre { opacity: 0; }
   .rv-stage::-webkit-scrollbar { display: none; }
   .rv-stage .rc, .rv-stage .rc:nth-child(n+7) { display: block; flex: 0 0 84%; width: auto; margin: 0; scroll-snap-align: center; padding: 20px; }
 }
+
+/* Mobile pages: formal, compact, calm */
+@container site (max-width: 860px) {
+  .lgl-grid { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .lgl { padding-block: 28px 72px; }
+  .lgl-t { font-size: 10cqw; line-height: 1.08; margin-bottom: 22px; }
+  .lgl-side { position: sticky; top: 64px; z-index: 5; display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -16px; padding: 10px 16px; background: color-mix(in srgb, var(--ink) 92%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); scrollbar-width: none; }
+  .lgl-side::-webkit-scrollbar { display: none; }
+  .lgl-side small, .lgl-upd { display: none; }
+  .lgl-side a { flex: none; scroll-snap-align: start; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; white-space: nowrap; background: #fff; }
+  .lgl-side a[aria-current] { background: var(--brass); border-color: var(--brass); color: #fff; }
+  .lgl-body { max-width: none; display: grid; gap: 12px; }
+  .lgl-s, .lgl-s:first-child { padding: 20px 18px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+  .lgl-s h2 { font-size: 18px; margin-bottom: 10px; gap: 10px; }
+  .lgl-s p, .lgl-s li { font-size: 15.5px; line-height: 1.75; }
+
+  .svp-hero { padding-block: 22px 52px; }
+  .svp-hero h2, .sh-txt h2 { font-size: 10.4cqw; line-height: 1.1; letter-spacing: -.02em; }
+  .svp-ctas { margin-top: 28px; }
+  .sh-grid { gap: 32px; }
+  .sh-facts { margin-top: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; border-top: 0; padding-top: 0; }
+  .sh-facts li { padding: 12px 10px; border: 1px solid var(--line); border-radius: 14px; background: #fff; text-align: center; }
+  .sh-facts b { font-size: 17px; }
+  .sh-facts span { font-size: 12px; }
+
+  .svp-sec { padding-block: 56px; border-top: 0; }
+  .svp-sec:nth-of-type(even) { background: #fff; }
+  .svp-sec h3.t, .svp-band h3 { font-size: 8.4cqw; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 26px; }
+
+  .feat { gap: 10px; }
+  .feat article { padding: 18px 18px 20px; border: 1px solid var(--line); border-radius: 16px; background: #fff; gap: 8px; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  .feat article::before { display: none; }
+  .feat em { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; background: rgba(37,99,235,.08); font-size: 12px; font-weight: 600; }
+  .feat h4, .am-c h4 { font-size: 18px; }
+  .feat p, .am-c p { font-size: 14.5px; line-height: 1.6; }
+
+  .am { gap: 10px; }
+  .am-c { padding: 14px 16px 20px; gap: 8px; border-radius: 16px; background: #fff; }
+  .am-ill { height: 92px; margin: 0 0 6px; }
+
+  .fit { gap: 20px; }
+  .fit ul { border-top: 0; display: grid; gap: 8px; }
+  .fit li { padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: #fff; font-size: 16px; gap: 12px; }
+  .fl li, .fl li.lit { grid-template-columns: 2.6em minmax(0, 1fr); padding-block: 16px; font-size: 6.2cqw; line-height: 1.2; color: var(--bone); }
+  .fl li::before { color: var(--brass); }
+
+  .svp-work { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -16px; padding: 2px 16px 10px; scrollbar-width: none; }
+  .svp-work::-webkit-scrollbar { display: none; }
+  .svp-work a { flex: 0 0 80%; scroll-snap-align: center; gap: 10px; }
+  .svp-work .shot { border-radius: 14px; }
+
+  .svp-band { margin-top: 48px; padding: 30px 22px; text-align: center; justify-content: center; border-radius: 20px; gap: 20px; }
+  .svp-band h3 { max-width: none; margin: 0; }
+  .svp-next { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 24px; }
+  .svp-next a { padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: #fff; font-size: 13px; }
+  .svp-next a b { font-size: 16px; }
+
+  .rv.pre { transform: translateY(12px); }
+  .rv { transition-duration: .55s; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
