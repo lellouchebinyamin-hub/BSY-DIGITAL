@@ -2491,6 +2491,98 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
   .ps li { font-size: 12px; background: var(--ink-2); padding: 4px 10px 4px 8px; border-radius: 999px; gap: 6px; }
   .ps li::before { width: 12px; height: 12px; background-size: 8px; background-color: transparent; }
 }
+
+/* Reviews v3 */
+.rv-sum { display: inline-flex; align-items: center; gap: 14px; padding: 10px 12px 10px 20px; padding-inline: 20px 10px; background: #fff; border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 10px 30px -20px rgba(15,35,70,.3); flex-wrap: nowrap; }
+.rv-score { font-size: 28px !important; line-height: 1 !important; }
+.rv-sum > div { display: flex; flex-direction: column; }
+.rv-sum .stars { font-size: 15px; letter-spacing: 1px; }
+.rv-sum small { font-size: 12.5px; margin-top: 2px; }
+.rv-sum .pill { margin: 0; padding: 9px 16px; font-size: 13px; }
+#rv-stage.rx { height: auto; perspective: none; margin-top: clamp(32px, 3.5cqw, 48px); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 18px; align-items: start; touch-action: auto; }
+.rq { position: relative; display: flex; flex-direction: column; gap: 14px; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 22px; box-shadow: 0 1px 2px rgba(15,35,70,.04), 0 12px 32px -20px rgba(15,35,70,.2); transition: transform .4s var(--ease), border-color .3s; }
+.rq:hover { transform: translateY(-3px); border-color: rgba(37,99,235,.3); }
+.rq .stars { color: #f5b301; font-size: 14px; letter-spacing: 1px; }
+.rq p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--bone); flex: 1; }
+.rq-top { display: flex; justify-content: space-between; align-items: center; }
+.rq-q { width: 26px; height: 26px; fill: rgba(37,99,235,.18); }
+.rq-who { display: flex; align-items: center; gap: 11px; padding-top: 14px; border-top: 1px solid var(--line); }
+.rq-av { flex: none; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 14px; }
+.rq-who b { display: block; font-size: 14.5px; color: var(--bone); }
+.rq-who small { display: block; font-size: 12px; color: var(--stone); }
+.rq-f { position: sticky; top: 110px; background: #0f1e33; border-color: #0f1e33; color: #fff; padding: clamp(26px, 3cqw, 40px); gap: 18px; overflow: hidden; isolation: isolate; }
+.rq-f::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(90% 70% at 100% 0%, rgba(59,130,246,.35), transparent 60%); }
+.rq-f .rq-q { width: 44px; height: 44px; fill: #3b82f6; }
+.rq-f p { color: #fff; font-family: var(--display-he); font-size: clamp(19px, 1.8cqw, 24px); font-weight: 600; line-height: 1.5; }
+:lang(en) .rq-f p { font-family: var(--display-en); }
+.rq-f .rq-who { border-color: rgba(255,255,255,.14); } .rq-f .rq-who b { color: #fff; } .rq-f .rq-who small { color: #9fb0c8; }
+.rx-g { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.rx-x { display: none; } .rx.all .rx-x { display: flex; }
+.rx-more { grid-column: 2; justify-self: center; all: unset; grid-column: 2; justify-self: center; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-size: 14px; font-weight: 700; color: var(--bone); transition: border-color .3s, color .3s; }
+.rx-more span { font-size: 12px; color: var(--brass); background: rgba(37,99,235,.08); padding: 2px 8px; border-radius: 999px; }
+.rx-more:hover { border-color: var(--brass); color: var(--brass); }
+.rx.all .rx-more { display: none; }
+@container site (max-width: 1000px) { #rv-stage.rx { grid-template-columns: minmax(0, 1fr); } .rq-f { position: relative; top: 0; } .rx-more { grid-column: 1; } }
+@container site (max-width: 860px) {
+  .rv-sum { padding: 8px 8px 8px 14px; padding-inline: 14px 8px; gap: 10px; } .rv-score { font-size: 24px !important; } .rv-sum small { font-size: 11.5px; } .rv-sum .pill { padding: 8px 12px; font-size: 12px; }
+  #rv-stage.rx { gap: 12px; }
+  .rq-f { padding: 22px 20px; } .rq-f p { font-size: 18px; } .rq-f .rq-q { width: 34px; height: 34px; }
+  .rx-g { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -16px; padding: 2px 16px 8px; scrollbar-width: none; }
+  .rx-g::-webkit-scrollbar { display: none; }
+  .rx-g .rq { flex: 0 0 80%; scroll-snap-align: center; padding: 18px; }
+  .rx-x { display: flex; }
+  .rx-more { display: none; }
+  #reviews .sw-dots { display: flex; justify-content: center; gap: 6px; }
+}
+/* FAQ v3 */
+.faq-grid { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(28px, 4cqw, 64px); }
+.faq-side { top: 110px; }
+.faq-side h2 { font-size: clamp(2.1rem, 3.7cqw, 3.4rem); }
+.faq-side .sec-lead { margin-top: 14px; }
+.faq-ask { margin-top: 28px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 24px; border-radius: 20px; background: #0f1e33; color: #b7c3d6; font-size: 14px; position: relative; overflow: hidden; isolation: isolate; }
+.faq-ask::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(90% 80% at 100% 0%, rgba(59,130,246,.35), transparent 60%); }
+.faq-ask b { color: #fff; font-family: var(--display-he); font-size: 19px; font-weight: 800; }
+.faq-ask-b { display: flex; gap: 10px; margin-top: 12px; align-items: center; }
+.faq-ask .pill.solid { background: #fff; color: #0f1e33; border-color: #fff; }
+.fa-wa { width: 44px; height: 44px; border-radius: 50%; background: #25d366; color: #fff; display: grid; place-items: center; }
+.faq-list { border: 1px solid var(--line); border-radius: 22px; background: #fff; overflow: hidden; box-shadow: 0 1px 2px rgba(15,35,70,.04), 0 16px 40px -24px rgba(15,35,70,.22); }
+.qa { border-bottom: 1px solid var(--line); transition: background .3s; }
+.qa:last-child { border-bottom: 0; }
+.qa::after { display: none; }
+.qa.open { background: #f5f8fd; }
+.qa-q { padding: 18px 22px !important; gap: 14px !important; }
+.qa-n { font-family: var(--display-en); font-size: 12px; font-weight: 700; color: #a3b0c2; }
+.qa-t { font-size: 16.5px !important; font-weight: 700; }
+.qa-q:hover .qa-t { translate: none; color: var(--brass); }
+.qa-x { width: 32px !important; height: 32px !important; background: var(--ink-2); border-color: transparent !important; color: var(--brass); }
+.qa-x::before, .qa-x::after { width: 11px; height: 1.6px; }
+.qa.open .qa-x { background: var(--brass); color: #fff; }
+.qa-a p { padding: 0 22px 20px !important; padding-inline-start: calc(22px + 14px + 2ch) !important; font-size: 15px; line-height: 1.7; max-width: none; }
+@container site (max-width: 860px) {
+  .faq-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .faq-grid { display: flex; flex-direction: column; }
+  .faq-side { display: contents; }
+  .faq-side h2 { text-align: center; align-self: center; margin: 0; } .faq-side .sec-lead { text-align: center; margin: -8px 0 0; }
+  .faq-list { order: 5; } .faq-side .faq-ask { order: 6; margin-top: 0; padding: 20px; }
+  .faq-list { border-radius: 18px; }
+  .qa-q { padding: 15px 16px !important; gap: 10px !important; }
+  .qa-n { display: none; }
+  .qa-t { font-size: 15px !important; line-height: 1.4; }
+  .qa-x { width: 28px !important; height: 28px !important; }
+  .qa-a p { padding: 0 16px 16px !important; font-size: 14px; }
+  .faq-grid::after { content: none; }
+}
+
+.rv-sum { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; width: max-content; max-width: 100%; text-align: start; }
+.rv-sum > * { white-space: nowrap; }
+.rv-sum > div { align-items: flex-start; }
+.rv-sum .pill { width: auto !important; }
+@container site (max-width: 860px) {
+  .qa-q { grid-template-columns: minmax(0, 1fr) auto !important; }
+  .qa { margin: 0 !important; padding: 0 !important; }
+  .faq-side .faq-ask { align-self: stretch; }
+  .faq-list { padding: 0 !important; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -2658,7 +2750,7 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
             <p class="eyebrow rv"><span data-k="f_eye">שאלות נפוצות</span></p>
             <h2 class="rvl" id="f_title"></h2>
             <p class="sec-lead rv" data-k="f_lead"></p>
-            <div class="faq-ask rv"><span data-k="f_more"></span><a href="#contact" class="pill line" data-k="f_btn">דברו איתי</a></div>
+            <div class="faq-ask rv"><b data-k="f_more"></b><span data-k="f_more2"></span><div class="faq-ask-b"><a href="#contact" class="pill solid" data-k="f_btn">שליחת שאלה</a><a class="fa-wa ct-wa-link" href="https://wa.me/972587888349" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.5 1 3 .8 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></a></div></div>
           </div>
           <div class="faq-list rv" id="faq-list"></div>
         </div>
@@ -2835,9 +2927,9 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
       w_lead: "אתרים אמיתיים, באוויר עכשיו. כל אחד בנוי סביב העסק שלו.",
       w1: "אתר תדמית", w1s: "נדל״ן יוקרה, הרצליה", w2: "חנות אונליין", w2s: "קרמיקה בעבודת יד", w3: "אפליקציית ווב", w3s: "זימון תורים למרפאה", w4: "אתר תדמית", w4s: "ייעוץ פיננסי",
       w_all: "לכל העבודות", w_alln: "6 פרויקטים באוויר", pv_back: "חזרה לדף הבית", pv_eye: "תיק עבודות", pv_title: "כל <span class=\"serif\">העבודות.</span>", pv_lead: "לחצו על כל פרויקט כדי לראות אותו חי.", pv_cta: "רוצים אתר כזה? בואו נדבר",
-      r_eye: "ביקורות", r_title: ["מה הלקוחות", "<span class=\"serif\">אומרים.</span>"], r_count: "10 ביקורות", r_write: "השאירו ביקורת", r_note: "* ביקורות לדוגמה. יוחלפו בביקורות אמיתיות.", r_ex: "דוגמה",
+      r_eye: "ביקורות", r_title: ["מה אומרים", "<span class=\"serif\">הלקוחות שלנו.</span>"], r_count: "דירוג ממוצע · 10 ביקורות", r_more: "לכל הביקורות", r_write: "השאירו ביקורת", r_note: "* ביקורות לדוגמה. יוחלפו בביקורות אמיתיות.", r_ex: "דוגמה",
       sv_more: "לכל הפרטים", nav_home: "דף הבית", nav_proj: "הפרויקטים", nav_contact: "צור קשר",
-      f_eye: "שאלות נפוצות", f_title: ["שאלות", "<span class=\"serif\">לפני שמתחילים.</span>"], f_lead: "כל מה ששואלים אותי לפני שיוצאים לדרך. לא מצאתם? אני עונה אישית.", f_more: "יש לכם שאלה אחרת?", f_btn: "דברו איתי",
+      f_eye: "שאלות נפוצות", f_title: ["שאלות", "<span class=\"serif\">ותשובות.</span>"], f_lead: "התשובות לשאלות הנפוצות ביותר לפני תחילת עבודה משותפת.", f_more: "לא מצאתם תשובה?", f_more2: "נשמח לענות אישית, בדרך כלל תוך שעות ספורות.", f_btn: "שליחת שאלה",
       c_eye: "צרו קשר", c_title: ["בואו נבנה", "<span class=\"serif\">משהו שלא שוכחים.</span>"], c_wa: "וואטסאפ", c_mail: "אימייל", c_live: "זמין עכשיו · עונה תוך 24 שעות",
       b_title: "הבריף שלכם", b_foot: "ארבע שאלות קצרות, פחות מדקה. אחרי זה אני חוזר אליכם עם רעיונות, לוח זמנים והצעת מחיר סגורה.", b_labels: ["פרויקט", "מועד", "העסק", "איש קשר"],
       q1: "מה בונים יחד?", q1p: "בחרו את מה שהכי קרוב. אפשר לשנות אחר כך.", q2: "מתי תרצו לעלות לאוויר?", q2p: "זה עוזר לי לתכנן את לוח הזמנים בשבילכם.", q3: "ספרו לי על העסק.", q3p: "כמה מילים מספיקות. מה אתם עושים ומה חשוב לכם שהאתר ישיג.", q4: "איך חוזרים אליכם?", q4p: "בלי ספאם. רק אני, עם תשובה אישית.",
@@ -2866,9 +2958,9 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
       w_lead: "Real sites, live right now. Each one shaped around its business.",
       w1: "Brand website", w1s: "Luxury real estate, Herzliya", w2: "Online store", w2s: "Hand-thrown ceramics", w3: "Web app", w3s: "Clinic booking", w4: "Brand website", w4s: "Financial advisory",
       w_all: "See all work", w_alln: "6 projects live", pv_back: "Back to home", pv_eye: "Portfolio", pv_title: "All <span class=\"serif\">work.</span>", pv_lead: "Open any project to see it in action.", pv_cta: "Want a site like this? Let's talk",
-      r_eye: "Reviews", r_title: ["What clients", "<span class=\"serif\">say.</span>"], r_count: "10 reviews", r_write: "Leave a review", r_note: "* Sample reviews, to be replaced with real ones.", r_ex: "Sample",
+      r_eye: "Reviews", r_title: ["What our", "<span class=\"serif\">clients say.</span>"], r_count: "Average rating · 10 reviews", r_more: "All reviews", r_write: "Leave a review", r_note: "* Sample reviews, to be replaced with real ones.", r_ex: "Sample",
       sv_more: "Full details", nav_home: "Home", nav_proj: "Projects", nav_contact: "Contact",
-      f_eye: "FAQ", f_title: ["Questions", "<span class=\"serif\">before we start.</span>"], f_lead: "Everything clients ask me before we get going. Something missing? I answer personally.", f_more: "Got another question?", f_btn: "Talk to me",
+      f_eye: "FAQ", f_title: ["Questions", "<span class=\"serif\">and answers.</span>"], f_lead: "Answers to the questions we hear most before starting a project together.", f_more: "Didn't find your answer?", f_more2: "We're happy to answer personally, usually within a few hours.", f_btn: "Send a question",
       c_eye: "Contact", c_title: ["Let's build", "<span class=\"serif\">something unforgettable.</span>"], c_wa: "WhatsApp", c_mail: "Email", c_live: "Available now · replies within 24 hours",
       b_title: "Your brief", b_foot: "Four quick questions, under a minute. Then I come back with ideas, a timeline and a fixed quote.", b_labels: ["Project", "Timing", "Business", "Contact"],
       q1: "What are we building?", q1p: "Pick the closest one. You can change it later.", q2: "When would you like to launch?", q2p: "It helps me plan the timeline for you.", q3: "Tell me about the business.", q3p: "A few words are enough: what you do and what the site should achieve.", q4: "How do I reach you?", q4p: "No spam. Just me, with a personal reply.",
@@ -3303,15 +3395,18 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
   };
   var AV = ["#c2a06a", "#5f7a6a", "#7b6a8f", "#a0645a", "#4f6d8a"];
   function renderReviews(l) {
-    var ex = T[l].r_ex;
-    function card(r, i) {
-      return '<article class="rc" dir="' + (l === "he" ? "rtl" : "ltr") + '"><div class="rc-h"><span class="rc-av" style="background:' + AV[i % AV.length] + '">' + esc(r[0].charAt(0)) + '</span><span class="rc-n">' + esc(r[0]) + '<small>' + esc(r[1]) + '</small></span></div>' +
-        '<div class="rc-m"><span class="stars">★★★★★</span></div><p>' + esc(r[2]) + '</p></article>';
-    }
-    document.getElementById("rv-stage").innerHTML = REV[l].map(card).join("");
-    document.getElementById("rv-n").textContent = String(REV[l].length).padStart(2, "0");
-    rvPaint();
+    var st = document.getElementById("rv-stage"); if (!st) return;
+    var R = REV[l], Q = '<svg class="rq-q" viewBox="0 0 32 32" aria-hidden="true"><path d="M13 8C7.5 9.6 4 13.8 4 19.5 4 23 6.2 25 9 25c2.6 0 4.6-2 4.6-4.5S11.8 16 9.4 16c-.4 0-.8 0-1.1.1.6-2.9 2.8-5.1 5.7-6.2zm15 0c-5.5 1.6-9 5.8-9 11.5 0 3.5 2.2 5.5 5 5.5 2.6 0 4.6-2 4.6-4.5S26.8 16 24.4 16c-.4 0-.8 0-1.1.1.6-2.9 2.8-5.1 5.7-6.2z"/></svg>';
+    function who(r, i) { return '<div class="rq-who"><span class="rq-av" style="background:' + AV[i % AV.length] + '">' + esc(r[0].charAt(0)) + '</span><span><b>' + esc(r[0]) + '</b><small>' + esc(r[1]) + "</small></span></div>"; }
+    var f = R[0];
+    st.className = "rv-stage rx";
+    st.innerHTML = '<article class="rq rq-f">' + Q + '<span class="stars">★★★★★</span><p>' + esc(f[2]) + "</p>" + who(f, 0) + "</article>" +
+      '<div class="rx-g" id="rx-g">' + R.slice(1).map(function (r, i) {
+        return '<article class="rq' + (i > 3 ? " rx-x" : "") + '"><div class="rq-top"><span class="stars">★★★★★</span>' + Q + '</div><p>' + esc(r[2]) + "</p>" + who(r, i + 1) + "</article>";
+      }).join("") + '</div><button type="button" class="rx-more" id="rx-more">' + T[l].r_more + ' <span>+' + (R.length - 5) + '</span></button>';
+    document.getElementById("rx-more").onclick = function () { st.classList.add("all"); };
     document.getElementById("r_count").textContent = T[l].r_count;
+    setTimeout(function () { if (typeof swDots === "function") swDots(document.getElementById("rx-g")); }, 400);
   }
 
   // One review at a time on a turning ring; a new one every 5 seconds
@@ -3798,26 +3893,26 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
   // FAQ
   var FAQ = {
     he: [
-      ["כמה זה עולה?", "זה תלוי בהיקף: מערכת AI, אתר תדמית, חנות או אפליקציה. אחרי שיחת היכרות קצרה תקבלו <b>הצעת מחיר סגורה ומפורטת</b>, בלי הפתעות ובלי תוספות באמצע הדרך."],
+      ["כמה זה עולה?", "המחיר נקבע לפי היקף הפרויקט: מערכת AI, אתר תדמית, חנות או אפליקציה. לאחר שיחת היכרות קצרה תקבלו <b>הצעת מחיר סגורה ומפורטת</b>, ללא הפתעות וללא תוספות באמצע הדרך."],
       ["מה סוכן AI יכול לעשות בשביל העסק שלי?", "הרבה מהעבודה החוזרת: לענות ללקוחות בוואטסאפ ובאתר גם בלילה, לקלוט ולסנן פניות, לקבוע פגישות, לשלוח תזכורות והצעות מחיר ולהכין דוחות. בשיחת ההיכרות נמפה יחד <b>איפה הולך לכם הכי הרבה זמן</b>, ונתחיל משם."],
       ["כמה זמן לוקח לבנות אתר?", "אתר תדמית עולה לאוויר בדרך כלל תוך <b>3-6 שבועות</b>. חנות או אפליקציית ווב לוקחות יותר, ואת לוחות הזמנים המדויקים תקבלו כבר בהצעה."],
-      ["אני צריך להכין טקסטים ותמונות?", "לא חייבים. אני בונה איתכם את מבנה התוכן, עוזר לנסח את הטקסטים ומתאים את העיצוב לחומרים שיש לכם. אם צריך, אמליץ גם על צלם."],
-      ["האתר והקוד שייכים לי?", "כן, <b>במלואם</b>. הדומיין, הקוד, התכנים והגישות רשומים עליכם. אתם לא תלויים בי כדי להמשיך."],
-      ["אוכל לעדכן את האתר לבד?", "כן. לפי הצורך אני מחבר ממשק ניהול פשוט לעדכון טקסטים, תמונות ומוצרים. ואם אתם מעדיפים, אני מטפל בעדכונים בשבילכם."],
+      ["אני צריך להכין טקסטים ותמונות?", "לא חייבים. אנחנו בונים איתכם את מבנה התוכן, עוזרים לנסח את הטקסטים ומתאימים את העיצוב לחומרים שיש לכם. אם צריך, נמליץ גם על צלם."],
+      ["האתר והקוד שייכים לי?", "כן, <b>במלואם</b>. הדומיין, הקוד, התכנים והגישות רשומים עליכם. אתם לא תלויים בנו כדי להמשיך."],
+      ["אוכל לעדכן את האתר לבד?", "כן. לפי הצורך אנחנו מחברים ממשק ניהול פשוט לעדכון טקסטים, תמונות ומוצרים. ואם אתם מעדיפים, אנחנו מטפלים בעדכונים בשבילכם."],
       ["האתר יופיע בגוגל?", "כל אתר נבנה עם <b>בסיס SEO</b>: מהירות טעינה, מבנה נכון, כותרות ותיאורים, ומפת אתר שנשלחת לגוגל. ככה הוא מוכן להופיע בחיפוש מהיום הראשון."],
-      ["מה קורה אחרי שהאתר עולה?", "אני נשאר זמין. תיקונים, שינויים קטנים ושאלות מטופלים ישירות מולי, ואפשר להמשיך יחד עם תחזוקה שוטפת והוספת פיצ׳רים."],
-      ["עובדים גם עם לקוחות מחוץ לישראל?", "כן. האתרים נבנים בעברית, באנגלית או בשתיהן, והעבודה כולה יכולה להתנהל מרחוק. יש לי לקוחות גם בארצות הברית."]
+      ["מה קורה אחרי שהאתר עולה?", "אנחנו נשארים זמינים. תיקונים, שינויים קטנים ושאלות מטופלים ישירות מולנו, ואפשר להמשיך יחד עם תחזוקה שוטפת והוספת פיצ׳רים."],
+      ["עובדים גם עם לקוחות מחוץ לישראל?", "כן. האתרים נבנים בעברית, באנגלית או בשתיהן, והעבודה כולה יכולה להתנהל מרחוק. יש לנו לקוחות גם בארצות הברית."]
     ],
     en: [
       ["How much does it cost?", "It depends on the scope: an AI system, a brand site, a store or an app. After a short intro call you get a <b>fixed, detailed quote</b>, with no surprises and no add-ons halfway through."],
       ["What can an AI agent do for my business?", "A lot of the repetitive work: answer clients on WhatsApp and your site even at night, capture and sort enquiries, book meetings, send reminders and quotes, and prepare reports. In the intro call we map <b>where most of your time goes</b>, and start there."],
       ["How long does it take?", "A brand site usually goes live in <b>3-6 weeks</b>. A store or web app takes longer, and you get the exact timeline in the quote."],
-      ["Do I need to prepare texts and photos?", "Not necessarily. I build the content structure with you, help write the copy and shape the design around what you have. If needed, I can recommend a photographer."],
-      ["Do I own the site and the code?", "Yes, <b>entirely</b>. The domain, code, content and accounts are in your name. You never depend on me to keep going."],
-      ["Can I update the site myself?", "Yes. When it makes sense I add a simple admin to update text, images and products. If you prefer, I handle the updates for you."],
+      ["Do I need to prepare texts and photos?", "Not necessarily. We build the content structure with you, help write the copy and shape the design around what you have. If needed, we can recommend a photographer."],
+      ["Do I own the site and the code?", "Yes, <b>entirely</b>. The domain, code, content and accounts are in your name. You never depend on us to keep going."],
+      ["Can I update the site myself?", "Yes. When it makes sense we add a simple admin to update text, images and products. If you prefer, we handle the updates for you."],
       ["Will it show up on Google?", "Every site ships with <b>SEO foundations</b>: fast loading, clean structure, titles and descriptions, and a sitemap submitted to Google, so it's ready for search from day one."],
-      ["What happens after launch?", "I stay available. Fixes, small changes and questions go straight to me, and we can keep going with ongoing maintenance and new features."],
-      ["Do you work with clients outside Israel?", "Yes. Sites are built in Hebrew, English or both, and the whole project can run remotely. I already have clients in the United States."]
+      ["What happens after launch?", "We stay available. Fixes, small changes and questions come straight to us, and we can keep going with ongoing maintenance and new features."],
+      ["Do you work with clients outside Israel?", "Yes. Sites are built in Hebrew, English or both, and the whole project can run remotely. We already have clients in the United States."]
     ]
   };
   function renderFaq(l) {
