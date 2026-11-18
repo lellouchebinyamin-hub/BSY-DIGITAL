@@ -1804,6 +1804,72 @@ html[dir="ltr"] .tr-t { animation-name: tr-mq-l; }
   .wk-b em { max-height: none; opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) { .wk.pre { opacity: 1; transform: none; } }
+
+/* ===== Formal structure (2026-11-18): one heading system, even spacing, calm boxes ===== */
+/* Headings: one font for the whole title, the accent words only change colour */
+h2 .serif, .foot-say .serif, .svp-sec h3.t .serif, .svp-band h3 .serif, .ck h3 .serif, .lgl-t .serif { font-family: inherit; font-weight: inherit; font-style: normal; letter-spacing: inherit; color: var(--brass); }
+h2, .proc-head h2, :lang(en) .proc-head h2, .allwork .sec-head h2 { font-size: clamp(2.1rem, 3.7cqw, 3.4rem); line-height: 1.12; font-weight: 800; letter-spacing: -.02em; }
+:lang(en) h2, :lang(en) .allwork .sec-head h2 { font-size: clamp(2rem, 3.4cqw, 3.1rem); }
+.ct-head h2 { font-size: clamp(2.1rem, 3.7cqw, 3.4rem); }
+.eyebrow { gap: 8px; margin: 0 0 16px; padding: 6px 14px; border-radius: 999px; background: rgba(37, 99, 235, .08); color: var(--brass); font-size: 13px; font-weight: 600; letter-spacing: .01em; }
+.eyebrow::before { display: none; }
+.sec-lead { max-width: 58ch; font-size: clamp(16px, 1.2cqw, 18px); line-height: 1.6; }
+/* Home sections: title block centred above the content */
+body { margin: 0; }
+.foot-mark { width: min(30%, 300px); margin: clamp(48px, 5cqw, 72px) auto clamp(32px, 3cqw, 48px); }
+.faq-side h2 { font-size: clamp(2.1rem, 3.7cqw, 3.4rem); }
+.foot-say { font-weight: 800; line-height: 1.15; }
+#top .sec-head, #top .proc-head, #top .ct-head { grid-template-columns: minmax(0, 1fr); display: grid; justify-items: center; text-align: center; gap: 16px; margin-bottom: clamp(40px, 4.5cqw, 64px); }
+#top .sec-head > div, #top .proc-head > div, #top .ct-head > div { display: grid; justify-items: center; }
+#top .proc-head { margin-bottom: 0; }
+#top .rv-sum { justify-content: center; }
+#top .ct-direct { justify-items: center; text-align: center; }
+/* Heading reveal: a simple fade instead of lines rising */
+h2.rvl .ln > span, h2.rvl.pre .ln > span { transform: none; transition: none; }
+h2.rvl { transition: opacity .6s var(--ease); }
+h2.rvl.pre { opacity: 0; }
+.rv { transition-duration: .6s; }
+.rv.pre { transform: translateY(16px); }
+/* Even spacing, no lines between sections, alternating bands */
+.services, .work, .why, .reviews, .faq, .contact { padding-block: clamp(72px, 8cqw, 112px); border-top: 0; }
+.services { padding-top: clamp(48px, 5cqw, 72px); }
+.process { border-top: 0; }
+.proc-pin { padding-block: clamp(72px, 8cqw, 112px); gap: clamp(32px, 3.5cqw, 48px); }
+.work, .process, .faq { background: #fff; }
+.pj-more { justify-content: center; margin-top: clamp(40px, 4.5cqw, 64px); }
+/* Process: the four steps side by side, nothing moves on its own */
+.proc-scroll { overflow: visible; cursor: default; scroll-snap-type: none; }
+.proc-track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: auto; gap: 20px; transform: none !important; }
+.step { width: auto; background: var(--ink); border-color: var(--line); border-radius: 18px; padding: 28px 24px; }
+.step-n, .step.on .step-n { font-size: 2.4rem; color: var(--brass); -webkit-text-stroke: 0; }
+.step h3 { font-size: 1.45rem; }
+.proc-foot { display: none; }
+/* Reviews: a calm grid of cards instead of the rotating ring */
+.rv-stage { height: auto; perspective: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; touch-action: auto; }
+.rv-stage .rc { position: static; width: auto; margin: 0; transform: none !important; opacity: 1 !important; filter: none !important; pointer-events: auto !important; transition: box-shadow .3s; }
+.rv-stage .rc:nth-child(n+7) { display: none; }
+.rv-stage .rc p { -webkit-line-clamp: 5; font-size: 15.5px; }
+
+@container site (max-width: 860px) {
+  .faq-side h2 { font-size: 8.4cqw; }
+  h2, :lang(en) h2, .proc-head h2, :lang(en) .proc-head h2, .ct-head h2, .allwork .sec-head h2, :lang(en) .allwork .sec-head h2 { font-size: 8.4cqw; line-height: 1.15; }
+  .services, .work, .why, .reviews, .faq, .contact { padding-block: 64px; }
+  .services { padding-top: 40px; }
+  .proc-pin { padding-block: 64px; gap: 28px; }
+  #top .sec-head, #top .proc-head, #top .ct-head { margin-bottom: 32px; gap: 12px; }
+  #top .proc-head { margin-bottom: 0; }
+  .proc-head .sec-lead { display: block; }
+  .proc-track { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .step { width: auto; padding: 22px 20px; }
+  .step-n, .step.on .step-n { font-size: 2rem; }
+  .step h3 { font-size: 1.35rem; }
+  /* Why: plain stacked cards, no sticky pile */
+  .cmp-row { position: static; min-height: 0; margin-bottom: 14px; }
+  /* Reviews: swipe sideways by hand */
+  .rv-stage { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-inline: calc(-1 * max(16px, 4.5cqw)); padding-inline: max(16px, 4.5cqw); scrollbar-width: none; height: auto; }
+  .rv-stage::-webkit-scrollbar { display: none; }
+  .rv-stage .rc, .rv-stage .rc:nth-child(n+7) { display: block; flex: 0 0 84%; width: auto; margin: 0; scroll-snap-align: center; padding: 20px; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -2604,6 +2670,8 @@ html[dir="ltr"] .tr-t { animation-name: tr-mq-l; }
   // One review at a time on a turning ring; a new one every 5 seconds
   var rvI = 0, rvT = 0;
   function rvPaint() {
+    // Static grid now (2026-11-18): clear any ring styles and stop
+    document.querySelectorAll("#rv-stage .rc").forEach(function (c) { c.style.cssText = ""; c.removeAttribute("aria-hidden"); }); return;
     var cards = document.querySelectorAll("#rv-stage .rc"), n = cards.length; if (!n) return;
     var narrow = document.getElementById("rv-stage").offsetWidth < 700;
     cards.forEach(function (c, i) {
@@ -3291,6 +3359,7 @@ html[dir="ltr"] .tr-t { animation-name: tr-mq-l; }
   // Scrolling the page down also moves the process steps sideways, one step at a time; scrolling up leaves them where they are
   var lastY = 0, downAcc = 0, procHold = 0;
   function followFx() {
+    return; // process steps no longer move with the scroll (2026-11-18)
     var sc = document.getElementById("proc-scroll"); if (!sc || document.getElementById("top").hidden) return;
     var mob = stage.classList.contains("mobile"), y = mob ? site.scrollTop : scrollY, dy = y - lastY; lastY = y;
     if (dy <= 0) { downAcc = 0; return; }
