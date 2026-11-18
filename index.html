@@ -2650,6 +2650,39 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
 .tk-c b { color: var(--bone) !important; }
 .tk-c:hover .tk-i { transform: translateY(-3px) rotate(-4deg); }
 @container site (max-width: 860px) { .tech { padding-block: 48px 0; } .tk-i { width: 34px; height: 34px; border-radius: 10px; } .tk-i svg { width: 18px; height: 18px; } }
+
+/* Process v4: interactive stepper */
+.pt::after { transform: scaleX(calc(var(--p, 0) * 1)) !important; transition: transform .8s cubic-bezier(.6,0,.2,1) !important; }
+.pt:not(.go)::after { transform: scaleX(0) !important; }
+.ps-node { all: unset; box-sizing: border-box; cursor: pointer; position: relative; z-index: 1; width: 48px; height: 48px; border-radius: 50%; background: #fff; border: 2px solid var(--line); display: grid; place-items: center; color: var(--stone); transition: border-color .4s, background .4s, color .4s, box-shadow .4s, transform .4s var(--ease) !important; transition-delay: 0s !important; }
+.ps-node:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+.pt.go .ps-node { border-color: var(--line); background: #fff; color: var(--stone); box-shadow: none; }
+.pt.go .ps.done .ps-node { border-color: var(--brass); background: #fff; color: var(--brass); }
+.pt.go .ps.on .ps-node { border-color: var(--brass); background: var(--brass); color: #fff; box-shadow: 0 0 0 6px rgba(37,99,235,.12); transform: scale(1.08); }
+.ps-lab { display: none; }
+.ps { transition: opacity .4s; }
+.ps-b { transition: opacity .4s, transform .4s var(--ease); }
+.pt.go .ps:not(.on) .ps-b { opacity: .55; }
+.ps.on h3 { color: var(--brass); }
+.ps-node:hover { transform: scale(1.06); }
+@container site (max-width: 860px) {
+  .pt { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto auto auto; padding: 20px 14px 18px !important; row-gap: 0; }
+  .pt::before, .pt::after { top: 42px !important; bottom: auto !important; height: 2px !important; width: auto !important; inset-inline: 12.5% !important; }
+  .pt::after { transform-origin: right !important; transform: scaleX(var(--p, 0)) !important; }
+  html[dir="ltr"] .pt::after { transform-origin: left !important; }
+  .ps { display: contents; }
+  .ps-node { grid-row: 1; justify-self: center; width: 44px; height: 44px; }
+  .ps:nth-child(1) .ps-node, .ps:nth-child(1) .ps-lab { grid-column: 1; } .ps:nth-child(2) .ps-node, .ps:nth-child(2) .ps-lab { grid-column: 2; }
+  .ps:nth-child(3) .ps-node, .ps:nth-child(3) .ps-lab { grid-column: 3; } .ps:nth-child(4) .ps-node, .ps:nth-child(4) .ps-lab { grid-column: 4; }
+  .ps-lab { display: block; grid-row: 2; text-align: center; margin-top: 8px; font-size: 12px; font-weight: 700; color: var(--stone); transition: color .3s; }
+  .ps.on .ps-lab { color: var(--brass); }
+  .ps-b { grid-row: 3; grid-column: 1 / -1; display: none !important; margin-top: 16px !important; padding: 16px; border-radius: 16px; background: var(--ink-2); align-items: flex-start !important; text-align: start; opacity: 1 !important; }
+  .ps.on .ps-b { display: flex !important; animation: psIn .45s var(--ease); }
+  .ps h3 { font-size: 18px; } .ps p { font-size: 14px; max-width: none; }
+  .ps ul { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; border: 0; margin-top: 4px; max-width: none; }
+  .ps li { font-size: 12px; background: #fff; padding: 4px 10px 4px 8px; border-radius: 999px; gap: 6px; }
+}
+@keyframes psIn { from { opacity: 0; transform: translateY(8px); } }
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -3138,12 +3171,17 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
     var tr = document.getElementById("proc-track"); if (!tr) return;
     tr.className = "proc-track pt";
     tr.innerHTML = PS[l].map(function (s, i) {
-      return '<article class="ps" style="--d:' + i + '"><div class="ps-node"><span>0' + (i + 1) + '</span></div><div class="ps-b"><span class="ps-when">' + esc(s[0]) + '</span><h3>' + esc(s[1]) + '</h3><p>' + esc(s[2]) + '</p><ul>' + s[3].map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div></article>";
+      return '<article class="ps' + (i ? "" : " on") + '" style="--d:' + i + '"><button type="button" class="ps-node" data-i="' + i + '" aria-label="' + esc(s[1]) + '"><span>0' + (i + 1) + '</span></button><span class="ps-lab">' + esc(s[1].split(" ")[0]) + '</span><div class="ps-b"><span class="ps-when">' + esc(s[0]) + '</span><h3>' + esc(s[1]) + '</h3><p>' + esc(s[2]) + '</p><ul>' + s[3].map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div></article>";
     }).join("");
-    if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { tr.classList.add("go"); io.disconnect(); } }, { threshold: .25 });
-      io.observe(tr);
-    } else tr.classList.add("go");
+    var ps = tr.querySelectorAll(".ps"), cur = 0, vis = false, user = false;
+    function act(n) { cur = n; ps.forEach(function (p, k) { p.classList.toggle("on", k === n); p.classList.toggle("done", k < n); }); tr.style.setProperty("--p", n / (ps.length - 1)); }
+    act(0);
+    tr.querySelectorAll(".ps-node").forEach(function (b) { b.addEventListener("click", function () { user = true; act(+b.dataset.i); }); });
+    clearInterval(window.__psT);
+    var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!still) window.__psT = setInterval(function () { if (vis && !user && document.body.contains(tr)) act((cur + 1) % ps.length); }, 3800);
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; if (vis) tr.classList.add("go"); }, { threshold: .3 }).observe(tr);
+    else tr.classList.add("go");
   }
   function sizeProc() { procFx(); }
   function procFx() {
