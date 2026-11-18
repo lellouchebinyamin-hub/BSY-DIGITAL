@@ -2583,6 +2583,244 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
   .faq-side .faq-ask { align-self: stretch; }
   .faq-list { padding: 0 !important; }
 }
+/* ===== 2026-11-18: AI demo, bento "What's included", short before/after, compact configurator, tech strip, case meta row ===== */
+/* Technologies strip (same build as the clients strip) */
+.tech { padding-block: clamp(56px, 7cqw, 96px) 0; }
+.tech .tr { margin-bottom: 0; }
+.tk-c > i { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #fff; box-shadow: 0 0 0 1px var(--line), 0 4px 10px -6px rgba(15,35,70,.25); transition: transform .4s var(--ease); }
+.tk-c > i svg { width: 20px; height: 20px; }
+.tk-c:hover > i { transform: translateY(-2px) scale(1.06); }
+.tech .tr-t { animation-direction: reverse; animation-duration: 52s; }
+@container site (max-width: 860px) { .tech { padding-top: 48px; } .tk-c > i { width: 34px; height: 34px; } .tk-c > i svg { width: 17px; height: 17px; } }
+
+/* Case view: type, field and location always share one row */
+.cs-meta { grid-template-columns: repeat(3, minmax(0, max-content)); }
+@container case (max-width: 860px) {
+  .cs-meta { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding-top: 16px; }
+  .cs-meta > div { min-width: 0; padding-inline: 12px; border-inline-start: 1px solid var(--line); }
+  .cs-meta > div:first-child { padding-inline-start: 0; border: 0; }
+  .cs-meta dd { font-size: 14px; overflow-wrap: anywhere; }
+}
+
+/* What's included: bento grid */
+.am.bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; overflow: visible; margin: 0; padding: 0; }
+.am.bento .am-c { flex: none; background: #fff; border-radius: 22px; padding: 16px 16px 22px; box-shadow: 0 1px 2px rgba(15,35,70,.04), 0 14px 34px -22px rgba(15,35,70,.25); transition: transform .4s var(--ease), box-shadow .4s; }
+.am.bento .am-c:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(15,35,70,.05), 0 22px 44px -22px rgba(15,35,70,.32); }
+.am.bento .am-ill { height: 112px; margin: 0 0 8px; background: var(--ink); }
+.am.bento .am-c h4 { font-size: 18px; }
+.am.bento .am-c p { font-size: 14.5px; }
+.am.bento .lead, .am.bento .wide { grid-column: span 2; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-rows: auto auto 1fr; column-gap: 22px; align-content: stretch; padding: 22px; }
+.am.bento .lead .am-ill, .am.bento .wide .am-ill { grid-column: 2; grid-row: 1 / 4; height: auto; min-height: 150px; margin: 0; }
+.am.bento .lead > :not(.am-ill), .am.bento .wide > :not(.am-ill) { grid-column: 1; }
+.am.bento .lead em { align-self: end; }
+.am.bento .lead h4, .am.bento .wide h4 { font-size: 22px; }
+.am.bento .lead { --brass: #7aa5ff; background: linear-gradient(145deg, #0f1e33, #16294a); border-color: transparent; color: #fff; }
+.am.bento .lead p { color: rgba(255,255,255,.72); }
+.am.bento .lead .am-ill { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.1); }
+.am.bento .lead .am-ill .f { fill: rgba(255,255,255,.16); }
+.am.bento .lead .am-ill .s { stroke: rgba(255,255,255,.28); }
+.am.bento .lead .am-ill path[stroke="#0a0a0b"] { stroke: #0f1e33; }
+.am.bento .wide { background: linear-gradient(145deg, #fff, #eef4ff); }
+@container site (max-width: 1100px) { .am.bento { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container site (max-width: 860px) {
+  .am.bento { gap: 10px; }
+  .am.bento .am-c { padding: 10px 10px 14px; gap: 6px; border-radius: 16px; }
+  .am.bento .am-ill { height: 64px; margin-bottom: 4px; border-radius: 11px; }
+  .am.bento .am-c em { font-size: 11px; }
+  .am.bento .am-c h4 { font-size: 15px; line-height: 1.25; }
+  .am.bento .am-c p { font-size: 13px; line-height: 1.5; }
+  .am.bento .lead, .am.bento .wide { grid-template-columns: minmax(0, 1fr) 38%; column-gap: 12px; padding: 14px; }
+  .am.bento .lead .am-ill, .am.bento .wide .am-ill { min-height: 0; height: 100%; }
+  .am.bento .lead h4, .am.bento .wide h4 { font-size: 17px; }
+}
+/* New illustrations */
+.ai-chat .q2 { animation: aiQ 4s ease infinite; transform-box: fill-box; transform-origin: right center; }
+@keyframes aiQ { 0%, 15% { opacity: 0; transform: scale(.6); } 25%, 85% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.ai-chat .dots circle { animation: aiDot 1.2s ease-in-out infinite; } .ai-chat .d2 { animation-delay: .15s !important; } .ai-chat .d3 { animation-delay: .3s !important; }
+@keyframes aiDot { 0%, 100% { opacity: .3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
+.ai-fun .dr { animation: aiDrop 2.8s cubic-bezier(.5, 0, .5, 1) infinite; }
+@keyframes aiDrop { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 60% { transform: translateY(54px); opacity: 1; } 75%, 100% { transform: translateY(60px); opacity: 0; } }
+.ai-fun .out { animation: aiOut 2.8s ease infinite 1.4s; opacity: 0; }
+@keyframes aiOut { 0%, 30% { opacity: 0; } 50%, 80% { opacity: 1; } 100% { opacity: 0; } }
+.ai-doc .ln { transform-box: fill-box; transform-origin: right center; animation: aiLn 3.6s cubic-bezier(.6, 0, .3, 1) infinite; }
+html[dir="ltr"] .ai-doc .ln { transform-origin: left center; }
+@keyframes aiLn { 0% { transform: scaleX(0); } 30%, 85% { transform: none; } 100% { transform: scaleX(0); opacity: 0; } }
+.ai-doc .spk { transform-box: fill-box; transform-origin: center; animation: aiSpk 2.4s ease-in-out infinite; }
+@keyframes aiSpk { 50% { transform: rotate(45deg) scale(1.25); } }
+.si-des .cur { animation: siCur 4s cubic-bezier(.6, 0, .3, 1) infinite; }
+@keyframes siCur { 0% { transform: translate(200px, 96px); } 35%, 55% { transform: translate(120px, 84px); } 100% { transform: translate(200px, 96px); } }
+.si-des .blk { transform-box: fill-box; transform-origin: center; animation: siBlk 4s ease infinite; }
+@keyframes siBlk { 0%, 38% { transform: none; } 44% { transform: scale(.92); } 50%, 100% { transform: none; } }
+.si-mob .sc { animation: siSc 3.6s ease-in-out infinite alternate; }
+@keyframes siSc { to { transform: translateY(-14px); } }
+.si-ani .ball { offset-path: path("M60 96 C 110 96, 120 32, 170 32 S 230 64, 250 64"); animation: amMove 2.6s cubic-bezier(.65, 0, .35, 1) infinite alternate; }
+.si-spd .arc { stroke-dasharray: 100; animation: siArc 3s cubic-bezier(.6, 0, .3, 1) infinite; }
+@keyframes siArc { 0% { stroke-dashoffset: 100; } 50%, 100% { stroke-dashoffset: 8; } }
+.si-spd .ndl { transform-origin: 150px 100px; animation: siNdl 3s cubic-bezier(.6, 0, .3, 1) infinite; }
+@keyframes siNdl { 0% { transform: rotate(-88deg); } 50%, 100% { transform: rotate(72deg); } }
+.si-seo .up { animation: siUp 4s cubic-bezier(.6, 0, .3, 1) infinite; }
+@keyframes siUp { 0%, 20% { transform: translateY(0); } 45%, 85% { transform: translateY(-22px); } 100% { transform: translateY(0); } }
+.si-wa .fl { stroke-dashoffset: 0; animation: siFl 1.2s linear infinite; }
+@keyframes siFl { to { stroke-dashoffset: -14; } }
+.si-wa .ok { transform-box: fill-box; transform-origin: center; animation: amCk 3s ease infinite; }
+
+/* AI systems page: live agent demo */
+.ad { position: relative; display: grid; grid-template-columns: minmax(270px, .95fr) minmax(0, 1fr) minmax(0, 1.1fr); gap: 16px; padding: 16px; border-radius: 26px; background: linear-gradient(160deg, #fff, #eef4ff); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(15,35,70,.04), 0 30px 60px -36px rgba(15,35,70,.35); }
+.ad-live { position: absolute; top: -13px; inset-inline-start: 24px; display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 99px; background: #0f1e33; color: #fff; font-size: 12px; font-weight: 700; }
+.ad-live i { width: 7px; height: 7px; border-radius: 50%; background: #3fdc8a; box-shadow: 0 0 0 0 rgba(63,220,138,.6); animation: adLive 1.6s infinite; }
+@keyframes adLive { 70% { box-shadow: 0 0 0 7px rgba(63,220,138,0); } }
+.ad-phone { display: grid; grid-template-rows: auto minmax(0, 1fr); height: 440px; border-radius: 22px; overflow: hidden; background: #efeae2; border: 6px solid #0f1e33; }
+.ad-ph-h { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #1f5c46; color: #fff; }
+.ad-av { width: 34px; height: 34px; flex: none; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.16); }
+.ad-av svg { width: 18px; height: 18px; }
+.ad-ph-h b { display: block; font-size: 14px; line-height: 1.2; }
+.ad-ph-h small { display: block; font-size: 11.5px; opacity: .8; }
+.ad-ph-h small.ty { color: #9ff0c4; opacity: 1; }
+.ad-chat { display: flex; flex-direction: column; justify-content: flex-end; gap: 7px; padding: 12px; overflow: hidden; transition: opacity .4s; }
+.ad-chat.out { opacity: 0; }
+.ad-m { max-width: 84%; padding: 7px 10px; border-radius: 12px; font-size: 13.5px; line-height: 1.45; color: #111b21; box-shadow: 0 1px 1px rgba(0,0,0,.08); animation: adIn .45s var(--ease) both; }
+.ad-m small { display: block; font-size: 10.5px; color: #667781; margin-top: 2px; text-align: end; }
+.ad-m.u { align-self: flex-start; background: #fff; border-start-start-radius: 4px; }
+.ad-m.a { align-self: flex-end; background: #d9fdd3; border-start-end-radius: 4px; }
+@keyframes adIn { from { opacity: 0; transform: translateY(10px) scale(.96); } }
+.ad-ty { display: flex; gap: 4px; padding: 10px 12px; }
+.ad-ty span { width: 6px; height: 6px; border-radius: 50%; background: #5b7a6c; animation: aiDot 1s ease-in-out infinite; }
+.ad-ty span:nth-child(2) { animation-delay: .15s; } .ad-ty span:nth-child(3) { animation-delay: .3s; }
+.ad-op { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+.ad-op b { padding: 5px 10px; border-radius: 99px; background: #fff; color: #1f5c46; font-size: 12.5px; font-weight: 700; border: 1px solid rgba(31,92,70,.25); transition: background-color .25s, color .25s, transform .25s; }
+.ad-op b.pr { background: #1f5c46; color: #fff; transform: scale(.94); }
+.ad-bk { display: flex; align-items: center; gap: 7px; margin-top: 7px; padding: 7px 9px; border-radius: 9px; background: rgba(255,255,255,.75); font-size: 12.5px; font-weight: 700; color: #1f5c46; }
+.ad-bk i { width: 18px; height: 18px; flex: none; border-radius: 50%; display: grid; place-items: center; background: #25a36f; color: #fff; font-style: normal; font-size: 11px; }
+.ad-k { margin: 0 0 12px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--stone); }
+.ad-flow { padding: 18px; border-radius: 20px; background: #fff; border: 1px solid var(--line); }
+.ad-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; position: relative; }
+.ad-steps li { position: relative; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; padding: 9px 8px; border-radius: 14px; transition: background-color .4s; }
+.ad-steps li:not(:last-child)::after { content: ""; position: absolute; top: 44px; bottom: -8px; inset-inline-start: 24px; width: 2px; background: var(--line); }
+.ad-steps li.ok:not(:last-child)::after { background: #25a36f; }
+.ad-steps li > i { position: relative; z-index: 1; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-family: var(--mono); font-size: 13px; font-weight: 700; background: var(--ink-2); color: var(--stone); transition: background-color .35s, color .35s, box-shadow .35s; }
+.ad-steps li > i svg { display: none; width: 16px; height: 16px; }
+.ad-steps li b { display: block; font-size: 15px; font-weight: 700; color: var(--stone); transition: color .35s; padding-top: 6px; }
+.ad-steps li small { display: block; min-height: 1.4em; font-size: 13px; color: var(--brass); font-weight: 600; }
+.ad-steps li.on { background: color-mix(in srgb, var(--brass) 7%, transparent); }
+.ad-steps li.on > i { background: var(--brass); color: #fff; box-shadow: 0 0 0 6px color-mix(in srgb, var(--brass) 18%, transparent); animation: adPulse 1.4s ease-in-out infinite; }
+.ad-steps li.on b, .ad-steps li.ok b { color: var(--bone); }
+.ad-steps li.ok > i { background: #25a36f; color: #fff; }
+.ad-steps li.ok > i span { display: none; } .ad-steps li.ok > i svg { display: block; }
+.ad-steps li.ok small { color: var(--stone); }
+@keyframes adPulse { 50% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--brass) 6%, transparent); } }
+.ad-biz { position: relative; display: grid; grid-template-rows: auto auto 1fr; gap: 12px; align-content: start; }
+.ad-card { padding: 16px; border-radius: 20px; background: #fff; border: 1px solid var(--line); }
+.ad-cal { display: grid; grid-template-columns: 3.2em repeat(5, minmax(0, 1fr)); grid-auto-rows: 26px; gap: 5px; direction: ltr; }
+html[dir="rtl"] .ad-cal { direction: rtl; }
+.ad-cal b { font-size: 12px; font-weight: 600; color: var(--stone); text-align: center; align-self: center; }
+.ad-cal em { font-style: normal; font-family: var(--mono); font-size: 11px; color: var(--stone); align-self: center; }
+.ad-cal i { border-radius: 7px; background: var(--ink-2); transition: background-color .4s, box-shadow .4s, transform .4s; }
+.ad-cal i.k1 { background: #c9d8f5; } .ad-cal i.k2 { background: #cfe5da; } .ad-cal i.k3 { background: #e5dcf3; }
+.ad-cal i.fr { background: #fff; box-shadow: inset 0 0 0 2px var(--brass); animation: adFr 1s ease-in-out infinite; }
+@keyframes adFr { 50% { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--brass) 35%, transparent); } }
+.ad-cal i.nw { background: var(--brass); animation: adNw .6s cubic-bezier(.34, 1.56, .64, 1); }
+@keyframes adNw { from { transform: scale(.4); } }
+.ad-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ad-kpis span { display: block; font-size: 12.5px; color: var(--stone); line-height: 1.35; }
+.ad-kpis b { display: inline-block; margin-top: 4px; font-family: var(--display-en); font-size: 34px; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+.ad-kpis b.up { animation: adUp .6s cubic-bezier(.34, 1.56, .64, 1); color: var(--brass); }
+@keyframes adUp { 40% { transform: translateY(-6px) scale(1.12); } }
+.ad-note { align-self: end; display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-radius: 16px; background: #0f1e33; color: #fff; box-shadow: 0 16px 30px -16px rgba(15,35,70,.5); opacity: 0; transform: translateY(12px); transition: opacity .5s, transform .5s var(--ease); }
+.ad-note.on { opacity: 1; transform: none; }
+.ad-note i { width: 28px; height: 28px; flex: none; border-radius: 50%; display: grid; place-items: center; background: #25a36f; font-style: normal; font-size: 14px; }
+.ad-note b { display: block; font-size: 14px; } .ad-note span { display: block; font-size: 12.5px; opacity: .75; }
+@container site (max-width: 1100px) {
+  .ad { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .ad-biz { grid-column: 1 / -1; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); grid-template-rows: auto auto; }
+  .ad-calc { grid-row: span 2; }
+}
+@container site (max-width: 860px) {
+  .ad { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 10px; border-radius: 20px; }
+  .ad-live { top: -11px; inset-inline-start: 16px; }
+  .ad-phone { height: 330px; border-width: 5px; border-radius: 18px; }
+  .ad-m { font-size: 13px; }
+  .ad-flow { padding: 12px 12px 8px; border-radius: 16px; }
+  .ad-flow .ad-k { display: none; }
+  .ad-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; }
+  .ad-steps li { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; gap: 6px; padding: 0; background: none !important; }
+  .ad-steps li:not(:last-child)::after { top: 15px; bottom: auto; height: 2px; width: auto; inset-inline-start: calc(50% + 17px); inset-inline-end: calc(-50% + 17px); }
+  .ad-steps li > i { width: 30px; height: 30px; font-size: 12px; }
+  .ad-steps li b { font-size: 11px; line-height: 1.25; padding: 0; }
+  .ad-steps li small { display: none; }
+  .ad-biz { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .ad-calc { display: none; }
+  .ad-card { padding: 12px 14px; border-radius: 16px; }
+  .ad-kpis { gap: 10px; } .ad-kpis b { font-size: 26px; }
+  .ad-note { position: absolute; inset: auto 10px calc(100% + 4px) 10px; }
+}
+
+/* Web app: short before/after */
+.bx { display: grid; gap: 10px; }
+.bx-hd { display: grid; grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr); font-size: 13px; font-weight: 800; letter-spacing: .06em; }
+.bx-hd .b { color: #b4473b; } .bx-hd .a { color: #1f8a5b; }
+.bx-r { display: grid; grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr); align-items: stretch; }
+.bx-b, .bx-a { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-radius: 16px; font-size: 16px; font-weight: 600; line-height: 1.4; }
+.bx-b { background: #fbefed; color: #7a3b33; }
+.bx-a { background: #fff; color: var(--bone); border: 1px solid var(--line); box-shadow: 0 12px 28px -20px rgba(15,35,70,.3); }
+.bx-b i, .bx-a i { width: 26px; height: 26px; flex: none; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 13px; color: #fff; }
+.bx-b i { background: #d0675a; } .bx-a i { background: #25a36f; }
+.bx-b span { text-decoration: line-through 1.5px transparent; transition: text-decoration-color .5s ease calc(var(--d) * .7s + .2s); }
+.bx-ar { display: grid; place-items: center; color: var(--stone); }
+.bx-ar svg { width: 24px; height: 24px; }
+html[dir="rtl"] .bx-ar svg { transform: scaleX(-1); }
+.bx-a { opacity: .25; transform: translateX(calc(var(--sg, -1) * 14px)); transition: opacity .5s ease calc(var(--d) * .7s + .6s), transform .6s var(--ease) calc(var(--d) * .7s + .6s); }
+html[dir="rtl"] .bx-a { --sg: 1; }
+.bx-ar { opacity: .3; transition: opacity .4s ease calc(var(--d) * .7s + .45s), color .4s ease calc(var(--d) * .7s + .45s); }
+.bx.go .bx-b span { text-decoration-color: currentColor; }
+.bx.go .bx-a { opacity: 1; transform: none; }
+.bx.go .bx-ar { opacity: 1; color: var(--brass); }
+@container site (max-width: 860px) {
+  .bx { gap: 8px; }
+  .bx-hd, .bx-r { grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr); }
+  .bx-hd { font-size: 12px; }
+  .bx-b, .bx-a { flex-direction: column; align-items: flex-start; gap: 6px; padding: 11px 12px; border-radius: 13px; font-size: 13.5px; }
+  .bx-b i, .bx-a i { width: 20px; height: 20px; font-size: 11px; }
+  .bx-ar svg { width: 18px; height: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .bx-a, .bx-ar, .bx-b span { transition: none !important; } }
+
+/* Store: compact, playful configurator */
+.sx-wrap { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0; border-radius: 26px; overflow: hidden; border: 1px solid var(--line); background: #fff; box-shadow: 0 30px 60px -38px rgba(15,35,70,.35); }
+.sx-stage { min-height: 380px; border: 0; border-radius: 0; }
+.sx-stage svg { transform: scale(var(--zs, 1)); transition: color .6s var(--ease), transform .5s cubic-bezier(.34, 1.56, .64, 1); }
+.sx-stage.pop svg { animation: sxPop2 .6s cubic-bezier(.34, 1.56, .64, 1); }
+@keyframes sxPop2 { 35% { transform: scale(calc(var(--zs, 1) * 1.08)) rotate(-6deg); } 70% { transform: scale(var(--zs, 1)) rotate(3deg); } }
+.sx-panel { border: 0; border-radius: 0; background: #fff; gap: 18px; }
+.sx-price.tick { animation: adUp .5s cubic-bezier(.34, 1.56, .64, 1); color: var(--brass); }
+.sx-ship { display: grid; gap: 7px; font-size: 13px; color: var(--stone); }
+.sx-ship div { height: 6px; border-radius: 9px; background: var(--ink-2); overflow: hidden; }
+.sx-ship i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--brass), #10b981); transition: width .7s cubic-bezier(.34, 1.3, .64, 1); }
+.sx-ship.ok { color: #1f8a5b; font-weight: 700; }
+.sx-drawer { background: #fff; }
+.sx-cf { position: fixed; z-index: 121; width: 8px; height: 11px; margin: -5px 0 0 -4px; border-radius: 2px; pointer-events: none; }
+@container site (max-width: 860px) {
+  .sx-wrap { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); border-radius: 20px; }
+  .sx-stage { min-height: 0; }
+  .sx-stage svg { width: 82%; }
+  .sx-stage .sx-tag { top: 10px; inset-inline-start: 10px; padding: 4px 10px; font-size: 11px; }
+  .sx-panel { min-height: 0; gap: 11px; padding: 14px 12px 14px 14px; }
+  .sx-panel h4 { font-size: 16px; padding-inline-end: 40px; line-height: 1.25; }
+  .sx-price { font-size: 19px; }
+  .sx-lbl { font-size: 11.5px; margin-bottom: 6px; }
+  .sx-sw { gap: 8px; } .sx-sw button { width: 26px; height: 26px; box-shadow: inset 0 0 0 2px #fff; }
+  .sx-sz { gap: 5px; } .sx-sz button { min-width: 0; flex: 1; padding: 7px 0; border-radius: 9px; font-size: 13px; }
+  .sx-row { flex-direction: column; gap: 7px; }
+  .sx-qty { justify-content: space-between; height: 34px; } .sx-qty button { width: 38px; font-size: 17px; }
+  .sx-row .pill { padding-block: 10px; font-size: 14px; justify-content: center; }
+  .sx-cartbtn { top: 10px; inset-inline-end: 10px; width: 36px; height: 36px; }
+  .sx-cartbtn svg { width: 17px; height: 17px; }
+  .sx-ship { font-size: 11.5px; gap: 5px; }
+  .sx-drawer { padding: 14px; gap: 10px; }
+  .sx-dh { font-size: 16px; } .sx-dh button { width: 32px; height: 32px; }
+  .sx-items li { grid-template-columns: 34px minmax(0, 1fr) auto; gap: 8px; padding: 7px; font-size: 13px; }
+  .sx-items li i { width: 34px; height: 34px; } .sx-items li i svg { width: 22px; height: 22px; }
+  .sx-tot div { font-size: 15px; } .sx-tot .pill { padding-block: 10px; font-size: 14px; justify-content: center; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -2723,6 +2961,14 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
           </div>
           <div class="wrap proc-scroll" id="proc-scroll"><div class="proc-track" id="proc-track"></div></div>
           <div class="wrap proc-foot"><div class="proc-bar" id="proc-bar"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div><span class="proc-hint" data-k="p_hint">החליקו לצדדים</span><div class="proc-nav"><button type="button" id="proc-prev" aria-label="Previous"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="proc-next" aria-label="Next"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+        </div>
+      </section>
+      <section class="tech" id="tech">
+        <div class="wrap">
+          <div class="tr tk rv">
+            <p class="tr-l"><span data-k="tk_lbl">הטכנולוגיות שאנחנו עובדים איתן</span></p>
+            <div class="tr-mq"><div class="tr-t" id="tk-t"></div></div>
+          </div>
         </div>
       </section>
       <section class="reviews" id="reviews">
@@ -2941,7 +3187,7 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
       ft_say: "הפרויקט הבא שלכם <span class=\"serif\">מתחיל בהודעה אחת.</span>", ft_nav: "ניווט", ft_svc: "שירותים", ft_studio: "הסטודיו", ft_ct: "צור קשר", ft_faq: "שאלות נפוצות", ft_talk: "דברו איתי", ft_rights: "כל הזכויות שמורות", ft_acc: "הצהרת נגישות", ft_priv: "מדיניות פרטיות", ft_terms: "תנאי שימוש", f_consent: "בשליחת הבריף אתם מאשרים את <a href=\"#privacy\">מדיניות הפרטיות</a>. הפרטים משמשים רק כדי לחזור אליכם.", ft_top: "חזרה למעלה",
       p_hint: "החליקו לצדדים", p_eye: "תהליך העבודה", p_title: "מהרעיון ועד ההשקה, <span class=\"serif\">בארבעה שלבים ברורים.</span>", p_lead: "תהליך עבודה מסודר עם לוחות זמנים מוגדרים. כל שלב מאושר על ידכם לפני שממשיכים.",
       y_eye: "למה B.S.Y", y_title: ["שותף דיגיטלי אחד.", "<span class=\"serif\">סטנדרט של חברה גדולה.</span>"], y_lead: "היחס האישי והזמינות של סטודיו בוטיק, יחד עם רמת העיצוב, הטכנולוגיה והאמינות של חברה גדולה.",
-      sv_eye: "מה אנחנו בונים", sv_title: ["פתרון אחד לכל מה", "<span class=\"serif\">שהעסק צריך.</span>"], sv_lead: "מתחילים מהבעיה של העסק, לא מהטכנולוגיה. כל פרויקט נמדד במה שהוא חוסך לכם או מכניס לכם.", tr_lbl: "העסקים שבחרו לעבוד איתנו",
+      sv_eye: "מה אנחנו בונים", sv_title: ["פתרון אחד לכל מה", "<span class=\"serif\">שהעסק צריך.</span>"], sv_lead: "מתחילים מהבעיה של העסק, לא מהטכנולוגיה. כל פרויקט נמדד במה שהוא חוסך לכם או מכניס לכם.", tr_lbl: "העסקים שבחרו לעבוד איתנו", tk_lbl: "הטכנולוגיות שאנחנו עובדים איתן",
       w_cta: "הפרויקט הבא יכול להיות שלכם", w_note: "* פרויקטים לדוגמה",
       cap: "בתמונה: Lévy Estates · Atelier Noa — פרויקטים לדוגמה", arr: "←", other: "EN"
     },
@@ -2972,7 +3218,7 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
       ft_say: "Your next project <span class=\"serif\">starts with one message.</span>", ft_nav: "Navigate", ft_svc: "Services", ft_studio: "Studio", ft_ct: "Contact", ft_faq: "FAQ", ft_talk: "Talk to me", ft_rights: "All rights reserved", ft_acc: "Accessibility", ft_priv: "Privacy policy", ft_terms: "Terms of use", f_consent: "By sending the brief you accept the <a href=\"#privacy\">privacy policy</a>. Your details are used only to get back to you.", ft_top: "Back to top",
       p_hint: "Swipe sideways", p_eye: "How we work", p_title: "From idea to launch, <span class=\"serif\">in four clear stages.</span>", p_lead: "A structured process with defined timelines. You approve every stage before we move on.",
       y_eye: "Why B.S.Y", y_title: ["One digital partner.", "<span class=\"serif\">A big-company standard.</span>"], y_lead: "The personal attention and availability of a boutique studio, with the design, technology and reliability of a large company.",
-      sv_eye: "What we build", sv_title: ["One partner for everything", "<span class=\"serif\">your business needs.</span>"], sv_lead: "We start from the business problem, not the technology. Every project is measured by what it saves you or brings in.", tr_lbl: "Businesses that chose to work with us",
+      sv_eye: "What we build", sv_title: ["One partner for everything", "<span class=\"serif\">your business needs.</span>"], sv_lead: "We start from the business problem, not the technology. Every project is measured by what it saves you or brings in.", tr_lbl: "Businesses that chose to work with us", tk_lbl: "Technologies we work with",
       w_cta: "Your project could be next", w_note: "* Sample projects",
       cap: "Shown: Lévy Estates · Atelier Noa — sample projects", arr: "→", other: "עב"
     }
@@ -3488,6 +3734,7 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
   function svcFromHash() { var m = /^#service-(site|store|app|ai)$/.exec(location.hash); return m ? m[1] : null; }
   function renderSvcPage(l) {
     var key = svcFromHash() || "site", i = SVC_KEYS.indexOf(key), v = SVP[l][i], he = l === "he";
+    if (typeof adT !== "undefined") clearTimeout(adT);
     var tick = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
     var nS = SVP[l].length, prev = SVP[l][(i + nS - 1) % nS], next = SVP[l][(i + 1) % nS];
     var heroHtml = key === "site" ? siteHero(l, v, i) : key === "app" ? appHero(l, v, i) : null;
@@ -3500,16 +3747,14 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
       '<p class="sec-lead rv">' + esc(v.lead) + '</p>' +
       '<div class="svp-ctas rv"><a href="#contact" class="pill solid" data-svc="' + i + '">' + T[l].cta + '</a><a href="#projects" class="pill line">' + T[l].w_all + '</a></div>' +
       '<div class="svp-facts rv">' + v.facts.map(function (f) { return "<div><b>" + esc(f[0]) + "</b><span>" + esc(f[1]) + "</span></div>"; }).join("") + "</div></div></section>") +
-      '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + (he ? 'מה <span class="serif">כלול.</span>' : 'What\'s <span class="serif">included.</span>') + '</h3>' +
-        (key === "app" ? '<div class="am" id="am">' + v.feat.map(function (f, k) { return '<article class="am-c rv" style="transition-delay:' + (k % 3) * 90 + 'ms"><div class="am-ill">' + AM_ILL[k] + "</div><em>0" + (k + 1) + "</em><h4>" + esc(f[0]) + "</h4><p>" + esc(f[1]) + "</p></article>"; }).join("") + "</div>"
-        : '<div class="feat rv">' + v.feat.map(function (f, k) { return "<article><em>0" + (k + 1) + "</em><h4>" + esc(f[0]) + "</h4><p>" + esc(f[1]) + "</p></article>"; }).join("") + "</div>") + "</div></section>" +
+      (key === "ai" ? adHtml(l) : "") + incHtml(he, v.feat, key === "ai" ? AI_ILL : SITE_ILL) +
       '<section class="svp-sec"><div class="wrap fit"><h3 class="t rv">' + (he ? 'למי זה <span class="serif">מתאים?</span>' : 'Who is it <span class="serif">for?</span>') + '</h3><ul class="rv">' +
         v.fit.map(function (f) { return "<li>" + tick + "<span>" + esc(f) + "</span></li>"; }).join("") + "</ul></div></section>" +
       '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + (key === "site" ? (he ? 'אתרים <span class="serif">שבניתי.</span>' : 'Sites <span class="serif">I built.</span>') : (he ? 'רמת <span class="serif">העבודה.</span>' : 'The level <span class="serif">of work.</span>')) + '</h3><div class="svp-work rv">' +
         PJ.slice(0, 3).map(function (p) { return '<a href="' + p.url + '" target="_blank" rel="noopener"><div class="shot"><img decoding="async" src="' + esc(pjImg(p, "d")) + '" alt="' + esc(p.name) + '" loading="lazy"></div><b>' + esc(p.name) + "</b><span>" + esc(pjTxt(p, l)[0]) + "</span></a>"; }).join("") + "</div>" +
         '<div class="svp-band rv"><h3>' + (he ? 'מוכנים <span class="serif">להתחיל?</span>' : 'Ready <span class="serif">to start?</span>') + '</h3><a href="#contact" class="pill solid" data-svc="' + i + '">' + T[l].cta + "</a></div>" +
         '<div class="svp-next"><a href="#service-' + prev.key + '">' + (he ? "השירות הקודם" : "Previous service") + "<b>" + esc(prev.name) + '</b></a><a href="#service-' + next.key + '" style="text-align:end">' + (he ? "השירות הבא" : "Next service") + "<b>" + esc(next.name) + "</b></a></div></div></section>";
-    clearTimeout(ahT); if (key === "site") shStart(); if (key === "app") ahStart(l);
+    clearTimeout(ahT); if (key === "site") shStart(); if (key === "app") ahStart(l); if (key === "ai") adStart(l);
   }
 
   // The web-app hero: a dashboard coded from scratch, fed by bookings made on the phone
@@ -3621,6 +3866,124 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
       '<svg class="am-sec" viewBox="0 0 300 128"><defs><clipPath id="amc"><path d="M150 22l34 12v26c0 22-15 38-34 46-19-8-34-24-34-46V34z"/></clipPath></defs><path class="s" d="M150 22l34 12v26c0 22-15 38-34 46-19-8-34-24-34-46V34z"/><g clip-path="url(#amc)"><rect class="scan" x="110" y="62" width="80" height="2" fill="var(--brass)"/></g><rect class="f" x="140" y="58" width="20" height="16" rx="3"/><path class="bs" d="M144 58v-5a6 6 0 0 1 12 0v5"/></svg>'
     ];
   })();
+  // "What's included" illustrations for the AI and brand-website pages (same drawing language as the web-app ones)
+  var AI_ILL = [
+    '<svg class="ai-chat" viewBox="0 0 300 128"><rect class="f" x="70" y="22" width="104" height="26" rx="13"/><rect class="b q2" x="126" y="56" width="104" height="26" rx="13"/><g class="dots"><rect class="f" x="70" y="90" width="52" height="22" rx="11"/><circle class="b d1" cx="85" cy="101" r="3.5"/><circle class="b d2" cx="96" cy="101" r="3.5"/><circle class="b d3" cx="107" cy="101" r="3.5"/></g></svg>',
+    '<svg class="ai-fun" viewBox="0 0 300 128"><path class="s" d="M100 22h100l-36 46v28l-28 14V68z"/>' + [0, 1, 2, 3].map(function (n) { return '<circle class="' + (n === 2 ? "b" : "f") + ' dr" style="animation-delay:' + n * .7 + 's" cx="' + (120 + n * 20) + '" cy="10" r="6"/>'; }).join("") + '<circle class="b out" cx="150" cy="118" r="5"/></svg>',
+    AM_ILL[3], AM_ILL[0], AM_ILL[2],
+    '<svg class="ai-doc" viewBox="0 0 300 128"><rect class="s" x="96" y="16" width="108" height="98" rx="10"/>' + [0, 1, 2, 3].map(function (n) { return '<rect class="' + (n === 3 ? "b" : "f") + ' ln" style="animation-delay:' + n * .45 + 's" x="112" y="' + (34 + n * 18) + '" width="' + [76, 60, 70, 40][n] + '" height="7" rx="3.5"/>'; }).join("") + '<g class="spk"><path class="b" d="M222 26l3.4 9.2 9.2 3.4-9.2 3.4-3.4 9.2-3.4-9.2-9.2-3.4 9.2-3.4z"/></g></svg>'
+  ];
+  var SITE_ILL = [
+    '<svg class="si-des" viewBox="0 0 300 128"><rect class="s" x="78" y="18" width="144" height="92" rx="10"/><rect class="f" x="92" y="32" width="60" height="10" rx="5"/><rect class="f" x="92" y="50" width="90" height="6" rx="3"/><rect class="b blk" x="92" y="68" width="48" height="28" rx="6"/><rect class="f" x="148" y="68" width="60" height="28" rx="6"/><path class="cur" d="M0 0l0 16 4.5-4 3 7 3-1.4-3-6.8 6 0z" fill="var(--bone)"/></svg>',
+    '<svg class="si-mob" viewBox="0 0 300 128"><rect class="s" x="126" y="12" width="48" height="104" rx="10"/><rect class="f" x="134" y="26" width="32" height="20" rx="4"/><g class="sc"><rect class="f" x="134" y="52" width="32" height="6" rx="3"/><rect class="f" x="134" y="64" width="22" height="6" rx="3"/><rect class="b" x="134" y="78" width="32" height="12" rx="6"/><rect class="f" x="134" y="96" width="28" height="6" rx="3"/></g></svg>',
+    '<svg class="si-ani" viewBox="0 0 300 128"><path class="s" d="M60 96 C 110 96, 120 32, 170 32 S 230 64, 250 64" stroke-dasharray="3 5"/><circle class="b ball" r="9"/><rect class="f" x="60" y="104" width="190" height="2" rx="1"/></svg>',
+    '<svg class="si-spd" viewBox="0 0 300 128"><path class="s" d="M100 100a50 50 0 0 1 100 0" stroke-width="8" stroke-linecap="round"/><path class="bs arc" d="M100 100a50 50 0 0 1 100 0" stroke-width="8" stroke-linecap="round" pathLength="100"/><g class="ndl"><rect class="b" x="148" y="58" width="4" height="44" rx="2"/></g><circle class="b" cx="150" cy="100" r="7"/></svg>',
+    '<svg class="si-seo" viewBox="0 0 300 128"><rect class="s" x="70" y="16" width="160" height="24" rx="12"/><circle class="bs" cx="88" cy="28" r="5"/><rect class="f" x="70" y="52" width="130" height="14" rx="5"/><rect class="b up" x="70" y="74" width="160" height="14" rx="5"/><rect class="f" x="70" y="96" width="110" height="14" rx="5"/></svg>',
+    '<svg class="si-wa" viewBox="0 0 300 128"><rect class="f" x="78" y="28" width="96" height="40" rx="10"/><rect class="s" x="88" y="40" width="60" height="6" rx="3"/><rect class="s" x="88" y="52" width="40" height="6" rx="3"/><path class="bs fl" d="M180 48 C 200 48, 200 64, 214 64" stroke-dasharray="3 4"/><g class="ok"><circle class="b" cx="232" cy="64" r="16"/><path d="M225 64l5 5 9-10" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>'
+  ];
+  // Bento layout for every "What's included": a dark lead card, four compact ones, a wide closing card
+  function incHtml(he, feat, ill, id) {
+    return '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + (he ? 'מה <span class="serif">כלול.</span>' : 'What\'s <span class="serif">included.</span>') + '</h3><div class="am bento"' + (id ? ' id="' + id + '"' : "") + ">" +
+      feat.map(function (f, n) { return '<article class="am-c rv' + (n === 0 ? " lead" : n === feat.length - 1 ? " wide" : "") + '" style="transition-delay:' + (n % 3) * 90 + 'ms"><div class="am-ill">' + (ill[n] || "") + "</div><em>0" + (n + 1) + "</em><h4>" + esc(f[0]) + "</h4><p>" + esc(f[1]) + "</p></article>"; }).join("") + "</div></div></section>";
+  }
+  // AI systems page: a live demo of an agent answering a client, booking a slot and updating the business
+  var adT = 0, adS = 0, adK = [14, 6];
+  var AD = {
+    he: { h: 'ככה זה נראה <span class="serif">בפועל.</span>', p: "סוכן AI שעונה ללקוח בוואטסאפ, קובע תור ומעדכן אתכם. הכול לבד, גם באמצע הלילה.",
+      biz: "הסטודיו שלכם", on: "סוכן AI · מחובר", typing: "מקליד…", brain: "מה הסוכן עושה עכשיו", calT: "היומן שלכם", days: ["א׳", "ב׳", "ג׳", "ד׳", "ה׳"],
+      steps: ["הודעה נכנסה", "הבנת הבקשה", "בדיקת זמינות ביומן", "מענה וקביעת תור", "עדכון היומן והמערכת"], kpi: ["פניות שטופלו היום", "תורים שנקבעו לבד"], note: "תור חדש נקבע", done: "בוצע", live: "דוגמה חיה",
+      sc: [
+        { t: "23:14", q: "היי, יש תור לתספורת מחר?", in: "קביעת תור · תספורת", av: "2 זמנים פנויים מחר", a: "בטח! מחר יש 10:30 או 16:00. מה מתאים לך?", o: ["10:30", "16:00"], pk: 1, c: "מעולה, קבעתי לך מחר ב־16:00. תזכורת תגיע בבוקר.", card: "תספורת · מחר 16:00", free: [[2, 1], [2, 3]], slot: [2, 3], n: "דנה · מחר 16:00 · נקבע ע״י הסוכן" },
+        { t: "08:02", q: "כמה עולה צבע לשיער? אפשר ביום חמישי?", in: "שאלת מחיר + קביעת תור", av: "חמישי 11:00 פנוי", a: "צבע מלא מתחיל מ־₪280. ביום חמישי יש 11:00, לשריין לך?", o: ["כן, תשריין", "זמן אחר"], pk: 0, c: "שריינתי לך חמישי ב־11:00. נתראה!", card: "צבע לשיער · חמישי 11:00", free: [[4, 2]], slot: [4, 2], n: "יוסי · חמישי 11:00 · ₪280" },
+        { t: "21:47", q: "אתם פתוחים ביום שישי?", in: "שאלה על שעות פתיחה", av: "ראשון 09:30 פנוי", a: "ביום שישי אנחנו סגורים. אפשר ביום ראשון ב־09:30?", o: ["מתאים לי", "תודה, לא"], pk: 0, c: "סגור! ראשון ב־09:30. שלחתי לך אישור.", card: "ייעוץ · ראשון 09:30", free: [[0, 0]], slot: [0, 0], n: "מיכל · ראשון 09:30" }
+      ] },
+    en: { h: 'This is how it <span class="serif">actually works.</span>', p: "An AI agent that answers a client on WhatsApp, books the slot and updates you. All on its own, even in the middle of the night.",
+      biz: "Your studio", on: "AI agent · online", typing: "typing…", brain: "What the agent is doing now", calT: "Your calendar", days: ["Sun", "Mon", "Tue", "Wed", "Thu"],
+      steps: ["Message received", "Understands the request", "Checks the calendar", "Replies and books", "Updates calendar and CRM"], kpi: ["Enquiries handled today", "Bookings made on its own"], note: "New booking", done: "Done", live: "Live demo",
+      sc: [
+        { t: "23:14", q: "Hi, any slot for a haircut tomorrow?", in: "Booking · haircut", av: "2 free slots tomorrow", a: "Sure! Tomorrow there's 10:30 or 16:00. Which works for you?", o: ["10:30", "16:00"], pk: 1, c: "Great, you're booked for tomorrow at 16:00. A reminder will arrive in the morning.", card: "Haircut · tomorrow 16:00", free: [[2, 1], [2, 3]], slot: [2, 3], n: "Dana · tomorrow 16:00 · booked by the agent" },
+        { t: "08:02", q: "How much is hair colouring? Could I come Thursday?", in: "Price question + booking", av: "Thursday 11:00 free", a: "Full colour starts at ₪280. Thursday 11:00 is free, shall I hold it?", o: ["Yes, hold it", "Another time"], pk: 0, c: "Held for you: Thursday at 11:00. See you!", card: "Colour · Thursday 11:00", free: [[4, 2]], slot: [4, 2], n: "Yossi · Thursday 11:00 · ₪280" },
+        { t: "21:47", q: "Are you open on Friday?", in: "Opening hours question", av: "Sunday 09:30 free", a: "We're closed on Fridays. How about Sunday at 09:30?", o: ["Works for me", "No, thanks"], pk: 0, c: "Done! Sunday at 09:30. I've sent you a confirmation.", card: "Consultation · Sunday 09:30", free: [[0, 0]], slot: [0, 0], n: "Michal · Sunday 09:30" }
+      ] }
+  };
+  var AD_TIMES = ["09:30", "10:30", "11:00", "16:00"], AD_BUSY = { "0-1": 1, "1-0": 2, "1-2": 1, "1-3": 3, "2-0": 2, "2-2": 1, "3-1": 3, "3-3": 1, "4-0": 1, "4-3": 2, "0-3": 2 };
+  var AD_SPARK = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>';
+  function adHtml(l) {
+    var d = AD[l], cal = "<span></span>" + d.days.map(function (x) { return "<b>" + x + "</b>"; }).join("");
+    AD_TIMES.forEach(function (t, r) { cal += "<em>" + t + "</em>"; for (var c = 0; c < 5; c++) cal += '<i data-c="' + c + "-" + r + '" class="' + (AD_BUSY[c + "-" + r] ? "k" + AD_BUSY[c + "-" + r] : "") + '"></i>'; });
+    adK = [14, 6];
+    return '<section class="svp-sec ad-sec"><div class="wrap"><div class="ab-head"><h3 class="t rv">' + d.h + '</h3><p class="rv">' + d.p + "</p></div>" +
+      '<div class="ad rv" id="ad" aria-hidden="true"><span class="ad-live"><i></i>' + d.live + "</span>" +
+        '<div class="ad-phone"><div class="ad-ph-h"><i class="ad-av">' + AD_SPARK + "</i><div><b>" + d.biz + '</b><small id="ad-st">' + d.on + '</small></div></div><div class="ad-chat" id="ad-chat"></div></div>' +
+        '<div class="ad-flow"><p class="ad-k">' + d.brain + '</p><ol class="ad-steps" id="ad-steps">' + d.steps.map(function (s, n) { return "<li><i><span>" + (n + 1) + '</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><div><b>' + s + "</b><small></small></div></li>"; }).join("") + "</ol></div>" +
+        '<div class="ad-biz"><div class="ad-card ad-calc"><p class="ad-k">' + d.calT + '</p><div class="ad-cal" id="ad-cal">' + cal + "</div></div>" +
+          '<div class="ad-kpis">' + d.kpi.map(function (k, n) { return '<div class="ad-card"><span>' + k + '</span><b id="ad-k' + n + '">' + adK[n] + "</b></div>"; }).join("") + "</div>" +
+          '<div class="ad-note" id="ad-note"><i>✓</i><div><b>' + d.note + '</b><span id="ad-nmsg"></span></div></div></div>' +
+      "</div></div></section>";
+  }
+  function adStart(l) {
+    var ad = document.getElementById("ad"); if (!ad) return;
+    adS = 0; clearTimeout(adT);
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, d = AD[l];
+    var chat = document.getElementById("ad-chat"), steps = ad.querySelectorAll(".ad-steps li"), st = document.getElementById("ad-st");
+    function at(ms, fn) { adT = setTimeout(function () { if (document.getElementById("ad") === ad && !document.getElementById("view-svc").hidden) fn(); }, ms); }
+    function msg(cls, html) { var m = document.createElement("div"); m.className = "ad-m " + cls; m.innerHTML = html; chat.appendChild(m); while (chat.children.length > 6) chat.removeChild(chat.firstChild); return m; }
+    function step(n, txt) {
+      steps.forEach(function (li, k) { li.classList.toggle("on", k === n); li.classList.toggle("ok", k < n); });
+      if (n < steps.length && txt != null) steps[n].querySelector("small").textContent = txt;
+    }
+    function typing(on) { st.textContent = on ? d.typing : d.on; st.classList.toggle("ty", on); var t = chat.querySelector(".ad-ty"); if (on && !t) msg("a ad-ty", "<span></span><span></span><span></span>"); if (!on && t) t.remove(); }
+    function cell(p) { return ad.querySelector('.ad-cal i[data-c="' + p[0] + "-" + p[1] + '"]'); }
+    function bump(n) { var el = document.getElementById("ad-k" + n); adK[n]++; el.textContent = adK[n]; el.classList.remove("up"); void el.offsetWidth; el.classList.add("up"); }
+    function run() {
+      var s = d.sc[adS % d.sc.length];
+      if (adS % d.sc.length === 0 && adS) ad.querySelectorAll(".ad-cal i.nw").forEach(function (c) { c.className = ""; });
+      chat.classList.add("out");
+      at(450, function () {
+        chat.innerHTML = ""; chat.classList.remove("out"); steps.forEach(function (li) { li.querySelector("small").textContent = ""; });
+        document.getElementById("ad-note").classList.remove("on");
+        msg("u", s.q + "<small>" + s.t + "</small>"); step(0, s.t); bump(0);
+        at(1000, function () {
+          step(1, s.in); typing(true);
+          at(1100, function () {
+            step(2, s.av); s.free.forEach(function (p) { cell(p).classList.add("fr"); });
+            at(1200, function () {
+              typing(false); step(3, null);
+              var m = msg("a", s.a + '<div class="ad-op">' + s.o.map(function (o) { return "<b>" + o + "</b>"; }).join("") + "</div>");
+              at(1500, function () {
+                var ch = m.querySelectorAll(".ad-op b")[s.pk]; ch.classList.add("pr");
+                at(350, function () {
+                  msg("u", s.o[s.pk]);
+                  at(500, function () {
+                    typing(true);
+                    at(1000, function () {
+                      typing(false);
+                      msg("a", s.c + '<span class="ad-bk"><i>✓</i>' + s.card + "</span>");
+                      ad.querySelectorAll(".ad-cal i.fr").forEach(function (c) { c.classList.remove("fr"); });
+                      cell(s.slot).className = "nw";
+                      step(4, null);
+                      at(800, function () {
+                        step(5); bump(1);
+                        document.getElementById("ad-nmsg").textContent = s.n; document.getElementById("ad-note").classList.add("on");
+                        at(3200, function () { adS++; run(); });
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    }
+    if (reduce) { var s = d.sc[0]; msg("u", s.q + "<small>" + s.t + "</small>"); msg("a", s.a); msg("u", s.o[s.pk]); msg("a", s.c + '<span class="ad-bk"><i>✓</i>' + s.card + "</span>"); step(5); return; }
+    // Starts when the demo scrolls into view
+    var sc = typeof scroller === "function" ? scroller() : null;
+    if ("IntersectionObserver" in window) {
+      var o = new IntersectionObserver(function (es) { if (!es[0].isIntersecting) return; o.disconnect(); at(300, run); }, { root: sc, threshold: .35 });
+      o.observe(ad);
+    } else run();
+  }
 
 
   // Online store page
@@ -3633,10 +3996,10 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
   var ST_PR = [["bottle", "#c2884a", 289], ["bag", "#8a5a3b", 420], ["candle", "#d9cbb4", 129], ["bottle", "#c98b8b", 269], ["bag", "#b9b08f", 190], ["candle", "#e8dcc0", 119]];
   var ST = {
     he: { nav: ["חדש", "בשמים", "תיקים", "לבית"], banner: "קולקציית חורף", names: ["בושם ענבר", "תיק עור", "נר סנדלווד", "בושם ורד", "תיק קנבס", "נר וניל"], kpi: "מכירות היום", add: "הוסף לסל", pay: "תשלום", ship: "משלוח", free: "חינם", total: "סה״כ", ok: "ההזמנה התקבלה", toast: "הזמנה חדשה", chips: ["סליקה מאובטחת", "מובייל קודם", "ניהול מלאי"],
-      payT: "תשלומים ומשלוחים שהלקוחות שלכם כבר מכירים", sxT: 'נסו <span class="serif">בעצמכם.</span>', sxP: "ככה מרגישה חנות טובה: בוחרים צבע ומידה, מוסיפים לסל, ורואים הכול מתעדכן מיד.", sxName: "תיק עור בעבודת יד", sxTag: "חדש", col: "צבע", size: "מידה", cart: "הסל שלכם", empty: "הסל עדיין ריק.", checkout: "המשך לתשלום", colors: ["שחור", "קוניאק", "חול", "זית"],
+      payT: "תשלומים ומשלוחים שהלקוחות שלכם כבר מכירים", sxT: 'נסו <span class="serif">בעצמכם.</span>', sxP: "ככה מרגישה חנות טובה: בוחרים צבע ומידה, מוסיפים לסל, ורואים הכול מתעדכן מיד.", sxName: "תיק עור בעבודת יד", shipL: "עוד {x} למשלוח חינם", shipOk: "יש לכם משלוח חינם!", sxTag: "חדש", col: "צבע", size: "מידה", cart: "הסל שלכם", empty: "הסל עדיין ריק.", checkout: "המשך לתשלום", colors: ["שחור", "קוניאק", "חול", "זית"],
       band: 'מוכנים <span class="serif">למכור אונליין?</span>', fitT: 'למי זה <span class="serif">מתאים?</span>' },
     en: { nav: ["New", "Fragrance", "Bags", "Home"], banner: "Winter collection", names: ["Amber perfume", "Leather tote", "Sandalwood candle", "Rose perfume", "Canvas tote", "Vanilla candle"], kpi: "Sales today", add: "Add to cart", pay: "Checkout", ship: "Shipping", free: "Free", total: "Total", ok: "Order placed", toast: "New order", chips: ["Secure checkout", "Mobile first", "Stock management"],
-      payT: "Payments and shipping your customers already know", sxT: 'Try it <span class="serif">yourself.</span>', sxP: "This is how a good store feels: pick a colour and size, add to cart, and watch everything update instantly.", sxName: "Handmade leather tote", sxTag: "New", col: "Colour", size: "Size", cart: "Your cart", empty: "Your cart is empty.", checkout: "Continue to checkout", colors: ["Black", "Cognac", "Sand", "Olive"],
+      payT: "Payments and shipping your customers already know", sxT: 'Try it <span class="serif">yourself.</span>', sxP: "This is how a good store feels: pick a colour and size, add to cart, and watch everything update instantly.", sxName: "Handmade leather tote", shipL: "{x} more for free shipping", shipOk: "You've got free shipping!", sxTag: "New", col: "Colour", size: "Size", cart: "Your cart", empty: "Your cart is empty.", checkout: "Continue to checkout", colors: ["Black", "Cognac", "Sand", "Olive"],
       band: 'Ready to <span class="serif">sell online?</span>', fitT: 'Who is it <span class="serif">for?</span>' }
   };
   var ST_PAY = ["Visa", "Mastercard", "Apple Pay", "Google Pay", "Bit", "PayPal", "Amex", "Cargo", "DHL", "UPS"];
@@ -3715,8 +4078,7 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
     var he = l === "he", d = ST[l], pays = ST_PAY.map(function (t) { return "<span>" + t + "</span>"; }).join("");
     var SX_C = ["#1d1b19", "#8a5a3b", "#c9b38f", "#5f6b4a"];
     return '<section class="ai"><div class="wrap"><p>' + d.payT + '</p><div class="ai-track"><div class="ai-row">' + pays + pays + "</div></div></div></section>" +
-      '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + (he ? 'מה <span class="serif">כלול.</span>' : 'What\'s <span class="serif">included.</span>') + '</h3><div class="am">' +
-        v.feat.map(function (f, n) { return '<article class="am-c rv" style="transition-delay:' + (n % 3) * 90 + 'ms"><div class="am-ill">' + SM_ILL[n] + "</div><em>0" + (n + 1) + "</em><h4>" + esc(f[0]) + "</h4><p>" + esc(f[1]) + "</p></article>"; }).join("") + "</div></div></section>" +
+      incHtml(he, v.feat, SM_ILL) +
       '<section class="svp-sec"><div class="wrap"><div class="ab-head"><h3 class="t rv">' + d.sxT + '</h3><p class="rv">' + d.sxP + "</p></div>" +
         '<div class="sx-wrap rv"><div class="sx-stage" id="sx-stage" style="--c:' + SX_C[1] + '"><span class="sx-tag">' + d.sxTag + "</span>" + ST_SVG.bag + "</div>" +
         '<div class="sx-panel" id="sx-panel"><button type="button" class="sx-cartbtn" id="sx-cartbtn" aria-label="' + d.cart + '">' + cartSvg.replace("<svg", '<svg width="20" height="20"') + "<b>0</b></button>" +
@@ -3724,6 +4086,7 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
           '<div><div class="sx-lbl">' + d.col + ' · <span id="sx-cname">' + d.colors[1] + '</span></div><div class="sx-sw">' + SX_C.map(function (c, n) { return '<button type="button" style="--c:' + c + '" data-n="' + n + '" aria-pressed="' + (n === 1) + '" aria-label="' + d.colors[n] + '"></button>'; }).join("") + "</div></div>" +
           '<div><div class="sx-lbl">' + d.size + '</div><div class="sx-sz">' + ["S", "M", "L"].map(function (z, n) { return '<button type="button" data-n="' + n + '" aria-pressed="' + (n === 1) + '">' + z + "</button>"; }).join("") + "</div></div>" +
           '<div class="sx-row"><div class="sx-qty"><button type="button" data-q="-1" aria-label="-">−</button><span id="sx-q">1</span><button type="button" data-q="1" aria-label="+">+</button></div><button type="button" class="pill solid" id="sx-add">' + d.add + "</button></div>" +
+          '<div class="sx-ship"><span id="sx-ship">' + d.shipL.replace("{x}", "₪800") + '</span><div><i id="sx-shipb"></i></div></div>' +
           '<div class="sx-drawer"><div class="sx-dh"><span>' + d.cart + '</span><button type="button" id="sx-close" aria-label="Close">✕</button></div><ul class="sx-items" id="sx-items"><li class="sx-empty" style="background:none;animation:none;display:block">' + d.empty + '</li></ul><div class="sx-tot"><div><span>' + d.total + '</span><b id="sx-tot">₪0</b></div><a href="#contact" class="pill solid" data-svc="' + i + '">' + d.checkout + "</a></div></div>" +
         "</div></div></div></section>" +
       '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + d.fitT + '</h3><ul class="fl" id="fl">' + v.fit.map(function (f) { return "<li><span>" + esc(f) + "</span></li>"; }).join("") + "</ul>" +
@@ -3747,7 +4110,7 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
     var SX_C = ["#1d1b19", "#8a5a3b", "#c9b38f", "#5f6b4a"], st = { c: 1, z: 1, q: 1 }, cart = [];
     var stage = document.getElementById("sx-stage"), panel = document.getElementById("sx-panel"), cbtn = document.getElementById("sx-cartbtn");
     function price() { return 380 + st.z * 40; }
-    function paint() { document.getElementById("sx-price").textContent = stFmt(price() * st.q); document.getElementById("sx-q").textContent = st.q; document.getElementById("sx-cname").textContent = d.colors[st.c]; stage.style.setProperty("--c", SX_C[st.c]); }
+    function paint() { stage.style.setProperty("--zs", [.86, 1, 1.12][st.z]); var pe = document.getElementById("sx-price"); if (pe.textContent !== stFmt(price() * st.q)) { pe.classList.remove("tick"); void pe.offsetWidth; pe.classList.add("tick"); } pe.textContent = stFmt(price() * st.q); document.getElementById("sx-q").textContent = st.q; document.getElementById("sx-cname").textContent = d.colors[st.c]; stage.style.setProperty("--c", SX_C[st.c]); }
     panel.querySelectorAll(".sx-sw button").forEach(function (b) { b.addEventListener("click", function () { st.c = +b.dataset.n; panel.querySelectorAll(".sx-sw button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); }); stage.classList.remove("pop"); void stage.offsetWidth; stage.classList.add("pop"); paint(); }); });
     panel.querySelectorAll(".sx-sz button").forEach(function (b) { b.addEventListener("click", function () { st.z = +b.dataset.n; panel.querySelectorAll(".sx-sz button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); }); paint(); }); });
     panel.querySelectorAll("[data-q]").forEach(function (b) { b.addEventListener("click", function () { st.q = Math.max(1, Math.min(9, st.q + +b.dataset.q)); paint(); }); });
@@ -3755,6 +4118,8 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
       var n = cart.reduce(function (a, x) { return a + x.q; }, 0), tot = cart.reduce(function (a, x) { return a + x.q * x.p; }, 0);
       cbtn.querySelector("b").textContent = n; cbtn.classList.toggle("has", n > 0);
       document.getElementById("sx-tot").textContent = stFmt(tot);
+      var left = Math.max(0, 800 - tot); document.getElementById("sx-ship").textContent = left ? d.shipL.replace("{x}", stFmt(left)) : d.shipOk;
+      document.getElementById("sx-shipb").style.width = Math.min(100, tot / 8) + "%"; document.getElementById("sx-ship").parentNode.classList.toggle("ok", !left);
       document.getElementById("sx-items").innerHTML = cart.length ? cart.map(function (x) { return '<li style="--c:' + SX_C[x.c] + '"><i>' + ST_SVG.bag + "</i><div>" + d.sxName + "<small>" + d.colors[x.c] + " · " + ["S", "M", "L"][x.z] + " · ×" + x.q + "</small></div><b>" + stFmt(x.q * x.p) + "</b></li>"; }).join("") : '<li class="sx-empty" style="background:none;animation:none;display:block">' + d.empty + "</li>";
     }
     document.getElementById("sx-add").addEventListener("click", function (e) {
@@ -3763,7 +4128,17 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
       var a = e.currentTarget.getBoundingClientRect(), c = cbtn.getBoundingClientRect(), dot = document.createElement("span"); dot.className = "sx-fly";
       dot.style.left = a.left + a.width / 2 + "px"; dot.style.top = a.top + a.height / 2 + "px"; document.body.appendChild(dot);
       var dx = c.left + c.width / 2 - a.left - a.width / 2, dy = c.top + c.height / 2 - a.top - a.height / 2;
-      var done = function () { dot.remove(); drawCart(); cbtn.classList.remove("bump"); void cbtn.offsetWidth; cbtn.classList.add("bump"); setTimeout(function () { panel.classList.add("open"); }, 350); };
+      var done = function () {
+        dot.remove(); drawCart(); cbtn.classList.remove("bump"); void cbtn.offsetWidth; cbtn.classList.add("bump");
+        // A small burst of confetti from the cart; the drawer opens only on the first add
+        if (!reduce && document.body.animate) for (var n = 0; n < 14; n++) (function (n) {
+          var p = document.createElement("span"), a = n / 14 * Math.PI * 2, r = 40 + Math.random() * 40;
+          p.className = "sx-cf"; p.style.left = c.left + c.width / 2 + "px"; p.style.top = c.top + c.height / 2 + "px"; p.style.background = ["#2563eb", "#f59e0b", "#10b981", "#ef4444", SX_C[st.c]][n % 5];
+          document.body.appendChild(p);
+          p.animate([{ transform: "translate(0,0) rotate(0)", opacity: 1 }, { transform: "translate(" + Math.cos(a) * r + "px," + (Math.sin(a) * r + 30) + "px) rotate(" + (n * 70) + "deg)", opacity: 0 }], { duration: 800, easing: "cubic-bezier(.2,.7,.3,1)" }).onfinish = function () { p.remove(); };
+        })(n);
+        if (cart.length === 1 && cart[0].q === st.q) setTimeout(function () { panel.classList.add("open"); }, 600);
+      };
       if (dot.animate && !reduce) dot.animate([{ transform: "translate(0,0)" }, { transform: "translate(" + dx * .5 + "px," + (dy - 90) + "px)", offset: .5 }, { transform: "translate(" + dx + "px," + dy + "px) scale(.5)" }], { duration: 700, easing: "cubic-bezier(.5,0,.3,1)" }).onfinish = done;
       else done();
     });
@@ -3789,12 +4164,14 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
   ];
   // Web app page, everything under the hero
   var AB = {
-    he: { h: 'מאקסל ווואטסאפ <span class="serif">למערכת אחת.</span>', p: "ככה נראה ניהול העסק היום, וככה הוא נראה אחרי. גררו את הקו.", b: "לפני", a: "אחרי",
+    he: { h: 'מאקסל ווואטסאפ <span class="serif">למערכת אחת.</span>', p: "שלושה דברים שמשתנים כבר מהיום הראשון.", b: "לפני", a: "אחרי",
+      rows: [["תורים בטלפון ובוואטסאפ, כל היום", "הלקוחות קובעים לבד, 24/7"], ["אקסל עם כפילויות וטעויות", "יומן אחד מסודר, בלי כפילויות"], ["לקוחות ששוכחים ולא מגיעים", "תזכורת אוטומטית לכל לקוח"]],
       sheet: ["שם", "טלפון", "תאריך", "שעה", "שולם?", "הערות", "דנה", "050-…", "12/11", "10:00", "לא", "לחזור", "יוסי", "052-…", "12/11", "10:00", "כן", "כפול!!", "מיכל", "054-…", "13/11", "??", "חלקי", "", "אורי", "…", "14/11", "16:00", "לא", "ביטל?", "נועה", "053-…", "", "11:30", "?", "", "רון", "050-…", "15/11", "14:30", "כן", ""],
       red: [16, 21, 28, 33], yel: [11, 22, 34], n1: "להתקשר לדנה!!<br>ולבדוק אם שילמה", n2: "תור כפול ב־10:00", bub: [["יש מקום מחר בבוקר?", "08:12"], ["שלחתי לך אתמול, ראית?", "09:40"], ["אפשר להזיז לשבוע הבא?", "11:03"]], miss: "3 שיחות שלא נענו",
       days: ["א׳", "ב׳", "ג׳", "ד׳", "ה׳"], kpi: [["תורים השבוע", "38"], ["הכנסות", "₪9,240"]], ok: "תזכורת נשלחה אוטומטית ל־12 לקוחות",
       int: "מתחברת לכלים שאתם כבר עובדים איתם", band: 'יש לכם רעיון <span class="serif">למערכת?</span>', fitT: 'למי זה <span class="serif">מתאים?</span>' },
-    en: { h: 'From Excel and WhatsApp <span class="serif">to one system.</span>', p: "This is how the business runs today, and how it runs after. Drag the line.", b: "Before", a: "After",
+    en: { h: 'From Excel and WhatsApp <span class="serif">to one system.</span>', p: "Three things that change from day one.", b: "Before", a: "After",
+      rows: [["Bookings by phone and WhatsApp, all day", "Clients book on their own, 24/7"], ["Excel full of duplicates and mistakes", "One clean calendar, no double bookings"], ["Clients who forget and don't show up", "An automatic reminder for every client"]],
       sheet: ["Name", "Phone", "Date", "Time", "Paid?", "Notes", "Dana", "050-…", "12/11", "10:00", "No", "Call back", "Yossi", "052-…", "12/11", "10:00", "Yes", "Double!!", "Michal", "054-…", "13/11", "??", "Part", "", "Uri", "…", "14/11", "16:00", "No", "Cancel?", "Noa", "053-…", "", "11:30", "?", "", "Ron", "050-…", "15/11", "14:30", "Yes", ""],
       red: [16, 21, 28, 33], yel: [11, 22, 34], n1: "Call Dana!!<br>did she pay?", n2: "Double booking 10:00", bub: [["Any slot tomorrow morning?", "08:12"], ["Sent you a message yesterday?", "09:40"], ["Can we move to next week?", "11:03"]], miss: "3 missed calls",
       days: ["Sun", "Mon", "Tue", "Wed", "Thu"], kpi: [["Bookings this week", "38"], ["Revenue", "₪9,240"]], ok: "Reminder sent automatically to 12 clients",
@@ -3809,37 +4186,23 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
     var week = "<span></span>" + d.days.map(function (x) { return "<b>" + x + "</b>"; }).join("");
     for (k = 0; k < 6; k++) { week += "<em>" + (9 + k * 1.5 | 0) + ":" + (k % 2 ? "30" : "00") + "</em>"; for (var c = 0; c < 5; c++) week += '<i class="' + (BK[c + "-" + k] || "") + '"></i>'; }
     return '<section class="ai"><div class="wrap"><p>' + d.int + '</p><div class="ai-track"><div class="ai-row">' + tools + tools + "</div></div></div></section>" +
-      '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + (he ? 'מה <span class="serif">כלול.</span>' : 'What\'s <span class="serif">included.</span>') + '</h3><div class="am" id="am">' +
-        v.feat.map(function (f, n) { return '<article class="am-c rv" style="transition-delay:' + (n % 3) * 90 + 'ms"><div class="am-ill">' + AM_ILL[n] + "</div><em>0" + (n + 1) + "</em><h4>" + esc(f[0]) + "</h4><p>" + esc(f[1]) + "</p></article>"; }).join("") + "</div></div></section>" +
+      incHtml(he, v.feat, AM_ILL, "am") +
       '<section class="svp-sec"><div class="wrap"><div class="ab-head"><h3 class="t rv">' + d.h + '</h3><p class="rv">' + d.p + "</p></div>" +
-        '<div class="ab rv" id="ab">' +
-          '<div class="ab-l ab-before"><div class="abx-sheet">' + sheet + '</div><div class="abx-note n1">' + d.n1 + '</div><div class="abx-note n2">' + d.n2 + "</div>" +
-            d.bub.map(function (b, n) { return '<div class="abx-bub b' + (n + 1) + '">' + esc(b[0]) + "<small>" + b[1] + "</small></div>"; }).join("") +
-            '<div class="abx-miss">✆ ' + d.miss + '</div><span class="ab-tag">' + d.b + "</span></div>" +
-          '<div class="ab-l ab-after"><div class="abx-app"><div class="abx-week">' + week + '</div><div class="abx-side">' + d.kpi.map(function (x) { return '<div class="abx-kpi"><span>' + x[0] + "</span><b>" + x[1] + "</b></div>"; }).join("") +
-            '<div class="abx-ok"><i>✓</i>' + d.ok + '</div></div></div><span class="ab-tag">' + d.a + "</span></div>" +
-          '<div class="ab-handle"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>' +
-          '<input class="ab-range" type="range" min="4" max="96" value="50" aria-label="' + d.b + " / " + d.a + '"></div></div></section>' +
+        '<div class="bx rv" id="bx"><div class="bx-hd"><span class="b">' + d.b + '</span><span></span><span class="a">' + d.a + "</span></div>" +
+          d.rows.map(function (r, n) { return '<div class="bx-r" style="--d:' + n + '"><div class="bx-b"><i>✕</i><span>' + esc(r[0]) + '</span></div><div class="bx-ar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M14 6l6 6-6 6"/></svg></div><div class="bx-a"><i>✓</i><span>' + esc(r[1]) + "</span></div></div>"; }).join("") +
+        "</div></div></section>" +
       '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + d.fitT + '</h3><ul class="fl" id="fl">' + v.fit.map(function (f) { return "<li><span>" + esc(f) + "</span></li>"; }).join("") + "</ul>" +
         '<div class="svp-band glow rv" id="ap-band"><h3>' + d.band + '</h3><a href="#contact" class="pill solid" data-svc="' + i + '">' + T[l].cta + "</a></div>" +
         '<div class="svp-next"><a href="#service-' + prev.key + '">' + (he ? "השירות הקודם" : "Previous service") + "<b>" + esc(prev.name) + '</b></a><a href="#service-' + next.key + '" style="text-align:end">' + (he ? "השירות הבא" : "Next service") + "<b>" + esc(next.name) + "</b></a></div></div></section>";
   }
   function abStart() {
-    var ab = document.getElementById("ab"); if (!ab) return;
-    var rng = ab.querySelector(".ab-range"), hinted = false;
-    function set(v) { ab.style.setProperty("--v", v); }
-    rng.addEventListener("input", function () { hinted = true; set(rng.value); });
-    rng.addEventListener("pointerdown", function () { ab.classList.add("drag"); });
-    addEventListener("pointerup", function () { ab.classList.remove("drag"); });
-    // First time it scrolls into view, the line sweeps once to show it can move
+    var bx = document.getElementById("bx");
     var sc = typeof scroller === "function" ? scroller() : null;
+    if (bx && "IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      var o = new IntersectionObserver(function (es) { if (!es[0].isIntersecting) return; o.disconnect(); bx.classList.add("go"); }, { root: sc, threshold: .4 });
+      o.observe(bx);
+    } else if (bx) bx.classList.add("go");
     if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      var o = new IntersectionObserver(function (es) {
-        if (!es[0].isIntersecting) return; o.disconnect();
-        var t0 = performance.now();
-        (function f(t) { if (hinted) return; var p = Math.min(1, (t - t0) / 2200), v = 50 - 28 * Math.sin(p * Math.PI * 2) * (1 - p); set(v.toFixed(2)); rng.value = v; if (p < 1) requestAnimationFrame(f); })(t0);
-      }, { root: sc, threshold: .6 });
-      o.observe(ab);
       var fo = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle("lit", e.isIntersecting); }); }, { root: sc, rootMargin: "-38% 0px -38% 0px" });
       document.querySelectorAll("#fl li").forEach(function (li) { fo.observe(li); });
     } else document.querySelectorAll("#fl li").forEach(function (li) { li.classList.add("lit"); });
@@ -3957,7 +4320,12 @@ html[dir="ltr"] .pt::after { transform-origin: left; }
     var list = PJ.filter(function (p) { return !p.user; });
     var one = list.map(function (p) { return '<span class="tr-c"><img decoding="async" src="' + esc(pjImg(p, "m")) + '" alt="" loading="lazy"><span><b>' + esc(p.name) + "</b><small>" + esc(String(pjTxt(p, l)[0]).split(" · ")[0]) + '</small></span></span><i class="tr-sep" aria-hidden="true"></i>'; }).join("");
     t.innerHTML = one + one;
+    var k = document.getElementById("tk-t"); if (!k) return;
+    var two = TECH.map(function (x) { return '<span class="tr-c tk-c"><i style="color:' + x[3] + '"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="' + x[4] + '"/></svg></i><span><b>' + x[0] + "</b><small>" + (l === "he" ? x[1] : x[2]) + '</small></span></span><i class="tr-sep" aria-hidden="true"></i>'; }).join("");
+    k.innerHTML = two + two;
   }
+  // Technologies we work with (logos: Simple Icons, CC0)
+  var TECH = [["Claude", "בינה מלאכותית", "AI", "#D97757", "m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"], ["Supabase", "מסד נתונים והרשאות", "Database & auth", "#3FCF8E", "M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"], ["TypeScript", "שפת פיתוח", "Language", "#3178C6", "M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"], ["Next.js", "פריימוורק", "Framework", "#0F1E33", "M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"], ["React", "ממשקי משתמש", "UI library", "#149ECA", "M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"], ["Tailwind CSS", "עיצוב בקוד", "Styling", "#06B6D4", "M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"], ["Node.js", "צד שרת", "Server", "#5FA04E", "M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z M19.099,13.993 c0-1.9-1.284-2.406-3.987-2.763c-2.731-0.361-3.009-0.548-3.009-1.187c0-0.528,0.235-1.233,2.258-1.233 c1.807,0,2.473,0.389,2.747,1.607c0.024,0.115,0.129,0.199,0.247,0.199h1.141c0.071,0,0.138-0.031,0.186-0.081 c0.048-0.054,0.074-0.123,0.067-0.196c-0.177-2.098-1.571-3.076-4.388-3.076c-2.508,0-4.004,1.058-4.004,2.833 c0,1.925,1.488,2.457,3.895,2.695c2.88,0.282,3.103,0.703,3.103,1.269c0,0.983-0.789,1.402-2.642,1.402 c-2.327,0-2.839-0.584-3.011-1.742c-0.02-0.124-0.126-0.215-0.253-0.215h-1.137c-0.141,0-0.254,0.112-0.254,0.253 c0,1.482,0.806,3.248,4.655,3.248C17.501,17.007,19.099,15.91,19.099,13.993z"], ["PostgreSQL", "מסד נתונים", "Database", "#4169E1", "M23.5594 14.7228a.5269.5269 0 0 0-.0563-.1191c-.139-.2632-.4768-.3418-1.0074-.2321-1.6533.3411-2.2935.1312-2.5256-.0191 1.342-2.0482 2.445-4.522 3.0411-6.8297.2714-1.0507.7982-3.5237.1222-4.7316a1.5641 1.5641 0 0 0-.1509-.235C21.6931.9086 19.8007.0248 17.5099.0005c-1.4947-.0158-2.7705.3461-3.1161.4794a9.449 9.449 0 0 0-.5159-.0816 8.044 8.044 0 0 0-1.3114-.1278c-1.1822-.0184-2.2038.2642-3.0498.8406-.8573-.3211-4.7888-1.645-7.2219.0788C.9359 2.1526.3086 3.8733.4302 6.3043c.0409.818.5069 3.334 1.2423 5.7436.4598 1.5065.9387 2.7019 1.4334 3.582.553.9942 1.1259 1.5933 1.7143 1.7895.4474.1491 1.1327.1441 1.8581-.7279.8012-.9635 1.5903-1.8258 1.9446-2.2069.4351.2355.9064.3625 1.39.3772a.0569.0569 0 0 0 .0004.0041 11.0312 11.0312 0 0 0-.2472.3054c-.3389.4302-.4094.5197-1.5002.7443-.3102.064-1.1344.2339-1.1464.8115-.0025.1224.0329.2309.0919.3268.2269.4231.9216.6097 1.015.6331 1.3345.3335 2.5044.092 3.3714-.6787-.017 2.231.0775 4.4174.3454 5.0874.2212.5529.7618 1.9045 2.4692 1.9043.2505 0 .5263-.0291.8296-.0941 1.7819-.3821 2.5557-1.1696 2.855-2.9059.1503-.8707.4016-2.8753.5388-4.1012.0169-.0703.0357-.1207.057-.1362.0007-.0005.0697-.0471.4272.0307a.3673.3673 0 0 0 .0443.0068l.2539.0223.0149.001c.8468.0384 1.9114-.1426 2.5312-.4308.6438-.2988 1.8057-1.0323 1.5951-1.6698zM2.371 11.8765c-.7435-2.4358-1.1779-4.8851-1.2123-5.5719-.1086-2.1714.4171-3.6829 1.5623-4.4927 1.8367-1.2986 4.8398-.5408 6.108-.13-.0032.0032-.0066.0061-.0098.0094-2.0238 2.044-1.9758 5.536-1.9708 5.7495-.0002.0823.0066.1989.0162.3593.0348.5873.0996 1.6804-.0735 2.9184-.1609 1.1504.1937 2.2764.9728 3.0892.0806.0841.1648.1631.2518.2374-.3468.3714-1.1004 1.1926-1.9025 2.1576-.5677.6825-.9597.5517-1.0886.5087-.3919-.1307-.813-.5871-1.2381-1.3223-.4796-.839-.9635-2.0317-1.4155-3.5126zm6.0072 5.0871c-.1711-.0428-.3271-.1132-.4322-.1772.0889-.0394.2374-.0902.4833-.1409 1.2833-.2641 1.4815-.4506 1.9143-1.0002.0992-.126.2116-.2687.3673-.4426a.3549.3549 0 0 0 .0737-.1298c.1708-.1513.2724-.1099.4369-.0417.156.0646.3078.26.3695.4752.0291.1016.0619.2945-.0452.4444-.9043 1.2658-2.2216 1.2494-3.1676 1.0128zm2.094-3.988-.0525.141c-.133.3566-.2567.6881-.3334 1.003-.6674-.0021-1.3168-.2872-1.8105-.8024-.6279-.6551-.9131-1.5664-.7825-2.5004.1828-1.3079.1153-2.4468.079-3.0586-.005-.0857-.0095-.1607-.0122-.2199.2957-.2621 1.6659-.9962 2.6429-.7724.4459.1022.7176.4057.8305.928.5846 2.7038.0774 3.8307-.3302 4.7363-.084.1866-.1633.3629-.2311.5454zm7.3637 4.5725c-.0169.1768-.0358.376-.0618.5959l-.146.4383a.3547.3547 0 0 0-.0182.1077c-.0059.4747-.054.6489-.115.8693-.0634.2292-.1353.4891-.1794 1.0575-.11 1.4143-.8782 2.2267-2.4172 2.5565-1.5155.3251-1.7843-.4968-2.0212-1.2217a6.5824 6.5824 0 0 0-.0769-.2266c-.2154-.5858-.1911-1.4119-.1574-2.5551.0165-.5612-.0249-1.9013-.3302-2.6462.0044-.2932.0106-.5909.019-.8918a.3529.3529 0 0 0-.0153-.1126 1.4927 1.4927 0 0 0-.0439-.208c-.1226-.4283-.4213-.7866-.7797-.9351-.1424-.059-.4038-.1672-.7178-.0869.067-.276.1831-.5875.309-.9249l.0529-.142c.0595-.16.134-.3257.213-.5012.4265-.9476 1.0106-2.2453.3766-5.1772-.2374-1.0981-1.0304-1.6343-2.2324-1.5098-.7207.0746-1.3799.3654-1.7088.5321a5.6716 5.6716 0 0 0-.1958.1041c.0918-1.1064.4386-3.1741 1.7357-4.4823a4.0306 4.0306 0 0 1 .3033-.276.3532.3532 0 0 0 .1447-.0644c.7524-.5706 1.6945-.8506 2.802-.8325.4091.0067.8017.0339 1.1742.081 1.939.3544 3.2439 1.4468 4.0359 2.3827.8143.9623 1.2552 1.9315 1.4312 2.4543-1.3232-.1346-2.2234.1268-2.6797.779-.9926 1.4189.543 4.1729 1.2811 5.4964.1353.2426.2522.4522.2889.5413.2403.5825.5515.9713.7787 1.2552.0696.087.1372.1714.1885.245-.4008.1155-1.1208.3825-1.0552 1.717-.0123.1563-.0423.4469-.0834.8148-.0461.2077-.0702.4603-.0994.7662zm.8905-1.6211c-.0405-.8316.2691-.9185.5967-1.0105a2.8566 2.8566 0 0 0 .135-.0406 1.202 1.202 0 0 0 .1342.103c.5703.3765 1.5823.4213 3.0068.1344-.2016.1769-.5189.3994-.9533.6011-.4098.1903-1.0957.333-1.7473.3636-.7197.0336-1.0859-.0807-1.1721-.151zm.5695-9.2712c-.0059.3508-.0542.6692-.1054 1.0017-.055.3576-.112.7274-.1264 1.1762-.0142.4368.0404.8909.0932 1.3301.1066.887.216 1.8003-.2075 2.7014a3.5272 3.5272 0 0 1-.1876-.3856c-.0527-.1276-.1669-.3326-.3251-.6162-.6156-1.1041-2.0574-3.6896-1.3193-4.7446.3795-.5427 1.3408-.5661 2.1781-.463zm.2284 7.0137a12.3762 12.3762 0 0 0-.0853-.1074l-.0355-.0444c.7262-1.1995.5842-2.3862.4578-3.4385-.0519-.4318-.1009-.8396-.0885-1.2226.0129-.4061.0666-.7543.1185-1.0911.0639-.415.1288-.8443.1109-1.3505.0134-.0531.0188-.1158.0118-.1902-.0457-.4855-.5999-1.938-1.7294-3.253-.6076-.7073-1.4896-1.4972-2.6889-2.0395.5251-.1066 1.2328-.2035 2.0244-.1859 2.0515.0456 3.6746.8135 4.8242 2.2824a.908.908 0 0 1 .0667.1002c.7231 1.3556-.2762 6.2751-2.9867 10.5405zm-8.8166-6.1162c-.025.1794-.3089.4225-.6211.4225a.5821.5821 0 0 1-.0809-.0056c-.1873-.026-.3765-.144-.5059-.3156-.0458-.0605-.1203-.178-.1055-.2844.0055-.0401.0261-.0985.0925-.1488.1182-.0894.3518-.1226.6096-.0867.3163.0441.6426.1938.6113.4186zm7.9305-.4114c.0111.0792-.049.201-.1531.3102-.0683.0717-.212.1961-.4079.2232a.5456.5456 0 0 1-.075.0052c-.2935 0-.5414-.2344-.5607-.3717-.024-.1765.2641-.3106.5611-.352.297-.0414.6111.0088.6356.1851z"], ["Vercel", "אחסון ופריסה", "Hosting", "#0F1E33", "M24 22.525H0l12-21.05 12 21.05z"], ["GitHub", "ניהול קוד", "Code", "#0F1E33", "M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"], ["Figma", "עיצוב ממשק", "Design", "#F24E1E", "M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"], ["Stripe", "תשלומים", "Payments", "#635BFF", "M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h.003z"], ["Vite", "כלי בנייה", "Build tool", "#646CFF", "m8.286 10.578.512-8.657a.306.306 0 0 1 .247-.282L17.377.006a.306.306 0 0 1 .353.385l-1.558 5.403a.306.306 0 0 0 .352.385l2.388-.46a.306.306 0 0 1 .332.438l-6.79 13.55-.123.19a.294.294 0 0 1-.252.14c-.177 0-.35-.152-.305-.369l1.095-5.301a.306.306 0 0 0-.388-.355l-1.433.435a.306.306 0 0 1-.389-.354l.69-3.375a.306.306 0 0 0-.37-.36l-2.32.536a.306.306 0 0 1-.374-.316zm14.976-7.926L17.284 3.74l-.544 1.887 2.077-.4a.8.8 0 0 1 .84.369.8.8 0 0 1 .034.783L12.9 19.93l-.013.025-.015.023-.122.19a.801.801 0 0 1-.672.37.826.826 0 0 1-.634-.302.8.8 0 0 1-.16-.67l1.029-4.981-1.12.34a.81.81 0 0 1-.86-.262.802.802 0 0 1-.165-.67l.63-3.08-2.027.468a.808.808 0 0 1-.768-.233.81.81 0 0 1-.217-.6l.389-6.57-7.44-1.33a.612.612 0 0 0-.64.906L11.58 23.691a.612.612 0 0 0 1.066-.004l11.26-20.135a.612.612 0 0 0-.644-.9z"]];
   var SC_IC = {"ai": "<path d=\"M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z\"/><path d=\"M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z\"/>", "site": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"13\" rx=\"2\"/><path d=\"M3 8h18M8 21h8M12 17v4\"/>", "store": "<path d=\"M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z\"/><path d=\"M9 8V6a3 3 0 0 1 6 0v2\"/>", "app": "<rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1.5\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1.5\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1.5\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1.5\"/>"};
   function renderServices(l) {
     var row = document.getElementById("svc-row"); if (!row) return;
