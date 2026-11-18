@@ -1930,6 +1930,48 @@ h2.rvl.pre { opacity: 0; }
   .rv.pre { transform: translateY(12px); }
   .rv { transition-duration: .55s; }
 }
+
+/* Hero 3: centred, rotating word, globe horizon */
+.hero-top { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; padding-block: clamp(40px, 4.5cqw, 72px) clamp(190px, 17cqw, 260px); position: relative; }
+.hero-main { justify-items: center; gap: 24px; max-width: 900px; }
+.hero h1 { font-size: clamp(2.8rem, 6cqw, 5.6rem); line-height: 1.06; }
+:lang(en) .hero h1 { font-size: clamp(2.6rem, 5.2cqw, 5rem); }
+.hero .lead { max-width: 54ch; margin-inline: auto; }
+.ctas { justify-content: center; }
+.rot { display: inline-grid; vertical-align: bottom; overflow: hidden; padding-bottom: .06em; }
+.rot > span { grid-area: 1 / 1; white-space: nowrap; color: var(--brass); background: linear-gradient(90deg, #1e40af, #2563eb 55%, #3b82f6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; transform: translateY(105%); opacity: 0; transition: transform .8s var(--ease), opacity .6s; }
+.rot > span.on { transform: none; opacity: 1; }
+.rot > span.out { transform: translateY(-105%); opacity: 0; }
+@property --hb-a { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.h-badge { position: relative; display: inline-flex; align-items: center; gap: 12px; margin: 0; padding: 6px 18px 6px 6px; border-radius: 999px; background: linear-gradient(#fff, #fff) padding-box, conic-gradient(from var(--hb-a), rgba(37,99,235,.15), #2563eb 20%, rgba(96,165,250,.6) 35%, rgba(37,99,235,.15) 55%) border-box; border: 1px solid transparent; box-shadow: 0 8px 24px -14px rgba(37, 99, 235, .55), 0 1px 2px rgba(15, 35, 70, .05); animation: hbSpin 6s linear infinite; overflow: hidden; }
+[dir="rtl"] .h-badge { padding: 6px 6px 6px 18px; }
+.hb-b { padding: 5px 12px; border-radius: 999px; background: linear-gradient(135deg, #1d4ed8, #3b82f6); color: #fff; font-family: var(--display-en); font-weight: 800; font-size: 12px; letter-spacing: .08em; direction: ltr; }
+.hb-sep { width: 1px; height: 14px; background: var(--line); display: none; }
+.hb-t { font-size: 14.5px; font-weight: 600; color: var(--bone); letter-spacing: .01em; }
+.h-badge::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.75) 50%, transparent 70%); transform: translateX(-120%); animation: hbShine 5s ease-in-out 1.6s infinite; pointer-events: none; }
+@keyframes hbSpin { to { --hb-a: 360deg; } }
+@keyframes hbShine { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+.h-stats { display: flex; margin: 10px 0 0; border: 1px solid var(--line); border-radius: 16px; background: rgba(255, 255, 255, .78); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 18px 40px -26px rgba(15, 35, 70, .35); overflow: hidden; }
+.h-stats > div { display: flex; flex-direction: column-reverse; gap: 2px; padding: 14px clamp(18px, 2.6cqw, 32px); border-inline-start: 1px solid var(--line); }
+.h-stats > div:first-child { border: 0; }
+.h-stats dd { margin: 0; font-family: var(--display-en); font-weight: 800; font-size: 22px; color: var(--bone); direction: ltr; }
+.h-stats dt { font-size: 12.5px; color: var(--stone); }
+.play .h-badge { animation: fade .8s var(--ease) .1s both, hbSpin 6s linear infinite; }
+.play .h-stats { animation: up .9s var(--ease) .85s both; }
+.h-vis { position: absolute; z-index: -1; left: 50%; top: auto; bottom: 0; width: min(1100px, 100%); max-width: none; aspect-ratio: 1; translate: -50% 63%; pointer-events: none; -webkit-mask: linear-gradient(#000 0 22%, transparent 34%); mask: linear-gradient(#000 0 22%, transparent 34%); }
+.play .h-vis { animation: hzIn 1.6s var(--ease) .3s both; }
+@keyframes hzIn { from { opacity: 0; transform: translateY(40px); } }
+.hero::before { background: radial-gradient(50% 40% at 50% 100%, rgba(37, 99, 235, .14), transparent 75%), radial-gradient(40% 40% at 50% 20%, rgba(37, 99, 235, .06), transparent 72%); }
+@container site (max-width: 860px) {
+  .hero-top { padding-block: 30px 190px; }
+  .hero-main { gap: 18px; }
+  .hero h1 { font-size: 10.8cqw; line-height: 1.12; }
+  :lang(en) .hero h1 { font-size: 10cqw; }
+  .h-badge { gap: 8px; } .hb-t { font-size: 13px; } .hb-b { font-size: 11px; padding: 4px 10px; }
+  .h-vis { order: 0; width: 170%; max-width: none; margin: 0; translate: -50% 70%; }
+  .h-stats { width: 100%; } .h-stats > div { flex: 1; padding: 12px 8px; align-items: center; } .h-stats dd { font-size: 18px; } .h-stats dt { font-size: 11.5px; }
+}
+@media (prefers-reduced-motion: reduce) { .h-badge, .h-badge::after { animation: none !important; } }
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -1991,18 +2033,18 @@ h2.rvl.pre { opacity: 0; }
       <section class="hero">
         <div class="hero-top wrap">
           <div class="hero-main">
-            <p class="avail"><i aria-hidden="true"></i><span data-k="avail">זמינים לפרויקטים חדשים · נובמבר 2026</span></p>
+            <p class="h-badge"><span class="hb-b">B.S.Y</span><span class="hb-sep" aria-hidden="true"></span><span class="hb-t" data-k="hb">פתרונות דיגיטליים לעסקים</span></p>
             <h1 id="h1"></h1>
             <p class="lead" data-kh="lead"></p>
             <div class="ctas">
               <a href="#contact" class="pill solid"><span data-k="cta">קבלו הצעת מחיר</span> <span class="arr" aria-hidden="true">←</span></a>
               <a href="#work" class="pill line" data-k="cta2">צפו בעבודות</a>
             </div>
-            <ul class="h-trust">
-              <li data-k="ht1">בהתאמה אישית לעסק, בלי תבניות</li>
-              <li data-k="ht2">מענה תוך 24 שעות</li>
-              <li data-k="ht3">ליווי מהאפיון ועד העלייה לאוויר</li>
-            </ul>
+            <dl class="h-stats">
+              <div><dt data-k="hs1">פרויקטים באוויר</dt><dd>6+</dd></div>
+              <div><dt data-k="hs2">זמן תגובה</dt><dd>24h</dd></div>
+              <div><dt data-k="hs3">בהתאמה אישית</dt><dd>100%</dd></div>
+            </dl>
           </div>
           <div class="h-vis" aria-hidden="true">
             <canvas id="globe"></canvas>
@@ -2249,7 +2291,8 @@ h2.rvl.pre { opacity: 0; }
     he: {
       mn_home: "דף הבית", mn_svc: "שירותים", mn_s1: "אתרי תדמית", mn_s1d: "אתר שמציג את העסק ומביא פניות", mn_s2: "חנויות אונליין", mn_s2d: "חנות שמוכרת, עם סליקה וניהול", mn_s3: "אפליקציות ווב", mn_s3d: "מערכות, זימון תורים ודשבורדים", mn_s4: "מערכות AI וסוכנים", mn_s4d: "סוכנים ואוטומציות שחוסכים זמן", mn_proj: "הפרויקטים", mn_contact: "צור קשר", th_lbl: "מצב תצוגה", th_dark: "כהה", th_light: "בהיר", m1: "עבודות", m2: "שירותים", m3: "תהליך", m4: "הסטודיו", cta: "קבלו הצעת מחיר", cta2: "צפו בעבודות",
       avail: "זמינים לפרויקטים חדשים · נובמבר 2026",
-      h1: ["כלי AI ואתרים", "שעובדים <span class=\"accent\">בשבילכם.</span>"],
+      h1: ["בונים לעסק שלכם", "<span class=\"rot\" id=\"h-rot\"><span class=\"on\">סוכני AI.</span><span>אתרים.</span><span>חנויות אונליין.</span><span>מערכות חכמות.</span></span>"],
+      hb: "פתרונות דיגיטליים לעסקים", hs1: "פרויקטים באוויר", hs2: "זמן תגובה", hs3: "בהתאמה אישית",
       ht1: "בהתאמה אישית לעסק, בלי תבניות", ht2: "מענה תוך 24 שעות", ht3: "ליווי מהאפיון ועד העלייה לאוויר",
       hc_t: "B.S.Y DIGITAL בקצרה", hc_s1: "פרויקטים באוויר", hc_s2: "זמן מענה", hc_s3: "עיצוב בהתאמה אישית", hc_s4: "סוגי אתרים", hc_cl: "בין הלקוחות", hc_link: "לכל הפרויקטים",
       lead: "סטודיו שבונה לעסקים <b>מערכות AI, סוכנים חכמים ואוטומציות</b> שחוסכים זמן וכאב ראש. ובנוסף, אתרי תדמית, חנויות אונליין ואפליקציות.",
@@ -2279,7 +2322,8 @@ h2.rvl.pre { opacity: 0; }
     en: {
       mn_home: "Home", mn_svc: "Services", mn_s1: "Brand websites", mn_s1d: "A site that presents you and brings enquiries", mn_s2: "Online stores", mn_s2d: "A store that sells, with payments and admin", mn_s3: "Web apps", mn_s3d: "Systems, booking and dashboards", mn_s4: "AI systems & agents", mn_s4d: "Agents and automations that save time", mn_proj: "Projects", mn_contact: "Contact", th_lbl: "Display", th_dark: "Dark", th_light: "Light", m1: "Work", m2: "Services", m3: "Process", m4: "Studio", cta: "Get a quote", cta2: "See our work",
       avail: "Available for new projects · November 2026",
-      h1: ["AI tools and websites", "that <span class=\"accent\">work for you.</span>"],
+      h1: ["We build your business", "<span class=\"rot\" id=\"h-rot\"><span class=\"on\">AI agents.</span><span>websites.</span><span>online stores.</span><span>smart systems.</span></span>"],
+      hb: "Digital solutions for business", hs1: "Projects live", hs2: "Reply time", hs3: "Custom built",
       ht1: "Built around your business, no templates", ht2: "Reply within 24 hours", ht3: "With you from brief to launch",
       hc_t: "B.S.Y DIGITAL at a glance", hc_s1: "Projects live", hc_s2: "Reply time", hc_s3: "Custom design", hc_s4: "Website types", hc_cl: "Among our clients", hc_link: "All projects",
       lead: "A studio building <b>AI systems, smart agents and automations</b> that save businesses time and headaches. Plus brand websites, online stores and apps.",
@@ -3684,6 +3728,13 @@ h2.rvl.pre { opacity: 0; }
     size(); go();
   })();
 
+  // Hero: rotating last word
+  setInterval(function () {
+    var r = document.getElementById("h-rot"); if (!r || document.hidden || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var s = r.children, i = [].findIndex.call(s, function (x) { return x.className === "on"; });
+    [].forEach.call(s, function (x) { if (x.className === "out") x.className = ""; });
+    s[i].className = "out"; s[(i + 1) % s.length].className = "on";
+  }, 2600);
   // Mobile: strong points slide one step (left to right) every 2 s
   setInterval(function () {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches || document.hidden) return;
