@@ -2050,6 +2050,91 @@ h2.rvl.pre { opacity: 0; }
   .pz-c h3 { font-size: 8.6cqw; line-height: 1.05; letter-spacing: -.02em; }
   .pz-mm { border-radius: 14px; overflow: hidden; }
 }
+
+/* Footer v2: CTA card + compact columns */
+.foot { border-top: 0; padding-top: clamp(40px, 5cqw, 72px); background: #fff; }
+.fx-cta { position: relative; isolation: isolate; overflow: hidden; display: flex; justify-content: space-between; align-items: center; gap: 24px 40px; flex-wrap: wrap; padding: clamp(28px, 3.6cqw, 48px) clamp(24px, 3.6cqw, 56px); border-radius: 26px; background: linear-gradient(135deg, #0f1e33 0%, #13294d 55%, #1d4ed8 130%); color: #fff; box-shadow: 0 30px 60px -36px rgba(15, 30, 51, .7); }
+.fx-cta::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .35; background-image: linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px); background-size: 34px 34px; -webkit-mask: radial-gradient(80% 120% at 0% 100%, #000, transparent 70%); mask: radial-gradient(80% 120% at 0% 100%, #000, transparent 70%); }
+.fx-cta::after { content: ""; position: absolute; z-index: -1; width: 380px; aspect-ratio: 1; inset-inline-end: -120px; top: -180px; border-radius: 50%; background: radial-gradient(closest-side, rgba(96, 165, 250, .45), transparent); }
+.fx-cta .foot-say { color: #fff; max-width: 20ch; font-size: clamp(1.6rem, 2.6cqw, 2.5rem); line-height: 1.15; }
+.fx-cta .foot-say .serif { color: #93c5fd; }
+.fx-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.fx-btns .pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 15px 26px; font-size: 15px; font-weight: 600; border-radius: 999px; transition: transform .3s var(--ease), box-shadow .3s; }
+.fx-btns .pill:hover { transform: translateY(-2px); }
+.fx-solid { background: #fff; color: #0f1e33; }
+.fx-wa { background: #22c55e; color: #fff; box-shadow: 0 10px 24px -12px rgba(34, 197, 94, .8); }
+.fx-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, .8fr) minmax(0, .8fr); gap: 40px; padding-block: clamp(40px, 4.6cqw, 64px) clamp(28px, 3cqw, 40px); }
+.fx-grid .foot-mark { position: relative; width: 128px; margin: 0; aspect-ratio: 820 / 344; cursor: default; }
+.fx-tag { margin: 12px 0 18px; font-size: 14px; color: var(--stone); }
+.fx-contact { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.fx-contact li { display: flex; align-items: center; gap: 10px; font-size: 15px; }
+.fx-contact svg { flex: none; width: 32px; height: 32px; padding: 8px; border-radius: 10px; background: rgba(37, 99, 235, .08); color: var(--brass); box-sizing: border-box; }
+.fx-contact a { color: var(--bone); transition: color .3s; } .fx-contact a:hover { color: var(--brass); }
+.fx-contact .ltr { direction: ltr; unicode-bidi: plaintext; }
+.fx-grid .foot-col { padding: 0; border: 0; background: none; }
+.fx-grid .foot-col h4 { margin: 0 0 14px; font-size: 13px; font-weight: 700; color: var(--bone); letter-spacing: .02em; }
+.fx-grid .foot-col ul { gap: 10px; }
+.fx-grid .foot-col a { font-size: 15px; color: var(--stone); }
+.fx-grid .foot-col a:hover { color: var(--brass); }
+.foot .foot-bot { padding: 18px 0 22px; }
+
+/* Who it's for: one card list on every service page */
+.fit { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.fit ul, .fl { list-style: none; margin: 0; padding: 0; border: 0; counter-reset: fl; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.fit li, .fl li, .fl li.lit { counter-increment: fl; position: relative; display: flex; align-items: center; gap: 16px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 18px; background: #fff; font-family: inherit; font-weight: 600; font-size: 17px; line-height: 1.45; letter-spacing: 0; color: var(--bone); box-shadow: 0 1px 2px rgba(15, 35, 70, .04); transition: border-color .3s, transform .3s var(--ease), box-shadow .3s; }
+.fl li:last-child { border-bottom: 1px solid var(--line); }
+.fit li:hover, .fl li:hover { border-color: color-mix(in srgb, var(--brass) 45%, transparent); transform: translateY(-2px); box-shadow: 0 16px 32px -24px rgba(37, 99, 235, .5); }
+.fit li svg { display: none; }
+.fit li::before, .fl li::before, .fl li.lit::before { content: "0" counter(fl); flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #1d4ed8, #3b82f6); color: #fff; font-family: var(--mono); font-weight: 600; font-size: 13px; letter-spacing: 0; box-shadow: 0 8px 16px -10px rgba(37, 99, 235, .9); translate: none; }
+.fit li::after, .fl li::after { content: ""; margin-inline-start: auto; flex: none; width: 20px; height: 20px; border-radius: 50%; background: rgba(34, 197, 94, .12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316a34a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 12px no-repeat; }
+:lang(en) .fl li { font-family: inherit; font-stretch: 100%; }
+
+@container site (max-width: 860px) {
+  .fx-cta { flex-direction: column; align-items: stretch; text-align: center; gap: 18px; padding: 26px 18px 18px; border-radius: 22px; }
+  .fx-cta .foot-say { font-size: 7.4cqw; max-width: none; margin-inline: auto; }
+  .fx-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .fx-btns .pill { padding: 14px 10px; font-size: 14.5px; }
+  .fx-grid { grid-template-columns: 1fr 1fr; gap: 22px 14px; padding-block: 28px 18px; }
+  .fx-brand { grid-column: 1 / -1; display: grid; justify-items: center; text-align: center; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+  .fx-grid .foot-mark { width: 104px; }
+  .fx-tag { margin: 10px 0 14px; font-size: 13px; }
+  .fx-contact { justify-items: center; gap: 8px; }
+  .fx-contact li { font-size: 14px; gap: 8px; }
+  .fx-contact svg { width: 28px; height: 28px; padding: 7px; }
+  .fx-grid .foot-col { padding-inline: 4px; }
+  .fx-grid .foot-col h4 { margin-bottom: 10px; font-size: 12.5px; color: var(--brass); }
+  .fx-grid .foot-col ul { gap: 8px; }
+  .fx-grid .foot-col a { font-size: 14px; }
+  .foot .foot-bot { flex-direction: column; gap: 10px; padding: 16px 0 92px; font-size: 12px; }
+  .foot-legal { gap: 4px 14px; }
+
+  .fit ul, .fl { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .fit li, .fl li, .fl li.lit { padding: 13px 14px; gap: 12px; font-size: 15px; border-radius: 14px; }
+  .fit li::before, .fl li::before, .fl li.lit::before { width: 34px; height: 34px; border-radius: 10px; font-size: 12px; }
+
+  /* Brief form: each step fits on screen */
+  .ct-box { scroll-margin-top: 76px; }
+  .ct-brief { padding: 12px 16px; }
+  .ct-wiz { padding: 16px 14px 16px; gap: 14px; }
+  .wz-step { gap: 12px; }
+  .wz-q { gap: 4px; }
+  .wz-q small { display: none; }
+  .wz-q h3 { font-size: 6.6cqw; }
+  .wz-q p { font-size: 13px; }
+  .opts { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .opt { padding: 11px 12px; padding-inline-end: 12px; border-radius: 12px; min-height: 64px; align-content: center; }
+  .opt::after { top: 10px; translate: none; inset-inline-end: 10px; width: 14px; height: 14px; }
+  .opt strong { font-size: 14.5px; line-height: 1.25; padding-inline-end: 16px; }
+  .opt span { font-size: 12px; line-height: 1.35; }
+  .opt:hover { transform: none; }
+  .f-row { gap: 10px; }
+  .wz-nav { gap: 8px; }
+  .wz-next { padding-block: 14px; }
+  .fld input, .fld textarea { padding: 22px 0 9px; font-size: 16px; }
+  .fld label { top: 22px; font-size: 15px; }
+  .fld textarea { min-height: 80px; }
+  .fld .err { top: 24px; font-size: 12px; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -2312,16 +2397,27 @@ h2.rvl.pre { opacity: 0; }
     <div class="view-legal" id="view-legal" hidden></div>
     <footer class="foot">
       <div class="wrap">
-        <div class="foot-top">
+        <div class="fx-cta rv">
           <p class="foot-say" data-kh="ft_say"></p>
-          <div class="foot-col"><h4 data-k="ft_nav">ניווט</h4><ul>
-            <li><a href="#top" data-k="mn_home">דף הבית</a></li><li><a href="#service-ai" data-k="mn_s4">מערכות AI וסוכנים</a></li><li><a href="#service-site" data-k="mn_s1">אתרי תדמית</a></li><li><a href="#service-store" data-k="mn_s2">חנויות אונליין</a></li><li><a href="#service-app" data-k="mn_s3">אפליקציות ווב</a></li><li><a href="#projects" data-k="mn_proj">הפרויקטים</a></li><li><a href="#faq" data-k="ft_faq">שאלות נפוצות</a></li>
+          <div class="fx-btns"><a href="#contact" class="pill fx-solid" data-k="cta">קבלו הצעת מחיר</a><a href="#" class="pill fx-wa ct-wa-link" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg><span data-k="c_wa">וואטסאפ</span></a></div>
+        </div>
+        <div class="fx-grid">
+          <div class="fx-brand">
+            <div class="foot-mark" id="foot-mark" aria-hidden="true"><img src="logo-mark-light.png" alt=""><span class="f-sheen"></span></div>
+            <p class="fx-tag" data-k="hb">פתרונות דיגיטליים לעסקים</p>
+            <ul class="fx-contact">
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><a class="ltr ct-tel-link ct-phone" href="#"></a></li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a class="ltr ct-mail-link ct-email" href="#"></a></li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><a class="ct-addr" href="#" target="_blank" rel="noopener"></a></li>
+            </ul>
+          </div>
+          <div class="foot-col"><h4 data-k="ft_svc">שירותים</h4><ul>
+            <li><a href="#service-ai" data-k="mn_s4">מערכות AI וסוכנים</a></li><li><a href="#service-site" data-k="mn_s1">אתרי תדמית</a></li><li><a href="#service-store" data-k="mn_s2">חנויות אונליין</a></li><li><a href="#service-app" data-k="mn_s3">אפליקציות ווב</a></li>
           </ul></div>
-          <div class="foot-col"><h4 data-k="ft_talk">דברו איתי</h4><ul>
-            <li><a class="ltr ct-tel-link ct-phone" href="#"></a></li><li><a class="ltr ct-mail-link ct-email" href="#"></a></li><li><a class="ct-addr" href="#" target="_blank" rel="noopener"></a></li><li><a href="#contact" data-k="cta">קבלו הצעת מחיר</a></li>
+          <div class="foot-col"><h4 data-k="ft_studio">הסטודיו</h4><ul>
+            <li><a href="#top" data-k="mn_home">דף הבית</a></li><li><a href="#projects" data-k="mn_proj">הפרויקטים</a></li><li><a href="#faq" data-k="ft_faq">שאלות נפוצות</a></li><li><a href="#contact" data-k="ft_ct">צור קשר</a></li>
           </ul></div>
         </div>
-        <div class="foot-mark rv" id="foot-mark" aria-hidden="true"><img src="logo-mark-light.png" alt=""><span class="f-sheen"></span></div>
         <div class="foot-bot"><span>© 2026 B.S.Y DIGITAL · <span data-k="ft_rights">כל הזכויות שמורות</span></span><nav class="foot-legal" aria-label="Legal"><a href="#accessibility" data-k="ft_acc">הצהרת נגישות</a><a href="#privacy" data-k="ft_priv">מדיניות פרטיות</a><a href="#terms" data-k="ft_terms">תנאי שימוש</a></nav><button type="button" class="to-top" id="to-top"><span data-k="ft_top">חזרה למעלה</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></div>
       </div>
     </footer>
@@ -2390,7 +2486,7 @@ h2.rvl.pre { opacity: 0; }
       f_biz: "שם העסק", f_site: "אתר קיים (לא חובה)", f_msg: "על העסק ועל הפרויקט", f_name: "שם מלא", f_phone: "טלפון", f_email: "אימייל (לא חובה)", f_req: "שדה חובה", f_badphone: "מספר לא תקין", f_bademail: "אימייל לא תקין",
       w_back: "חזרה", w_next: "המשך", w_send: "שלחו את הבריף", w_pick: "בחרו אפשרות", w_enter: "<kbd>Enter</kbd> להמשך",
       f_ok: "הבריף אצלי.", f_okp: "תודה {n}! אחזור אליכם תוך 24 שעות עם רעיונות והצעת מחיר.", f_orwa: "רוצים מהר יותר? וואטסאפ", f_again: "בריף חדש", f_wahi: "היי, אני", f_waabout: "מעוניין/ת ב",
-      ft_say: "הפרויקט הבא שלכם <span class=\"serif\">מתחיל בהודעה אחת.</span>", ft_nav: "ניווט", ft_faq: "שאלות נפוצות", ft_talk: "דברו איתי", ft_rights: "כל הזכויות שמורות", ft_acc: "הצהרת נגישות", ft_priv: "מדיניות פרטיות", ft_terms: "תנאי שימוש", f_consent: "בשליחת הבריף אתם מאשרים את <a href=\"#privacy\">מדיניות הפרטיות</a>. הפרטים משמשים רק כדי לחזור אליכם.", ft_top: "חזרה למעלה",
+      ft_say: "הפרויקט הבא שלכם <span class=\"serif\">מתחיל בהודעה אחת.</span>", ft_nav: "ניווט", ft_svc: "שירותים", ft_studio: "הסטודיו", ft_ct: "צור קשר", ft_faq: "שאלות נפוצות", ft_talk: "דברו איתי", ft_rights: "כל הזכויות שמורות", ft_acc: "הצהרת נגישות", ft_priv: "מדיניות פרטיות", ft_terms: "תנאי שימוש", f_consent: "בשליחת הבריף אתם מאשרים את <a href=\"#privacy\">מדיניות הפרטיות</a>. הפרטים משמשים רק כדי לחזור אליכם.", ft_top: "חזרה למעלה",
       p_hint: "החליקו לצדדים", p_eye: "תהליך העבודה", p_title: "מהרעיון לאתר באוויר, <span class=\"serif\">בארבעה צעדים.</span>", p_lead: "תהליך ברור עם לוחות זמנים אמיתיים. אתם מאשרים כל שלב לפני שממשיכים.",
       y_eye: "למה B.S.Y", y_title: ["סטודיו קטן.", "<span class=\"serif\">תוצאה של גדולים.</span>"], y_lead: "ההבדל בין סוכנות רגילה לבין עבודה ישירה איתי, בשורה אחת לכל דבר שחשוב.",
       sv_eye: "מה אנחנו בונים", sv_title: ["פתרון אחד לכל מה", "<span class=\"serif\">שהעסק צריך.</span>"], sv_lead: "מתחילים מהבעיה של העסק, לא מהטכנולוגיה. כל פרויקט נמדד במה שהוא חוסך לכם או מכניס לכם.", tr_lbl: "עסקים כבר<br>באוויר איתנו",
@@ -2421,7 +2517,7 @@ h2.rvl.pre { opacity: 0; }
       f_biz: "Business name", f_site: "Current website (optional)", f_msg: "About the business and the project", f_name: "Full name", f_phone: "Phone", f_email: "Email (optional)", f_req: "Required", f_badphone: "Invalid number", f_bademail: "Invalid email",
       w_back: "Back", w_next: "Continue", w_send: "Send the brief", w_pick: "Pick an option", w_enter: "<kbd>Enter</kbd> to continue",
       f_ok: "Brief received.", f_okp: "Thank you {n}! I'll get back to you within 24 hours with ideas and a quote.", f_orwa: "Want it faster? WhatsApp", f_again: "New brief", f_wahi: "Hi, I'm", f_waabout: "Interested in",
-      ft_say: "Your next project <span class=\"serif\">starts with one message.</span>", ft_nav: "Navigate", ft_faq: "FAQ", ft_talk: "Talk to me", ft_rights: "All rights reserved", ft_acc: "Accessibility", ft_priv: "Privacy policy", ft_terms: "Terms of use", f_consent: "By sending the brief you accept the <a href=\"#privacy\">privacy policy</a>. Your details are used only to get back to you.", ft_top: "Back to top",
+      ft_say: "Your next project <span class=\"serif\">starts with one message.</span>", ft_nav: "Navigate", ft_svc: "Services", ft_studio: "Studio", ft_ct: "Contact", ft_faq: "FAQ", ft_talk: "Talk to me", ft_rights: "All rights reserved", ft_acc: "Accessibility", ft_priv: "Privacy policy", ft_terms: "Terms of use", f_consent: "By sending the brief you accept the <a href=\"#privacy\">privacy policy</a>. Your details are used only to get back to you.", ft_top: "Back to top",
       p_hint: "Swipe sideways", p_eye: "How we work", p_title: "From idea to live site, <span class=\"serif\">in four steps.</span>", p_lead: "A clear process with real timelines. You approve every stage before we move on.",
       y_eye: "Why B.S.Y", y_title: ["A small studio.", "<span class=\"serif\">Big-league results.</span>"], y_lead: "The difference between a typical agency and working directly with me, one line for everything that matters.",
       sv_eye: "What we build", sv_title: ["One partner for everything", "<span class=\"serif\">your business needs.</span>"], sv_lead: "We start from the business problem, not the technology. Every project is measured by what it saves you or brings in.", tr_lbl: "businesses already<br>live with us",
@@ -2766,7 +2862,7 @@ h2.rvl.pre { opacity: 0; }
   }
   (function contactForm() {
     var f = document.getElementById("ct-wiz"), box = document.getElementById("ct-box");
-    function go(n) { wz.step = Math.max(0, Math.min(3, n)); wzPaint(); var st = f.querySelector('.wz-step[data-s="' + wz.step + '"]'), inp = st.querySelector("input, textarea"); if (inp && matchMedia("(pointer: fine)").matches) setTimeout(function () { inp.focus({ preventScroll: true }); }, 450); }
+    function go(n) { wz.step = Math.max(0, Math.min(3, n)); wzPaint(); if (matchMedia("(max-width: 860px)").matches) { var br = box.getBoundingClientRect(); if (br.top < 60 || br.top > innerHeight * .35) scrollBy({ top: br.top - 76, behavior: "smooth" }); } var st = f.querySelector('.wz-step[data-s="' + wz.step + '"]'), inp = st.querySelector("input, textarea"); if (inp && matchMedia("(pointer: fine)").matches) setTimeout(function () { inp.focus({ preventScroll: true }); }, 450); }
     f.addEventListener("click", function (e) {
       var o = e.target.closest(".opt"); if (!o) return;
       var k = o.parentNode.dataset.f; wz[k] = +o.dataset.i;
@@ -3166,7 +3262,7 @@ h2.rvl.pre { opacity: 0; }
           '<div class="sx-row"><div class="sx-qty"><button type="button" data-q="-1" aria-label="-">−</button><span id="sx-q">1</span><button type="button" data-q="1" aria-label="+">+</button></div><button type="button" class="pill solid" id="sx-add">' + d.add + "</button></div>" +
           '<div class="sx-drawer"><div class="sx-dh"><span>' + d.cart + '</span><button type="button" id="sx-close" aria-label="Close">✕</button></div><ul class="sx-items" id="sx-items"><li class="sx-empty" style="background:none;animation:none;display:block">' + d.empty + '</li></ul><div class="sx-tot"><div><span>' + d.total + '</span><b id="sx-tot">₪0</b></div><a href="#contact" class="pill solid" data-svc="' + i + '">' + d.checkout + "</a></div></div>" +
         "</div></div></div></section>" +
-      '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + d.fitT + '</h3><ul class="fl" id="fl">' + v.fit.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>" +
+      '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + d.fitT + '</h3><ul class="fl" id="fl">' + v.fit.map(function (f) { return "<li><span>" + esc(f) + "</span></li>"; }).join("") + "</ul>" +
         '<div class="svp-band glow rv" id="ap-band"><h3>' + d.band + '</h3><a href="#contact" class="pill solid" data-svc="' + i + '">' + T[l].cta + "</a></div>" +
         '<div class="svp-next"><a href="#service-' + prev.key + '">' + (he ? "השירות הקודם" : "Previous service") + "<b>" + esc(prev.name) + '</b></a><a href="#service-' + next.key + '" style="text-align:end">' + (he ? "השירות הבא" : "Next service") + "<b>" + esc(next.name) + "</b></a></div></div></section>";
   }
@@ -3260,7 +3356,7 @@ h2.rvl.pre { opacity: 0; }
             '<div class="abx-ok"><i>✓</i>' + d.ok + '</div></div></div><span class="ab-tag">' + d.a + "</span></div>" +
           '<div class="ab-handle"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>' +
           '<input class="ab-range" type="range" min="4" max="96" value="50" aria-label="' + d.b + " / " + d.a + '"></div></div></section>' +
-      '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + d.fitT + '</h3><ul class="fl" id="fl">' + v.fit.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>" +
+      '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + d.fitT + '</h3><ul class="fl" id="fl">' + v.fit.map(function (f) { return "<li><span>" + esc(f) + "</span></li>"; }).join("") + "</ul>" +
         '<div class="svp-band glow rv" id="ap-band"><h3>' + d.band + '</h3><a href="#contact" class="pill solid" data-svc="' + i + '">' + T[l].cta + "</a></div>" +
         '<div class="svp-next"><a href="#service-' + prev.key + '">' + (he ? "השירות הקודם" : "Previous service") + "<b>" + esc(prev.name) + '</b></a><a href="#service-' + next.key + '" style="text-align:end">' + (he ? "השירות הבא" : "Next service") + "<b>" + esc(next.name) + "</b></a></div></div></section>";
   }
