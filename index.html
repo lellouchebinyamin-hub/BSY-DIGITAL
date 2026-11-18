@@ -243,7 +243,7 @@ h1 .serif { font-family: var(--serif); font-weight: 300; letter-spacing: -.02em;
 .i-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .i-lines path { fill: none; stroke: var(--brass); stroke-width: 1.4; stroke-linejoin: round; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; }
 .i-logo .pAll { opacity: 0; -webkit-mask: linear-gradient(90deg, #000 0 40%, transparent 60%) 100% 0 / 260% 100% no-repeat; mask: linear-gradient(90deg, #000 0 40%, transparent 60%) 100% 0 / 260% 100% no-repeat; }
-.i-sheen { background: linear-gradient(105deg, transparent 0 40%, rgba(255, 244, 220, .85) 50%, transparent 60% 100%) 0 0 / 300% 100% no-repeat; background-position: 100% 0; -webkit-mask: url(logo-mark.png) center / 100% 100% no-repeat; mask: url(logo-mark.png) center / 100% 100% no-repeat; mix-blend-mode: overlay; opacity: 0; }
+.i-sheen { background: linear-gradient(105deg, transparent 0 40%, rgba(255, 244, 220, .85) 50%, transparent 60% 100%) 0 0 / 300% 100% no-repeat; background-position: 100% 0; -webkit-mask: url(logo-mark.webp) center / 100% 100% no-repeat; mask: url(logo-mark.webp) center / 100% 100% no-repeat; mix-blend-mode: overlay; opacity: 0; }
 .i-glow { position: absolute; left: 50%; top: 55%; width: 46%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--brass) 45%, transparent), transparent); filter: blur(20px); opacity: 0; pointer-events: none; }
 .i-sub b { font-weight: inherit; color: var(--brass); }
 .i-sub { font-family: var(--display-en); font-weight: 300; font-size: clamp(12px, 1.6vw, 18px); letter-spacing: .9em; margin-inline-end: -.9em; color: var(--stone); opacity: 0; }
@@ -611,7 +611,7 @@ h2 .serif { font-family: var(--serif); font-weight: 300; color: var(--brass); le
 .foot-mark { position: relative; width: min(56%, 620px); margin: clamp(64px, 7cqw, 110px) auto clamp(40px, 4cqw, 64px); aspect-ratio: 820 / 344; }
 .foot-mark img, .f-sheen { position: absolute; inset: 0; width: 100%; height: 100%; }
 .foot-mark img { opacity: .9; }
-.f-sheen { background: linear-gradient(105deg, transparent 0 42%, rgba(255, 244, 220, .9) 50%, transparent 58% 100%) 0 0 / 300% 100% no-repeat; background-position: 100% 0; -webkit-mask: url(logo-mark.png) center / 100% 100% no-repeat; mask: url(logo-mark.png) center / 100% 100% no-repeat; mix-blend-mode: overlay; transition: background-position 2.4s cubic-bezier(.6, 0, .3, 1); }
+.f-sheen { background: linear-gradient(105deg, transparent 0 42%, rgba(255, 244, 220, .9) 50%, transparent 58% 100%) 0 0 / 300% 100% no-repeat; background-position: 100% 0; -webkit-mask: url(logo-mark.webp) center / 100% 100% no-repeat; mask: url(logo-mark.webp) center / 100% 100% no-repeat; mix-blend-mode: overlay; transition: background-position 2.4s cubic-bezier(.6, 0, .3, 1); }
 .foot-mark.lit .f-sheen { background-position: 0 0; }
 .foot-mark.rv.pre { transform: translateY(60px) scale(.96); }
 .foot-bot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 26px 0 30px; border-top: 1px solid var(--line); font-size: 13px; color: var(--stone); }
@@ -889,7 +889,7 @@ html[data-theme="light"] .sh-win { box-shadow: 0 40px 80px -34px rgba(15, 35, 70
 html[data-theme="light"] .sh-phone { box-shadow: 0 30px 60px -24px rgba(15, 35, 70, .4); }
 html[data-theme="light"] .rc { background: #fff; box-shadow: 0 1px 2px rgba(15, 35, 70, .08), 0 20px 40px -24px rgba(15, 35, 70, .25); }
 html[data-theme="light"] .wipe { color: #f7fafc; }
-html[data-theme="light"] .dr-mark { background-image: url(logo-mark-light.png); }
+html[data-theme="light"] .dr-mark { background-image: url(logo-mark-light.webp); }
 html[data-theme="light"] .i-sheen, html[data-theme="light"] .f-sheen { opacity: .55; }
 
 /* Theme switch: the new palette pours down over the old with a feathered edge, the old page sinks back */
@@ -1557,7 +1557,7 @@ html[dir="rtl"] .pz-c h3 { text-align: right; }
   .nav .dr-foot .pill { display: inline-flex; flex: 1; width: auto; padding-block: 17px; font-size: 16px; }
   .dr-meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; color: var(--stone); }
   .dr-meta a { direction: ltr; unicode-bidi: plaintext; color: var(--bone); }
-  .dr-mark { position: absolute; z-index: -1; inset-inline-end: -12%; bottom: 13%; width: 92%; aspect-ratio: 820 / 344; background: url(logo-mark.png) center / contain no-repeat; opacity: 0; transition: opacity .6s; } .open .dr-mark { opacity: .06; transition-delay: .9s; } .dr-mark { filter: grayscale(1); pointer-events: none; }
+  .dr-mark { position: absolute; z-index: -1; inset-inline-end: -12%; bottom: 13%; width: 92%; aspect-ratio: 820 / 344; background: url(logo-mark.webp) center / contain no-repeat; opacity: 0; transition: opacity .6s; } .open .dr-mark { opacity: .06; transition-delay: .9s; } .dr-mark { filter: grayscale(1); pointer-events: none; }
   .hero-top { grid-template-columns: minmax(0, 1fr); padding-block: 28px 48px; gap: 36px; }
   .hero-main { gap: 20px; }
   .hero h1 { font-size: 9.6cqw; line-height: 1.1; }
@@ -2178,6 +2178,58 @@ h2.rvl.pre { opacity: 0; }
   .fx-grid .foot-col { padding: 16px 0; }
   .foot .foot-bot { padding-bottom: 88px; }
 }
+
+/* Duplicate CTA band on service pages: the footer card already does this */
+.svp-band { display: none !important; }
+.svp-next { margin-top: clamp(40px, 5cqw, 64px); }
+
+/* Site assistant */
+.ai-fab { position: fixed; z-index: 58; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); inset-inline-start: 20px; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px 12px 16px; border: 0; border-radius: 999px; background: linear-gradient(135deg, #0f1e33, #1d4ed8); color: #fff; font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; box-shadow: 0 16px 36px -14px rgba(29, 78, 216, .75); transition: transform .3s var(--ease), box-shadow .3s; }
+[dir="rtl"] .ai-fab { padding: 12px 16px 12px 20px; }
+.ai-fab:hover { transform: translateY(-2px); }
+.ai-fab svg { flex: none; }
+.ai-on .ai-fab { opacity: 0; pointer-events: none; }
+.nav.open ~ .ai-fab { display: none; }
+.ai-box { position: fixed; z-index: 59; bottom: 20px; inset-inline-start: 20px; width: 380px; height: min(600px, calc(100vh - 120px)); display: flex; flex-direction: column; border-radius: 22px; background: #fff; border: 1px solid var(--line); box-shadow: 0 40px 80px -30px rgba(15, 30, 51, .45); overflow: hidden; animation: aiIn .35s var(--ease) both; }
+.ai-box[hidden] { display: none; }
+@keyframes aiIn { from { opacity: 0; transform: translateY(16px) scale(.98); } }
+.ai-hd { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: linear-gradient(135deg, #0f1e33, #16305a 70%, #1d4ed8); color: #fff; }
+.ai-av { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: rgba(255, 255, 255, .12); flex: none; }
+.ai-hd b { display: block; font-size: 15px; }
+.ai-hd small { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #bfd3f5; }
+.ai-hd small i { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 3px rgba(34, 197, 94, .25); }
+.ai-x { margin-inline-start: auto; width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .12); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.ai-log { flex: 1; overflow-y: auto; padding: 16px 14px 8px; display: flex; flex-direction: column; gap: 10px; background: #f7fafc; overscroll-behavior: contain; }
+.ai-m { max-width: 88%; padding: 11px 14px; border-radius: 16px; font-size: 14px; line-height: 1.6; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .35s var(--ease); }
+.ai-m.in { opacity: 1; transform: none; }
+.ai-m.bot { align-self: flex-start; background: #fff; border: 1px solid var(--line); color: var(--bone); border-start-start-radius: 6px; }
+.ai-m.me { align-self: flex-end; background: #1d4ed8; color: #fff; border-start-end-radius: 6px; }
+.ai-m ul, .ai-m ol { margin: 6px 0 0; padding-inline-start: 18px; display: grid; gap: 4px; }
+.ai-m li::marker { color: var(--brass); }
+.ai-m .ai-k { margin: 10px 0 0; font-weight: 700; color: var(--brass); font-size: 13px; }
+.ai-m a { color: var(--brass); }
+.ai-m .ltr { direction: ltr; unicode-bidi: plaintext; }
+.ai-act { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.ai-act a { padding: 6px 12px; border-radius: 999px; background: rgba(37, 99, 235, .08); color: var(--brass); font-size: 12.5px; font-weight: 600; }
+.ai-act a.wa { background: rgba(34, 197, 94, .12); color: #15803d; }
+.ai-m.typing { display: flex; gap: 4px; padding: 14px; }
+.ai-m.typing i { width: 6px; height: 6px; border-radius: 50%; background: #93a4bb; animation: aiDot 1s infinite; }
+.ai-m.typing i:nth-child(2) { animation-delay: .15s; } .ai-m.typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes aiDot { 50% { transform: translateY(-4px); opacity: .5; } }
+.ai-chips { display: flex; gap: 6px; overflow-x: auto; padding: 8px 12px; background: #f7fafc; scrollbar-width: none; }
+.ai-chips::-webkit-scrollbar { display: none; }
+.ai-chips button { flex: none; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--bone); font: inherit; font-size: 12.5px; cursor: pointer; white-space: nowrap; }
+.ai-chips button:hover { border-color: var(--brass); color: var(--brass); }
+.ai-in { display: flex; gap: 8px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); background: #fff; }
+.ai-in input { flex: 1; min-width: 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 999px; font: inherit; font-size: 16px; color: var(--bone); background: #f7fafc; outline: 0; }
+.ai-in input:focus { border-color: var(--brass); }
+.ai-in button { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 0; background: #1d4ed8; color: #fff; display: grid; place-items: center; cursor: pointer; }
+[dir="rtl"] .ai-in button svg { transform: scaleX(-1); }
+@container site (max-width: 860px) {
+  .ai-fab { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); inset-inline-start: 16px; width: 56px; height: 56px; padding: 0 !important; justify-content: center; }
+  .ai-fab span { display: none; }
+  .ai-box { inset: auto 0 0 0; width: auto; height: 82vh; height: 82dvh; border-radius: 22px 22px 0 0; }
+}
 </style>
 
 <a class="skip" id="skip" href="#">דלג לתוכן</a>
@@ -2185,16 +2237,16 @@ h2.rvl.pre { opacity: 0; }
   <div class="site" id="site">
     <div class="intro" id="intro" aria-hidden="true">
       <div class="i-in">
-        <div class="i-logo"><span class="i-glow"></span><svg class="i-lines" viewBox="0 0 820 344" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" style="--i:0" d="M7,8 L64,69 L216,69 L230,74 L243,87 L270,133 L284,152 L306,173 L330,187 L352,193 L454,193 L468,198 L478,206 L485,220 L485,233 L479,247 L468,257 L448,263 L335,263 L273,325 L276,329 L286,333 L302,334 L306,336 L312,335 L315,337 L321,336 L329,339 L336,338 L337,340 L419,339 L451,335 L463,331 L466,332 L470,329 L470,325 L455,325 L459,323 L479,321 L494,316 L516,303 L529,291 L545,264 L551,240 L550,209 L544,191 L531,170 L514,153 L491,139 L463,131 L365,131 L356,130 L340,121 L325,104 L328,90 L340,76 L353,70 L498,69 L491,68 L485,64 L480,55 L473,49 L467,39 L456,28 L459,22 L463,24 L483,43 L604,215 L604,323 L673,323 L673,216 L812,21 L739,20 L640,159 L548,26 L535,13 L525,9 L399,6 L347,7 L326,12 L312,18 L301,26 L288,39 L287,37 L291,33 L289,35 L288,31 L275,31 L270,27 L272,29 L270,30 L248,14 L227,8Z"/><path pathLength="1" style="--i:1" d="M15,129 L15,323 L232,323 L255,316 L272,305 L286,291 L296,276 L303,260 L307,240 L306,221 L301,205 L273,169 L236,129Z"/><path pathLength="1" style="--i:2" d="M74,191 L104,190 L220,192 L232,198 L243,210 L248,227 L246,239 L240,250 L232,257 L213,263 L76,263Z"/><path pathLength="1" style="--i:3" d="M612,23 L621,39 L663,100 L719,21 L617,21Z"/></svg><img class="pAll" src="logo-mark-light.png" alt=""><span class="i-sheen"></span></div>
+        <div class="i-logo"><span class="i-glow"></span><svg class="i-lines" viewBox="0 0 820 344" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" style="--i:0" d="M7,8 L64,69 L216,69 L230,74 L243,87 L270,133 L284,152 L306,173 L330,187 L352,193 L454,193 L468,198 L478,206 L485,220 L485,233 L479,247 L468,257 L448,263 L335,263 L273,325 L276,329 L286,333 L302,334 L306,336 L312,335 L315,337 L321,336 L329,339 L336,338 L337,340 L419,339 L451,335 L463,331 L466,332 L470,329 L470,325 L455,325 L459,323 L479,321 L494,316 L516,303 L529,291 L545,264 L551,240 L550,209 L544,191 L531,170 L514,153 L491,139 L463,131 L365,131 L356,130 L340,121 L325,104 L328,90 L340,76 L353,70 L498,69 L491,68 L485,64 L480,55 L473,49 L467,39 L456,28 L459,22 L463,24 L483,43 L604,215 L604,323 L673,323 L673,216 L812,21 L739,20 L640,159 L548,26 L535,13 L525,9 L399,6 L347,7 L326,12 L312,18 L301,26 L288,39 L287,37 L291,33 L289,35 L288,31 L275,31 L270,27 L272,29 L270,30 L248,14 L227,8Z"/><path pathLength="1" style="--i:1" d="M15,129 L15,323 L232,323 L255,316 L272,305 L286,291 L296,276 L303,260 L307,240 L306,221 L301,205 L273,169 L236,129Z"/><path pathLength="1" style="--i:2" d="M74,191 L104,190 L220,192 L232,198 L243,210 L248,227 L246,239 L240,250 L232,257 L213,263 L76,263Z"/><path pathLength="1" style="--i:3" d="M612,23 L621,39 L663,100 L719,21 L617,21Z"/></svg><img class="pAll" src="logo-mark-light.webp" alt=""><span class="i-sheen"></span></div>
         <div class="i-sub">DIGIT<b>Λ</b>L</div>
         <div class="i-meta"><div class="i-bar"><i></i></div><span class="i-count" id="count">0</span></div>
       </div>
     </div>
     <script>try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("intro-on"); } catch (e) {}</script>
-    <div class="wipe" id="wipe" aria-hidden="true"><span></span><img class="wipe-logo" src="logo-mark-light.png" alt=""></div>
+    <div class="wipe" id="wipe" aria-hidden="true"><span></span><img class="wipe-logo" src="logo-mark-light.webp" alt=""></div>
     <header class="nav" id="nav">
       <div class="wrap">
-        <a href="#top" class="logo" aria-label="B.S.Y DIGITAL"><img src="logo-mark-light.png" alt="" width="105" height="44"></a>
+        <a href="#top" class="logo" aria-label="B.S.Y DIGITAL"><img src="logo-mark-light.webp" alt="" width="105" height="44"></a>
         <nav class="menu" aria-label="Main">
           <a href="#top" data-p="home" data-k="mn_home">דף הבית</a>
           <div class="mn-dd" id="mn-dd"><button type="button" class="mn-t" data-p="svc" aria-expanded="false" aria-haspopup="true"><span data-k="mn_svc">שירותים</span><i aria-hidden="true"></i></button>
@@ -2445,7 +2497,7 @@ h2.rvl.pre { opacity: 0; }
         </div>
         <div class="fx-grid">
           <div class="fx-brand">
-            <div class="foot-mark" id="foot-mark" aria-hidden="true"><img src="logo-mark-light.png" alt=""><span class="f-sheen"></span></div>
+            <div class="foot-mark" id="foot-mark" aria-hidden="true"><img src="logo-mark-light.webp" alt=""><span class="f-sheen"></span></div>
             <p class="fx-tag" data-k="hb">פתרונות דיגיטליים לעסקים</p>
             <ul class="fx-contact">
               <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><a class="ltr ct-tel-link ct-phone" href="#"></a></li>
@@ -2464,6 +2516,13 @@ h2.rvl.pre { opacity: 0; }
       </div>
     </footer>
     <div class="m-cta" id="m-cta" inert><div class="m-cta-in"><a href="#" class="m-wa ct-wa-link" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a></div></div>
+    <button type="button" class="ai-fab" id="ai-fab" aria-expanded="false" aria-controls="ai-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9.4l-4.7 1.8L12 16l-1.8-4.8L5.5 9.4l4.7-1.8z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg><span id="ai-fab-l">שאלו את העוזר</span></button>
+    <section class="ai-box" id="ai-box" role="dialog" aria-modal="false" aria-labelledby="ai-ttl" hidden>
+      <header class="ai-hd"><span class="ai-av"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9.4l-4.7 1.8L12 16l-1.8-4.8L5.5 9.4l4.7-1.8z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span><div><b id="ai-ttl">העוזר של B.S.Y</b><small><i></i><span id="ai-sub">עונה מיד, על כל שירות</span></small></div><button type="button" class="ai-x" id="ai-x" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
+      <div class="ai-log" id="ai-log" aria-live="polite"></div>
+      <div class="ai-chips" id="ai-chips"></div>
+      <form class="ai-in" id="ai-form"><input id="ai-q" type="text" autocomplete="off" maxlength="300"><button type="submit" aria-label="Send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form>
+    </section>
   </div>
 </div>
 
@@ -3084,7 +3143,7 @@ h2.rvl.pre { opacity: 0; }
       '<section class="svp-sec"><div class="wrap fit"><h3 class="t rv">' + (he ? 'למי זה <span class="serif">מתאים?</span>' : 'Who is it <span class="serif">for?</span>') + '</h3><ul class="rv">' +
         v.fit.map(function (f) { return "<li>" + tick + "<span>" + esc(f) + "</span></li>"; }).join("") + "</ul></div></section>" +
       '<section class="svp-sec"><div class="wrap"><h3 class="t rv">' + (key === "site" ? (he ? 'אתרים <span class="serif">שבניתי.</span>' : 'Sites <span class="serif">I built.</span>') : (he ? 'רמת <span class="serif">העבודה.</span>' : 'The level <span class="serif">of work.</span>')) + '</h3><div class="svp-work rv">' +
-        PJ.slice(0, 3).map(function (p) { return '<a href="' + p.url + '" target="_blank" rel="noopener"><div class="shot"><img src="' + esc(pjImg(p, "d")) + '" alt="' + esc(p.name) + '" loading="lazy"></div><b>' + esc(p.name) + "</b><span>" + esc(pjTxt(p, l)[0]) + "</span></a>"; }).join("") + "</div>" +
+        PJ.slice(0, 3).map(function (p) { return '<a href="' + p.url + '" target="_blank" rel="noopener"><div class="shot"><img decoding="async" src="' + esc(pjImg(p, "d")) + '" alt="' + esc(p.name) + '" loading="lazy"></div><b>' + esc(p.name) + "</b><span>" + esc(pjTxt(p, l)[0]) + "</span></a>"; }).join("") + "</div>" +
         '<div class="svp-band rv"><h3>' + (he ? 'מוכנים <span class="serif">להתחיל?</span>' : 'Ready <span class="serif">to start?</span>') + '</h3><a href="#contact" class="pill solid" data-svc="' + i + '">' + T[l].cta + "</a></div>" +
         '<div class="svp-next"><a href="#service-' + prev.key + '">' + (he ? "השירות הקודם" : "Previous service") + "<b>" + esc(prev.name) + '</b></a><a href="#service-' + next.key + '" style="text-align:end">' + (he ? "השירות הבא" : "Next service") + "<b>" + esc(next.name) + "</b></a></div></div></section>";
     clearTimeout(ahT); if (key === "site") shStart(); if (key === "app") ahStart(l);
@@ -3436,8 +3495,8 @@ h2.rvl.pre { opacity: 0; }
       '<div class="sh-ctas rv"><a href="#contact" class="pill solid" data-svc="' + i + '">' + T[l].cta + '</a><a href="#projects" class="pill line">' + T[l].w_all + "</a></div>" +
       '<ul class="sh-facts rv">' + v.facts.map(function (f) { return "<li><b>" + esc(f[0]) + "</b><span>" + esc(f[1]) + "</span></li>"; }).join("") + "</ul></div>" +
       '<div class="sh-vis" id="sh-vis" aria-hidden="true"><span class="sh-glow"></span><div class="sh-stack">' +
-        pj.map(function (p, k) { return '<figure class="sh-win" data-slot="' + k + '"><div class="sh-bar"><i></i><i></i><i></i><span>' + p.url.replace("https://", "") + '</span></div><div class="sh-scr"><img src="work/' + p.id + '-d.jpg" alt=""></div></figure>'; }).join("") +
-        '<div class="sh-phone"><div>' + pj.map(function (p, k) { return '<img src="work/' + p.id + '-m.jpg" alt="" style="opacity:' + (k ? 0 : 1) + '">'; }).join("") + "</div></div></div>" +
+        pj.map(function (p, k) { return '<figure class="sh-win" data-slot="' + k + '"><div class="sh-bar"><i></i><i></i><i></i><span>' + p.url.replace("https://", "") + '</span></div><div class="sh-scr"><img decoding="async" src="work/' + p.id + '-d.webp" alt=""></div></figure>'; }).join("") +
+        '<div class="sh-phone"><div>' + pj.map(function (p, k) { return '<img decoding="async" src="work/' + p.id + '-m.webp" alt="" style="opacity:' + (k ? 0 : 1) + '">'; }).join("") + "</div></div></div>" +
         chips.map(function (c, k) { return '<span class="sh-chip c' + (k + 1) + '">' + esc(c) + "</span>"; }).join("") +
         '<div class="sh-dots">' + pj.map(function (p, k) { return '<button type="button" data-n="' + k + '" class="' + (k ? "" : "on") + '"></button>'; }).join("") + "</div>" +
       "</div></div></div></section>";
@@ -3526,14 +3585,14 @@ h2.rvl.pre { opacity: 0; }
   var scTimer = 0;
   function scVis(v) {
     if (v.key === "ai") return '<span class="sc-new">' + (lang === "he" ? "חדש" : "New") + '</span><div class="sx-chat"><i class="u">' + esc(v.chat[0]) + '</i><i class="b">' + esc(v.chat[1]) + '</i><i class="b">' + esc(v.chat[2]) + "</i></div>";
-    if (v.key === "site") return '<div class="sx-shot" style="background-image:url(work/pnim-d.jpg)"></div>';
+    if (v.key === "site") return '<div class="sx-shot" style="background-image:url(work/pnim-d.webp)"></div>';
     if (v.key === "store") return '<div class="sx-store"><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div>';
     return '<div class="sx-app"><div class="k"><i></i><i></i><i></i></div><div class="bars"><i style="--h:90%"></i><i style="--h:50%"></i><i style="--h:65%"></i><i style="--h:40%"></i><i style="--h:72%"></i><i style="--h:55%"></i></div></div>';
   }
   function renderTrust(l) {
     var t = document.getElementById("tr-t"); if (!t) return;
     var list = PJ.filter(function (p) { return !p.user; });
-    var one = list.map(function (p) { return '<span class="tr-c"><img src="' + esc(pjImg(p, "m")) + '" alt="" loading="lazy"><span><b>' + esc(p.name) + "</b><small>" + esc(String(pjTxt(p, l)[0]).split(" · ")[0]) + "</small></span></span>"; }).join("");
+    var one = list.map(function (p) { return '<span class="tr-c"><img decoding="async" src="' + esc(pjImg(p, "m")) + '" alt="" loading="lazy"><span><b>' + esc(p.name) + "</b><small>" + esc(String(pjTxt(p, l)[0]).split(" · ")[0]) + "</small></span></span>"; }).join("");
     t.innerHTML = one + one;
     document.getElementById("tr-n").textContent = PJ.length;
   }
@@ -3570,7 +3629,7 @@ h2.rvl.pre { opacity: 0; }
   ];
   // Projects added from the admin page come first; the six built-in ones keep their own texts and screenshots
   var PJ_BASE = PJ.slice(), userPJ = [];
-  function pjImg(p, k) { return (k === "d" ? p.imgD : p.imgM) || "work/" + p.id + "-" + k + ".jpg"; }
+  function pjImg(p, k) { return (k === "d" ? p.imgD : p.imgM) || "work/" + p.id + "-" + k + ".webp"; }
   function pjTint(p) { return (typeof PG_TINT !== "undefined" && PG_TINT[p.id]) || "#b8955a"; }
   function pjCat(p) { return PG_CAT[p.id] || p.cat || "other"; }
   function pjTxt(p, l) { return p.user ? [[p.field, p.location].filter(Boolean).join(" · "), p.subtitle || ""] : p[l]; }
@@ -3599,8 +3658,8 @@ h2.rvl.pre { opacity: 0; }
         '<div class="pj-info"><span class="pj-cat">' + esc(t[0]) + '</span><h3 class="pj-name">' + esc(p.name) + '</h3><p class="pj-desc">' + esc(t[1]) + '</p>' +
         '<a class="pill line pj-link" href="' + p.url + '" target="_blank" rel="noopener"><span>' + view + '</span> <span class="ext" aria-hidden="true">↗</span></a></div>' +
         '<div class="pj-stage">' +
-          '<div class="pj-desk"><div class="pj-bar"><i></i><i></i><i></i><span>' + host + '</span></div><div class="pj-screen"><img src="' + esc(pjImg(p, "d")) + '" alt="' + esc(p.name) + ' desktop" loading="lazy"><div class="pj-ph"><b>' + esc(p.name) + '</b>' + soon + '</div></div></div>' +
-          '<div class="pj-phone"><div class="pj-screen"><img src="' + esc(pjImg(p, "m")) + '" alt="' + esc(p.name) + ' mobile" loading="lazy"><div class="pj-ph"><b>' + esc(p.name) + '</b></div></div></div>' +
+          '<div class="pj-desk"><div class="pj-bar"><i></i><i></i><i></i><span>' + host + '</span></div><div class="pj-screen"><img decoding="async" src="' + esc(pjImg(p, "d")) + '" alt="' + esc(p.name) + ' desktop" loading="lazy"><div class="pj-ph"><b>' + esc(p.name) + '</b>' + soon + '</div></div></div>' +
+          '<div class="pj-phone"><div class="pj-screen"><img decoding="async" src="' + esc(pjImg(p, "m")) + '" alt="' + esc(p.name) + ' mobile" loading="lazy"><div class="pj-ph"><b>' + esc(p.name) + '</b></div></div></div>' +
         '</div></article>';
     }).join(""); }
     renderWorkGrid(l);
@@ -3893,7 +3952,7 @@ h2.rvl.pre { opacity: 0; }
       if (!n) return "";
       return '<button type="button" role="tab" data-f="' + f[0] + '" aria-selected="' + (f[0] === pgFilter) + '">' + f[1] + "<sup>" + n + "</sup></button>";
     }).join("");
-    var media = function (p, cls) { return '<div class="' + cls + '" style="--tint:' + pjTint(p) + '"><span class="pz-desk"><span class="pz-bar"><i></i><i></i><i></i><b>' + esc(p.url.replace(/^https?:\/\//, "")) + '</b></span><img src="' + esc(pjImg(p, "d")) + '" alt="" loading="lazy"></span><span class="pz-ph"><img src="' + esc(pjImg(p, "m")) + '" alt="" loading="lazy"></span></div>'; };
+    var media = function (p, cls) { return '<div class="' + cls + '" style="--tint:' + pjTint(p) + '"><span class="pz-desk"><span class="pz-bar"><i></i><i></i><i></i><b>' + esc(p.url.replace(/^https?:\/\//, "")) + '</b></span><img decoding="async" src="' + esc(pjImg(p, "d")) + '" alt="" loading="lazy"></span><span class="pz-ph"><img decoding="async" src="' + esc(pjImg(p, "m")) + '" alt="" loading="lazy"></span></div>'; };
     document.getElementById("pg").innerHTML = '<div class="pz" id="pz"><div class="pz-stick"><div class="pz-frame" id="pz-frame">' +
         PJ.map(function (p, i) { return media(p, "pz-m" + (i ? "" : " on")).replace('class="pz-m', 'data-i="' + i + '" class="pz-m'); }).join("") +
         '<div class="pz-count" id="pz-count"><b>01</b><i><s></s></i><span>' + String(PJ.length).padStart(2, "0") + '</span></div></div></div><div class="pz-list">' +
@@ -4050,7 +4109,7 @@ h2.rvl.pre { opacity: 0; }
       '<div class="cs-info"><span class="pj-cat">' + esc(tx[0]) + '</span><h3 id="cs-name">' + esc(p.name) + "</h3>" + (p.title ? '<p class="cs-ttl">' + esc(p.title) + "</p>" : "") + (tx[1] ? "<p>" + esc(tx[1]) + "</p>" : "") + '<dl class="cs-meta">' + meta.map(function (m) { return "<div><dt>" + m[0] + "</dt><dd>" + esc(m[1]) + "</dd></div>"; }).join("") + "</dl>" +
       csHtml(pjDet(p, lang), t, "cs-cs") +
       '<a class="pill solid" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + t.live + "</a></div>" +
-      '<div class="cs-media" style="--tint:' + pjTint(p) + '"><div class="cs-desk"><div class="pj-bar"><i></i><i></i><i></i><span>' + esc(p.url.replace(/^https?:\/\//, "")) + '</span></div><img src="' + esc(pjImg(p, "d")) + '" alt="' + esc(p.name) + '"></div><div class="cs-phone"><img src="' + esc(pjImg(p, "m")) + '" alt=""></div></div>';
+      '<div class="cs-media" style="--tint:' + pjTint(p) + '"><div class="cs-desk"><div class="pj-bar"><i></i><i></i><i></i><span>' + esc(p.url.replace(/^https?:\/\//, "")) + '</span></div><img decoding="async" src="' + esc(pjImg(p, "d")) + '" alt="' + esc(p.name) + '"></div><div class="cs-phone"><img decoding="async" src="' + esc(pjImg(p, "m")) + '" alt=""></div></div>';
   }
   function csClip(el) {
     var box = cs.getBoundingClientRect();
@@ -4347,7 +4406,7 @@ h2.rvl.pre { opacity: 0; }
 
   // Light theme only (dark mode removed)
   document.documentElement.dataset.theme = "light";
-  document.querySelectorAll('img[src^="logo-mark"]').forEach(function (im) { im.src = "logo-mark-light.png"; });
+  document.querySelectorAll('img[src^="logo-mark"]').forEach(function (im) { im.src = "logo-mark-light.webp"; });
 
   var wipe = document.getElementById("wipe"), wiping = false;
   document.getElementById("lang").addEventListener("click", function () {
@@ -4480,6 +4539,117 @@ h2.rvl.pre { opacity: 0; }
   arm(); window.__armed = true;
   route();
 
+
+  // Site assistant: answers questions about the services from the site's own content
+  (function () {
+    var fab = document.getElementById("ai-fab"), box = document.getElementById("ai-box"), logEl = document.getElementById("ai-log"), chipsEl = document.getElementById("ai-chips"), form = document.getElementById("ai-form"), q = document.getElementById("ai-q");
+    if (!fab || !box) return;
+    var AT = {
+      he: { fab: "שאלו את העוזר", ttl: "העוזר של B.S.Y", sub: "עונה מיד, על כל שירות", ph: "כתבו שאלה...",
+        hi: "שלום! אני העוזר הדיגיטלי של B.S.Y. אפשר לשאול אותי על כל שירות, מה כלול בו, כמה זמן זה לוקח ואיך מתחילים.",
+        chips: ["מה זה סוכן AI?", "מה כלול באתר תדמית?", "מה כלול בחנות אונליין?", "מה כלול באפליקציית ווב?", "כמה זמן זה לוקח?", "כמה זה עולה?", "איך מתחילים?"],
+        incl: "מה כלול:", page: "לעמוד השירות", quote: "קבלו הצעת מחיר", wa: "דברו בוואטסאפ", which: "על איזה שירות תרצו לשמוע?",
+        svcs: "יש ארבעה שירותים עיקריים: <b>מערכות AI וסוכנים</b>, <b>אתרי תדמית</b>, <b>חנויות אונליין</b> ו<b>אפליקציות ווב</b>. על איזה מהם לספר?",
+        steps: "התהליך פשוט:", start: "מתחילים בהודעה אחת: ממלאים את הבריף הקצר או כותבים בוואטסאפ, ואני חוזר אליכם תוך 24 שעות לשיחת היכרות.",
+        contact: "אפשר לדבר איתי ישירות:", lang: "אני עובד בעברית, באנגלית ובצרפתית, גם עם לקוחות מחוץ לישראל.",
+        hello: "שלום! במה אפשר לעזור? אפשר לבחור שאלה למטה או לכתוב חופשי.", thanks: "בשמחה! אם יש עוד שאלה, אני כאן.",
+        miss: "לא בטוח שהבנתי. אפשר לשאול על השירותים, מה כלול, זמנים או איך מתחילים. ולשאלה ספציפית, הכי טוב לדבר איתי ישירות:" },
+      en: { fab: "Ask the assistant", ttl: "B.S.Y assistant", sub: "Instant answers on every service", ph: "Type a question...",
+        hi: "Hi! I'm the B.S.Y digital assistant. Ask me about any service, what's included, how long it takes and how to start.",
+        chips: ["What is an AI agent?", "What's in a brand website?", "What's in an online store?", "What's in a web app?", "How long does it take?", "How much does it cost?", "How do we start?"],
+        incl: "What's included:", page: "See the service page", quote: "Get a quote", wa: "Chat on WhatsApp", which: "Which service would you like to hear about?",
+        svcs: "There are four main services: <b>AI systems & agents</b>, <b>brand websites</b>, <b>online stores</b> and <b>web apps</b>. Which one should I tell you about?",
+        steps: "The process is simple:", start: "It starts with one message: fill in the short brief or write on WhatsApp, and I get back to you within 24 hours for an intro call.",
+        contact: "You can talk to me directly:", lang: "I work in Hebrew, English and French, including with clients outside Israel.",
+        hello: "Hi! How can I help? Pick a question below or type your own.", thanks: "My pleasure! If you have another question, I'm here.",
+        miss: "I'm not sure I understood. You can ask about the services, what's included, timing or how to start. For anything specific, it's best to talk to me directly:" }
+    };
+    var KW = {
+      ai: ["ai", "סוכן", "סוכנים", "בינה", "אוטומצ", "בוט", "צאט", "צ'אט", "chat", "agent", "automat", "bot", "gpt"],
+      site: ["תדמית", "דף נחיתה", "אתר", "אתרים", "website", "landing", "brand site", "site"],
+      store: ["חנות", "חנויות", "מסחר", "איקומרס", "מוצרים", "סליקה", "store", "shop", "ecommerce", "e-commerce", "products", "checkout"],
+      app: ["אפליקצ", "apps", "web app", "זימון", "תורים", "דשבורד", "מערכת ניהול", "crm", "app", "booking", "dashboard", "portal"]
+    };
+    var IN = {
+      incl: ["כלול", "כולל", "מקבלים", "מה יש", "פיצ'רים", "include", "what do i get", "features", "what's in", "whats in"],
+      price: ["מחיר", "עולה", "עלות", "תקציב", "כמה זה", "שקל", "₪", "price", "cost", "budget", "how much", "$"],
+      time: ["כמה זמן", "זמן", "מתי", "שבוע", "how long", "time", "weeks", "when"],
+      start: ["מתחילים", "להתחיל", "תהליך", "שלבים", "איך זה עובד", "start", "process", "steps", "how does it work", "begin"],
+      contact: ["טלפון", "וואטסאפ", "ווצאפ", "מייל", "כתובת", "ליצור קשר", "לדבר", "לפגוש", "phone", "whatsapp", "email", "contact", "call", "address", "meet"],
+      lang: ["אנגלית", "צרפתית", "שפה", "שפות", "חו\"ל", "מחוץ לישראל", "english", "french", "language", "abroad"],
+      own: ["שייך", "בעלות", "קוד", "own", "ownership", "code"],
+      texts: ["טקסט", "תמונות", "תוכן", "צלם", "texts", "photos", "content"],
+      update: ["לעדכן", "עדכון", "לבד", "ניהול תוכן", "update", "edit", "cms"],
+      seo: ["גוגל", "seo", "google", "חיפוש"],
+      after: ["אחרי", "תחזוקה", "תמיכה", "ליווי", "after", "support", "maintenance"],
+      hello: ["שלום", "היי", "הי", "בוקר טוב", "ערב טוב", "hello", "hi", "hey"],
+      thanks: ["תודה", "thanks", "thank you"],
+      list: ["שירותים", "מה אתם עושים", "מה אתה עושה", "services", "what do you do"]
+    };
+    var FQ = { price: 0, time: 2, texts: 3, own: 4, update: 5, seo: 6, after: 7 };
+    var lastSvc = null, started = false, busy = false;
+    function L() { return AT[lang] || AT.he; }
+    function norm(t) { return " " + String(t).toLowerCase().replace(/[?!.,״"׳:;()]/g, " ").replace(/\s+/g, " ") + " "; }
+    function has(t, list) { return list.some(function (k) { return t.indexOf(k.length <= 3 && /^[a-z]+$/.test(k) ? " " + k + " " : k) >= 0; }); }
+    function svcOf(t) { var best = null; ["ai", "store", "app", "site"].some(function (k) { if (has(t, KW[k])) { best = k; return true; } }); return best; }
+    function svcData(k) { return (SVP[lang] || SVP.he).filter(function (v) { return v.key === k; })[0]; }
+    function links(k) {
+      var a = L(), h = '<div class="ai-act">';
+      if (k) h += '<a href="#service-' + k + '" data-close>' + a.page + "</a>";
+      return h + '<a href="#contact" data-close>' + a.quote + '</a><a href="' + waLink() + '" target="_blank" rel="noopener" class="wa">' + a.wa + "</a></div>";
+    }
+    function svcAnswer(k, withIncl) {
+      var v = svcData(k), a = L(); if (!v) return a.svcs;
+      var h = "<b>" + esc(v.name) + "</b><br>" + esc(v.lead);
+      if (withIncl !== false) h += '<p class="ai-k">' + a.incl + '</p><ul>' + v.feat.map(function (f) { return "<li><b>" + esc(f[0]) + "</b> · " + esc(f[1]) + "</li>"; }).join("") + "</ul>";
+      return h + links(k);
+    }
+    function answer(raw) {
+      var t = norm(raw), a = L(), k = svcOf(t), F = FAQ[lang] || FAQ.he;
+      if (k) lastSvc = k;
+      if (has(t, IN.price)) return F[FQ.price][1] + links(k);
+      if (has(t, IN.incl)) return k || lastSvc ? svcAnswer(k || lastSvc) : a.which;
+      if (has(t, IN.time)) return F[FQ.time][1] + links(k);
+      if (has(t, IN.start)) { var P = PROC[lang] || PROC.he; return a.steps + "<ol>" + P.map(function (p) { return "<li><b>" + esc(p.t) + "</b> (" + esc(p.when) + ") · " + esc(p.p) + "</li>"; }).join("") + "</ol>" + a.start + links(null); }
+      if (has(t, IN.contact)) return a.contact + '<ul><li>WhatsApp · <a href="' + waLink() + '" target="_blank" rel="noopener" class="ltr">' + CONTACT.phone + '</a></li><li><a href="mailto:' + CONTACT.email + '" class="ltr">' + CONTACT.email + "</a></li><li>" + esc(CONTACT.addr[lang] || CONTACT.addr.he) + "</li></ul>";
+      if (has(t, IN.lang)) return a.lang + " " + F[8][1];
+      var keys = ["own", "texts", "update", "seo", "after"];
+      for (var i = 0; i < keys.length; i++) if (has(t, IN[keys[i]])) return F[FQ[keys[i]]][1];
+      if (k === "ai") return F[1][1] + "<br><br>" + svcAnswer("ai");
+      if (k) return svcAnswer(k);
+      if (has(t, IN.list)) return a.svcs;
+      if (has(t, IN.thanks)) return a.thanks;
+      if (has(t, IN.hello)) return a.hello;
+      return a.miss + links(null);
+    }
+    function bubble(html, who) {
+      var d = document.createElement("div"); d.className = "ai-m " + who; d.innerHTML = html; logEl.appendChild(d);
+      requestAnimationFrame(function () { d.classList.add("in"); logEl.scrollTop = logEl.scrollHeight; });
+      return d;
+    }
+    function chips() { chipsEl.innerHTML = L().chips.map(function (c) { return '<button type="button">' + esc(c) + "</button>"; }).join(""); }
+    function ask(text) {
+      text = String(text || "").trim(); if (!text || busy) return;
+      busy = true; bubble(esc(text), "me");
+      var dots = bubble("<i></i><i></i><i></i>", "bot typing");
+      setTimeout(function () { dots.remove(); bubble(answer(text), "bot"); busy = false; }, 550 + Math.min(700, text.length * 12));
+    }
+    function paint() {
+      var a = L(); document.getElementById("ai-fab-l").textContent = a.fab; document.getElementById("ai-ttl").textContent = a.ttl; document.getElementById("ai-sub").textContent = a.sub; q.placeholder = a.ph; chips();
+    }
+    function open(o) {
+      box.hidden = !o; fab.setAttribute("aria-expanded", o); document.documentElement.classList.toggle("ai-on", o);
+      if (o) { paint(); if (!started) { started = true; bubble(L().hi, "bot"); } if (matchMedia("(pointer: fine)").matches) setTimeout(function () { q.focus(); }, 60); }
+    }
+    fab.addEventListener("click", function () { open(box.hidden); });
+    document.getElementById("ai-x").addEventListener("click", function () { open(false); fab.focus(); });
+    addEventListener("keydown", function (e) { if (e.key === "Escape" && !box.hidden) open(false); });
+    chipsEl.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) ask(b.textContent); });
+    logEl.addEventListener("click", function (e) { if (e.target.closest("[data-close]")) open(false); });
+    form.addEventListener("submit", function (e) { e.preventDefault(); ask(q.value); q.value = ""; });
+    paint();
+    var lb = document.getElementById("lang"); if (lb) lb.addEventListener("click", function () { setTimeout(paint, 700); });
+  })();
 })();
 </script>
 
